@@ -1,0 +1,22 @@
+# This script is meant to be run with regtest
+# https://eblong.com/zarf/plotex/regtest.html
+
+** game: ./minimal.z5
+
+# Lines starting with "!" are negated; lines starting with "/" are regular
+# expressions. "*" names a test suite
+* tests
+A sample game which uses PunyInform.
+You are in a library.
+/empty
+!It feels so nice, standing in the box.
+> get box
+Taken.
+> drop box
+Dropped.
+> x box
+The box is empty.
+> enter box
+You enter the box.
+> l
+It feels so nice, standing in the box.
