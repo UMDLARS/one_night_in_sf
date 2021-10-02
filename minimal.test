@@ -5,7 +5,9 @@
 
 # Lines starting with "!" are negated; lines starting with "/" are regular
 # expressions. "*" names a test suite
-* tests
+
+* get/drop box
+
 A sample game which uses PunyInform.
 You are in a library.
 /empty
@@ -14,6 +16,9 @@ You are in a library.
 Taken.
 > drop box
 Dropped.
+
+* enter box
+
 > x box
 The box is empty.
 > enter box
