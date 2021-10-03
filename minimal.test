@@ -3,8 +3,14 @@
 
 ** game: ./minimal.z5
 
-# Lines starting with "!" are negated; lines starting with "/" are regular
-# expressions. "*" names a test suite
+# Each line beginning with > is a command, and everything else marks expected
+# output.
+#
+# 1. Lines starting with "!" are negated
+# 2. Lines starting with "/" are regular expressions (mostly handy for
+#    substring search). 
+# 3. Lines starting with "*" name a test suite, starting the game over from the
+#    beginning.
 
 * get/drop box
 
