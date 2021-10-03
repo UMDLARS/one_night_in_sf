@@ -9,7 +9,6 @@ OUT=$(patsubst %.test,%.out,$(TEST))
 # We use wildcards to catch whatever the current version is.
 INFORM:=inform6unix/inform-6.*
 LIB=inform6unix/punyinform/lib/*.h
-SHELL:=$(shell which bash) # to ensure we get a time builtin
 
 all: ${OUT} $(wildcard *.z?)
 
