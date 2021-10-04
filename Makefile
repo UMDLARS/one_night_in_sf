@@ -9,6 +9,11 @@ OUT=$(patsubst %.test,%.out,$(TEST))
 # We use wildcards to catch whatever the current version is.
 INFORM:=inform6unix/inform-6.*
 LIB=inform6unix/punyinform/lib/*.h
+PYTHON:=$(shell which python3)
+ifeq ($(PYTHON),)
+PYTHON:=$(shell which python)
+endif
+TIME:=$(shell which time) # Should be null if it's a shell builtin, which is fine
 
 all: ${OUT} $(wildcard *.z?)
 
@@ -40,7 +45,7 @@ plotex/regtest.py:
 # We're building Z5 now because it's only 1k more than Z3 and we're making for
 # a C64 anyway.
 %.out: %.test %.z5 plotex/regtest.py node_modules/.bin/zvm 
-	time python3 plotex/regtest.py -t 5 -i node_modules/.bin/zvm $< > $@ || time python3 plotex/regtest.py -v -t 5 -i node_modules/.bin/zvm $< | tee $@
+	$(TIME) $(PYTHON) plotex/regtest.py -t 5 -i node_modules/.bin/zvm $< > $@ || $(TIME) $(PYTHON) plotex/regtest.py -v -t 5 -i node_modules/.bin/zvm $< | tee $@
 
 %.z3: %.inf ${LIB} ${INFORM}
 	${INFORM} -e -E1 -d2 -s +include_path=./inform6unix/punyinform/lib/ -v3 '$$small' $<
