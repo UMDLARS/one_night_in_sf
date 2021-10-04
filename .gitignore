@@ -1,0 +1,6 @@
+*.out
+*.z?
+package.json
+inform6unix/
+node_modules/
+plotex/
