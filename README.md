@@ -14,23 +14,35 @@ This repo contains three files:
 
 ## How do I use this?
 
-Just type `make`.
+Just type:
 
-If you have all the dependencies satisfied, you should see a `minimal.out` file that just lists the successful test suites.
+```
+make
+```
+
+If you have all the dependencies satisfied, you should eventually have a `minimal.out` file that just lists the successful test suites.
 
 ## So what do I do next?
 
 First of all, you could install [frotz](https://gitlab.com/DavidGriffith/frotz) or some other Z-machine interpreter, and play the `minimal.z5` game with it.
 
-But you probably want to write your own game.  I recommend making a `mynewgame.test` file (named after your cool game idea) and entering a transcript of how you'd imagine your game could be played successfully.  Then make a `mynewgame.inf` (also named to match the test file) and keep coding until the tests all pass!
+But you probably want to write your own game.  I recommend making a `mynewgame.test` file (named after your cool game idea) and entering a transcript of how you'd imagine your game could be played successfully (at least as far as you've planned it).  Then make a `mynewgame.inf` (also named to match the test file) and keep coding until the tests all pass!
 
-## A whole transcript?
+### A whole transcript?
 
 Well no need for that exactly.  Just enter the commands and use the `!` and `/` features listed in the comments of `minimal.test` to set conditions based on substring matches and negative matches.
 
 ## There's a new version of inform6 or PunyInform out!
 
 You can refresh the sources by running `make dep`.  The compiler should re-build (if needed) the next time you run `make`, before compiling your game.
+
+## This builds a z5 game, but I want z3!
+
+We build z5 because that is what the `zvm` interpreter implements, and we use that for our test suite.  You may find yourself wanting to craft a custom compile command to optimise for abbreviations and other command-line switches, but if you want to quickly churn out a `.z3` version to save around a kilobyte or more, just run:
+
+```
+make mynewgame.z3
+```
 
 ## It broke!
 

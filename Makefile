@@ -10,11 +10,16 @@ OUT=$(patsubst %.test,%.out,$(TEST))
 INFORM:=inform6unix/inform-6.*
 LIB=inform6unix/punyinform/lib/*.h
 PYTHON:=$(shell which python3)
-ifeq ($(PYTHON),)
+ifdef PYTHON
+# We're all right here
+else
 PYTHON:=$(shell which python)
 endif
 TIME:=$(shell which time) # Should be null if it's a shell builtin, which is fine
 
+# This rule will make any *possible* test output files, which may build zfiles.
+# It wil re-build any extant zfiles that have newer dependencies, whether or
+# not there are new test files.
 all: ${OUT} $(wildcard *.z?)
 
 inform6unix/src/*.c:
@@ -42,8 +47,7 @@ node_modules/.bin/zvm:
 plotex/regtest.py: 
 	git clone https://github.com/erkyrath/plotex
 
-# We're building Z5 now because it's only 1k more than Z3 and we're making for
-# a C64 anyway.
+# We use z5 for tests because that is what zvm implements.
 %.out: %.test %.z5 plotex/regtest.py node_modules/.bin/zvm 
 	$(TIME) $(PYTHON) plotex/regtest.py -t 5 -i node_modules/.bin/zvm $< > $@ || $(TIME) $(PYTHON) plotex/regtest.py -v -t 5 -i node_modules/.bin/zvm $< | tee $@
 
