@@ -20,7 +20,7 @@ If you have all the dependencies satisfied, you should see a `minimal.out` file 
 
 ## So what do I do next?
 
-First of all, you could install `frotz` or some other Z-machine Interpreter, and play the `minimal.z5` game with it.
+First of all, you could install [frotz](https://gitlab.com/DavidGriffith/frotz) or some other Z-machine interpreter, and play the `minimal.z5` game with it.
 
 But you probably want to write your own game.  I recommend making a `mynewgame.test` file (named after your cool game idea) and entering a transcript of how you'd imagine your game could be played successfully.  Then make a `mynewgame.inf` (also named to match the test file) and keep coding until the tests all pass!
 
