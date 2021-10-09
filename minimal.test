@@ -12,7 +12,9 @@
 # 3. Lines starting with "*" name a test suite, starting the game over from the
 #    beginning.
 # 
-# For the rest of the syntax, see the URL above.
+# For the rest of the syntax, see the URL above.  In particular you may find
+# >{include} testname
+# syntax helpful for starting a suite of tests from the same point in the game.
 
 * get/drop box
 
