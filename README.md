@@ -44,6 +44,8 @@ We build z5 because that is what the `zvm` interpreter implements, and we use th
 make mynewgame.z3
 ```
 
+Note that z3 format has limitations on (among other things) the number of objects and synonyms for a given object.  You may notice compiler warnings that some `name` words are being dropped, etc.
+
 ## It broke!
 
 * Are you running this from a POSIX shell such as busybox sh, dash, bash, or zsh?  This won't work on DOS/PowerShell systems to our knowledge.
