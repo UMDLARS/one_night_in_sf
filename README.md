@@ -16,7 +16,7 @@ This repo contains three files:
 
 Just type:
 
-```
+```bash
 make
 ```
 
@@ -40,7 +40,7 @@ You can refresh the sources by running `make dep`.  The compiler should re-build
 
 We build z5 because that is what the `zvm` interpreter implements, and we use that for our test suite.  You may find yourself wanting to craft a custom compile command to optimise for abbreviations and other command-line switches, but if you want to quickly churn out a `.z3` version to save around a kilobyte or more, just run:
 
-```
+```bash
 make mynewgame.z3
 ```
 
