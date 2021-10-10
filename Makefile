@@ -52,13 +52,13 @@ plotex/regtest.py:
 	$(TIME) $(PYTHON) plotex/regtest.py -t 5 -i node_modules/.bin/zvm $< > $@ || $(TIME) $(PYTHON) plotex/regtest.py -v -t 5 -i node_modules/.bin/zvm $< | tee $@
 
 %.z3: %.inf ${LIB} ${INFORM}
-	${INFORM} -e -E1 -d2 -s +include_path=./inform6unix/punyinform/lib/ -v3 '$$small' $<
+	${INFORM} -e -E1 -d2 -s +include_path=./inform6unix/punyinform/lib/ -v3 $<
 
 %.z5: %.inf ${LIB} ${INFORM}
-	${INFORM} -e -E1 -d2 -s +include_path=./inform6unix/punyinform/lib/ -v5 '$$small' $<
+	${INFORM} -e -E1 -d2 -s +include_path=./inform6unix/punyinform/lib/ -v5 $<
 
 %.z8: %.inf ${LIB} ${INFORM}
-	${INFORM} -e -E1 -d2 -s +include_path=./inform6unix/punyinform/lib/ -v8 '$$small' $<
+	${INFORM} -e -E1 -d2 -s +include_path=./inform6unix/punyinform/lib/ -v8 $<
 
 clean:
 	rm -f *.z? *.out
