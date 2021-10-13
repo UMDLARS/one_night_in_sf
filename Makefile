@@ -36,7 +36,7 @@ build: dep ${INFORM}
 
 inform6unix/inform%: inform6unix/Makefile inform6unix/src/*.c
 	rm -f ${INFORM}
-	cd inform6unix; $(MAKE)
+	cd inform6unix; $(MAKE) -j
 
 # npm isn't great, but this is the only z-machine I've found that both:
 # 1. Installs cleanly on both Debian/Ubuntu and termux under android
