@@ -1,0 +1,277 @@
+Constant Story "The Office";
+Constant Headline "^It is your first day on the job at Blamazon. You applied here to gain access to their offices after hours to steal the boss's valuable information off of their computer. They have state of the art cyber security preventing any digital leaks of the information so you are here to physically take it.^";
+Constant INITIAL_LOCATION_VALUE = Lobby;
+Constant FLAG_COUNT = 2;
+Constant F_HAS_LADDER = 0;
+Constant F_HAS_COMPUTER = 1;
+
+Include "ext_flags.h";
+Include "globals.h";
+Include "puny.h";
+
+[Initialise;
+  "You step through the front doors of the office of Blamazon. It is pitch black outside. You are here after hours.";
+];
+
+!===================LOBBY=======================
+Object Lobby "The Lobby"
+with
+
+	description "The lobby is quiet, all of the workers have gone home for the day leaving you alone in the building. There is a receptionist desk to the north.
+		     To the west the lobby extends into a waiting area. To the east the lobby extends towards a restroom. To the south is the elevator you came up on.",
+
+n_to Receptionist,
+e_to LobbyEast,
+w_to Waiting,
+s_to Leave,
+
+before [;
+	Go:
+		if(selected_direction==s_to) {
+			if(FlagIsClear(F_HAS_COMPUTER))
+				"You cannot leave without the boss's computer!";
+				else deadflag = GS_WIN;
+		}
+	],
+
+has light;
+
+!=============RECEPTIONIST=================
+Object Receptionist "Receptionist's Desk"
+with
+
+	description "This area is a small cubical where the receptionist works. There is a desk here. To the south there is the lobby.",
+
+s_to Lobby,
+
+has light;
+
+!=============WAITING======================
+Object Waiting "Waiting Room"
+with
+	description "This is a small waiting area. There is an L-shaped couch with a coffee table in front of it in one corner and a chair in the other.
+		     To the north there is a long hallway. To the east there is the lobby.",
+
+n_to Hallway7,
+e_to Lobby,
+
+has light;
+
+!=============LOBBYEAST===========
+Object LobbyEast "Lobby East"
+with
+
+	description "This is a small area of the main lobby. To the east there is a door with a sign next to it saying RESTROOM.
+		     To the north a hallway extends back into the building. The lobby extends to the west",
+
+n_to Hallway1,
+w_to Lobby,
+e_to Restroom,
+
+has light;
+
+!=============HALLWAY7(~~~~~~PLACEHOLDER~~~~~)======================
+Object Hallway7
+with
+
+	description "This is a hallway. To the north the hallway extends. To the south there is the waiting area.",
+
+s_to Waiting,
+n_to Hallway6,
+
+has light;
+
+!=============HALLWAY6(~~~~~~~~~~PLACEHOLDER)=======================
+Object Hallway6
+with
+
+	description "This is a hallway. To the north the hallway extends. To the south the hallway extends.",
+
+s_to Hallway7,
+n_to Hallway5
+
+has light;
+
+!=============HALLWAY5(~~~~~PLACEHOLDER~~~~~)=======================
+Object Hallway5
+with
+
+	description "This is a hallway, To the east the hallway extends. To the south the hallway extends.",
+
+s_to Hallway6,
+e_to Hallway4,
+
+has light;
+
+!=============HALLWAY4(~~~~~~~~~PLACEHOLDER~~~~~~)===================
+Object Hallway4
+with
+	description "This is a hallway. To the west the hallway extends. To the east the hallway extends.",
+
+w_to Hallway5,
+e_to Hallway3,
+
+has light;
+
+!=============HALLWAY3(~~~~~~~~~PLACEHOLDER~~~~~~)===================
+Object Hallway3
+with
+	description "This is a hallway. To the south the hallway extends. To the west the hallway extends.",
+
+w_to Hallway4,
+s_to Hallway2,
+
+has light;
+
+!=============HALLWAY2(~~~~~~PLAACEHOLDER~~~~~~~)====================
+Object Hallway2
+with
+
+	description "This is a hallway. To the south the hallway extends. To the north the hallway extends",
+
+n_to Hallway3,
+s_to Hallway1,
+
+has light;
+
+!=============HALLWAY1(~~~~~~PLACEHOLDER~~~~~~~)====================
+Object Hallway1
+with
+
+	description "This is a hallway with a door on the east wall. To the south there is the lobby. To the north the hallway extends.",
+
+n_to Hallway2,
+s_to LobbyEast,
+
+has light;
+
+!=============RESTROOM=====================
+Object Restroom "Restroom"
+with
+
+	description "This room is a small single user bathroom. There is a sink with a mirror as well as a toilet. To the west there is a door leading back into the lobby.",
+
+w_to LobbyEast,
+
+has light;
+
+!=============HALLWAY======================
+Object Hallway "The Hallway"
+with
+
+	description "The hallway is illuminated by the fluorescent lighting above. There is a potted plant in the south east corner. There is a plain wood door on the north wall. On the east wall there is a wood door with a frosted glass window on it. On the west wall there is another wood door with a frosted glass window on it, this window has the words THE BOSS written on it",
+
+n_to Storage,
+s_to Lobby,
+e_to SOffice,
+cant_go "The boss's office seems to be locked, maybe you could find a key or an alternate way in",
+
+has light;
+
+!==================STORAGE CLOSET===================
+Object Storage "The Storage Closet"
+with
+
+	description "This is a small storage closet, in here is cleaning supplies, a mop, a mop bucket, and a sunflower yellow ladder.",
+
+s_to Hallway,
+
+has light;
+
+Object -> ladder "ladder"
+with
+	name 'ladder' 'yellow ladder' 'sunflower yellow ladder',
+	description "This ladder is a bright sunflower yellow ladder. It must be used to replace the lights if they burn out, without this accessing the ceiling would be impossible.",
+	before [;
+		take: 
+			if(FlagIsClear(F_HAS_LADDER)) {
+				SetFlag(F_HAS_LADDER);
+			}
+	];
+
+!==================SPARE OFFICE====================
+Object SOffice "The Spare Office"
+with
+
+	description "This room is a small office, there is a wooden desk devoid of any identifying obejcts. One of the ceiling panels seems to me missing in here.",
+
+u_to Crawl1,
+before [;
+		Go:
+			if(selected_direction==u_to) {
+				if(FlagIsClear(F_HAS_LADDER))
+					"You cannot get up there, if only you had a some sort of step stool.";
+			}
+],
+w_to Hallway,
+
+has light;
+
+!===================CRAWL SPACE ENTRANCE=====================
+Object Crawl1 "Crawl Space"
+with
+
+	description "You climb up into a small crawl space above the ceiling, there are electrical wires running everywhere however it appears as if the walls do not extend up into this space!",
+
+w_to Crawl2,
+
+has light;
+
+!===================CRAWL SPACE ABOVE HALLWAY=====================
+Object Crawl2 "Above Hallway Crawl Space"
+with
+
+	description "Climbing over the wires you now believe you are above where the hallway is.",
+
+w_to Crawl3,
+
+has light;
+
+!================CRAWL SPACE ABOVE BOSS'S OFFICE =====================
+Object Crawl3 "Above Boss's Office Crawl Space"
+with
+
+	description "You now have climbed far enough that you believe you are above the boss's office!",
+
+d_to BOffice,
+
+has light;
+
+!==================BOSS'S OFFICE=========================
+Object BOffice "Boss's office"
+with
+
+	description "The boss's office has a large wooden desk with a computer on it. On the desk there is a name plate that says BOSS.",
+
+e_to Hallway,
+
+has light;
+
+Object -> desk "Desk"
+with
+	name 'desk' 'wood desk',
+	description "This is a desk"
+
+has static supporter;
+
+Object -> -> computer "Computer"
+with
+
+	name 'computer',
+	description "This is the boss's computer, this is what you came to take.",
+	before [;
+		take:
+			if(FlagIsClear(F_HAS_COMPUTER)){
+				SetFlag(F_HAS_COMPUTER);
+			}
+	];
+
+!================LEAVE============================
+!this is a placeholder room for the end of the game
+
+Object Leave "Leave"
+with 
+
+	description "test"
+
+has light;
