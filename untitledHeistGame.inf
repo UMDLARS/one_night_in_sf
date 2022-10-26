@@ -36,6 +36,16 @@ before [;
 
 has light;
 
+!================LEAVE============================
+!this is a placeholder room for the end of the game
+
+Object Leave "Leave"
+with 
+
+	description "test"
+
+has light;
+
 !=============RECEPTIONIST=================
 Object Receptionist "Receptionist's Desk"
 with
@@ -74,10 +84,21 @@ has light;
 Object Hallway7
 with
 
-	description "This is a hallway. To the north the hallway extends. To the south there is the waiting area.",
+	description "This is a hallway. To the north the hallway extends. To the south there is the waiting area. To the west there is an office.",
 
 s_to Waiting,
 n_to Hallway6,
+w_to Office7,
+
+has light;
+
+!============OFFICE7(~~~PLACEHOLDER~~~)============================
+Object Office7
+with
+
+	description "This is an office. To the east there is a door leading back to the hallway.",
+
+e_to Hallway7,
 
 has light;
 
@@ -85,86 +106,22 @@ has light;
 Object Hallway6
 with
 
-	description "This is a hallway. To the north the hallway extends. To the south the hallway extends.",
+	description "This is a hallway. To the north the hallway extends. To the south the hallway extends. To the east there is a closet. To the west there is an office.",
 
 s_to Hallway7,
-n_to Hallway5
+n_to Hallway5,
+e_to Storage,
+w_to Office6,
 
 has light;
 
-!=============HALLWAY5(~~~~~PLACEHOLDER~~~~~)=======================
-Object Hallway5
+!=============OFFICE6(~~~PLACEHOLDER~~~)===========================
+Object Office6
 with
 
-	description "This is a hallway, To the east the hallway extends. To the south the hallway extends.",
+	description "This is an office. To the east there is a door leading back to the hallway.",
 
-s_to Hallway6,
-e_to Hallway4,
-
-has light;
-
-!=============HALLWAY4(~~~~~~~~~PLACEHOLDER~~~~~~)===================
-Object Hallway4
-with
-	description "This is a hallway. To the west the hallway extends. To the east the hallway extends.",
-
-w_to Hallway5,
-e_to Hallway3,
-
-has light;
-
-!=============HALLWAY3(~~~~~~~~~PLACEHOLDER~~~~~~)===================
-Object Hallway3
-with
-	description "This is a hallway. To the south the hallway extends. To the west the hallway extends.",
-
-w_to Hallway4,
-s_to Hallway2,
-
-has light;
-
-!=============HALLWAY2(~~~~~~PLAACEHOLDER~~~~~~~)====================
-Object Hallway2
-with
-
-	description "This is a hallway. To the south the hallway extends. To the north the hallway extends",
-
-n_to Hallway3,
-s_to Hallway1,
-
-has light;
-
-!=============HALLWAY1(~~~~~~PLACEHOLDER~~~~~~~)====================
-Object Hallway1
-with
-
-	description "This is a hallway with a door on the east wall. To the south there is the lobby. To the north the hallway extends.",
-
-n_to Hallway2,
-s_to LobbyEast,
-
-has light;
-
-!=============RESTROOM=====================
-Object Restroom "Restroom"
-with
-
-	description "This room is a small single user bathroom. There is a sink with a mirror as well as a toilet. To the west there is a door leading back into the lobby.",
-
-w_to LobbyEast,
-
-has light;
-
-!=============HALLWAY======================
-Object Hallway "The Hallway"
-with
-
-	description "The hallway is illuminated by the fluorescent lighting above. There is a potted plant in the south east corner. There is a plain wood door on the north wall. On the east wall there is a wood door with a frosted glass window on it. On the west wall there is another wood door with a frosted glass window on it, this window has the words THE BOSS written on it",
-
-n_to Storage,
-s_to Lobby,
-e_to SOffice,
-cant_go "The boss's office seems to be locked, maybe you could find a key or an alternate way in",
+e_to Hallway6,
 
 has light;
 
@@ -174,7 +131,7 @@ with
 
 	description "This is a small storage closet, in here is cleaning supplies, a mop, a mop bucket, and a sunflower yellow ladder.",
 
-s_to Hallway,
+w_to Hallway6,
 
 has light;
 
@@ -188,6 +145,172 @@ with
 				SetFlag(F_HAS_LADDER);
 			}
 	];
+
+!=============HALLWAY5(~~~~~PLACEHOLDER~~~~~)=======================
+Object Hallway5
+with
+
+	description "This is a hallway, To the east the hallway extends. To the south the hallway extends. To the west there is an office. To the north there is an office.",
+
+s_to Hallway6,
+e_to Hallway4,
+w_to Office5,
+n_to Office4,
+
+has light;
+
+!============OFFICE5(~~~PLACEHOLDER~~~)=============================
+Object Office5
+with
+
+	description "This is an office. To the east there is a door leading back to the hallway.",
+
+e_to Hallway5,
+
+has light;
+
+!============OFFICE4(~~~PLACEHOLDER~~~)=============================
+Object Office4
+with
+
+	description "This is an office. To the south there is a door leading back to the hallway.",
+
+s_to Hallway5,
+
+has light;
+
+!=============HALLWAY4(~~~~~~~~~PLACEHOLDER~~~~~~)===================
+Object Hallway4
+with
+
+	description "This is a hallway. To the west the hallway extends. To the east the hallway extends. To the north is an office. To the south is a kitchenette.",
+
+w_to Hallway5,
+e_to Hallway3,
+n_to Office3,
+s_to Kitchenette,
+
+has light;
+
+!============OFFICE3(~~~PLACEHOLDER~~~)==============================
+Object Office3
+with
+
+	description "This is an office. To the south there is a door leading back to the hallway.",
+
+s_to Hallway4,
+
+has light;
+
+!=============KITCHENETTE===========================================
+Object Kitchenette
+with
+
+	description "This is a kitchenette. To the north the room extends into the hallway.",
+
+n_to Hallway4,
+
+has light;
+
+!=============HALLWAY3(~~~~~~~~~PLACEHOLDER~~~~~~)===================
+Object Hallway3
+with
+
+	description "This is a hallway. To the south the hallway extends. To the west the hallway extends. To the east is an office.",
+
+w_to Hallway4,
+s_to Hallway2,
+e_to Office2,
+
+has light;
+
+!============OFFICE2(~~~PLACEHOLDER~~~)==============================
+Object Office2
+with
+
+	description "This is an office. To the west there is a door leading back to the hallway.",
+
+w_to Hallway3,
+
+has light;
+
+!=============HALLWAY2(~~~~~~PLAACEHOLDER~~~~~~~)====================
+Object Hallway2
+with
+
+	description "This is a hallway. To the south the hallway extends. To the north the hallway extends. To the west there is an IT closet.",
+
+n_to Hallway3,
+s_to Hallway1,
+w_to ITcloset,
+
+has light;
+
+!=============ITCLOSET=============================================
+Object ITcloset
+with
+
+	description "This is an IT closet. To the east there is a door leading back to the hallway.",
+
+e_to Hallway2,
+
+has light;
+
+!=============HALLWAY1(~~~~~~PLACEHOLDER~~~~~~~)====================
+Object Hallway1
+with
+
+	description "To the south there is the lobby. To the north the hallway extends. To the east there is an office.",
+
+n_to Hallway2,
+s_to LobbyEast,
+e_to Office1,
+
+has light;
+
+!=============OFFICE1(~~~PLACEHOLDER~~~)============================
+Object Office1
+with
+
+	description "This is an office. To the west there is a door leading back to the hallway.",
+
+w_to Hallway1,
+
+has light;
+
+!=============RESTROOM=====================
+Object Restroom "Restroom"
+with
+
+	description "This room is a small single user bathroom. There is a sink with a mirror as well as a toilet. To the west there is a door leading back into the lobby.",
+
+w_to LobbyEast,
+
+has light;
+
+
+
+
+!=============================================================================================================================
+!= Beyond this point all of these rooms are currently unused, they were used in previous versions but give an example of how =
+!= to accomplish things such as locks requiring certain items to allow the player to pass.                                   =
+!=============================================================================================================================
+
+
+
+
+!=============HALLWAY======================
+Object Hallway "The Hallway"
+with
+
+	description "The hallway is illuminated by the fluorescent lighting above. There is a potted plant in the south east corner. There is a plain wood door on the north wall. On the east wall there is a wood door with a frosted glass window on it. On the west wall there is another wood door with a frosted glass window on it, this window has the words THE BOSS written on it",
+
+n_to Storage,
+s_to Lobby,
+e_to SOffice,
+cant_go "The boss's office seems to be locked, maybe you could find a key or an alternate way in",
+
+has light;
 
 !==================SPARE OFFICE====================
 Object SOffice "The Spare Office"
@@ -266,12 +389,3 @@ with
 			}
 	];
 
-!================LEAVE============================
-!this is a placeholder room for the end of the game
-
-Object Leave "Leave"
-with 
-
-	description "test"
-
-has light;
