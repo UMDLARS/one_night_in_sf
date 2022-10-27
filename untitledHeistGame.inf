@@ -61,7 +61,7 @@ has light;
 !=============WAITING======================
 Object Waiting "Waiting Room"
 with
-	description "This is a small waiting area. There is an L-shaped couch with a coffee table in front of it in one corner and a chair in the other. A window on the west wall looks out on the San Fancisco skyline. To the north there is a long hallway. To the east there is the lobby.",
+	description "This is a small waiting area. There is an L-shaped couch with a coffee table in front of it in one corner, and a chair and floor lamp in the other. A window on the west wall looks out on the San Fancisco skyline. To the north there is a long hallway. To the east there is the lobby.",
 	cheap_scenery
 		'couch' 'l-shaped' "The L-shaped couch is tucked into the corner of this part of the lobby.",
 
@@ -69,6 +69,15 @@ with
 	e_to Lobby,
 
 has light;
+
+Object -> wrlamp "lamp"
+with
+	name 'lamp' 'torchere' ' torchiere' 'torchiere',
+	description "This tall lamp is a classic torchiere of late 20th century design, with a tall, cylindrical post and bowl-like glass diffuser atop a turqoise glass disk. The lamp has a small brass knob for switching it on and off.",
+	when_on "The lamp casts a mellow glow on the ceiling.",
+	when_off "The lamp is switched off.",
+has static switchable;
+
 
 Object -> coffee_table "coffee table"
 with
