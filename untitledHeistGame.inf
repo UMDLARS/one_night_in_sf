@@ -4,9 +4,11 @@ Constant INITIAL_LOCATION_VALUE = Lobby;
 Constant FLAG_COUNT = 2;
 Constant F_HAS_LADDER = 0;
 Constant F_HAS_COMPUTER = 1;
+Constant F_HAS_BROCHURE = 0;
 
 Include "ext_flags.h";
 Include "globals.h";
+Include "ext_cheap_scenery.h";
 Include "puny.h";
 
 [Initialise;
@@ -59,13 +61,32 @@ has light;
 !=============WAITING======================
 Object Waiting "Waiting Room"
 with
-	description "This is a small waiting area. There is an L-shaped couch with a coffee table in front of it in one corner and a chair in the other.
-		     To the north there is a long hallway. To the east there is the lobby.",
+	description "This is a small waiting area. There is an L-shaped couch with a coffee table in front of it in one corner and a chair in the other. A window on the west wall looks out on the San Fancisco skyline. To the north there is a long hallway. To the east there is the lobby.",
+	cheap_scenery
+		'couch' 'l-shaped' "The L-shaped couch is tucked into the corner of this part of the lobby.",
 
-n_to Hallway7,
-e_to Lobby,
+	n_to Hallway7,
+	e_to Lobby,
 
 has light;
+
+Object -> coffee_table "coffee table"
+with
+	name 'coffee table' 'table' 'end table',
+	description "This heavy glass table looks like something from a modern art catalog. It is completely asymmetric and has no straight lines or sharp edges.",
+has static supporter;
+
+Object -> -> brochure "brochure"
+with
+	name "brochure" "flyer" "paper",
+	description "This full-color tri-fold flyer is printed on sturdy paper. It talks in extravagant terms about the company.",
+	before [;
+		take:
+			if(FlagIsClear(F_HAS_BROCHURE)) {
+				SetFlag(F_HAS_BROCHURE);
+			}
+	];
+	
 
 !=============LOBBYEAST===========
 Object LobbyEast "Lobby East"
