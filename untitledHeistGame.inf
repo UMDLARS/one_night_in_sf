@@ -5,6 +5,7 @@ Constant FLAG_COUNT = 2;
 Constant F_HAS_LADDER = 0;
 Constant F_HAS_COMPUTER = 1;
 Constant F_HAS_BROCHURE = 0;
+Constant F_HAS_BRASSKEY = 0;
 
 Include "ext_flags.h";
 Include "globals.h";
@@ -57,6 +58,22 @@ with
 s_to Lobby,
 
 has light;
+
+Object -> o7key "loose brass key"
+with
+	name 'key' 'brass',
+	description "This is a single brass key. Stamped on the key are the words ~DUPLICATION STRICTLY PROHIBITED~.",
+	before [;
+		take: 
+			if(FlagIsClear(F_HAS_BRASSKEY)) {
+				SetFlag(F_HAS_BRASSKEY);
+			}
+		drop:
+			if(FlagIsSet(F_HAS_BRASSKEY)) {
+				ClearFlag(F_HAS_BRASSKEY);
+			}
+	];
+
 
 !=============WAITING======================
 Object Waiting "Waiting Room"
@@ -119,6 +136,13 @@ with
 s_to Waiting,
 n_to Hallway6,
 w_to Office7,
+before [;
+		Go:
+			if(selected_direction==w_to) {
+				if(FlagIsClear(F_HAS_BRASSKEY))
+					"The door is locked and likely requires a key.";
+			}
+],
 
 has light;
 
