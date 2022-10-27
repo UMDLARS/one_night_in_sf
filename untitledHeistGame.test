@@ -37,7 +37,7 @@
 # > l
 # It feels so nice, standing in the box.
 
-* get/drop key
+* loop the hallway
 
 > w
 > n
@@ -48,4 +48,27 @@
 > s
 > s
 > s
-Lobby East
+> w
+The Lobby
+
+* get/drop key from receptionist area
+
+> n
+> get key
+Taken.
+> drop key
+Dropped.
+
+* test o7 with/without key
+
+> n
+> take key
+> s
+> w
+> n
+> w
+> e
+Hallway7
+> drop key
+> w
+The door is locked and likely requires a key.
