@@ -1,13 +1,7 @@
 Constant Story "The Office";
 Constant Headline "^It is your first day on the job at Blamazon. You applied here to gain access to their offices after hours to steal the boss's valuable information off of their computer. They have state of the art cyber security preventing any digital leaks of the information so you are here to physically take it.^";
 Constant INITIAL_LOCATION_VALUE = Lobby;
-Constant FLAG_COUNT = 2;
-Constant F_HAS_LADDER = 0;
-Constant F_HAS_COMPUTER = 1;
-Constant F_HAS_BROCHURE = 0;
-Constant F_HAS_BRASSKEY = 0;
 
-Include "ext_flags.h";
 Include "globals.h";
 Include "ext_cheap_scenery.h";
 Include "puny.h";
@@ -62,17 +56,7 @@ has light;
 Object -> o7key "loose brass key"
 with
 	name 'key' 'brass',
-	description "This is a single brass key. Stamped on the key are the words ~DUPLICATION STRICTLY PROHIBITED~.",
-	before [;
-		take: 
-			if(FlagIsClear(F_HAS_BRASSKEY)) {
-				SetFlag(F_HAS_BRASSKEY);
-			}
-		drop:
-			if(FlagIsSet(F_HAS_BRASSKEY)) {
-				ClearFlag(F_HAS_BRASSKEY);
-			}
-	];
+	description "This is a single brass key. Stamped on the key are the words ~DUPLICATION STRICTLY PROHIBITED~.";
 
 
 !=============WAITING======================
@@ -105,13 +89,7 @@ has static supporter;
 Object -> -> brochure "brochure"
 with
 	name "brochure" "flyer" "paper",
-	description "This full-color tri-fold flyer is printed on sturdy paper. It talks in extravagant terms about the company.",
-	before [;
-		take:
-			if(FlagIsClear(F_HAS_BROCHURE)) {
-				SetFlag(F_HAS_BROCHURE);
-			}
-	];
+	description "This full-color tri-fold flyer is printed on sturdy paper. It talks in extravagant terms about the company.";
 	
 
 !=============LOBBYEAST===========
@@ -192,13 +170,7 @@ has light;
 Object -> ladder "ladder"
 with
 	name 'ladder' 'yellow ladder' 'sunflower yellow ladder',
-	description "This ladder is a bright sunflower yellow ladder. It must be used to replace the lights if they burn out, without this accessing the ceiling would be impossible.",
-	before [;
-		take: 
-			if(FlagIsClear(F_HAS_LADDER)) {
-				SetFlag(F_HAS_LADDER);
-			}
-	];
+	description "This ladder is a bright sunflower yellow ladder. It must be used to replace the lights if they burn out, without this accessing the ceiling would be impossible.";
 
 !=============HALLWAY5(~~~~~PLACEHOLDER~~~~~)=======================
 Object Hallway5
@@ -376,7 +348,10 @@ u_to Crawl1,
 before [;
 		Go:
 			if(selected_direction==u_to) {
-				if(FlagIsClear(F_HAS_LADDER))
+				! This should work whether the player is holding the ladder
+				! (it's in the player which is in the SOffice, so transitively
+				! it's in the SOffice), or if the player drops it here.
+				if(ladder notin self)
 					"You cannot get up there, if only you had a some sort of step stool.";
 			}
 ],
@@ -435,11 +410,5 @@ Object -> -> computer "Computer"
 with
 
 	name 'computer',
-	description "This is the boss's computer, this is what you came to take.",
-	before [;
-		take:
-			if(FlagIsClear(F_HAS_COMPUTER)){
-				SetFlag(F_HAS_COMPUTER);
-			}
-	];
+	description "This is the boss's computer, this is what you came to take.";
 
