@@ -349,8 +349,7 @@ before [;
 		Go:
 			if(selected_direction==u_to) {
 				! This should work whether the player is holding the ladder
-				! (it's in the player which is in the SOffice, so transitively
-				! it's in the SOffice), or if the player drops it here.
+				! or if the player drops it here.
 				if(ladder notin self or player)
 					"You cannot get up there, if only you had a some sort of step stool.";
 			}
