@@ -31,9 +31,9 @@ s_to Leave,
 before [;
 	Go:
 		if(selected_direction==s_to) {
-			if(FlagIsClear(F_HAS_COMPUTER))
+			if(computer notin player)
 				"You cannot leave without the boss's computer!";
-				else deadflag = GS_WIN;
+			else deadflag = GS_WIN;
 		}
 	],
 

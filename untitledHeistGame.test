@@ -72,3 +72,7 @@ Hallway7
 > drop key
 > w
 The door is locked and likely requires a key.
+
+* Try to leave without the computer
+> s
+You cannot leave without the boss's computer!
