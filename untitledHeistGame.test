@@ -76,3 +76,9 @@ The door is locked and likely requires a key.
 * Try to leave without the computer
 > s
 You cannot leave without the boss's computer!
+
+* Try to open the Office7 door without the key
+> w
+> n
+> w
+The door is locked and likely requires a key.

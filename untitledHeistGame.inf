@@ -139,7 +139,7 @@ w_to Office7,
 before [;
 		Go:
 			if(selected_direction==w_to) {
-				if(FlagIsClear(F_HAS_BRASSKEY))
+				if(o7key notin player)
 					"The door is locked and likely requires a key.";
 			}
 ],
