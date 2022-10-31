@@ -128,3 +128,34 @@ You cannot leave without the boss's computer!
 > n
 > w
 The door is locked and likely requires a key.
+
+* Try to climb into the crawlspace without the ladder
+> w
+> n
+> n
+> n
+> n
+> u
+You cannot get up there, if only you had a some sort of step stool.
+
+* Use the ladder to climb into the crawlspace
+> e
+> n
+> n
+> w
+> get ladder
+Taken.
+> e
+> n
+> w
+> w
+> n
+> u
+Crawl Space
+You climb up into a small crawl space
+> d
+> drop ladder
+Dropped.
+> u
+Crawl Space
+
