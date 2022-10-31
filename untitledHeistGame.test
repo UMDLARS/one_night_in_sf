@@ -73,6 +73,52 @@ Hallway7
 > w
 The door is locked and likely requires a key.
 
+* enter/exit all rooms
+
+> n
+> s
+> e
+> e
+> w
+> n
+> e
+> w
+> n
+> w
+> take ladder
+> e
+> n
+> e
+> w
+> w
+> s
+> n
+> n
+> s
+> w
+> n
+> u
+> w
+> d
+> u
+> e
+> d
+> s
+> n
+> u
+> w
+> d
+> e
+> s
+> w
+> e
+> s
+> w
+> e
+> s
+> e
+The Lobby
+
 * Try to leave without the computer
 > s
 You cannot leave without the boss's computer!
