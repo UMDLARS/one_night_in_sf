@@ -346,7 +346,7 @@ with
 
 n_to Hallway3,
 s_to Hallway1,
-w_to ITcloset,
+w_to Storage,
 
 has light;
 
