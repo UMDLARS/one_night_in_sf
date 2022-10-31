@@ -130,10 +130,12 @@ Hallway7
 The Lobby
 
 * Try to leave without the computer
+
 > s
 You cannot leave without the boss's computer!
 
 * Try to climb into the crawlspace without the ladder
+
 > w
 > n
 > n
@@ -143,6 +145,7 @@ You cannot leave without the boss's computer!
 You cannot get up there, if only you had a some sort of step stool.
 
 * Use the ladder to climb into the crawlspace
+
 > e
 > n
 > n
