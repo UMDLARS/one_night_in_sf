@@ -185,7 +185,7 @@ with
 
 	description "This is a small storage closet, in here is cleaning supplies, a mop, a mop bucket, and a sunflower yellow ladder.",
 
-w_to Hallway6,
+e_to Hallway2,
 
 has light;
 
@@ -208,30 +208,80 @@ with
 
 s_to Hallway6,
 e_to Hallway4,
-w_to Office5,
+cant_go "This door is locked. Maybe you could find a key or an alternate way in.",
 n_to Office4,
 
 has light;
 
-!============OFFICE5(~~~PLACEHOLDER~~~)=============================
-Object Office5
+!==================SPARE OFFICE====================
+Object Office4 "The Unused Office"
 with
 
-	description "This is an office. To the east there is a door leading back to the hallway.",
+	description "This room is a small office, there is a wooden desk devoid of any identifying obejcts. One of the ceiling panels seems to me missing in here.",
 
-e_to Hallway5,
-
-has light;
-
-!============OFFICE4(~~~PLACEHOLDER~~~)=============================
-Object Office4
-with
-
-	description "This is an office. To the south there is a door leading back to the hallway.",
-
+u_to Crawl1,
+before [;
+		Go:
+			if(selected_direction==u_to) {
+				if(FlagIsClear(F_HAS_LADDER))
+					"You cannot get up there, if only you had a some sort of step stool.";
+			}
+],
 s_to Hallway5,
 
 has light;
+
+!===================CRAWL SPACE ENTRANCE=====================
+Object Crawl1 "Crawl Space"
+with
+
+	description "You climb up into a small crawl space above the ceiling, there are electrical wires running everywhere however it appears as if the wall to the west does not extend up into this space!",
+
+w_to Crawl2,
+d_to Office4,
+
+has light;
+
+!================CRAWL SPACE ABOVE BOSS'S OFFICE =====================
+Object Crawl2 "Above April's Office Crawl Space"
+with
+
+	description "This area seems like it would be directly above April's office.",
+
+d_to Office5,
+e_to Crawl1,
+
+has light;
+
+!==================OFFICE5(APRIL'S OFFICE=========================
+Object Office5 "April's Office"
+with
+
+	description "April's office has a large wooden desk with a computer on it. On the desk there is a name plate that says APRIL. There is a door to the east leading back to the hallway.",
+
+e_to Hallway5,
+u_to Crawl2,
+
+has light;
+
+Object -> desk "Desk"
+with
+	name 'desk' 'wood desk',
+	description "This is a desk"
+
+has static supporter;
+
+Object -> -> computer "Computer"
+with
+
+	name 'computer',
+	description "This is April's computer, this is what you came to take.",
+	before [;
+		take:
+			if(FlagIsClear(F_HAS_COMPUTER)){
+				SetFlag(F_HAS_COMPUTER);
+			}
+	];
 
 !=============HALLWAY4(~~~~~~~~~PLACEHOLDER~~~~~~)===================
 Object Hallway4
@@ -306,7 +356,7 @@ with
 
 	description "This is an IT closet. To the east there is a door leading back to the hallway.",
 
-e_to Hallway2,
+w_to Hallway6,
 
 has light;
 
@@ -354,92 +404,26 @@ has light;
 
 
 !=============HALLWAY======================
-Object Hallway "The Hallway"
-with
-
-	description "The hallway is illuminated by the fluorescent lighting above. There is a potted plant in the south east corner. There is a plain wood door on the north wall. On the east wall there is a wood door with a frosted glass window on it. On the west wall there is another wood door with a frosted glass window on it, this window has the words THE BOSS written on it",
-
-n_to Storage,
-s_to Lobby,
-e_to SOffice,
-cant_go "The boss's office seems to be locked, maybe you could find a key or an alternate way in",
-
-has light;
-
-!==================SPARE OFFICE====================
-Object SOffice "The Spare Office"
-with
-
-	description "This room is a small office, there is a wooden desk devoid of any identifying obejcts. One of the ceiling panels seems to me missing in here.",
-
-u_to Crawl1,
-before [;
-		Go:
-			if(selected_direction==u_to) {
-				if(FlagIsClear(F_HAS_LADDER))
-					"You cannot get up there, if only you had a some sort of step stool.";
-			}
-],
-w_to Hallway,
-
-has light;
-
-!===================CRAWL SPACE ENTRANCE=====================
-Object Crawl1 "Crawl Space"
-with
-
-	description "You climb up into a small crawl space above the ceiling, there are electrical wires running everywhere however it appears as if the walls do not extend up into this space!",
-
-w_to Crawl2,
-
-has light;
+!Object Hallway "The Hallway"
+!with
+!
+!	description "The hallway is illuminated by the fluorescent lighting above. There is a potted plant in the south east corner. There is a plain wood door on the north wall. On the east wall there is a wood door with a frosted glass window on it. On the west wall there is another wood door with a frosted glass window on it, this window has the words THE BOSS written on it",
+!
+!n_to Storage,
+!s_to Lobby,
+!e_to SOffice,
+!cant_go "The boss's office seems to be locked, maybe you could find a key or an alternate way in",
+!
+!has light;
 
 !===================CRAWL SPACE ABOVE HALLWAY=====================
-Object Crawl2 "Above Hallway Crawl Space"
-with
+!Object Crawl2 "Above Hallway Crawl Space"
+!with
+!
+!	description "Climbing over the wires you now believe you are above where the hallway is.",
+!
+!w_to Crawl3,
+!
+!has light;
 
-	description "Climbing over the wires you now believe you are above where the hallway is.",
-
-w_to Crawl3,
-
-has light;
-
-!================CRAWL SPACE ABOVE BOSS'S OFFICE =====================
-Object Crawl3 "Above Boss's Office Crawl Space"
-with
-
-	description "You now have climbed far enough that you believe you are above the boss's office!",
-
-d_to BOffice,
-
-has light;
-
-!==================BOSS'S OFFICE=========================
-Object BOffice "Boss's office"
-with
-
-	description "The boss's office has a large wooden desk with a computer on it. On the desk there is a name plate that says BOSS.",
-
-e_to Hallway,
-
-has light;
-
-Object -> desk "Desk"
-with
-	name 'desk' 'wood desk',
-	description "This is a desk"
-
-has static supporter;
-
-Object -> -> computer "Computer"
-with
-
-	name 'computer',
-	description "This is the boss's computer, this is what you came to take.",
-	before [;
-		take:
-			if(FlagIsClear(F_HAS_COMPUTER)){
-				SetFlag(F_HAS_COMPUTER);
-			}
-	];
 
