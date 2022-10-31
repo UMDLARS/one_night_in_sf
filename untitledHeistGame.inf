@@ -195,7 +195,7 @@ u_to Crawl1,
 before [;
 		Go:
 			if(selected_direction==u_to) {
-				if(FlagIsClear(F_HAS_LADDER))
+				if(ladder notin self or player)
 					"You cannot get up there, if only you had a some sort of step stool.";
 			}
 ],
@@ -247,13 +247,7 @@ Object -> -> computer "Computer"
 with
 
 	name 'computer',
-	description "This is April's computer, this is what you came to take.",
-	before [;
-		take:
-			if(FlagIsClear(F_HAS_COMPUTER)){
-				SetFlag(F_HAS_COMPUTER);
-			}
-	];
+	description "This is April's computer, this is what you came to take.";
 
 !=============HALLWAY4(~~~~~~~~~PLACEHOLDER~~~~~~)===================
 Object Hallway4
