@@ -1,6 +1,7 @@
 Constant Story "The Office";
 Constant Headline "^It is your first day on the job at Blamazon. You applied here to gain access to their offices after hours to steal the boss's valuable information off of their computer. They have state of the art cyber security preventing any digital leaks of the information so you are here to physically take it.^";
 Constant INITIAL_LOCATION_VALUE = Lobby;
+Constant OPTIONAL_SIMPLE_DOORS;
 
 Include "globals.h";
 Include "ext_cheap_scenery.h";
@@ -119,14 +120,7 @@ with
 
 s_to Waiting,
 n_to Hallway6,
-w_to Office7,
-before [;
-		Go:
-			if(selected_direction==w_to) {
-				if(o7key notin player)
-					"The door is locked and likely requires a key.";
-			}
-],
+w_to Office7Door,
 
 has light;
 
@@ -136,9 +130,17 @@ with
 
 	description "This is an office. To the east there is a door leading back to the hallway.",
 
-e_to Hallway7,
+e_to Office7Door,
 
 has light;
+
+Object -> Office7Door "Office Door"
+with
+	name 'office' 'door',
+	door_dir (e_to) (w_to),
+	found_in Hallway7 Office7,
+	with_key o7key,
+has static door openable ~open lockable locked;
 
 !=============HALLWAY6(~~~~~~~~~~PLACEHOLDER)=======================
 Object Hallway6
