@@ -76,6 +76,7 @@ The door is locked and likely requires a key.
 * enter/exit all rooms
 
 > n
+> take key
 > s
 > e
 > e
@@ -97,21 +98,21 @@ The door is locked and likely requires a key.
 > s
 > w
 > n
-> u
+> use ladder
 > w
 > d
-> u
 > e
-> d
-> s
 > n
-> u
+> use ladder
 > w
-> d
 > e
+> d
+> s
 > s
 > w
 > e
+> e
+> w
 > s
 > w
 > e
@@ -150,12 +151,10 @@ Taken.
 > w
 > w
 > n
-> u
+> use ladder
 Crawl Space
 You climb up into a small crawl space
 > d
-> drop ladder
-Dropped.
-> u
+> use ladder
 Crawl Space
 

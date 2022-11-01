@@ -6,6 +6,12 @@ Include "globals.h";
 Include "ext_cheap_scenery.h";
 Include "puny.h";
 
+[UseSub;
+	"You're not sure how you can use that in this location.";
+];
+
+Verb 'use' * noun -> Use;
+
 [Initialise;
   "You step through the front doors of the office of Blamazon. It is pitch black outside. You are here after hours.";
 ];
@@ -142,7 +148,7 @@ with
 
 s_to Hallway7,
 n_to Hallway5,
-e_to Storage,
+e_to ITcloset,
 w_to Office6,
 
 has light;
@@ -191,12 +197,18 @@ with
 
 	description "This room is a small office, there is a wooden desk devoid of any identifying obejcts. One of the ceiling panels seems to me missing in here.",
 
-u_to Crawl1,
 before [;
+		Use:
+			if(noun==ladder){
+				print "You climb up the ladder. However you had to leave it behind.^";
+				move ladder to self;
+				PlayerTo(Crawl1);
+				return true;
+			}
 		Go:
-			if(selected_direction==u_to) {
-				if(ladder notin self or player)
-					"You cannot get up there, if only you had a some sort of step stool.";
+			if(selected_direction==u_to){
+				print "You cannot get up there, if only you had a some sort of step stool.^";
+				return true;
 			}
 ],
 s_to Hallway5,
@@ -357,39 +369,3 @@ with
 w_to LobbyEast,
 
 has light;
-
-
-
-
-!=============================================================================================================================
-!= Beyond this point all of these rooms are currently unused, they were used in previous versions but give an example of how =
-!= to accomplish things such as locks requiring certain items to allow the player to pass.                                   =
-!=============================================================================================================================
-
-
-
-
-!=============HALLWAY======================
-!Object Hallway "The Hallway"
-!with
-!
-!	description "The hallway is illuminated by the fluorescent lighting above. There is a potted plant in the south east corner. There is a plain wood door on the north wall. On the east wall there is a wood door with a frosted glass window on it. On the west wall there is another wood door with a frosted glass window on it, this window has the words THE BOSS written on it",
-!
-!n_to Storage,
-!s_to Lobby,
-!e_to SOffice,
-!cant_go "The boss's office seems to be locked, maybe you could find a key or an alternate way in",
-!
-!has light;
-
-!===================CRAWL SPACE ABOVE HALLWAY=====================
-!Object Crawl2 "Above Hallway Crawl Space"
-!with
-!
-!	description "Climbing over the wires you now believe you are above where the hallway is.",
-!
-!w_to Crawl3,
-!
-!has light;
-
-
