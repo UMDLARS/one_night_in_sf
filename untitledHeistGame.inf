@@ -198,18 +198,24 @@ with
 	description "This room is a small office, there is a wooden desk devoid of any identifying obejcts. One of the ceiling panels seems to me missing in here.",
 
 before [;
-		Use:
-			if(noun==ladder){
-				print "You climb up the ladder. However you had to leave it behind.^";
-				move ladder to self;
+		Use,Climb:
+			if(noun==ladder || 
+					(selected_direction==u_to && ladder in player or self)){
+				print "You climb up the ladder.";
+				if(ladder in player){
+					print "  However you had to leave it behind.^";
+					<Drop ladder>;
+				}
+				print "^";
 				PlayerTo(Crawl1);
 				return true;
 			}
-		Go:
-			if(selected_direction==u_to){
-				print "You cannot get up there, if only you had a some sort of step stool.^";
-				return true;
-			}
+],
+u_to [;
+	if(ladder in player or self){
+		<<Use ladder>>;
+	}
+	"You cannot get up there, if only you had a some sort of step stool.^";
 ],
 s_to Hallway5,
 
