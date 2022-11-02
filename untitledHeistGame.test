@@ -67,11 +67,19 @@ Dropped.
 > w
 > n
 > w
+You can't, since the Office Door is closed.
+> open door
+It seems to be locked.
+> unlock door with key
+You unlock the Office Door.
+> w
+You can't, since the Office Door is closed.
+> open door
+You open the Office Door.
+> w
+This is an office.
 > e
 Hallway7
-> drop key
-> w
-The door is locked and likely requires a key.
 
 * enter/exit all rooms
 
@@ -114,6 +122,7 @@ The door is locked and likely requires a key.
 > e
 > w
 > s
+> unlock door with key and open door
 > w
 > e
 > s
@@ -121,16 +130,12 @@ The door is locked and likely requires a key.
 The Lobby
 
 * Try to leave without the computer
+
 > s
 You cannot leave without the boss's computer!
 
-* Try to open the Office7 door without the key
-> w
-> n
-> w
-The door is locked and likely requires a key.
-
 * Try to climb into the crawlspace without the ladder
+
 > w
 > n
 > n
@@ -140,6 +145,7 @@ The door is locked and likely requires a key.
 You cannot get up there, if only you had a some sort of step stool.
 
 * Use the ladder to climb into the crawlspace
+
 > e
 > n
 > n
@@ -157,4 +163,3 @@ You climb up into a small crawl space
 > d
 > use ladder
 Crawl Space
-
