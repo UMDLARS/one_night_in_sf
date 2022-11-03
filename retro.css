@@ -11,8 +11,8 @@
     --dark-amber: rgb(255,151,0);
     --crt-gradient: rgba(255,176,0, 0.20);
 
-    --glkote-input-fg: var(--amber);
-    --glkote-buffer-fg: var(--amber);
+    --glkote-input-fg: var(--dark-amber);
+    --glkote-buffer-fg: var(--dark-amber);
     --glkote-buffer-bg: black;
     --glkote-buffer-reverse-fg: var(--glkote-buffer-bg);
     --glkote-buffer-reverse-bg: var(--glkote-buffer-fg);
@@ -24,6 +24,22 @@
 
 div.BufferWindowInner {
     text-shadow: 0 0 4px var(--dark-amber);
-    background-image: radial-gradient( var(--crt-gradient), black 120%) !important;
+    background: radial-gradient( var(--crt-gradient), black 120%) !important;
+}
 
+.Style_subheader {
+    font-weight: bold;
+    color: var(--amber);
+    text-shadow: 0 0 4px var(--amber);
+}
+
+.Input, .Style_input {
+    font-weight: bold;
+    text-decoration: underline;
+    color: var(--amber);
+    text-shadow: 0 0 4px var(--amber);
+}
+
+.reverse {
+    font-weight: bold;
 }
