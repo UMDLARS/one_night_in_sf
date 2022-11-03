@@ -9,7 +9,7 @@
 
     --amber: rgb(255,176,0);
     --dark-amber: rgb(255,151,0);
-    --crt-gradient: rgba(255,176,0 0.20);
+    --crt-gradient: rgba(255,176,0, 0.20);
 
     --glkote-input-fg: var(--amber);
     --glkote-buffer-fg: var(--amber);
@@ -24,5 +24,6 @@
 
 div.BufferWindowInner {
     text-shadow: 0 0 4px var(--dark-amber);
-    background-image: var(--crt-gradient) !important;
+    background-image: radial-gradient( var(--crt-gradient), black 120%) !important;
+
 }
