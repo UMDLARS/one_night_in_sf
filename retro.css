@@ -23,7 +23,7 @@
 }
 
 div.BufferWindowInner {
-    text-shadow: 0 0 4px var(--dark-amber);
+    text-shadow: 0 0 2px var(--dark-amber);
     background: radial-gradient( var(--crt-gradient), black 120%) !important;
 }
 
