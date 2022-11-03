@@ -34,7 +34,6 @@ div.BufferWindowInner {
 }
 
 .Input, .Style_input {
-    font-weight: bold;
     text-decoration: underline;
     color: var(--amber);
     text-shadow: 0 0 2px var(--amber);
