@@ -37,7 +37,7 @@ div.BufferWindowInner {
     font-weight: bold;
     text-decoration: underline;
     color: var(--amber);
-    text-shadow: 0 0 4px var(--amber);
+    text-shadow: 0 0 2px var(--amber);
 }
 
 .reverse {
