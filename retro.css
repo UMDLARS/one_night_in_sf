@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+    --glkote-mono-family: "VT323", monospace;
+    --glkote-prop-family: "VT323", monospace;
+    --glkote-buffer-size: 30px;
+    --glkote-grid-size: 22px;
+    --glkote-grid-line-height: 20px;
+
+    --amber: rgb(255,176,0);
+    --dark-amber: rgb(255,151,0);
+    --crt-gradient: rgba(255,176,0 0.20);
+
+    --glkote-input-fg: var(--amber);
+    --glkote-buffer-fg: var(--amber);
+    --glkote-buffer-bg: black;
+    --glkote-buffer-reverse-fg: var(--glkote-buffer-bg);
+    --glkote-buffer-reverse-bg: var(--glkote-buffer-fg);
+    --glkote-grid-fg: var(--amber);
+    --glkote-grid-bg: black;
+    --glkote-grid-reverse-fg: var(--glkote-grid-bg);
+    --glkote-grid-reverse-bg: var(--glkote-grid-fg);
+}
+
+div.BufferWindowInner {
+    text-shadow: 0 0 4px var(--dark-amber);
+    background-image: var(--crt-gradient) !important;
+}

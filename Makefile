@@ -31,6 +31,7 @@ dep: inform6unix/Makefile node_modules/.bin/zvm plotex/regtest.py
 	git -C inform6unix pull
 	git -C inform6unix submodule update --init --recursive
 	git -C plotex pull
+	git -C parchment pull || true
 
 build: dep ${INFORM}
 
@@ -62,5 +63,12 @@ plotex/regtest.py:
 
 clean:
 	rm -f *.z? *.out
+
+parchment/build.js:
+	git clone --recursive https://github.com/curiousdannii/parchment
+
+parchment/dist/web/main.js: parchment/build.js
+	cd parchment && npm install --no-package-lock
+
 
 .PRECIOUS: %.z3 %.z5 %.z8 ${INFORM}
