@@ -24,6 +24,7 @@
 
 div.BufferWindow {
     text-shadow: 0 0 2px var(--dark-amber);
+    scrollbar-color: var(--amber) black !important;
     background: radial-gradient(circle at center, var(--crt-gradient), black 120%) !important;
 }
 
