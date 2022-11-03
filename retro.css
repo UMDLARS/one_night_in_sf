@@ -22,9 +22,9 @@
     --glkote-grid-reverse-bg: var(--glkote-grid-fg);
 }
 
-div.BufferWindowInner {
+div.BufferWindow {
     text-shadow: 0 0 2px var(--dark-amber);
-    background: radial-gradient( var(--crt-gradient), black 120%) !important;
+    background: radial-gradient(circle at center, var(--crt-gradient), black 120%) !important;
 }
 
 .Style_subheader {
