@@ -37,7 +37,7 @@ div.BufferWindow {
 div#gameport {
     border: 100px solid;
     border-image-source: url("vt220.webp");
-    border-image-slice: 100;
+    border-image-slice: 75 130 80 120 fill;
 }
 
 .Style_subheader {
