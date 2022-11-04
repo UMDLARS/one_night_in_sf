@@ -7,12 +7,18 @@
     --glkote-grid-size: 22px;
     --glkote-grid-line-height: 20px;
 
+    /* Colours cribbed from https://superuser.com/questions/361297/what-colour-is-the-dark-green-on-old-fashioned-green-screen-computer-displays/1206781#1206781 */
     --amber: rgb(255,176,0);
     --dark-amber: rgb(255,151,0);
-    --crt-gradient: rgba(255,176,0 0.20);
+    --crt-gradient: rgba(255,176,0, 0.20);
+    --green-524nm: rgb(51,255,0);
+    --green-apple-2: rgb(51,255,51); /* The P1 phosphor, which was the standard "green screen" */
+    --green-506nm: rgb(0,255,51);
+    --green-apple-2c: rgb(102,255,102); /* slightly turquoise P24 phosphor. */
+    --green-502nm: rgb(0,255,102);
 
-    --glkote-input-fg: var(--amber);
-    --glkote-buffer-fg: var(--amber);
+    --glkote-input-fg: var(--dark-amber);
+    --glkote-buffer-fg: var(--dark-amber);
     --glkote-buffer-bg: black;
     --glkote-buffer-reverse-fg: var(--glkote-buffer-bg);
     --glkote-buffer-reverse-bg: var(--glkote-buffer-fg);
@@ -22,7 +28,24 @@
     --glkote-grid-reverse-bg: var(--glkote-grid-fg);
 }
 
-div.BufferWindowInner {
-    text-shadow: 0 0 4px var(--dark-amber);
-    background-image: var(--crt-gradient) !important;
+div.BufferWindow {
+    text-shadow: 0 0 2px var(--dark-amber);
+    scrollbar-color: var(--amber) black !important;
+    background: radial-gradient(circle at center, var(--crt-gradient), black 100%) !important;
+}
+
+.Style_subheader {
+    font-weight: bold;
+    color: var(--amber);
+    text-shadow: 0 0 4px var(--amber);
+}
+
+.Input, .Style_input {
+    text-decoration: underline;
+    color: var(--amber);
+    text-shadow: 0 0 2px var(--amber);
+}
+
+.reverse {
+    font-weight: bold;
 }
