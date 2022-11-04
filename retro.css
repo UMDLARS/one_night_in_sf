@@ -4,6 +4,7 @@
     --glkote-mono-family: "VT323", monospace;
     --glkote-prop-family: "VT323", monospace;
     --glkote-buffer-size: 30px;
+    --glkote-buffer-line-height: 1em;
     --glkote-grid-size: 22px;
     --glkote-grid-line-height: 20px;
 
@@ -32,6 +33,12 @@ div.BufferWindow {
     text-shadow: 0 0 2px var(--dark-amber);
     scrollbar-color: var(--amber) black !important;
     background: radial-gradient(circle at center, var(--crt-gradient), black 100%) !important;
+}
+
+div#gameport {
+    border: 60px solid;
+    border-image-source: url("vt220.webp");
+    border-image-slice: 100 160 fill;
 }
 
 .Style_subheader {
