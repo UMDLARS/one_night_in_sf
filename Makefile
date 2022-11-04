@@ -20,7 +20,7 @@ TIME:=$(shell which time) # Should be null if it's a shell builtin, which is fin
 # This rule will make any *possible* test output files, which may build zfiles.
 # It wil re-build any extant zfiles that have newer dependencies, whether or
 # not there are new test files.
-all: ${OUT} $(wildcard *.z?)
+all: ${OUT} $(wildcard *.z?) parchment/dist/web/main.js
 
 inform6unix/src/*.c:
 ${LIB}:
