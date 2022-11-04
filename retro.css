@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 :root {
+    font-variant-ligatures: none;
     --glkote-mono-family: "VT323", monospace;
     --glkote-prop-family: "VT323", monospace;
     --glkote-buffer-size: 30px;
