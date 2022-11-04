@@ -4,6 +4,7 @@
     --glkote-mono-family: "VT323", monospace;
     --glkote-prop-family: "VT323", monospace;
     --glkote-buffer-size: 30px;
+    --glkote-buffer-line-height: 1em;
     --glkote-grid-size: 22px;
     --glkote-grid-line-height: 20px;
 
@@ -35,9 +36,9 @@ div.BufferWindow {
 }
 
 div#gameport {
-    border: 100px solid;
+    border: 60px solid;
     border-image-source: url("vt220.webp");
-    border-image-slice: 75 130 80 120 fill;
+    border-image-slice: 100 160 fill;
 }
 
 .Style_subheader {
