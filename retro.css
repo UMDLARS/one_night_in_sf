@@ -3,11 +3,13 @@
 :root {
     font-variant-ligatures: none;
     --glkote-mono-family: "VT323", monospace;
+    --glkote-grid-mono-family: "VT323", monospace;
     --glkote-prop-family: "VT323", monospace;
-    --glkote-buffer-size: 1.5vmax;
+    --glkote-grid-prop-family: "VT323", monospace;
+    --glkote-buffer-size: 2vmax;
     --glkote-buffer-line-height: 1em;
-    --glkote-grid-size: 1.2vw;
-    --glkote-grid-line-height: 1.5em;
+    --glkote-grid-size: 2vmax;
+    --glkote-grid-line-height: 1.1em;
 
     /* Colours cribbed from https://superuser.com/questions/361297/what-colour-is-the-dark-green-on-old-fashioned-green-screen-computer-displays/1206781#1206781 */
     --amber: rgb(255,176,0);
@@ -42,6 +44,7 @@ div.BufferWindow {
 
 
 div#gameport {
+    max-width: 100%;
     border: 60px solid;
     border-image-source: url("vt220.webp");
     border-image-slice: 100 160 fill;
