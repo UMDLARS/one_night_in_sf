@@ -4,10 +4,10 @@
     font-variant-ligatures: none;
     --glkote-mono-family: "VT323", monospace;
     --glkote-prop-family: "VT323", monospace;
-    --glkote-buffer-size: 30px;
+    --glkote-buffer-size: 1.5vmax;
     --glkote-buffer-line-height: 1em;
-    --glkote-grid-size: 22px;
-    --glkote-grid-line-height: 20px;
+    --glkote-grid-size: 1.3vw;
+    --glkote-grid-line-height: 1.5em;
 
     /* Colours cribbed from https://superuser.com/questions/361297/what-colour-is-the-dark-green-on-old-fashioned-green-screen-computer-displays/1206781#1206781 */
     --amber: rgb(255,176,0);
@@ -30,11 +30,16 @@
     --glkote-grid-reverse-bg: var(--glkote-grid-fg);
 }
 
+div.GridLine > span.reverse {
+    width: 100%;
+}
+
 div.BufferWindow {
     text-shadow: 0 0 2px var(--dark-amber);
     scrollbar-color: var(--amber) black !important;
     background: radial-gradient(circle at center, var(--crt-gradient), black 100%) !important;
 }
+
 
 div#gameport {
     border: 60px solid;
