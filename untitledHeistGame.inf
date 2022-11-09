@@ -165,11 +165,16 @@ e_to Hallway6,
 
 has light;
 
-!==================STORAGE CLOSET===================
-Object Storage "The Storage Closet"
+!==================UTILITY CLOSET===================
+Object Utility "The Utility Closet"
 with
 
-	description "This is a small storage closet, in here is cleaning supplies, a mop, a mop bucket, and a sunflower yellow ladder.",
+	description "This is a small utility closet containing cleaning supplies, a mop, a mop bucket, and other things. It's damp and musty in here.",
+	cheap_scenery
+		'mop' 'mop' "This is one of those old-school mops with a head made from large, grey, cotton, yarn-like strings. It smells faintly of mildew and Pine-Sol. It's hard to imagine how this gross mop could be useful."
+		'bucket' 'bucket' "A rolling mop bucket with a built-in mop-squeezer. Embossed on the bucket is a unintentionally comical stick figure of a person slipping on a puddle. It stinks."
+		'cleaning' 'supplies' "This small plastic caddy has an assortment of things people would use to clean the office."
+		'other' 'things' "Oh, you know, it's just a random assortment of random rags, OSHA signs, and other useless stuff.",
 
 e_to Hallway2,
 
@@ -328,11 +333,11 @@ has light;
 Object Hallway2
 with
 
-	description "This is a hallway. To the south the hallway extends. To the north the hallway extends. To the west there is an IT closet.",
+	description "This is a hallway. To the south the hallway extends. To the north the hallway extends. To the west there is a utility closet.",
 
 n_to Hallway3,
 s_to Hallway1,
-w_to Storage,
+w_to Utility,
 
 has light;
 
