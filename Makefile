@@ -20,7 +20,7 @@ TIME:=$(shell which time) # Should be null if it's a shell builtin, which is fin
 # This rule will make any *possible* test output files, which may build zfiles.
 # It wil re-build any extant zfiles that have newer dependencies, whether or
 # not there are new test files.
-all: ${OUT} $(wildcard *.z?)
+all: ${OUT} $(wildcard *.z?) parchment/dist/web/main.js VT323/fonts/ttf/VT323-Regular.ttf
 
 inform6unix/src/*.c:
 ${LIB}:
@@ -31,6 +31,7 @@ dep: inform6unix/Makefile node_modules/.bin/zvm plotex/regtest.py
 	git -C inform6unix pull
 	git -C inform6unix submodule update --init --recursive
 	git -C plotex pull
+	git -C parchment pull || true
 
 build: dep ${INFORM}
 
@@ -62,5 +63,14 @@ plotex/regtest.py:
 
 clean:
 	rm -f *.z? *.out
+
+parchment/build.js:
+	git clone --recursive https://github.com/curiousdannii/parchment
+
+parchment/dist/web/main.js: parchment/build.js
+	cd parchment && npm install --no-package-lock
+
+VT323/fonts/ttf/VT323-Regular.ttf:
+	git clone --recursive https://github.com/phoikoi/VT323.git
 
 .PRECIOUS: %.z3 %.z5 %.z8 ${INFORM}
