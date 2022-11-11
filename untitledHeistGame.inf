@@ -16,6 +16,13 @@ Verb 'use'
 	* noun 'on' noun -> Use
 	* noun 'with' noun -> Use;
 
+[JimmySub;
+	"That won't work.";
+];
+
+Verb 'jimmy'
+	* noun -> Jimmy;
+
 [Initialise;
   "You step through the front doors of the office of Blamazon. It is pitch black outside. You are here after hours.";
 ];
@@ -310,6 +317,11 @@ n_to Hallway4,
 
 has light;
 
+Object -> coffeeCard "Coffee Card"
+with
+	name 'card',
+	description "This is a card that can be used to pay for coffee at Moonbux (A national coffee chain).";
+
 !=============HALLWAY3(~~~~~~~~~PLACEHOLDER~~~~~~)===================
 Object Hallway3
 with
@@ -459,7 +471,15 @@ with
 
 n_to Hallway2,
 s_to LobbyEast,
-e_to Office1,
+e_to Office1Door,
+
+Before[;
+	Jimmy:
+		if(noun==Office1Door){
+			print "Test.^";
+			return true;
+		}
+],
 
 has light;
 
@@ -477,7 +497,7 @@ with
 				 bolted down to the floor. On the back there were 4 screws enclosing the case, however you have removed them, allowing access to the inside of the computer! To the west there is
 				 a door leading back to the hallway.";
 ],
-w_to Hallway1,
+w_to Office1Door,
 Before[;
 	Use:
 		if(noun==ellieComputer){
@@ -522,6 +542,15 @@ Object -> -> hardDrive "Ellie's Hard Drive"
 with
 	name 'HDD' 'Hard Drive',
 	description "This is a Hard Disk Drive from Ellie's computer, if you take this, you're sure you can get the information on it at a later time.";
+
+Object -> Office1Door "Office Door"
+with
+	name 'office' 'door',
+	description "This is an old wood antique door. You can see it has an incredibly simple locking mechanism, it could easy unlocked if you had a thin stiff object to jimmy the lock.", 
+	door_dir (e_to) (w_to),
+	found_in Hallway1 Office1,
+	with_key coffeeCard,
+has static door openable ~open lockable locked;
 
 
 !=============RESTROOM=====================
