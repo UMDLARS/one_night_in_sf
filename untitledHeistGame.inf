@@ -430,20 +430,11 @@ Object -> flashlight "flashlight"
 with
 	name 'flashlight' 'torch' 'flash' 'light' 'lamp',
 	description [;
-		if (self has light)
-			"This cheap LED flashlight has a Tastytronic Industries logo emblazoned on it. It is on.";
-		if (self hasnt light)
-			"This cheap LED flashlight has a Tastytronic Industries logo emblazoned on it. It is off.";
+		print "This cheap flashlight has a Tastytronic Industries logo emblazoned on it.  It is currently ";
+		if (self has on) "on.";
+		"off.";
 	],
 
-! Why doesn't this work?
-!	description [;
-!		"This cheap flashlight has a Tastytronic Industries logo emblazoned on it, and is ";
-!		if (self has on)
-!			"currently on.";
-!		if (self hasnt on)
-!			"currently off.";
-!	],
 	when_on "There is a flashlight here (turned on).",
 	when_off "There is a flashlight here (turned off).",
 	after [;
