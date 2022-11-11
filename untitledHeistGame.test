@@ -163,3 +163,48 @@ You climb up into a small crawl space
 > d
 > use ladder
 Crawl Space
+
+* get the flashlight, plunger, and backup tape
+> w
+> n
+> n
+> e
+> take flashlight
+> w
+> s
+> s
+> e
+> e
+> e
+> take plunger
+Taken.
+> w
+> n
+> n
+> n
+> e
+> n
+You can't go that way
+> unlock tile with plunger
+> open tile
+> d
+pitch dark
+> turn on flashlight
+You switch the flashlight on.
+cramped and dusty space
+> n
+Dust bunnies
+> turn off flashlight
+> l
+pitch dark
+> u
+server room
+> take tape
+> d
+pitch dark
+> u
+> s
+> l
+IT office
+
+

@@ -323,11 +323,81 @@ has light;
 Object Office2
 with
 
-	description "This is an office. To the west there is a door leading back to the hallway.",
+	description "This is the IT office. The floor of this room is made of large square modular linoleum-covered panels of the kind typical in server rooms with raised floors. A desk is in the corner has an empty laptop docking station on it and a few fidget toys. A work table is against the south wall with the electronic flotsam and jetsam of a previous project. The useless husks of a few broken computers lie in the corner. To the west there is a door leading to the hallway. To the north is a reinforced door with an electronic keypad lock.",
+	cheap_scenery
+		'lock' 'keypad' "The keypad presumably controls the door lock; entering the right code would likely unlock the door."
+		'husks' 'computers' "These computers are definitely useless junk, and they smell like the magic smoke got out of them."
+		'work' 'table' "The work table has bits and pieces of wire, some discrete electronic components -- nothing much interesting."
+		'reinforced' 'door' "This door looks extremely strong, as does the wall it is set into."
+		'fidget' 'toys' "One toy is your typical fidget spinner, and the other is a folding cube toy."
+		'docking' 'station' "This generic docking station is connected to a monitor and keyboard, but the laptop is not here. A wired Ethernet cable that is plugged into the back of of the dock snakes across the desk and down through a hole in the floor tile.",
 
 w_to Hallway3,
+d_to ITRoomTile,
 
 has light;
+
+Object -> ITRoomTile "Floor Tile"
+with 
+	name "floor" "tile" "floor tile",
+	door_dir (d_to) (u_to),
+	found_in Office2 UnderITRoom,
+	with_key plunger,
+has static door openable ~open lockable locked;
+
+!=============UnderItRoom(~~~~~~PLAACEHOLDER~~~~~~~)====================
+Object UnderItRoom
+with
+	description "You are underneath a raised floor. This cramped and dusty space is about one foot tall. Spaced every two feet are steel pillars; resting on top of the pillars are precisely fitted square floor tiles, held only by gravity. One tile has been removed. Ethernet wires run through chases alongsize electrical condiut and air conditioning ducts. The part of the crawlspace you are in seems to be about the same size as the IT office, but the space extends far enough to the north that it disappears in darkness.",
+
+u_to Office2,
+n_to UnderServerRoom;
+
+Object Note
+with
+	description "This is a note";
+
+!=============UnderServerRoom(~~~~~~PLAACEHOLDER~~~~~~~)====================
+Object UnderServerRoom
+with
+	description "You are underneath a raised floor. Dust bunnies are everywhere. Spaced every two feet are steel pillars; resting on top of the pillars are precisely fitted square floor tiles, held only by gravity. Light streams through holes in the tiles above your head; Ethernet cables snake through those holes into the light above. The muffled roar of server racks can be heard above your head. In the darkness to the south, a large square of light is visible.",
+
+u_to ServerRoom,
+s_to UnderITRoom;
+
+
+!=============ServerRoom(~~~~~~PLAACEHOLDER~~~~~~~)====================
+Object ServerRoom
+with
+	description "This is a medium-sized server room with several racks of servers in a line down the middle of the room. The floor in this room is made of large square modular linoleum-covered panels; one of the panels has been lifted out of its place, leaving a large square hole in the floor, revealing a crawlspace. One of the racks contains a large tape backup system. Their blinking lights and roaring fans are quite impressive. Sturdy locked cages protect the hardware from unauthorized tampering. A table and chair sit in the corner of the room. A reinforced door leads south into the IT office; there is no lock on this side.",
+	cheap_scenery
+		'server' 'racks' "Four server racks with locked cages stand in a row; inside them are stacks of identical servers. One of the racks has a tape backup server in it."
+		'chair' 'chair' "This is an old, dumpy-looking rolling office chair.",
+
+d_to UnderServerRoom,
+s_to Office2,
+
+has light;
+
+Object -> server_tile "floor tile"
+with
+	name 'tile' 'floor tile',
+	description "This roughly two-foot by two-foot tile lies crooked on the floor, having been removed from its perfectly square-shaped spot in the floor. It is made out of heavy-duty particle board with a metal perimeter topped with white linoleum flecked with gray. It looks heavy.",
+
+has static supporter;
+
+
+Object -> server_table "table"
+with
+	name 'table',
+	description "This generic work table has a locked computer workstation on it.",
+
+has static supporter;
+
+Object -> -> backup "backup tape"
+with
+	name "backup" "tape" "backup tape",
+	description "This is a plastic one-terabyte backup tape cartridge. On the cartridge is a handwritten sticky note that says ~Full Backup (UNENCRYPTED)~ and yesterday's date.";
 
 !=============HALLWAY2(~~~~~~PLAACEHOLDER~~~~~~~)====================
 Object Hallway2
@@ -350,6 +420,33 @@ with
 w_to Hallway6,
 
 has light;
+
+Object -> flashlight "flashlight"
+with
+	name 'flashlight' 'torch' 'flash' 'light',
+	description [;
+		if (self has light)
+			"This cheap LED flashlight has a Tastytronic Industries logo emblazoned on it. It is on.";
+		if (self hasnt light)
+			"This cheap LED flashlight has a Tastytronic Industries logo emblazoned on it. It is off.";
+	],
+
+! Why doesn't this work?
+!	description [;
+!		"This cheap flashlight has a Tastytronic Industries logo emblazoned on it, and is ";
+!		if (self has on)
+!			"currently on.";
+!		if (self hasnt on)
+!			"currently off.";
+!	],
+	when_on "There is a flashlight here (turned on).",
+	when_off "There is a flashlight here (turned off).",
+	after [;
+		SwitchOn: give self light;
+		SwitchOff: give self ~light;
+	],
+has switchable;
+	
 
 !=============HALLWAY1(~~~~~~PLACEHOLDER~~~~~~~)====================
 Object Hallway1
@@ -380,5 +477,10 @@ with
 	description "This room is a small single user bathroom. There is a sink with a mirror as well as a toilet. To the west there is a door leading back into the lobby.",
 
 w_to LobbyEast,
-
 has light;
+
+Object -> plunger "toilet plunger"
+with
+	name 'plunger' 'toilet plunger',
+	description "This is your bog-standard toilet plunger: a wooden handle screwed into a large and flexible rust-colored rubber suction cup.";
+
