@@ -339,6 +339,11 @@ has light;
 
 Object -> ITRoomTile "Floor Tile"
 with 
+! FIXME: This currently requires the player to unlock the tile with the plunger
+! and open the floor with the plunger. This, of course, is bananas.
+! See Issue #38:
+! https://github.com/UMDLARS/one_night_in_sf/issues/38
+! There's just one problem -- I have no idea how to implement that!
 	name "floor" "tile" "floor tile",
 	door_dir (d_to) (u_to),
 	found_in Office2 UnderITRoom,
@@ -423,22 +428,13 @@ has light;
 
 Object -> flashlight "flashlight"
 with
-	name 'flashlight' 'torch' 'flash' 'light',
+	name 'flashlight' 'torch' 'flash' 'light' 'lamp',
 	description [;
-		if (self has light)
-			"This cheap LED flashlight has a Tastytronic Industries logo emblazoned on it. It is on.";
-		if (self hasnt light)
-			"This cheap LED flashlight has a Tastytronic Industries logo emblazoned on it. It is off.";
+		print "This cheap flashlight has a Tastytronic Industries logo emblazoned on it.  It is currently ";
+		if (self has on) "on.";
+		"off.";
 	],
 
-! Why doesn't this work?
-!	description [;
-!		"This cheap flashlight has a Tastytronic Industries logo emblazoned on it, and is ";
-!		if (self has on)
-!			"currently on.";
-!		if (self hasnt on)
-!			"currently off.";
-!	],
 	when_on "There is a flashlight here (turned on).",
 	when_off "There is a flashlight here (turned off).",
 	after [;
