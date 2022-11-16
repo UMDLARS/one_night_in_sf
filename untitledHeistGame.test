@@ -224,3 +224,10 @@ The giant glass wall bars your way!
 > open wall
 > w
 Office6
+
+* test voiceprint system using say
+> w
+> n
+> n
+> say foo to tower
+fail
