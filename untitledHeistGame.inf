@@ -228,7 +228,7 @@ life [;
 		! but when I try this I just get: "There is no reply"
 		! (and it forces me to use "to someone")
 		!"The tower silently listens to your voice, but then flashes red and buzzes disapprovingly.";
-		print_ret voxfail;
+		print_ret (string) voxfail;
 ],
 has static animate;
 
