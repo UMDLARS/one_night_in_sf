@@ -8,6 +8,8 @@ Include "globals.h";
 Include "ext_cheap_scenery.h";
 Include "puny.h";
 
+attribute heavy;
+
 [UseSub;
 	"You're not sure how you can use that in this location.";
 ];
@@ -100,7 +102,8 @@ has light;
 Object -> chair "heavy-looking chair"
 with
     name "chair",
-    description "This sturdy and heavy-looking chair matches the L-shaped couch in color.";
+    description "This sturdy and heavy-looking chair matches the L-shaped couch in color.",
+has heavy;
 
 
 
@@ -176,7 +179,10 @@ with
     cheap_scenery
         'retina' 'scanner' "You peer into the retina scanner. A laser sweeps across your eye. Instantly, the scanner beeps disapprovingly, and indicator on it flashes red several times."
         'voiceprint' 'microphone' "This system appears to be designed to recognize certain individuals' voices when they speak into the microphone."
-        'handprint' 'recognizer' "The handprint recognizer looks like something from a 1990s spy movie. An angled bezel sticks out from the wall with the outline of a hand illuminated by a pulsating orange grid pattern.",
+        'handprint' 'recognizer' [;
+			Examine: "The handprint recognizer looks like something from a 1990s spy movie. An angled bezel sticks out from the wall with the outline of a hand illuminated by a pulsating orange grid pattern.";
+			Touch: "You place your hand on the handprint recognizer. Light scans your hand before flashing red and buzzing disapprovingly.";
+	],
 
 s_to Hallway7,
 n_to Hallway5,
@@ -208,10 +214,16 @@ with
     description "This intimidating-looking tower of biometric scanners is securely integrated into to the west wall, which is one large piece of glass. The tower is linked to the actuator that moves the sliding glass door between that separates this hallway and the office to the west. At the top of the tower is a retina scanner with an eyepiece to peer into. Below that is a voiceprint system with a microphone jutting out from it. Below the voiceprint device is a handprint recognizer.",
 before [;
     ! FIXME -- see Issue #55 about how this should really work. This feels super hacky.
-    Touch:
-        "You place your hand on the handprint recognizer. Light pulses across the scanner. It flashes red.";
+	Touch: 
+		"You place your hand on the handprint recognizer. Light scans your hand before flashing red and buzzing disapprovingly.";
 	TalkTo:
 		"The tower listens to your voice intently, but flashes red and buzzes disapprovingly.";
+	Answer: 
+		! Answer incl. Say, Shout, SpeakI want to print this on 
+		! > Say whatever or > Say whatever to tower
+		! but when I try this I just get: "There is no reply"
+		! (and it forces me to use "to someone")
+		"the biometric tower flashes read (say)";
 ],
 has static animate;
 
