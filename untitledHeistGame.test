@@ -230,4 +230,4 @@ Office6
 > n
 > n
 > say foo to tower
-fail
+flashes red and buzzes
