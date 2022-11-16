@@ -4,6 +4,8 @@ Constant INITIAL_LOCATION_VALUE = Lobby;
 Constant OPTIONAL_SIMPLE_DOORS;
 Constant OPTIONAL_EXTENDED_VERBSET;
 
+Constant voxfail = "fail";
+
 Include "globals.h";
 Include "ext_cheap_scenery.h";
 Include "puny.h";
@@ -217,7 +219,7 @@ before [;
 	Touch: 
 		"You place your hand on the handprint recognizer. Light scans your hand before flashing red and buzzing disapprovingly.";
 	TalkTo:
-		"The tower listens to your voice intently, but flashes red and buzzes disapprovingly.";
+		"The tower silently listens to your voice, but then flashes red and buzzes disapprovingly.";
 ],
 life [;
 	Answer: 
@@ -225,7 +227,8 @@ life [;
 		! > Say whatever or > Say whatever to tower
 		! but when I try this I just get: "There is no reply"
 		! (and it forces me to use "to someone")
-		"fail";
+		!"The tower silently listens to your voice, but then flashes red and buzzes disapprovingly.";
+		print_ret voxfail;
 ],
 has static animate;
 
