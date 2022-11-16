@@ -3,6 +3,7 @@ Constant Headline "^It is your first day on the job at Blamazon. You applied her
 Constant INITIAL_LOCATION_VALUE = Lobby;
 Constant OPTIONAL_SIMPLE_DOORS;
 Constant OPTIONAL_EXTENDED_VERBSET;
+Constant DEBUG;
 
 Constant voxfail = "The tower silently listens to your voice, but then flashes red and buzzes disapprovingly.";
 Constant handfail = "You place your hand on the handprint recognizer. Light scans your hand before flashing red and buzzing disapprovingly.";
@@ -178,7 +179,15 @@ has static door openable ~open lockable locked;
 Object Hallway6
 with
 
-    description "This is a hallway that extends to the north and the south. To the east there is a closet. The entire west wall is thick, tempered glass; it stands between you and a laboratory packed with futuristic-looking equipment. A biometric authentication system is embedded into the glass wall. It is connected to a large, sliding glass door leading west into the lab.",
+    description [;
+		print "This is a hallway that extends to the north and the south. To the east there is a closet. ";
+		if (glass has locked) 
+			print "The entire west wall is thick, tempered glass; it stands between you and ";
+		else
+			print " The west wall used to be glass, but you shattered it. The way is now open to ";
+
+		print "a laboratory packed with futuristic-looking equipment. A biometric authentication system is embedded into the glass wall. It is connected to a large, sliding glass door leading west into the lab.";
+],
     cheap_scenery
         'retina' 'scanner' "You peer into the retina scanner. A laser sweeps across your eye. Instantly, the scanner beeps disapprovingly, and indicator on it flashes red several times."
         'voiceprint' 'microphone' "This system appears to be designed to recognize certain individuals' voices when they speak into the microphone."
@@ -193,9 +202,12 @@ e_to ITcloset,
 w_to [;
 	if (glass has locked)
 		"The huge locked glass wall bars the way!";
-	else
+	else {
+		print "You pick your way carefully through the giant shards of glass...^";
 		PlayerTo(Office6);
-		return true;
+		rtrue;
+	}
+		
 ],
 
 has light;
@@ -207,8 +219,18 @@ with
     
     door_dir (w_to) (e_to),
     found_in Hallway6 Office6,
-    with_key chair,
-has static door openable ~open lockable locked;
+	
+before [;
+	Unlock,Attack:
+		if (second has heavy) {
+			give self open ~locked;
+			"You shatter the glass wall, creating an opening to the next room!";
+		} else {
+			"You can't break the glass with something that light. Why not find something heavier?";
+		}
+],
+
+has static door openable ~open lockable locked concealed;
     
 
 Object -> biometric "Biometric Tower"
@@ -231,9 +253,22 @@ has static animate;
 Object Office6
 with
 
-	description "This is an office. To the east there is a door leading back to the hallway.",
+	description "This is a laboratory packed with futuristic and delicate-looking equipment. The east wall used to be thick glass, but you shattered it, opening it to the hallway. An expensive biometric authentication system is embedded into the glass wall, along with a mechanism to open and close the door, but you have rendered that completely pointless.",
 
-e_to Hallway6,
+e_to [;
+	if (glass has locked) {
+		give glass ~locked;
+		print "The motion sensing door opens, letting you into the hallway.";
+		PlayerTo(Hallway6);
+		print "The door closes behind you.";
+		give glass locked;
+		rtrue;
+	} else {
+		print "You carefully step around piles of broken glass and into the hallway.^";
+		PlayerTo(Hallway6);
+		rtrue;
+	}
+],
 
 has light;
 
@@ -395,6 +430,12 @@ s_to Hallway2,
 e_to Office2,
 
 has light;
+
+Object -> plant "large potted plant"
+with
+	name "plant" "potted plant" "pot",
+	description "This is a large plant in a large glazed terra cotta pot. It looks like it must weigh a lot!",
+has heavy;
 
 !============OFFICE2(~~~PLACEHOLDER~~~)==============================
 Object Office2
