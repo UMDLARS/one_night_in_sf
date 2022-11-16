@@ -218,6 +218,8 @@ before [;
 		"You place your hand on the handprint recognizer. Light scans your hand before flashing red and buzzing disapprovingly.";
 	TalkTo:
 		"The tower listens to your voice intently, but flashes red and buzzes disapprovingly.";
+],
+life [;
 	Answer: 
 		! Answer incl. Say, Shout, SpeakI want to print this on 
 		! > Say whatever or > Say whatever to tower
