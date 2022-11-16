@@ -2,6 +2,7 @@ Constant Story "The Office";
 Constant Headline "^It is your first day on the job at Blamazon. You applied here to gain access to their offices after hours to steal the boss's valuable information off of their computer. They have state of the art cyber security preventing any digital leaks of the information so you are here to physically take it.^";
 Constant INITIAL_LOCATION_VALUE = Lobby;
 Constant OPTIONAL_SIMPLE_DOORS;
+Constant OPTIONAL_EXTENDED_VERBSET;
 
 Include "globals.h";
 Include "ext_cheap_scenery.h";
@@ -15,6 +16,13 @@ Verb 'use'
 	* noun -> Use
 	* noun 'on' noun -> Use
 	* noun 'with' noun -> Use;
+
+Verb 'talk'
+	* 'to' noun -> TalkTo;
+
+[TalkToSub;
+	"Perhaps you should try to ~talk to something (or someone)~.";
+];
 
 [JimmySub;
 	"That won't work.";
@@ -88,6 +96,14 @@ with
 
 has light;
 
+
+Object -> chair "heavy-looking chair"
+with
+    name "chair",
+    description "This sturdy and heavy-looking chair matches the L-shaped couch in color.";
+
+
+
 Object -> wrlamp "lamp"
 with
 	name 'lamp' 'torchere' ' torchiere' 'torchiere',
@@ -156,14 +172,49 @@ has static door openable ~open lockable locked;
 Object Hallway6
 with
 
-	description "This is a hallway. To the north the hallway extends. To the south the hallway extends. To the east there is a closet. To the west there is an office.",
+    description "This is a hallway that extends to the north and the south. To the east there is a closet. The entire west wall is thick, tempered glass; it stands between you and a laboratory packed with futuristic-looking equipment. A biometric authentication system is embedded into the glass wall. It is connected to a large, sliding glass door leading west into the lab.",
+    cheap_scenery
+        'retina' 'scanner' "You peer into the retina scanner. A laser sweeps across your eye. Instantly, the scanner beeps disapprovingly, and indicator on it flashes red several times."
+        'voiceprint' 'microphone' "This system appears to be designed to recognize certain individuals' voices when they speak into the microphone."
+        'handprint' 'recognizer' "The handprint recognizer looks like something from a 1990s spy movie. An angled bezel sticks out from the wall with the outline of a hand illuminated by a pulsating orange grid pattern.",
 
 s_to Hallway7,
 n_to Hallway5,
 e_to ITcloset,
-w_to Office6,
+w_to [;
+	if (glass has locked)
+		"The giant glass wall bars your way!";
+	else
+		PlayerTo(Office6);
+		return true;
+],
 
 has light;
+
+Object -> glass "glass wall"
+with
+    name 'glass' 'wall' 'door',
+    description "A heavy-duty, sliding glass door sits on a track recessed into the floor and ceiling. A piston connected to the biometric tower appears to control the door's movement. The door looks very sturdy.",
+    
+    door_dir (w_to) (e_to),
+    found_in Hallway6 Office6,
+    with_key chair,
+has static door openable ~open lockable locked;
+    
+
+Object -> biometric "Biometric Tower"
+with
+    name 'biometric' 'tower',
+    description "This intimidating-looking tower of biometric scanners is securely integrated into to the west wall, which is one large piece of glass. The tower is linked to the actuator that moves the sliding glass door between that separates this hallway and the office to the west. At the top of the tower is a retina scanner with an eyepiece to peer into. Below that is a voiceprint system with a microphone jutting out from it. Below the voiceprint device is a handprint recognizer.",
+before [;
+    ! FIXME -- see Issue #55 about how this should really work. This feels super hacky.
+    Touch:
+        "You place your hand on the handprint recognizer. Light pulses across the scanner. It flashes red.";
+	TalkTo:
+		"The tower listens to your voice intently, but flashes red and buzzes disapprovingly.";
+],
+has static animate;
+
 
 !=============OFFICE6(~~~PLACEHOLDER~~~)===========================
 Object Office6

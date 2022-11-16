@@ -207,4 +207,20 @@ pitch dark
 > l
 IT office
 
-
+* test tower and glass
+> w
+> take chair
+> n
+> n
+> touch tower
+It flashes red.
+> talk to tower
+buzzes disapprovingly.
+> l scanner
+flashes red several times.
+> w
+The giant glass wall bars your way!
+> unlock wall with chair
+> open wall
+> w
+Office6
