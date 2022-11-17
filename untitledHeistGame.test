@@ -216,18 +216,36 @@ IT office
 before flashing red
 > talk to tower
 buzzes disapprovingly.
+> say foo to tower
+buzzes disapprovingly.
 > l scanner
 flashes red several times.
 > w
-The giant glass wall bars your way!
-> unlock wall with chair
-> open wall
+The huge locked glass wall bars the way!
+> e
+> take screwdriver
+Taken.
 > w
+> break wall with screwdriver
+something heavier?
+> break wall with chair
+You shatter the glass wall
+> w
+giant shards
 Office6
+> e
+broken glass
+Hallway6
 
-* test voiceprint system using say
+* use potted plant to break wall
+> e
+> n
+> n
+> n
+> take plant
+Taken.
 > w
-> n
-> n
-> say foo to tower
-fail
+> w
+> s
+> break wall with plant
+shatter
