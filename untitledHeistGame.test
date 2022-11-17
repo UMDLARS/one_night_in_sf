@@ -207,4 +207,45 @@ pitch dark
 > l
 IT office
 
+* test tower and glass
+> w
+> take chair
+> n
+> n
+> touch tower
+before flashing red
+> talk to tower
+buzzes disapprovingly.
+> say foo to tower
+buzzes disapprovingly.
+> l scanner
+flashes red several times.
+> w
+The huge locked glass wall bars the way!
+> e
+> take screwdriver
+Taken.
+> w
+> break wall with screwdriver
+something heavier?
+> break wall with chair
+You shatter the glass wall
+> w
+giant shards
+Office6
+> e
+broken glass
+Hallway6
 
+* use potted plant to break wall
+> e
+> n
+> n
+> n
+> take plant
+Taken.
+> w
+> w
+> s
+> break wall with plant
+shatter
