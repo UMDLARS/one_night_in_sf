@@ -41,8 +41,6 @@ Verb 'jimmy'
   "You step through the front doors of the office of Blamazon. It is pitch black outside. You are here after hours.";
 ];
 
-Attribute heavy;
-
 !===================LOBBY=======================
 Object Lobby "The Lobby"
 with
@@ -549,8 +547,7 @@ has light;
 Object -> screwdriver "Screwdriver"
 with
 	name 'screwdriver',
-	description "This is a screwdriver.",
-has heavy;
+	description "This is a screwdriver.";
 
 Object -> flashlight "flashlight"
 with
