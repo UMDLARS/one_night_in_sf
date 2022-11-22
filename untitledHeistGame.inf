@@ -41,8 +41,6 @@ Verb 'jimmy'
   "You step through the front doors of the office of Blamazon. It is pitch black outside. You are here after hours.";
 ];
 
-Attribute heavy;
-
 !===================LOBBY=======================
 Object Lobby "The Lobby"
 with
@@ -549,8 +547,7 @@ has light;
 Object -> screwdriver "Screwdriver"
 with
 	name 'screwdriver',
-	description "This is a screwdriver.",
-has heavy;
+	description "This is a screwdriver.";
 
 Object -> flashlight "flashlight"
 with
@@ -602,7 +599,7 @@ with
 "In this office there is a wood desk with a plaque with the name ~Ellie~ on it, a monitor, a keyboard, and a mouse on it, and a computer case next to it. The computer appears to bolted down to the floor. On the back there were 4 screws enclosing the case, however you have removed them, allowing access to the inside of the computer! To the west there is a door leading back to the hallway.";
 ],
 cheap_scenery
-	'screws' [;
+	CS_NO_ADJ 'screws' [;
 		Examine: "These are 4 phillips head screws, maybe you could unscrew them with something.";
 		Turn: if(second==screwdriver){
 				print "You unscrew the back panel of the computer exposing the inside of it!^";
