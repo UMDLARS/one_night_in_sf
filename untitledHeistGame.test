@@ -181,11 +181,20 @@ Taken.
 > w
 > n
 > n
+> w
+> take ladder
+Taken.
+> e
 > n
 > e
 > n
 You can't go that way
 > pry tile with plunger
+You press the plunger
+> d
+You couldn't possibly fit
+> drop ladder
+Dropped.
 > d
 pitch dark
 > turn on flashlight

@@ -290,7 +290,8 @@ has light;
 Object -> ladder "ladder"
 with
 	name 'ladder' 'yellow ladder' 'sunflower yellow ladder',
-	description "This ladder is a bright sunflower yellow ladder. It must be used to replace the lights if they burn out, without this accessing the ceiling would be impossible.";
+	description "This ladder is a bright sunflower yellow ladder. It must be used to replace the lights if they burn out, without this accessing the ceiling would be impossible."
+has heavy;
 
 !=============HALLWAY5(~~~~~PLACEHOLDER~~~~~)=======================
 Object Hallway5
@@ -449,6 +450,16 @@ with
 		'reinforced' 'door' "This door looks extremely strong, as does the wall it is set into."
 		'fidget' 'toys' "One toy is your typical fidget spinner, and the other is a folding cube toy."
 		'docking' 'station' "This generic docking station is connected to a monitor and keyboard, but the laptop is not here. A wired Ethernet cable that is plugged into the back of of the dock snakes across the desk and down through a hole in the floor tile.",
+	before [x;
+		Go:
+			if(selected_direction==d_to) {
+				objectloop (x in player) {
+					if (x has heavy) {
+						"You couldn't possibly fit down there while carrying ", (the) x, "!";
+					}
+				}
+			}
+	],
 
 w_to Hallway3,
 d_to ITRoomTile,
@@ -462,7 +473,9 @@ with
 	found_in Office2 UnderITRoom,
 	with_key plunger,
 	after [;
-		Unlock: give self open;
+		Unlock: 
+			give self open;
+			"You press the plunger into the floor tile and pry it back, leaving it next to the space in the floor you have just opened.";
 	],
 has static door openable ~open lockable locked;
 
