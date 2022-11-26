@@ -466,6 +466,9 @@ with
 	door_dir (d_to) (u_to),
 	found_in Office2 UnderITRoom,
 	with_key plunger,
+	after [;
+		Unlock: give self open;
+	],
 has static door openable ~open lockable locked;
 
 !=============UnderItRoom(~~~~~~PLAACEHOLDER~~~~~~~)====================
