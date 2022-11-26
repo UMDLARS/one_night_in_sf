@@ -50,7 +50,7 @@ plotex/regtest.py:
 
 # We use z5 for tests because that is what zvm implements.
 %.out: %.test %.z5 plotex/regtest.py node_modules/.bin/zvm 
-	$(TIME) $(PYTHON) plotex/regtest.py -t 5 -i node_modules/.bin/zvm $< > $@ || $(TIME) $(PYTHON) plotex/regtest.py -v -t 5 -i node_modules/.bin/zvm $< | tee $@
+	$(TIME) $(PYTHON) plotex/regtest.py -v -t 5 -i node_modules/.bin/zvm $< > $@ || ! grep -Hn '^\*\*\*' $@
 
 %.z3: %.inf ${LIB} ${INFORM}
 	${INFORM} -e -E1 -d2 -s +include_path=./inform6unix/punyinform/lib/ -v3 $<
