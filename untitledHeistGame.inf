@@ -12,7 +12,8 @@ Include "globals.h";
 Include "ext_cheap_scenery.h";
 Include "puny.h";
 
-attribute heavy;
+Attribute heavy;
+Attribute bulky;
 
 [UseSub;
 	"You're not sure how you can use that in this location.";
@@ -291,7 +292,7 @@ Object -> ladder "ladder"
 with
 	name 'ladder' 'yellow ladder' 'sunflower yellow ladder',
 	description "This ladder is a bright sunflower yellow ladder. It must be used to replace the lights if they burn out, without this accessing the ceiling would be impossible."
-has heavy;
+has bulky;
 
 !=============HALLWAY5(~~~~~PLACEHOLDER~~~~~)=======================
 Object Hallway5
@@ -454,8 +455,10 @@ with
 		Go:
 			if(selected_direction==d_to) {
 				objectloop (x in player) {
-					if (x has heavy) {
+					if (x has bulky) {
 						"You couldn't possibly fit down there while carrying ", (the) x, "!";
+					} else if (x has heavy) {
+						"You couldn't possibly move down there while carrying ", (the) x, "!";
 					}
 				}
 			}
