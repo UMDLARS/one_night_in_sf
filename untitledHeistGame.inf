@@ -443,7 +443,12 @@ has heavy;
 Object Office2
 with
 
-	description "This is the IT office. The floor of this room is made of large square modular linoleum-covered panels of the kind typical in server rooms with raised floors. A desk is in the corner has an empty laptop docking station on it and a few fidget toys. A work table is against the south wall with the electronic flotsam and jetsam of a previous project. The useless husks of a few broken computers lie in the corner. To the west there is a door leading to the hallway. To the north is a reinforced door with an electronic keypad lock.",
+	description [;
+		print "This is the IT office. The floor of this room is made of large square modular linoleum-covered panels of the kind typical in server rooms with raised floors. A desk is in the corner has an empty laptop docking station on it and a few fidget toys. A work table is against the south wall with the electronic flotsam and jetsam of a previous project. The useless husks of a few broken computers lie in the corner. To the west there is a door leading to the hallway. To the north is a reinforced door with an electronic keypad lock.";
+		if (ITRoomTile has open) {
+			print "^^One of the floor tiles has been moved aside, revealing a gap that leads down into a crawl space under the floor.";
+		}
+	],
 	cheap_scenery
 		'lock' 'keypad' "The keypad presumably controls the door lock; entering the right code would likely unlock the door."
 		'husks' 'computers' "These computers are definitely useless junk, and they smell like the magic smoke got out of them."
@@ -469,18 +474,29 @@ d_to ITRoomTile,
 
 has light;
 
-Object -> ITRoomTile "Floor Tile"
+Object -> ITRoomTile "Loose Floor Tile"
 with 
 	name "floor" "tile" "floor tile",
 	door_dir (d_to) (u_to),
 	found_in Office2 UnderITRoom,
 	with_key plunger,
+	description "Although the floor looks continuous, it is actually just a series of heavy metal plates resting on a metal framework to allow cool air to circulate through the room.  One tile in particular appears to be unobstructed, and you figure you could probably pry it open if you had some way of getting a firm hold on the thing.",
+	before [;
+		Take:
+			if (self hasnt open) {
+				"The tile is heavy enough that you can't simply pry it up with your fingernails.  If you had some sort of tool that could hold it more securely, that would make this much easier.";
+			} else {
+				"Now that you've moved it aside, you decide it's simply not worth the trouble to carry around.";
+			}
+	],
 	after [;
 		Unlock: 
 			give self open;
 			"You press the plunger into the floor tile and pry it back, leaving it next to the space in the floor you have just opened.";
+		Close:
+			give self locked;
 	],
-has static door openable ~open lockable locked;
+has static door openable ~open lockable locked scenery;
 
 !=============UnderItRoom(~~~~~~PLAACEHOLDER~~~~~~~)====================
 Object UnderItRoom
