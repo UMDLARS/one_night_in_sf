@@ -71,7 +71,7 @@ has light;
 Object Leave "Leave"
 with 
 
-	description "test"
+	description "test",
 
 has light;
 
@@ -291,7 +291,7 @@ has light;
 Object -> ladder "ladder"
 with
 	name 'ladder' 'yellow ladder' 'sunflower yellow ladder',
-	description "This ladder is a bright sunflower yellow ladder. It must be used to replace the lights if they burn out, without this accessing the ceiling would be impossible."
+	description "This ladder is a bright sunflower yellow ladder. It must be used to replace the lights if they burn out, without this accessing the ceiling would be impossible.",
 has bulky;
 
 !=============HALLWAY5(~~~~~PLACEHOLDER~~~~~)=======================
@@ -373,7 +373,7 @@ has light;
 Object -> desk "Desk"
 with
 	name 'desk' 'wood desk',
-	description "This is a desk"
+	description "This is a desk",
 
 has static supporter;
 
@@ -670,7 +670,7 @@ has light;
 Object -> ellieDesk "Desk"
 with
 	name 'desk' 'wood',
-	description "This is a large wood desk. On its top there is a small plaque with the name ELLIE, a keyboard, a mouse, and a monitor connected to the computer next to this desk."
+	description "This is a large wood desk. On its top there is a small plaque with the name ELLIE, a keyboard, a mouse, and a monitor connected to the computer next to this desk.",
 
 has static supporter;
 
