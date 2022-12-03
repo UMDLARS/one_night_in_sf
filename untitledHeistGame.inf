@@ -329,7 +329,7 @@ has light;
 		if (InventoryLimit("You couldn't possibly fit up there", "The structured ceiling couldn't possibly support your weight up there")) {
 			"You climb back down.";
 		}
-		print "^";
+		@new_line;
 		PlayerTo(destination);
 		rtrue;
 	}
