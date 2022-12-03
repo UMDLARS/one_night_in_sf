@@ -406,7 +406,8 @@ Object -> -> computer "Computer"
 with
 
 	name 'computer',
-	description "This is April's computer, this is what you came to take.";
+	description "This is April's computer, this is what you came to take."
+has bulky;
 
 !=============HALLWAY4(~~~~~~~~~PLACEHOLDER~~~~~~)===================
 Object Hallway4
