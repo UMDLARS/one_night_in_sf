@@ -11,6 +11,7 @@ Constant handfail = "You place your hand on the handprint recognizer. Light scan
 Include "globals.h";
 Include "ext_cheap_scenery.h";
 Include "puny.h";
+Include "help.h";
 
 attribute heavy;
 

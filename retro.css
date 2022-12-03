@@ -60,8 +60,9 @@ div#gameport {
     text-shadow: 0 0 4px var(--amber);
 }
 
-.Input, .Style_input {
+.Input, .Style_input, .Style_emphasized {
     text-decoration: underline;
+    font-style: normal !important;
     color: var(--amber);
     text-shadow: 0 0 2px var(--amber);
 }
