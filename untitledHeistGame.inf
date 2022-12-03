@@ -307,6 +307,20 @@ n_to Office4,
 
 has light;
 
+[UseLadder noun;
+	if(noun==ladder || 
+			(selected_direction==u_to && ladder in player or self)){
+		print "You climb up the ladder.";
+		if(ladder in player){
+			print "  However you had to leave it behind.^";
+			<Drop ladder>;
+		}
+		print "^";
+		PlayerTo(Crawl1);
+		return true;
+	}
+];
+
 !==================SPARE OFFICE====================
 Object Office4 "The Unused Office"
 with
@@ -314,18 +328,7 @@ with
 	description "This room is a small office, there is a wooden desk devoid of any identifying obejcts. One of the ceiling panels seems to me missing in here.",
 
 before [;
-		Use,Climb:
-			if(noun==ladder || 
-					(selected_direction==u_to && ladder in player or self)){
-				print "You climb up the ladder.";
-				if(ladder in player){
-					print "  However you had to leave it behind.^";
-					<Drop ladder>;
-				}
-				print "^";
-				PlayerTo(Crawl1);
-				return true;
-			}
+		Use,Climb: UseLadder(noun);
 ],
 u_to [;
 	if(ladder in player or self){
