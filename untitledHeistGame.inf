@@ -310,9 +310,9 @@ has light;
 [InventoryLimit bulk_response weight_response x;
 	objectloop (x in player) {
 		if (x has bulky) {
-			"You couldn't possibly ", (string) bulk_response, " while carrying ", (the) x, "!";
+			print_ret (string) bulk_response, " while carrying ", (the) x, "!";
 		} else if (x has heavy) {
-			"You couldn't possibly ", (string) weight_response, " while carrying ", (the) x, "!";
+			print_ret (string) weight_response, " while carrying ", (the) x, "!";
 		}
 	}
 	rfalse;
@@ -325,6 +325,9 @@ has light;
 		if(ladder in player){
 			print "  However you had to leave it behind.^";
 			<Drop ladder>;
+		}
+		if (InventoryLimit("You couldn't possibly fit up there", "The structured ceiling couldn't possibly support your weight up there")) {
+			"You climb back down.";
 		}
 		print "^";
 		PlayerTo(destination);
@@ -481,7 +484,9 @@ with
 	before [;
 		Go:
 			if(selected_direction==d_to) {
-				return InventoryLimit("fit down there", "move down there");
+				return InventoryLimit(
+					"You couldn't possibly fit down there",
+					"You couldn't possibly move down there");
 			}
 	],
 

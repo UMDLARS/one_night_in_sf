@@ -154,10 +154,19 @@ You cannot get up there, if only you had a some sort of step stool.
 Taken.
 > e
 > n
+> get plant
+Taken.
 > w
 > w
 > n
 > use ladder
+You climb up the ladder.  However you had to leave it behind.
+Dropped.
+couldn't possibly support your weight
+You climb back down.
+> drop plant
+Dropped.
+> u
 Crawl Space
 You climb up into a small crawl space
 !You're not sure how you can use that in this location.
