@@ -307,7 +307,7 @@ n_to Office4,
 
 has light;
 
-[UseLadder noun;
+[UseLadder noun destination;
 	if(noun==ladder || 
 			(selected_direction==u_to && ladder in player or self)){
 		print "You climb up the ladder.";
@@ -316,8 +316,8 @@ has light;
 			<Drop ladder>;
 		}
 		print "^";
-		PlayerTo(Crawl1);
-		return true;
+		PlayerTo(destination);
+		rtrue;
 	}
 ];
 
@@ -328,11 +328,11 @@ with
 	description "This room is a small office, there is a wooden desk devoid of any identifying obejcts. One of the ceiling panels seems to me missing in here.",
 
 before [;
-		Use,Climb: UseLadder(noun);
+		Use,Climb: return UseLadder(noun, Crawl1);
 ],
 u_to [;
 	if(ladder in player or self){
-		<<Use ladder>>;
+		<<Climb ladder>>;
 	}
 	"You cannot get up there, if only you had a some sort of step stool.^";
 ],
@@ -369,7 +369,15 @@ with
 	description "April's office has a large wooden desk with a computer on it. On the desk there is a name plate that says APRIL. There is a door to the east leading back to the hallway.",
 
 e_to Hallway5,
-u_to Crawl2,
+before [;
+		Use,Climb: UseLadder(noun, Crawl2);
+],
+u_to [;
+	if(ladder in player or self){
+		<<Use ladder>>;
+	}
+	"You cannot get up there, if only you had a some sort of step stool.^";
+],
 
 has light;
 
