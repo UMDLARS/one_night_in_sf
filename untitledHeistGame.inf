@@ -346,7 +346,7 @@ before [;
 ],
 u_to [;
 	if(ladder in player or self){
-		<<Climb ladder>>;
+		<<Use ladder>>;
 	}
 	"You cannot get up there, if only you had a some sort of step stool.^";
 ],
