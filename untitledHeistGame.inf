@@ -307,6 +307,17 @@ n_to Office4,
 
 has light;
 
+[InventoryLimit bulk_response weight_response x;
+	objectloop (x in player) {
+		if (x has bulky) {
+			"You couldn't possibly ", (string) bulk_response, " while carrying ", (the) x, "!";
+		} else if (x has heavy) {
+			"You couldn't possibly ", (string) weight_response, " while carrying ", (the) x, "!";
+		}
+	}
+	rfalse;
+];
+
 [UseLadder noun destination;
 	if(noun==ladder || 
 			(selected_direction==u_to && ladder in player or self)){
@@ -467,16 +478,10 @@ with
 		'reinforced' 'door' "This door looks extremely strong, as does the wall it is set into."
 		'fidget' 'toys' "One toy is your typical fidget spinner, and the other is a folding cube toy."
 		'docking' 'station' "This generic docking station is connected to a monitor and keyboard, but the laptop is not here. A wired Ethernet cable that is plugged into the back of of the dock snakes across the desk and down through a hole in the floor tile.",
-	before [x;
+	before [;
 		Go:
 			if(selected_direction==d_to) {
-				objectloop (x in player) {
-					if (x has bulky) {
-						"You couldn't possibly fit down there while carrying ", (the) x, "!";
-					} else if (x has heavy) {
-						"You couldn't possibly move down there while carrying ", (the) x, "!";
-					}
-				}
+				return InventoryLimit("fit down there", "move down there");
 			}
 	],
 
