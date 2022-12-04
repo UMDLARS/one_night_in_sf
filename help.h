@@ -166,7 +166,7 @@ Array dont_panic static --> 1 12 "Don't Panic!";
 ];
 
 
-Verb 'intro' * -> Intro;
+Verb 'intro' 'info' * -> Intro;
 Verb 'help' * -> Help;
 Verb 'stuck'
 	* -> Stuck

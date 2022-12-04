@@ -1,5 +1,5 @@
 Constant Story "The Office";
-Constant Headline "^It is your first day on the job at Blamazon. You applied here to gain access to their offices after hours to steal the boss's valuable information off of their computer. They have state of the art cyber security preventing any digital leaks of the information so you are here to physically take it.^";
+Constant Headline "^^You step through the front doors of the office of Blamazon. It is pitch black outside. You are here after hours.^^This is a work of ~interactive fiction~.  If this is your first time playing such a game, please type INTRO at the prompt below.^^";
 Constant INITIAL_LOCATION_VALUE = Lobby;
 Constant OPTIONAL_SIMPLE_DOORS;
 Constant OPTIONAL_EXTENDED_VERBSET;
@@ -40,7 +40,7 @@ Verb 'jimmy'
 	* noun 'with' noun -> Jimmy;
 
 [Initialise;
-  "You step through the front doors of the office of Blamazon. It is pitch black outside. You are here after hours.";
+  "It is your first day on the job at Blamazon. You applied here to gain access to their offices after hours to steal the boss's valuable information off of their computer. They have state of the art cyber security preventing any digital leaks of the information so you are here to physically take it.";
 ];
 
 !===================LOBBY=======================
