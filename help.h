@@ -10,6 +10,9 @@ Include "ext_quote_box.h"; ! Used in the `Stuck` routine.
 [ ul text; font off; style underline; print (string) text; style roman; font on; ];
 [ rv text; style reverse; print (string) text; style roman; ];
 
+! Note that this is written
+! using "semantic linefeeds":
+! https://rhodesmill.org/brandon/2012/one-sentence-per-line/
 [ IntroSub;
 	print (bf) "Introduction^",
 		"^The game you are now playing
