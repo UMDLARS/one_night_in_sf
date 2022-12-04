@@ -3,6 +3,7 @@ Constant Headline "^It is your first day on the job at Blamazon. You applied her
 Constant INITIAL_LOCATION_VALUE = Lobby;
 Constant OPTIONAL_SIMPLE_DOORS;
 Constant OPTIONAL_EXTENDED_VERBSET;
+Constant OPTIONAL_PROVIDE_UNDO;
 Constant DEBUG;
 
 Constant voxfail = "The tower silently listens to your voice, but then flashes red and buzzes disapprovingly.";
