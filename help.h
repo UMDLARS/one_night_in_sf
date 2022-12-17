@@ -146,6 +146,12 @@ Array dont_panic --> 1 13 "Don't Panic!";
 		and the solutions do not always
 		immediately present themselves.
 		Here are some tips to help you through.",
+		(bf) "^^Read The Freindly Manual^",
+		"^The ", (ul) "intro", " command
+		will help you get started,
+		and the ", (ul) "help", " command
+		provides a more detailed manual
+		with example verbs to try.",
 		(bf) "^^Draw A Map^",
 		"^Draw boxes for each location in the game,
 		and connect them with lines
