@@ -135,7 +135,7 @@ Include "ext_quote_box.h"; ! Used in the `Stuck` routine.
 		new_line;
 ];
 
-Array dont_panic static --> 1 12 "Don't Panic!";
+Array dont_panic --> 1 13 "Don't Panic!";
 [ StuckSub;
 	! This will cut off scrollback in parchment,
 	! but it's good for this moment.
