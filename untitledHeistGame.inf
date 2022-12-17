@@ -40,6 +40,11 @@ Verb 'talk'
 Verb 'jimmy'
 	* noun 'with' noun -> Jimmy;
 
+Verb 'lift'
+	* noun 'with' held                          -> Unlock
+	* 'apart'/'open' noun 'with' held           -> Unlock
+	* noun 'apart'/'open' 'with' held           -> Unlock;
+
 [Initialise;
   "It is your first day on the job at Blamazon. You applied here to gain access to their offices after hours to steal the boss's valuable information off of their computer. They have state of the art cyber security preventing any digital leaks of the information so you are here to physically take it.";
 ];
