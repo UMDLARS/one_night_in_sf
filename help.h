@@ -78,7 +78,7 @@ Include "ext_quote_box.h"; ! Used in the `Stuck` routine.
 		" ", (ul) "west", "/", (ul) "w",
 		" ", (ul) "up", "/", (ul) "u",
 		" ", (ul) "down", "/", (ul) "d",
-		"^^ These are all shortcuts
+		"^^These are all shortcuts
 		for the verb ", (ul) "go", ".
 		So typing ", (ul) "s", " or ", (ul) "south", 
 		" is the same as entering ", (ul) "go south",
@@ -95,7 +95,7 @@ Include "ext_quote_box.h"; ! Used in the `Stuck` routine.
 		" -- Start the game over from the beginning.",
 		"^    ", (ul) "undo", 
 		" -- Undo the last instruction.",
-		"^^ Most verbs accept nouns
+		"^^Most verbs accept nouns
 		as objects of their actions.
 		Here are some useful verbs
 		that act on direct objects:^",
@@ -111,7 +111,7 @@ Include "ext_quote_box.h"; ! Used in the `Stuck` routine.
 		" -- Close something that is open.",
 		"^    ", (ul) "climb", "/", (ul) "scale", (bf) " object",
 		" -- Climb up an object to reach somewhere else.",
-		"^^ Some instructions require you to specify
+		"^^Some instructions require you to specify
 		an indirect object,
 		which is used to complete the action:^",
 		"^    ", (ul) "say", "/", (ul) "answer", "/", (ul) "shout", (bf) " topic ", (ul) "to", (bf) " listener",
@@ -120,7 +120,7 @@ Include "ext_quote_box.h"; ! Used in the `Stuck` routine.
 		" -- Change a stuck or locked object, so that you can ", (ul) "open", " it.",
 		"^    ", (ul) "hit", "/", (ul) "smash", "/", (ul) "break", (bf) " object ", (ul) "with", (bf) " held object",
 		" -- Apply force to one object with another.",
-		"^^ Note that some verbs
+		"^^Note that some verbs
 		do very different things
 		depending on the rest of the sentence:^",
 		"^    ", (ul) "throw", (bf) " held object",
