@@ -20,14 +20,14 @@ Include "ext_quote_box.h"; ! Used in the `Stuck` routine.
 		You control your character
 		by typing commands
 		at the ", (bf) "> ", "prompt.",
-		"^ If your commands are successful,
+		"^^If your commands are successful,
 		the game will describe what happens.
 		So if your command is ", (ul) "look", ",
 		then you will see a description of your surroundings.
 		If you scroll back a bit right now,
 		you should see a description of: ",
 		(nm) location, ".",
-		"^ Your character will move
+		"^^Your character will move
 		from location to location
 		as you type commands such as ", (ul) "go north",
 		", ", (ul) "north", ", or even just ", (ul) "n", ".
@@ -36,7 +36,7 @@ Include "ext_quote_box.h"; ! Used in the `Stuck` routine.
 		may be broken up.
 		It helps a lot to draw a map
 		while you play!",
-		"^ You will find various objects
+		"^^You will find various objects
 		located throughout the game.
 		You may pick many of them up
 		with commands such as ",
@@ -47,7 +47,7 @@ Include "ext_quote_box.h"; ! Used in the `Stuck` routine.
 		Some of these objects are useful tools,
 		and may help you use commands like ",
 		(ul) "pry safe with crowbar", ".",
-		"^ You may notice your ", (rv) "Score:", " going up
+		"^^You may notice your ", (rv) "Score:", " going up
 		as you obtain certain items
 		or gain access to some areas.
 		That's generally a sign
@@ -58,7 +58,7 @@ Include "ext_quote_box.h"; ! Used in the `Stuck` routine.
 
 [ HelpSub;
 	print (bf) "How To Play This Game^",
-		"^ This game was built with PunyInform,
+		"^^This game was built with PunyInform,
 		which is a system designed to recreate
 		the ~Interactive Fiction~ games of Infocom.
 		These games use a simple parser
@@ -66,7 +66,7 @@ Include "ext_quote_box.h"; ! Used in the `Stuck` routine.
 		into verbs,
 		prepositions,
 		and objects.
-		^ You will need to enter instructions
+		^^You will need to enter instructions
 		beginning with imperative verbs,
 		as though you were giving orders 
 		to the character you are playing in the game.
