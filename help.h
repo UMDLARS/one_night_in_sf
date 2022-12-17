@@ -150,7 +150,7 @@ Array dont_panic --> 1 13 "Don't Panic!";
 		"^Draw boxes for each location in the game,
 		and connect them with lines
 		based on the compass directions.
-		Note the location
+		Mark the location
 		of locked doors,
 		useful items,
 		and other notable features of the rooms.
