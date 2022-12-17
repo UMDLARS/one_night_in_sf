@@ -8,7 +8,7 @@ OUT=$(patsubst %.test,%.out,$(TEST))
 
 # We use wildcards to catch whatever the current version is.
 INFORM:=inform6unix/inform-6.*
-LIB=inform6unix/punyinform/lib/*.h
+LIB=inform6unix/punyinform/lib/*.h *.h
 PYTHON:=$(shell which python3)
 ifdef PYTHON
 # We're all right here
@@ -53,13 +53,13 @@ plotex/regtest.py:
 	$(TIME) $(PYTHON) plotex/regtest.py -v -t 5 -i node_modules/.bin/zvm $< > $@ || ! grep -Hn '^\*\*\*' $@
 
 %.z3: %.inf ${LIB} ${INFORM}
-	${INFORM} -e -E1 -d2 -s +include_path=./inform6unix/punyinform/lib/ -v3 $<
+	${INFORM} -e -E1 -d2 -s +include_path=./inform6unix/punyinform/lib/,./ -v3 $<
 
 %.z5: %.inf ${LIB} ${INFORM}
-	${INFORM} -e -E1 -d2 -s +include_path=./inform6unix/punyinform/lib/ -v5 $<
+	${INFORM} -e -E1 -d2 -s +include_path=./inform6unix/punyinform/lib/,./ -v5 $<
 
 %.z8: %.inf ${LIB} ${INFORM}
-	${INFORM} -e -E1 -d2 -s +include_path=./inform6unix/punyinform/lib/ -v8 $<
+	${INFORM} -e -E1 -d2 -s +include_path=./inform6unix/punyinform/lib/,./ -v8 $<
 
 clean:
 	rm -f *.z? *.out
