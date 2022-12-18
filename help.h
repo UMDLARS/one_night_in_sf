@@ -185,5 +185,16 @@ Verb 'stuck'
 ! This will catch all the synonyms
 ! from PunyInform's `grammar.h`.
 Extend 'damn' replace
+	* 'germanium' -> PDP12
+	* topic 'germanium' -> PDP12
 	* -> Stuck
 	* topic -> Stuck;
+
+[ PDP12Sub i;
+	! print the swear verb the user typed in all caps
+	style reverse;
+	for (i=0:i<WordLength(1):i++)
+		print (char) (WordAddress(1)->i - 32);
+	print ".SV NOT FOUND";
+	style roman;
+];
