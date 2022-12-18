@@ -146,7 +146,7 @@ Array dont_panic --> 1 13 "Don't Panic!";
 		and the solutions do not always
 		immediately present themselves.
 		Here are some tips to help you through.",
-		(bf) "^^Read The Freindly Manual^",
+		(bf) "^^Read The Friendly Manual^",
 		"^The ", (ul) "intro", " command
 		will help you get started,
 		and the ", (ul) "help", " command
