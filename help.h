@@ -146,7 +146,7 @@ Array dont_panic --> 1 13 "Don't Panic!";
 		and the solutions do not always
 		immediately present themselves.
 		Here are some tips to help you through.",
-		(bf) "^^Read The Freindly Manual^",
+		(bf) "^^Read The Friendly Manual^",
 		"^The ", (ul) "intro", " command
 		will help you get started,
 		and the ", (ul) "help", " command
@@ -185,5 +185,16 @@ Verb 'stuck'
 ! This will catch all the synonyms
 ! from PunyInform's `grammar.h`.
 Extend 'damn' replace
+	* 'germanium' -> PDP12
+	* topic 'germanium' -> PDP12
 	* -> Stuck
 	* topic -> Stuck;
+
+[ PDP12Sub i;
+	! print the swear verb the user typed in all caps
+	style reverse;
+	for (i=0:i<WordLength(1):i++)
+		print (char) (WordAddress(1)->i - 32);
+	print ".SV NOT FOUND";
+	style roman;
+];
