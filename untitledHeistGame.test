@@ -154,12 +154,22 @@ You cannot get up there, if only you had a some sort of step stool.
 Taken.
 > e
 > n
+> get plant
+Taken.
 > w
 > w
 > n
 > use ladder
+You climb up the ladder.  However you had to leave it behind.
+Dropped.
+couldn't possibly support your weight
+You climb back down.
+> drop plant
+Dropped.
+> u
 Crawl Space
 You climb up into a small crawl space
+!You're not sure how you can use that in this location.
 > d
 > use ladder
 Crawl Space
@@ -181,12 +191,27 @@ Taken.
 > w
 > n
 > n
-> n
+> w
+> take ladder
+Taken.
 > e
 > n
+> e
+The floor of this room is made of large square modular linoleum-covered panels
+! One of the floor tiles has been moved aside
+> n
 You can't go that way
-> unlock tile with plunger
-> open tile
+> take tile
+you can't simply pry it up with your fingernails.
+> lift tile with plunger
+You press the plunger
+> look
+The floor of this room is made of large square modular linoleum-covered panels
+One of the floor tiles has been moved aside
+> d
+You couldn't possibly fit
+> drop ladder
+Dropped.
 > d
 pitch dark
 > turn on flashlight
