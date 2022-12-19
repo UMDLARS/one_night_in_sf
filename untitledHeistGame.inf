@@ -631,6 +631,10 @@ n_to Hallway2,
 s_to LobbyEast,
 e_to Office1Door,
 
+Before [;
+	Lock:
+		"While it's neighborly to close the door behind you, it would probably go unappreciated given all the mischief you're currently up to.";
+],
 After [;
 	Unlock:
 		give Office1Door open;
