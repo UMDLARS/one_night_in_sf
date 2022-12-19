@@ -158,6 +158,12 @@ Taken.
 Taken.
 > w
 > w
+> s
+> e
+> get torch
+Taken.
+> w
+> n
 > n
 > use ladder
 You climb up the ladder.  However you had to leave it behind.
@@ -167,6 +173,8 @@ You climb back down.
 > drop plant
 Dropped.
 > u
+pitch
+> turn on torch
 Crawl Space
 You climb up into a small crawl space
 !You're not sure how you can use that in this location.

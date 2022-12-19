@@ -364,9 +364,7 @@ with
 	description "You climb up into a small crawl space above the ceiling, there are electrical wires running everywhere however it appears as if the wall to the west does not extend up into this space!",
 
 w_to Crawl2,
-d_to Office4,
-
-has light;
+d_to Office4;
 
 !================CRAWL SPACE ABOVE BOSS'S OFFICE =====================
 Object Crawl2 "Above April's Office Crawl Space"
@@ -375,9 +373,7 @@ with
 	description "This area seems like it would be directly above April's office.",
 
 d_to Office5,
-e_to Crawl1,
-
-has light;
+e_to Crawl1;
 
 !==================OFFICE5(APRIL'S OFFICE=========================
 Object Office5 "April's Office"
