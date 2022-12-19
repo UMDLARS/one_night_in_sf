@@ -26,6 +26,11 @@ Verb 'use'
 	* noun 'on' noun -> Use
 	* noun 'with' noun -> Use;
 
+! Allow `climb down` and `climb up`.
+! Also provides `climb east`, but that makes no nevermind.
+Extend 'climb' first
+	* noun=ADirection                           -> Go;
+
 Verb 'talk'
 	* 'to' noun -> TalkTo;
 
