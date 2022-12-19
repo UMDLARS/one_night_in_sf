@@ -33,14 +33,7 @@ Verb 'talk'
 	"Perhaps you should try to ~talk to something (or someone)~.";
 ];
 
-[JimmySub;
-	"That won't work.";
-];
-
-Verb 'jimmy'
-	* noun 'with' noun -> Jimmy;
-
-Verb 'lift'
+Verb 'jimmy' 'lift'
 	* noun 'with' held                          -> Unlock
 	* 'apart'/'open' noun 'with' held           -> Unlock
 	* noun 'apart'/'open' 'with' held           -> Unlock;
@@ -638,14 +631,10 @@ n_to Hallway2,
 s_to LobbyEast,
 e_to Office1Door,
 
-Before[;
-	Jimmy,Unlock:
-		if(noun==Office1Door && second==coffeeCard){
-			give Office1Door ~locked;
-			give Office1Door open;
-			print "You unlock the office door and open it!^";
-			return true;
-		}
+After [;
+	Unlock:
+		give Office1Door open;
+		"You unlock the office door and open it!^";
 ],
 
 has light;
