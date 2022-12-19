@@ -710,7 +710,7 @@ has static openable lockable locked container;
 
 Object -> -> hardDrive "Ellie's Hard Drive"
 with
-	name 'HDD' 'hard' 'drive',
+	name 'HDD' 'hard' 'disk' 'drive',
 	description "This is a Hard Disk Drive from Ellie's computer, if you take this, you're sure you can get the information on it at a later time.";
 
 Object -> Office1Door "Office Door"
