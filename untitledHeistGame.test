@@ -288,3 +288,24 @@ Taken.
 > s
 > break wall with plant
 shatter
+
+* test screwdriver and coffee card puzzle
+> w
+> n
+> n
+> e
+> take screwdriver
+> w
+> n
+> e
+> s
+> take card
+> n
+> e
+> s
+> s
+> jimmy door with card
+> e 
+> open case with screwdriver
+> take hard drive
+Taken.
