@@ -26,6 +26,11 @@ Verb 'use'
 	* noun 'on' noun -> Use
 	* noun 'with' noun -> Use;
 
+! Allow `climb down` and `climb up`.
+! Also provides `climb east`, but that makes no nevermind.
+Extend 'climb' first
+	* noun=ADirection                           -> Go;
+
 Verb 'talk'
 	* 'to' noun -> TalkTo;
 
@@ -33,14 +38,7 @@ Verb 'talk'
 	"Perhaps you should try to ~talk to something (or someone)~.";
 ];
 
-[JimmySub;
-	"That won't work.";
-];
-
-Verb 'jimmy'
-	* noun 'with' noun -> Jimmy;
-
-Verb 'lift'
+Verb 'jimmy' 'lift'
 	* noun 'with' held                          -> Unlock
 	* 'apart'/'open' noun 'with' held           -> Unlock
 	* noun 'apart'/'open' 'with' held           -> Unlock;
@@ -86,7 +84,7 @@ with
 has light;
 
 !=============RECEPTIONIST=================
-Object Receptionist "Receptionist's Desk"
+Object Receptionist "Receptionist's Area"
 with
 
 	description "This area is a small cubical where the receptionist works. There is a desk here. To the south there is the lobby.",
@@ -95,7 +93,20 @@ s_to Lobby,
 
 has light;
 
-Object -> o7key "loose brass key"
+Object -> receptiondesk "Receptionist's Desk"
+with
+	name 'reception' 'receptionist' 'desk',
+	description [;
+		print "This is a very modern asymmetrical desk that is designed more for appearances than function.  ";
+		if (self has open) {
+			"It has a single drawer, which sits open.";
+		} else {
+			"A single closed drawer is the only thing spoiling its stylish lines.";
+		}
+	],
+has static concealed container openable;
+
+Object -> -> o7key "loose brass key"
 with
 	name 'key' 'brass',
 	description "This is a single brass key. Stamped on the key are the words ~DUPLICATION STRICTLY PROHIBITED~.";
@@ -371,9 +382,7 @@ with
 	description "You climb up into a small crawl space above the ceiling, there are electrical wires running everywhere however it appears as if the wall to the west does not extend up into this space!",
 
 w_to Crawl2,
-d_to Office4,
-
-has light;
+d_to Office4;
 
 !================CRAWL SPACE ABOVE BOSS'S OFFICE =====================
 Object Crawl2 "Above April's Office Crawl Space"
@@ -382,9 +391,7 @@ with
 	description "This area seems like it would be directly above April's office.",
 
 d_to Office5,
-e_to Crawl1,
-
-has light;
+e_to Crawl1;
 
 !==================OFFICE5(APRIL'S OFFICE=========================
 Object Office5 "April's Office"
@@ -500,6 +507,12 @@ with
 					"You couldn't possibly move down there");
 			}
 	],
+	after [;
+		Go:
+			if(selected_direction == s_to)
+				print "The door to the server room clicks shut behind you.^^";
+	],
+			
 
 w_to Hallway3,
 d_to ITRoomTile,
@@ -638,14 +651,14 @@ n_to Hallway2,
 s_to LobbyEast,
 e_to Office1Door,
 
-Before[;
-	Jimmy,Unlock:
-		if(noun==Office1Door && second==coffeeCard){
-			give Office1Door ~locked;
-			give Office1Door open;
-			print "You unlock the office door and open it!^";
-			return true;
-		}
+Before [;
+	Lock:
+		"While it's neighborly to close the door behind you, it would probably go unappreciated given all the mischief you're currently up to.";
+],
+After [;
+	Unlock:
+		give Office1Door open;
+		"You unlock the office door and open it!^";
 ],
 
 has light;
@@ -717,7 +730,7 @@ has static openable lockable locked container;
 
 Object -> -> hardDrive "Ellie's Hard Drive"
 with
-	name 'HDD' 'hard' 'drive',
+	name 'HDD' 'hard' 'disk' 'drive',
 	description "This is a Hard Disk Drive from Ellie's computer, if you take this, you're sure you can get the information on it at a later time.";
 
 Object -> Office1Door "Office Door"

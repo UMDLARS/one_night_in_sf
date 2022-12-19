@@ -55,6 +55,9 @@ The Lobby
 
 > n
 > get key
+You can't see any such thing.
+> open desk
+> get key
 Taken.
 > drop key
 Dropped.
@@ -62,6 +65,7 @@ Dropped.
 * test o7 with/without key
 
 > n
+> open desk
 > take key
 > s
 > w
@@ -84,6 +88,7 @@ Hallway7
 * enter/exit all rooms
 
 > n
+> open desk
 > take key
 > s
 > e
@@ -158,6 +163,12 @@ Taken.
 Taken.
 > w
 > w
+> s
+> e
+> get torch
+Taken.
+> w
+> n
 > n
 > use ladder
 You climb up the ladder.  However you had to leave it behind.
@@ -167,6 +178,8 @@ You climb back down.
 > drop plant
 Dropped.
 > u
+pitch
+> turn on torch
 Crawl Space
 You climb up into a small crawl space
 !You're not sure how you can use that in this location.
@@ -225,10 +238,11 @@ pitch dark
 > u
 server room
 > take tape
-> d
+> climb down
 pitch dark
 > u
 > s
+The door to the server room clicks shut behind you.
 > l
 IT office
 
