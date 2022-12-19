@@ -84,7 +84,7 @@ with
 has light;
 
 !=============RECEPTIONIST=================
-Object Receptionist "Receptionist's Desk"
+Object Receptionist "Receptionist's Area"
 with
 
 	description "This area is a small cubical where the receptionist works. There is a desk here. To the south there is the lobby.",
@@ -93,7 +93,20 @@ s_to Lobby,
 
 has light;
 
-Object -> o7key "loose brass key"
+Object -> receptiondesk "Receptionist's Desk"
+with
+	name 'reception' 'receptionist' 'desk',
+	description [;
+		print "This is a very modern asymmetrical desk that is designed more for appearances than function.  ";
+		if (self has open) {
+			"It has a single drawer, which sits open.";
+		} else {
+			"A single closed drawer is the only thing spoiling its stylish lines.";
+		}
+	],
+has static concealed container openable;
+
+Object -> -> o7key "loose brass key"
 with
 	name 'key' 'brass',
 	description "This is a single brass key. Stamped on the key are the words ~DUPLICATION STRICTLY PROHIBITED~.";

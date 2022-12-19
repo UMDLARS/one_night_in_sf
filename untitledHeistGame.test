@@ -55,6 +55,9 @@ The Lobby
 
 > n
 > get key
+You can't see any such thing.
+> open desk
+> get key
 Taken.
 > drop key
 Dropped.
@@ -62,6 +65,7 @@ Dropped.
 * test o7 with/without key
 
 > n
+> open desk
 > take key
 > s
 > w
@@ -84,6 +88,7 @@ Hallway7
 * enter/exit all rooms
 
 > n
+> open desk
 > take key
 > s
 > e
