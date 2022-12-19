@@ -489,6 +489,12 @@ with
 					"You couldn't possibly move down there");
 			}
 	],
+	after [;
+		Go:
+			if(selected_direction == s_to)
+				print "The door to the server room clicks shut behind you.^^";
+	],
+			
 
 w_to Hallway3,
 d_to ITRoomTile,
