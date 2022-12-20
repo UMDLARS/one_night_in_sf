@@ -738,10 +738,11 @@ with
 
 has static openable lockable locked container;
 
-Object -> -> hardDrive "Ellie's Hard Drive"
+Object -> -> hardDrive "Ellie's hard drive"
 with
 	name 'HDD' 'hard' 'disk' 'drive',
-	description "This is a Hard Disk Drive from Ellie's computer, if you take this, you're sure you can get the information on it at a later time.";
+	description "This is a hard disk drive from Ellie's computer, if you take this, you're sure you can get the information on it at a later time."
+has proper;
 
 Object -> Office1Door "Office Door"
 with
