@@ -43,6 +43,16 @@ Verb 'jimmy' 'lift'
 	* 'apart'/'open' noun 'with' held           -> Unlock
 	* noun 'apart'/'open' 'with' held           -> Unlock;
 
+! 'screw' and 'unscrew' are defined as synonyms for 'turn',
+! rather unhelpfully for a game that wishes to distinguish them.
+! We keep that behaviour, and extend here.
+! Page 219 of the DM4 explains this syntax.
+Extend only 'unscrew' first
+	* noun 'with' held                          -> Unlock;
+
+Extend only 'screw' first
+	* noun 'with' held                          -> Lock;
+
 [Initialise;
   ! Start out VERBOSE instead of BRIEF
   lookmode = 2;
