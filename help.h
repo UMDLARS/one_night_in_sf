@@ -174,9 +174,27 @@ Array dont_panic --> 1 13 "Don't Panic!";
 		to get what you want.^";
 ];
 
+Property instructions; ! help on specific items
+
+[ HelpOnSub;
+	if(noun.instructions == 0) {
+		"Many of the objects in this game
+		are useful tools.
+		While ", (the) noun, " is worth looking at,
+		you won't need to do anything with it.";
+	} else {
+		PrintOrRun(noun, instructions, false);
+	}
+];
+
 
 Verb 'intro' 'info' * -> Intro;
-Verb 'help' * -> Help;
+Verb 'help' 'use' 'how'
+	* 'on'/'with'/'use'/'using' held -> HelpOn
+	* topic 'on'/'with'/'use'/'using' held -> HelpOn
+	* held -> HelpOn
+	* topic -> Help
+	* -> Help;
 Verb 'stuck'
 	* -> Stuck
 	* topic -> Stuck;

@@ -111,12 +111,12 @@ Hallway7
 > s
 > w
 > n
-> use ladder
+> climb ladder
 > w
 > d
 > e
 > n
-> use ladder
+> climb ladder
 > w
 > e
 > d
@@ -171,6 +171,8 @@ Taken.
 > n
 > n
 > use ladder
+Ladders are very straightforward devices.
+> climb ladder
 You climb up the ladder.  However you had to leave it behind.
 Dropped.
 couldn't possibly support your weight
@@ -184,7 +186,7 @@ Crawl Space
 You climb up into a small crawl space
 !You're not sure how you can use that in this location.
 > d
-> use ladder
+> climb ladder
 Crawl Space
 
 * get the flashlight, plunger, and backup tape
@@ -336,3 +338,7 @@ Taken.
 which contains Ellie's hard drive
 > take hard drive
 Taken.
+
+* Easter Eggs
+> damn this stupid chunk of germanium
+DAMN.SV NOT FOUND
