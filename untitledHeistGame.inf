@@ -98,7 +98,7 @@ has light;
 Object Receptionist "Receptionist's Area"
 with
 
-	description "This area is a small cubical where the receptionist works. There is a desk here. To the south there is the lobby.",
+	description "This area is a small cubicle where the receptionist works. The visitors' space in the lobby is to the south.",
 
 s_to Lobby,
 
@@ -115,7 +115,7 @@ with
 			"A single closed drawer is the only thing spoiling its stylish lines.";
 		}
 	],
-has static concealed container openable;
+has static container openable;
 
 Object -> -> o7key "loose brass key"
 with

@@ -57,6 +57,8 @@ The Lobby
 > get key
 You can't see any such thing.
 > open desk
+> look
+You can see a Receptionist's Desk (which contains a loose brass key) here.
 > get key
 Taken.
 > drop key
