@@ -289,24 +289,49 @@ Taken.
 > break wall with plant
 shatter
 
-* test screwdriver and coffee card puzzle
+* _ready coffee card
 > w
 > n
 > n
 > e
 > take screwdriver
+Taken.
 > w
 > n
 > e
 > s
 > take card
+Taken.
 > n
 > e
 > s
 > s
+
+* jimmy to get hard drive
+>{include} _ready coffee card
 > jimmy door with card
 > e 
 > unscrew case with screwdriver
+> l
+which contains Ellie's hard drive
+> take hard drive
+Taken.
+
+* pick to get hard drive
+>{include} _ready coffee card
+> pick lock with card
+> e 
+> unscrew screws with screwdriver
+> l
+which contains Ellie's hard drive
+> take hard drive
+Taken.
+
+* turn screws to get hard drive
+>{include} _ready coffee card
+> unlock door with card
+> e 
+> turn screws with screwdriver
 > l
 which contains Ellie's hard drive
 > take hard drive
