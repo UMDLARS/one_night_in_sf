@@ -479,7 +479,7 @@ has light;
 Object -> coffeeCard "Coffee Card"
 with
 	name 'coffee' 'card',
-	description "This is a card that can be used to pay for coffee at Moonbux (A national coffee chain)."
+	description "This is a card that can be used to pay for coffee at Moonbux (A national coffee chain).",
 has scored;
 
 !=============HALLWAY3(~~~~~~~~~PLACEHOLDER~~~~~~)===================
