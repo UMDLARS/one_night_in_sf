@@ -1,9 +1,11 @@
 Constant Story "The Office";
 Constant Headline "^^You step through the front doors of the office of Blamazon. It is pitch black outside. You are here after hours.^^This is a work of ~interactive fiction~.  If this is your first time playing such a game, please type INTRO at the prompt below.^^";
-Constant INITIAL_LOCATION_VALUE = Lobby;
+Constant STATUSLINE_SCORE; Statusline score;
+Constant OPTIONAL_SCORED;
 Constant OPTIONAL_SIMPLE_DOORS;
 Constant OPTIONAL_EXTENDED_VERBSET;
 Constant OPTIONAL_PROVIDE_UNDO;
+Constant INITIAL_LOCATION_VALUE = Lobby;
 Constant DEBUG;
 
 Constant voxfail = "The tower silently listens to your voice, but then flashes red and buzzes disapprovingly.";
@@ -127,7 +129,8 @@ has static concealed container openable;
 Object -> -> o7key "loose brass key"
 with
 	name 'key' 'brass',
-	description "This is a single brass key. Stamped on the key are the words ~DUPLICATION STRICTLY PROHIBITED~.";
+	description "This is a single brass key. Stamped on the key are the words ~DUPLICATION STRICTLY PROHIBITED~.",
+has scored;
 
 
 !=============WAITING======================
@@ -310,7 +313,7 @@ e_to [;
 	}
 ],
 
-has light;
+has light scored;
 
 !==================UTILITY CLOSET===================
 Object Utility "The Utility Closet"
@@ -331,7 +334,7 @@ Object -> ladder "ladder"
 with
 	name 'ladder' 'yellow ladder' 'sunflower yellow ladder',
 	description "This ladder is a bright sunflower yellow ladder. It must be used to replace the lights if they burn out, without this accessing the ceiling would be impossible.",
-has bulky;
+has bulky scored;
 
 !=============HALLWAY5(~~~~~PLACEHOLDER~~~~~)=======================
 Object Hallway5
@@ -400,7 +403,8 @@ with
 	description "You climb up into a small crawl space above the ceiling, there are electrical wires running everywhere however it appears as if the wall to the west does not extend up into this space!",
 
 w_to Crawl2,
-d_to Office4;
+d_to Office4,
+has scored;
 
 !================CRAWL SPACE ABOVE BOSS'S OFFICE =====================
 Object Crawl2 "Above April's Office Crawl Space"
@@ -442,7 +446,7 @@ with
 
 	name 'computer',
 	description "This is April's computer, this is what you came to take."
-has bulky;
+has bulky scored;
 
 !=============HALLWAY4(~~~~~~~~~PLACEHOLDER~~~~~~)===================
 Object Hallway4
@@ -480,7 +484,8 @@ has light;
 Object -> coffeeCard "Coffee Card"
 with
 	name 'coffee' 'card',
-	description "This is a card that can be used to pay for coffee at Moonbux (A national coffee chain).";
+	description "This is a card that can be used to pay for coffee at Moonbux (A national coffee chain)."
+has scored;
 
 !=============HALLWAY3(~~~~~~~~~PLACEHOLDER~~~~~~)===================
 Object Hallway3
@@ -567,7 +572,8 @@ with
 	description "You are underneath a raised floor. This cramped and dusty space is about one foot tall. Spaced every two feet are steel pillars; resting on top of the pillars are precisely fitted square floor tiles, held only by gravity. One tile has been removed. Ethernet wires run through chases alongsize electrical condiut and air conditioning ducts. The part of the crawlspace you are in seems to be about the same size as the IT office, but the space extends far enough to the north that it disappears in darkness.",
 
 u_to Office2,
-n_to UnderServerRoom;
+n_to UnderServerRoom,
+has scored;
 
 Object Note
 with
@@ -613,7 +619,8 @@ has static supporter;
 Object -> -> backup "backup tape"
 with
 	name "backup" "tape" "backup tape",
-	description "This is a plastic one-terabyte backup tape cartridge. On the cartridge is a handwritten sticky note that says ~Full Backup (UNENCRYPTED)~ and yesterday's date.";
+	description "This is a plastic one-terabyte backup tape cartridge. On the cartridge is a handwritten sticky note that says ~Full Backup (UNENCRYPTED)~ and yesterday's date.",
+has scored;
 
 !=============HALLWAY2(~~~~~~PLAACEHOLDER~~~~~~~)====================
 Object Hallway2
@@ -640,7 +647,8 @@ has light;
 Object -> screwdriver "Screwdriver"
 with
 	name 'screwdriver',
-	description "This is a screwdriver.";
+	description "This is a screwdriver."
+has scored;
 
 Object -> flashlight "flashlight"
 with
@@ -750,8 +758,8 @@ has static openable lockable locked container;
 Object -> -> hardDrive "Ellie's hard drive"
 with
 	name 'HDD' 'hard' 'disk' 'drive',
-	description "This is a hard disk drive from Ellie's computer, if you take this, you're sure you can get the information on it at a later time."
-has proper;
+	description "This is a hard disk drive from Ellie's computer, if you take this, you're sure you can get the information on it at a later time.",
+has proper scored;
 
 Object -> Office1Door "Office Door"
 with
@@ -775,5 +783,6 @@ has light;
 Object -> plunger "toilet plunger"
 with
 	name 'plunger' 'toilet plunger',
-	description "This is your bog-standard toilet plunger: a wooden handle screwed into a large and flexible rust-colored rubber suction cup.";
+	description "This is your bog-standard toilet plunger: a wooden handle screwed into a large and flexible rust-colored rubber suction cup.",
+has scored;
 
