@@ -330,6 +330,13 @@ Taken.
 * turn screws to get hard drive
 >{include} _ready coffee card
 > unlock door with card
+You unlock the office door and open it!
+> undo
+> open door with card
+You unlock the office door and open it!
+> undo
+> jimmy door with card
+You unlock the office door and open it!
 > e 
 > turn screws with screwdriver
 > l
