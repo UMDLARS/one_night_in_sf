@@ -105,9 +105,9 @@ with
 		for(_i=0 : _i<NUMBER_TASKS : _i++) {
 			font off;
 			if(task_done->_i == 1) {
-				print (bf) "    [X]    ";
+				print (bf) "    [X] ";
 			} else {
-				print "    [ ]    ";
+				print "    [ ] ";
 			}
 			font on;
 			PrintTaskName(_i);
