@@ -244,6 +244,17 @@ s_to Waiting,
 n_to Hallway6,
 w_to Office7Door,
 
+Before [;
+	Lock:
+		"You carefully lock the office door with the brass key.";
+],
+After [;
+	Unlock:
+		give Office7Door open;
+		"You unlock the office door and open it!^";
+],
+
+
 has light;
 
 !============OFFICE7(~~~PLACEHOLDER~~~)============================

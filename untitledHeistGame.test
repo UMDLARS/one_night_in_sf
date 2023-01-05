@@ -77,15 +77,15 @@ You can't, since the Office Door is closed.
 > open door
 It seems to be locked.
 > unlock door with key
-You unlock the Office Door.
-> w
-You can't, since the Office Door is closed.
-> open door
-You open the Office Door.
+You unlock the office door and open it!
 > w
 This is an office.
 > e
 Hallway7
+> close door
+You close the Office Door.
+> lock door with key
+You carefully lock the office door with the brass key.
 
 * enter/exit all rooms
 
