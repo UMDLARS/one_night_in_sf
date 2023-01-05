@@ -1,7 +1,18 @@
 Constant Story "The Office";
 Constant Headline "^^You step through the front doors of the office of Blamazon. It is pitch black outside. You are here after hours.^^This is a work of ~interactive fiction~.  If this is your first time playing such a game, please type INTRO at the prompt below.^^";
-Constant STATUSLINE_SCORE; Statusline score;
+
 Constant OPTIONAL_SCORED;
+Constant OPTIONAL_FULL_SCORE;
+Constant STATUSLINE_SCORE; Statusline score;
+Constant TASKS_PROVIDED;
+Constant MAX_SCORE = 242; ! XXX: Calculate actual final score before release
+Constant NUMBER_TASKS = 5; ! XXX: Fix before release
+Array task_scores -> 20 20 20 20 20;
+Constant GET_APRIL_COMPUTER = 0;
+Constant GET_BACKUP_TAPE = 1;
+Constant GET_ELLIE_HD = 2;
+
+
 Constant OPTIONAL_SIMPLE_DOORS;
 Constant OPTIONAL_EXTENDED_VERBSET;
 Constant OPTIONAL_EXTENDED_METAVERBS;
@@ -13,6 +24,29 @@ Constant voxfail = "The tower silently listens to your voice, but then flashes r
 Constant handfail = "You place your hand on the handprint recognizer. Light scans your hand before flashing red and buzzing disapprovingly.";
 
 Include "globals.h";
+
+! Re-define entry points for score display.
+
+[ PrintTaskName task_number;
+	switch(task_number) {
+		GET_APRIL_COMPUTER : "Got April's computer.";
+		GET_ELLIE_HD: "Took Ellie's hard drive.";
+		GET_BACKUP_TAPE: "Pocketed the backup tape.";
+		default: "XXX: Should not reach";
+	}
+];
+
+[ PrintRank;
+	print ", earning you the rank of ";
+	if (score >= 120) "Footpad.";
+	if (score >= 100) "Burglar.";
+	if (score >= 80) "Amateur Larcenist.";
+	if (score >= 60) "Shoplifter.";
+	if (score >= 40) "Chancer.";
+	if (score >= 20) "Armchair InfoSec Aficionado.";
+	"Script Kiddie.";
+];
+
 Include "ext_cheap_scenery.h";
 Include "puny.h";
 Include "help.h";
@@ -58,9 +92,29 @@ Extend only 'turn' first
 [Initialise;
   ! Start out VERBOSE instead of BRIEF
   lookmode = 2;
+  move checklist to player; ! You start out with the task list
 
   "It is your first day on the job at Blamazon. You applied here to gain access to their offices after hours to steal the boss's valuable information off of their computer. They have state of the art cyber security preventing any digital leaks of the information so you are here to physically take it.";
 ];
+
+Object checklist "Task List"
+with
+	name 'task' 'list' 'note' 'checklist',
+	description [_i;
+		print "This is a checklist of all the target data you hope to exfiltrate during this mission.  It reads as follows:^^";
+		for(_i=0 : _i<NUMBER_TASKS : _i++) {
+			font off;
+			if(task_done->_i == 1) {
+				print (bf) "    [X] ";
+			} else {
+				print "    [ ] ";
+			}
+			font on;
+			PrintTaskName(_i);
+		}
+	],
+has scored;
+			
 
 !===================LOBBY=======================
 Object Lobby "The Lobby"
@@ -441,8 +495,11 @@ Object -> -> computer "Computer"
 with
 
 	name 'computer',
-	description "This is April's computer, this is what you came to take."
-has bulky scored;
+	description "This is April's computer, this is what you came to take.",
+	after [;
+		Take: Achieved(GET_APRIL_COMPUTER);
+	],
+has bulky;
 
 !=============HALLWAY4(~~~~~~~~~PLACEHOLDER~~~~~~)===================
 Object Hallway4
@@ -616,7 +673,10 @@ Object -> -> backup "backup tape"
 with
 	name "backup" "tape" "backup tape",
 	description "This is a plastic one-terabyte backup tape cartridge. On the cartridge is a handwritten sticky note that says ~Full Backup (UNENCRYPTED)~ and yesterday's date.",
-has scored;
+	after [;
+		Take: Achieved(GET_BACKUP_TAPE);
+	],
+;
 
 !=============HALLWAY2(~~~~~~PLAACEHOLDER~~~~~~~)====================
 Object Hallway2
@@ -755,7 +815,10 @@ Object -> -> hardDrive "Ellie's hard drive"
 with
 	name 'HDD' 'hard' 'disk' 'drive',
 	description "This is a hard disk drive from Ellie's computer, if you take this, you're sure you can get the information on it at a later time.",
-has proper scored;
+	after [;
+		Take: Achieved(GET_ELLIE_HD);
+	],
+has proper;
 
 Object -> Office1Door "Office Door"
 with
