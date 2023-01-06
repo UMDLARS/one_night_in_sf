@@ -244,16 +244,6 @@ s_to Waiting,
 n_to Hallway6,
 w_to Office7Door,
 
-Before [;
-	Lock:
-		"You carefully lock the office door with the brass key.";
-],
-After [;
-	Unlock:
-		give Office7Door open;
-		"You unlock the office door and open it!^";
-],
-
 
 has light;
 
@@ -273,6 +263,20 @@ with
 	door_dir (e_to) (w_to),
 	found_in Hallway7 Office7,
 	with_key o7key,
+
+Before [;
+	Lock:
+		give self ~open locked;
+		"You carefully close and lock the office door with the brass key.^";
+],
+After [;
+	Unlock:
+		give self open ~locked;
+		"You unlock the office door and open it!^";
+],
+
+
+
 has static door openable ~open lockable locked;
 
 !=============HALLWAY6(~~~~~~~~~~PLACEHOLDER)=======================
