@@ -264,18 +264,14 @@ with
 	found_in Hallway7 Office7,
 	with_key o7key,
 
-Before [;
-	Lock:
-		give self ~open locked;
-		"You carefully close and lock the office door with the brass key.^";
-],
 After [;
 	Unlock:
-		give self open ~locked;
+		give self open;
 		"You unlock the office door and open it!^";
+	Lock:
+		give self ~open;
+		"You carefully close and lock the office door with the brass key.^";
 ],
-
-
 
 has static door openable ~open lockable locked;
 
@@ -754,16 +750,6 @@ n_to Hallway2,
 s_to LobbyEast,
 e_to Office1Door,
 
-Before [;
-	Lock:
-		"While it's neighborly to close the door behind you, it would probably go unappreciated given all the mischief you're currently up to.";
-],
-After [;
-	Unlock:
-		give Office1Door open;
-		"You unlock the office door and open it!^";
-],
-
 has light;
 
 !=============OFFICE1(ELLIE'S OFFICE)============================
@@ -842,6 +828,16 @@ with
 	door_dir (e_to) (w_to),
 	found_in Hallway1 Office1,
 	with_key coffeeCard,
+
+Before [;
+	Lock:
+		"While it's neighborly to close the door behind you, it would probably go unappreciated given all the mischief you're currently up to.";
+],
+After [;
+	Unlock:
+		give self open;
+		"You unlock the office door and open it!^";
+],
 has static door openable ~open lockable locked;
 
 
