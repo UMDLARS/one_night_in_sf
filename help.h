@@ -208,11 +208,13 @@ Extend 'damn' replace
 	* -> Stuck
 	* topic -> Stuck;
 
-[ PDP12Sub i;
+[ PDP12Sub i wlen waddr;
 	! print the swear verb the user typed in all caps
+	wlen = WordLength(1);
+	waddr = WordAddress(1);
 	style reverse;
-	for (i=0:i<WordLength(1):i++)
-		print (char) (WordAddress(1)->i - 32);
+	for (i=0:i<wlen:i++)
+		print (char) (waddr->i - 32);
 	print ".SV NOT FOUND";
 	style roman;
 ];
