@@ -1,3 +1,4 @@
+
 Constant Story "The Office";
 Constant Headline "^^You step through the front doors of the office of Blamazon. It is pitch black outside. You are here after hours.^^This is a work of ~interactive fiction~.  If this is your first time playing such a game, please type INTRO at the prompt below.^^";
 
@@ -539,13 +540,19 @@ has light;
 Object Kitchenette
 with
 
-	description "This is a kitchenette. To the north the room extends into the hallway.",
+	description "This is a kitchenette. There is a countertop with a sink, a microwave, and a coffee maker. Below the counter top there are cabinets and drawers. To the north the room extends into the hallway.",
 
 n_to Hallway4,
 
 has light;
 
-Object -> coffeeCard "Coffee Card"
+Object -> cabinet "Cabinet"
+with
+	name 'cabinet' 'cabinets' 'cupboard' 'cupboards',
+	description "These are cabinets that span the wall in the kitchenette.",
+has static openable container;
+
+Object -> -> coffeeCard "Coffee Card"
 with
 	name 'coffee' 'card',
 	description "This is a card that can be used to pay for coffee at Moonbux (A national coffee chain).",
