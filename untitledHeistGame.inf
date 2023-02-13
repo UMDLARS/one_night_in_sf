@@ -1,4 +1,3 @@
-
 Constant Story "The Office";
 Constant Headline "^^You step through the front doors of the office of Blamazon. It is pitch black outside. You are here after hours.^^This is a work of ~interactive fiction~.  If this is your first time playing such a game, please type INTRO at the prompt below.^^";
 
@@ -12,7 +11,7 @@ Array task_scores -> 20 20 20 20 20;
 Constant GET_APRIL_COMPUTER = 0;
 Constant GET_BACKUP_TAPE = 1;
 Constant GET_ELLIE_HD = 2;
-
+Constant GET_USB_BOOT_INFO = 3;
 
 Constant OPTIONAL_SIMPLE_DOORS;
 Constant OPTIONAL_EXTENDED_VERBSET;
@@ -33,6 +32,7 @@ Include "globals.h";
 		GET_APRIL_COMPUTER : "Got April's computer.";
 		GET_ELLIE_HD: "Took Ellie's hard drive.";
 		GET_BACKUP_TAPE: "Pocketed the backup tape.";
+		GET_USB_BOOT_INFO: "Got the data from the linux boot computer.";
 		default: "XXX: Should not reach";
 	}
 ];
@@ -220,7 +220,7 @@ Object -> -> brochure "brochure"
 with
 	name "brochure" "flyer" "paper",
 	description "This full-color tri-fold flyer is printed on sturdy paper. It talks in extravagant terms about the company.";
-	
+
 
 !=============LOBBYEAST===========
 Object LobbyEast "Lobby East"
@@ -531,10 +531,43 @@ Object Office3
 with
 
 	description "This is an office. To the south there is a door leading back to the hallway.",
-
+	before [;
+		Insert:
+			if(noun==usbDrive && second == linuxBootComputer){
+				print "You insert the USB drive into the open port on the back of the computer.";
+				move usbDrive to linuxBootComputer;
+				return 1;
+			}
+	],
 s_to Hallway4,
 
 has light;
+
+Object -> linuxBootComputer "Computer"
+with
+	name 'computer',
+	description [;
+			print "This computer is bolted down to the floor. The case is entirely sealed and locked save for 3 cables coming out of the back. One running to the monitor, one for a keyboard, and one for a mouse. There is an additional USB port that is currently ";
+		if (usbDrive in linuxBootComputer){
+			print "occupied by the USB drive you found in the IT closet.";
+		}
+		else{
+			print "unoccupied.";
+		}
+	],
+	before [;
+		SwitchOn:
+			if(usbDrive in linuxBootComputer){
+				print "The computer boots to a linux desktop, on the desktop there is a directory labeled ~Secret Files~. You are able to steal the information from this computer.";
+				Achieved(GET_USB_BOOT_INFO);
+				return 1;
+			}
+			else{
+				print "You boot the computer but it seems there is no operating system on it so you decide to turn it off. Maybe you could find an external drive to boot from.";
+				return 1;
+			}
+	]
+has switchable static;
 
 !=============KITCHENETTE===========================================
 Object Kitchenette
@@ -645,7 +678,6 @@ with
 u_to Office2,
 n_to UnderServerRoom,
 has scored;
-
 Object Note
 with
 	description "This is a note";
@@ -746,6 +778,11 @@ with
 		SwitchOff: give self ~light;
 	],
 has switchable;
+
+Object -> usbDrive "USB Drive"
+with
+	name 'USB' 'Drive',
+	description "This is a USB drive, on it in poor penmanship is written ~LINUX~.";
 
 !=============HALLWAY1(~~~~~~PLACEHOLDER~~~~~~~)====================
 Object Hallway1
