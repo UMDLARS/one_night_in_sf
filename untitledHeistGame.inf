@@ -77,6 +77,12 @@ Extend 'pick' first
 	* 'apart'/'open' noun 'with' held           -> Unlock
 	* noun 'apart'/'open' 'with' held           -> Unlock;
 
+Extend 'transfer' first
+	* noun					    -> transfer;
+
+Extend 'move' replace
+	*noun					    -> transfer;
+
 ! 'screw' and 'unscrew' are defined as synonyms for 'turn',
 ! rather unhelpfully for a game that wishes to distinguish them.
 ! We keep that behaviour, and extend here.
@@ -89,6 +95,9 @@ Extend only 'screw' first
 
 Extend only 'turn' first
 	* noun 'with' held                          -> Turn;
+
+Extend only 'remove' first
+	* noun 'with' held			    -> Remove;
 
 [Initialise;
   ! Start out VERBOSE instead of BRIEF
@@ -443,7 +452,7 @@ has light;
 Object Office4 "The Unused Office"
 with
 
-	description "This room is a small office, there is a wooden desk devoid of any identifying obejcts. One of the ceiling panels seems to me missing in here.",
+	description "This room is a small office, there is a wooden desk devoid of any identifying obejcts. One of the ceiling panels seems to me missing in here. Along the east wall there is a tarp laying on the floor, partially laying against the wall. There are 2 cans of paint here. The east wall seems to be still unpainted.",
 
 before [;
 		Climb: return UseLadder(noun, Crawl1);
@@ -458,12 +467,29 @@ s_to Hallway5,
 
 has light;
 
+Object -> tarp "Tarp"
+with
+	name 'tarp',
+	description "This is a blue polyethylene tarp, all craftsmanship is of the highest quality. On it are spatterings of off white paint.",
+	After[;
+		Take:
+			print "As you fold up and take the tarp you notice underneath it there was a flathead screwdriver!";
+			give flatHead ~concealed;
+			return 1;
+	];
+
+Object -> flatHead "Flathead Screwdriver"
+with
+	name 'flathead' 'screwdriver',
+	description "This is a flat head screwdriver with a bright red handle. This seems it was once used to open cans of paint judging by the dried flecks of paint on it.",
+
+has concealed;
+
+
 !===================CRAWL SPACE ENTRANCE=====================
 Object Crawl1 "Crawl Space"
 with
-
 	description "You climb up into a small crawl space above the ceiling, there are electrical wires running everywhere however it appears as if the wall to the west does not extend up into this space!",
-
 w_to Crawl2,
 d_to Office4,
 has scored;
@@ -518,20 +544,49 @@ Object Hallway4
 with
 
 	description "This is a hallway. To the west the hallway extends. To the east the hallway extends. To the north is an office. To the south is a kitchenette.",
-
+	cheap_scenery
+		CS_NO_ADJ 'hinges' [;
+			Examine: "These are the hinges of the door, maybe you could remove them if you had something with a flat end to push them out.";
+			Remove:
+				if(second==flathead){
+					print "You remove the hinges of the door!";
+					give Office3Door ~static;
+					return true;
+				};
+			default: "I am not sure what you want me to do.";
+],
+	Before[;
+		Take:
+		Transfer:
+			if(Office3Door has static){
+				print "You are unable to do that as the door is still on its hinges.";
+				return 1;
+			}
+			else{
+				print "You move the door out of the way and set it against the wall";
+				give Office3Door open;
+				return true;
+			}
+	],
 w_to Hallway5,
 e_to Hallway3,
-n_to Office3,
 s_to Kitchenette,
+n_to Office3Door,
 
 has light;
 
-!============OFFICE3(~~~PLACEHOLDER~~~)==============================
-Object Office3
+!============OFFICE3(LEN'S OFFICE)==============================
+Object Office3 "Len's Office"
 with
 
+	name 'Office',
 	description "This is an office. To the south there is a door leading back to the hallway.",
 	before [;
+		Look:
+			if(noun==Office3){
+				print "This is an office. To the south there is a door leading back to the hallway.";
+				return 0;
+			}
 		Insert:
 			if(noun==usbDrive && second == linuxBootComputer){
 				print "You insert the USB drive into the open port on the back of the computer.";
@@ -539,6 +594,7 @@ with
 				return 1;
 			}
 	],
+
 s_to Hallway4,
 
 has light;
@@ -558,16 +614,32 @@ with
 	before [;
 		SwitchOn:
 			if(usbDrive in linuxBootComputer){
-				print "The computer boots to a linux desktop, on the desktop there is a directory labeled ~Secret Files~. You are able to steal the information from this computer.";
+				print "The computer boots to a linux desktop, you bypassed the password! On the desktop there is a directory labeled ~Secret Files~. You are able to steal the information from this computer.";
 				Achieved(GET_USB_BOOT_INFO);
 				return 1;
 			}
 			else{
-				print "You boot the computer but it seems there is no operating system on it so you decide to turn it off. Maybe you could find an external drive to boot from.";
+				print "You boot the computer and are greeted by a password screen. You do not know the password to this computer so you decide to turn it off. Maybe you could find a way around the password. You do remember that it is company policy to not encrypt hard drives.";
 				return 1;
 			}
 	]
 has switchable static;
+
+Object -> Office3Door "Office Door"
+with
+	name 'office' 'door',
+	door_dir (n_to) (s_to),
+	found_in Hallway4 Office3,
+After [;
+	Unlock:
+		give self open;
+		"You unlock the office door and open it!^";
+	Lock:
+		give self ~open;
+		"You carefully close and lock the office door with the brass key.^";
+],
+
+has static door openable ~open lockable locked;
 
 !=============KITCHENETTE===========================================
 Object Kitchenette
@@ -750,10 +822,10 @@ w_to Hallway6,
 
 has light;
 
-Object -> screwdriver "Screwdriver"
+Object -> screwdriver "Phillips Head Screwdriver"
 with
-	name 'screwdriver',
-	description "This is a screwdriver.",
+	name 'Phillips Head Screwdriver' 'Screwdriver',
+	description "This is a Phillips head (+) screwdriver.",
 	instructions [;
 		print "You can use this screwdriver with the ",
 		(ul) "screw", " and ", (ul) "unscrew", " verbs.
