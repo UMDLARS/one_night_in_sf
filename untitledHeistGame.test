@@ -109,8 +109,6 @@ You carefully close and lock the office door with the brass key.
 > w
 > s
 > n
-> n
-> s
 > w
 > n
 > climb ladder
@@ -358,14 +356,27 @@ Taken.
 Taken.
 > w
 > n
+> n
+> take tarp
+As you fold up and take the tarp you notice underneath it there was a flathead screwdriver!
+> take screwdriver
+> s
 > e
 > n
+You can't, since the Office Door is closed.
+> remove hinges with screwdriver
+You remove the hinges of the door!
+> n
+You can't, since the Office Door is closed.
+> move door
+You move the door out of the way and set it against the wall
+> n
 > switch computer
-You boot the computer but it seems there is no operating system on it so you decide to turn it off. Maybe you could find an external drive to boot from.
+You boot the computer and are greeted by a password screen. You do not know the password to this computer so you decide to turn it off. Maybe you could find a way around the password. You do remember that it is company policy to not encrypt hard drives.
 > insert drive into computer
 You insert the USB drive into the open port on the back of the computer.
 > switch computer
-The computer boots to a linux desktop, on the desktop there is a directory labeled "Secret Files". You are able to steal the information from this computer.
+The computer boots to a linux desktop, you bypassed the password! On the desktop there is a directory labeled "Secret Files". You are able to steal the information from this computer.
 
 * Easter Eggs
 > damn this stupid chunk of germanium
