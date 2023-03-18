@@ -134,8 +134,6 @@ presents you with a command prompt.
 > w
 > s
 > n
-> n
-> s
 > w
 > n
 > climb ladder
@@ -329,6 +327,7 @@ Taken.
 > n
 > e
 > s
+> open cabinet
 > take card
 Taken.
 > n
@@ -372,6 +371,37 @@ You unlock the office door and open it!
 which contains Ellie's hard drive
 > take hard drive
 Taken.
+
+* External USB boot drive
+> w
+> n
+> n
+> e
+> take drive
+Taken.
+> w
+> n
+> n
+> take tarp
+As you fold up and take the tarp you notice underneath it there was a flathead screwdriver!
+> take screwdriver
+> s
+> e
+> n
+You can't, since the Office Door is closed.
+> remove hinges with screwdriver
+You remove the hinges of the door!
+> n
+You can't, since the Office Door is closed.
+> move door
+You move the door out of the way and set it against the wall
+> n
+> switch computer
+You boot the computer and are greeted by a password screen. You do not know the password to this computer so you decide to turn it off. Maybe you could find a way around the password. You do remember that it is company policy to not encrypt hard drives.
+> insert drive into computer
+You insert the USB drive into the open port on the back of the computer.
+> switch computer
+The computer boots to a linux desktop, you bypassed the password! On the desktop there is a directory labeled "Secret Files". You are able to steal the information from this computer.
 
 * Easter Eggs
 > damn this stupid chunk of germanium
