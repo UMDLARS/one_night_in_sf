@@ -6,7 +6,7 @@ Constant OPTIONAL_FULL_SCORE;
 Constant STATUSLINE_SCORE; Statusline score;
 Constant TASKS_PROVIDED;
 Constant MAX_SCORE = 242; ! XXX: Calculate actual final score before release
-Constant NUMBER_TASKS = 4; ! XXX: Fix before release
+Constant NUMBER_TASKS = 5; ! XXX: Fix before release
 Array task_scores -> 20 20 20 20 20;
 Constant GET_APRIL_COMPUTER = 0;
 Constant GET_BACKUP_TAPE = 1;
@@ -34,7 +34,7 @@ Include "globals.h";
 		GET_ELLIE_HD: "Took Ellie's hard drive.";
 		GET_BACKUP_TAPE: "Pocketed the backup tape.";
 		GET_USB_BOOT_INFO: "Got the data from the linux boot computer.";
-    GET_TITOR_PLANS: "Uploaded John Titor's schematics.";
+    		GET_TITOR_PLANS: "Uploaded John Titor's schematics.";
 		default: "XXX: Should not reach";
 	}
 ];
@@ -158,9 +158,15 @@ s_to Leave,
 before [;
 	Go:
 		if(selected_direction==s_to) {
-			if(computer notin player)
-				"You cannot leave without the boss's computer!";
-			else deadflag = GS_WIN;
+			if(computer notin player){
+				print "There is still critical information that isn't on you! You can't leave yet.";
+				return true;
+			}
+			if(usbDrive notin player){
+				print "There is still critical information that isn't on you! You can't leave yet.";
+				return true;
+			}
+			deadflag = GS_WIN;
 		}
 	],
 
@@ -172,7 +178,7 @@ has light;
 Object Leave "Leave"
 with
 
-	description "test",
+	description "Whoah, you're in a black room with random green characters floating by around you, you feel like you shouldn't be in here! [[[IF YOU FOUND THIS ROOM AN ERROR HAS OCCURED!!!!]]]",
 
 has light;
 
@@ -684,7 +690,7 @@ with
 	before [;
 		SwitchOn:
 			if(usbDrive in linuxBootComputer){
-				print "The computer boots to a linux desktop, you bypassed the password! On the desktop there is a directory labeled ~Secret Files~. You are able to steal the information from this computer.";
+				print "The computer boots to a linux desktop, you bypassed the password! On the desktop there is a directory labeled ~Secret Files~. You are able to steal the information from the computer and save it onto the USB drive. After you pocket the USB drive, you must exfiltrate with this.";
 				Achieved(GET_USB_BOOT_INFO);
 				return 1;
 			}
