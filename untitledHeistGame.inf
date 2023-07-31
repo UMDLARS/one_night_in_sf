@@ -206,6 +206,11 @@ Object -> chair "heavy-looking chair"
 with
     name "chair",
     description "This sturdy and heavy-looking chair matches the L-shaped couch in color.",
+    before [;
+	Take:
+		give plant ~scored;
+	],
+
 has heavy scored;
 
 
@@ -679,6 +684,10 @@ Object -> plant "large potted plant"
 with
 	name "plant" "potted plant" "pot",
 	description "This is a large plant in a large glazed terra cotta pot. It looks like it must weigh a lot!",
+	before [;
+		Take:
+			give chair ~scored;
+	],
 has heavy scored;
 
 !============OFFICE2(~~~PLACEHOLDER~~~)==============================
