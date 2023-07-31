@@ -64,7 +64,7 @@ Taken.
 > drop key
 Dropped.
 
-* test o7 with/without key
+* _get into o7
 
 > n
 > open desk
@@ -79,13 +79,38 @@ It's locked.
 > unlock door with key
 You unlock the office door and open it!
 > w
-This is an office.
+This is a researcher's office
+
+* test o7 with/without key
+
+>{include} _get into o7
 > e
 Hallway7
 > close door
 You close the Office Door.
 > lock door with key
 You carefully close and lock the office door with the brass key.
+
+* test terminal input
+
+> type foo into list
+That's not an object on which you can type anything.
+>{include} _get into o7
+> x terminal
+username:
+> type foo into terminal
+LOGIN INCORRECT
+> type jtitor into terminal
+prompts you for a password.
+> x terminal
+password:
+> type gubble into terminal
+LOGIN INCORRECT
+> x terminal
+username:
+> type jtitor into terminal then type tipler into terminal
+presents you with a command prompt.
+
 
 * enter/exit all rooms
 

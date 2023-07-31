@@ -12,6 +12,7 @@ Constant GET_APRIL_COMPUTER = 0;
 Constant GET_BACKUP_TAPE = 1;
 Constant GET_ELLIE_HD = 2;
 Constant GET_USB_BOOT_INFO = 3;
+Constant GET_TITOR_PLANS = 4;
 
 Constant OPTIONAL_SIMPLE_DOORS;
 Constant OPTIONAL_EXTENDED_VERBSET;
@@ -33,6 +34,7 @@ Include "globals.h";
 		GET_ELLIE_HD: "Took Ellie's hard drive.";
 		GET_BACKUP_TAPE: "Pocketed the backup tape.";
 		GET_USB_BOOT_INFO: "Got the data from the linux boot computer.";
+    GET_TITOR_PLANS: "Uploaded John Titor's schematics.";
 		default: "XXX: Should not reach";
 	}
 ];
@@ -66,6 +68,21 @@ Verb 'talk'
 [TalkToSub;
 	"Perhaps you should try to ~talk to something (or someone)~.";
 ];
+
+Verb 'type'  * -> TypeErr
+             * special -> TypeErr
+             * special 'on'/'into'/'in' -> TypeErr
+             * special 'on'/'into'/'in' noun -> Type;
+
+[TypeErrSub;
+	print "You will need to be more specific.  The type command wants you to provide a number or a string and an object to type it on.^^[type 1234 or ABCD on/into object]^";
+	noun = false; ! I think this suppresses an error message.
+];
+
+[TypeSub;
+	"That's not an object on which you can type anything.";
+];
+	
 
 Verb 'jimmy' 'lift'
 	* noun 'with' held                          -> Unlock
@@ -261,7 +278,10 @@ has light;
 Object Office7
 with
 
-	description "This is an office. To the east there is a door leading back to the hallway.",
+	description "This is a researcher's office, taken up almost entirely by a large desk strewn with academic papers.  A terminal sits amidst the clutter, its screen glowing with amber letters against a black backdrop.",
+	cheap_scenery
+		'large' 'desk' "The desk is out of place for this office building, and seems to be made of steel.  It has a military look to it, and was a popular style in the 1950s and 60s."
+		'academic' 'papers' "Most of the papers are theories on time travel by Tipler.  The rest are printouts of e-mails to user jtitor.",
 
 e_to Office7Door,
 
@@ -284,6 +304,51 @@ After [;
 ],
 
 has static door openable ~open lockable locked;
+
+Object -> terminal "VT242 Terminal"
+with
+	name 'vt' 'vt242' 'terminal',
+	description [;
+		print"The screen and keyboard on this desk are actually a VT242 model ~dumb terminal~ connected via RS232 serial cables to a system in the server room.^";
+		if (self has locked) {
+			print "The system's prompt currently says:^^";
+			font off;
+			if (self has general) {
+				print "password: ";
+			} else {
+				print "username: ";
+			}
+			font on;
+		} else {
+			"The screen shows upload progress as your exfiltration script runs.";
+		}
+	],
+
+	react_before [;
+		Type: 
+			if(second == self) {
+				if(self has locked) {
+					if (self has general && noun == 'tipler') {
+						give self ~locked;
+						Achieved(GET_TITOR_PLANS);
+						"The system pauses ominously for a moment, and then presents you with a command prompt.  Poking around briefly, you discover a directory full of technical schematics and research papers.^You start an upload of the data to an off-site drop point over the Internet, scripted so that it will log back out when it completes.";
+					} else if (noun == 'jtitor') {
+						give self general;
+						"The system accepts the username, and prompts you for a password.";
+					} else {
+						give self locked ~general;
+						print "The computer pauses ominously, and then responds:^";
+						font off;
+						print "LOGIN INCORRECT^";
+						font on;
+						"It prompts you once more for a username.";
+					}
+				} else {
+					"Your upload is still running, and will clean up after itself when it is finished.  It's best to leave this terminal alone for now and get on with the rest of your checklist.";
+				}
+			} 
+	],
+has static reactive lockable locked;
 
 !=============HALLWAY6(~~~~~~~~~~PLACEHOLDER)=======================
 Object Hallway6
