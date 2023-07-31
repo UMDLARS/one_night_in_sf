@@ -6,7 +6,7 @@ Constant OPTIONAL_FULL_SCORE;
 Constant STATUSLINE_SCORE; Statusline score;
 Constant TASKS_PROVIDED;
 Constant MAX_SCORE = 242; ! XXX: Calculate actual final score before release
-Constant NUMBER_TASKS = 5; ! XXX: Fix before release
+Constant NUMBER_TASKS = 4; ! XXX: Fix before release
 Array task_scores -> 20 20 20 20 20;
 Constant GET_APRIL_COMPUTER = 0;
 Constant GET_BACKUP_TAPE = 1;
@@ -105,8 +105,8 @@ Extend 'move' replace
 ! We keep that behaviour, and extend here.
 ! Page 219 of the DM4 explains this syntax.
 Extend only 'unscrew' first
-	* noun 'with' held                          -> Unlock;
-
+	* noun 'with' held                          -> Unlock
+	* noun					    -> Unlock;
 Extend only 'screw' first
 	* noun 'with' held                          -> Lock;
 
@@ -141,7 +141,7 @@ with
 		}
 	],
 has scored;
-			
+
 
 !===================LOBBY=======================
 Object Lobby "The Lobby"
@@ -170,7 +170,7 @@ has light;
 !this is a placeholder room for the end of the game
 
 Object Leave "Leave"
-with 
+with
 
 	description "test",
 
@@ -223,7 +223,7 @@ Object -> chair "heavy-looking chair"
 with
     name "chair",
     description "This sturdy and heavy-looking chair matches the L-shaped couch in color.",
-has heavy;
+has heavy scored;
 
 
 
@@ -356,7 +356,7 @@ with
 
     description [;
 		print "This is a hallway that extends to the north and the south. To the east there is a closet. ";
-		if (glass has locked) 
+		if (glass has locked)
 			print "The entire west wall is thick, tempered glass; it stands between you and ";
 		else
 			print " The west wall used to be glass, but you shattered it. The way is now open to ";
@@ -382,7 +382,7 @@ w_to [;
 		PlayerTo(Office6);
 		rtrue;
 	}
-		
+
 ],
 
 has light;
@@ -391,10 +391,10 @@ Object -> glass "glass wall"
 with
     name 'glass' 'wall' 'door',
     description "A heavy-duty, sliding glass door sits on a track recessed into the floor and ceiling. A piston connected to the biometric tower appears to control the door's movement. The door looks very sturdy.",
-    
+
     door_dir (w_to) (e_to),
     found_in Hallway6 Office6,
-	
+
 before [;
 	Unlock,Attack:
 		if (second has heavy) {
@@ -406,7 +406,7 @@ before [;
 ],
 
 has static door openable ~open lockable locked concealed;
-    
+
 
 Object -> biometric "Biometric Tower"
 with
@@ -424,7 +424,7 @@ life [;
 has static animate;
 
 
-!=============OFFICE6(~~~PLACEHOLDER~~~)===========================
+!=============OFFICE6(GLASS OFFICE)===========================
 Object Office6
 with
 
@@ -497,7 +497,7 @@ has light;
 ];
 
 [UseLadder noun destination;
-	if(noun==ladder || 
+	if(noun==ladder ||
 			(selected_direction==u_to && ladder in player or self)){
 		print "You climb up the ladder.";
 		if(ladder in player){
@@ -548,7 +548,7 @@ with
 	name 'flathead' 'screwdriver',
 	description "This is a flat head screwdriver with a bright red handle. This seems it was once used to open cans of paint judging by the dried flecks of paint on it.",
 
-has concealed;
+has concealed scored;
 
 
 !===================CRAWL SPACE ENTRANCE=====================
@@ -602,7 +602,7 @@ with
 	after [;
 		Take: Achieved(GET_APRIL_COMPUTER);
 	],
-has bulky;
+has bulky scored;
 
 !=============HALLWAY4(~~~~~~~~~PLACEHOLDER~~~~~~)===================
 Object Hallway4
@@ -744,7 +744,7 @@ Object -> plant "large potted plant"
 with
 	name "plant" "potted plant" "pot",
 	description "This is a large plant in a large glazed terra cotta pot. It looks like it must weigh a lot!",
-has heavy;
+has heavy scored;
 
 !============OFFICE2(~~~PLACEHOLDER~~~)==============================
 Object Office2
@@ -776,7 +776,7 @@ with
 			if(selected_direction == s_to)
 				print "The door to the server room clicks shut behind you.^^";
 	],
-			
+
 
 w_to Hallway3,
 d_to ITRoomTile,
@@ -784,7 +784,7 @@ d_to ITRoomTile,
 has light;
 
 Object -> ITRoomTile "Loose Floor Tile"
-with 
+with
 	name "floor" "tile" "floor tile",
 	door_dir (d_to) (u_to),
 	found_in Office2 UnderITRoom,
@@ -799,7 +799,7 @@ with
 			}
 	],
 	after [;
-		Unlock: 
+		Unlock:
 			give self open;
 			"You press the plunger into the floor tile and pry it back, leaving it next to the space in the floor you have just opened.";
 		Close:
@@ -863,7 +863,7 @@ with
 	after [;
 		Take: Achieved(GET_BACKUP_TAPE);
 	],
-;
+has scored;
 
 !=============HALLWAY2(~~~~~~PLAACEHOLDER~~~~~~~)====================
 Object Hallway2
@@ -914,13 +914,13 @@ with
 		SwitchOn: give self light;
 		SwitchOff: give self ~light;
 	],
-has switchable;
+has switchable scored;
 
 Object -> usbDrive "USB Drive"
 with
 	name 'USB' 'Drive',
-	description "This is a USB drive, on it in poor penmanship is written ~LINUX~.";
-
+	description "This is a USB drive, on it in poor penmanship is written ~LINUX~.",
+has scored;
 !=============HALLWAY1(~~~~~~PLACEHOLDER~~~~~~~)====================
 Object Hallway1
 with
@@ -943,17 +943,27 @@ with
 			else
 "In this office there is a wood desk with a plaque with the name ~Ellie~ on it, a monitor, a keyboard, and a mouse on it, and a computer case next to it. The computer appears to bolted down to the floor. On the back there were 4 screws enclosing the case, however you have removed them, allowing access to the inside of the computer! To the west there is a door leading back to the hallway.";
 ],
+	before [;
+		Unlock: if(noun=='screws'||noun=='screw'){
+				if(second==nothing){
+					print "I'm not sure what you want to unscrew with.^";
+					return false;
+				}
+			}
+	],
 cheap_scenery
 	CS_NO_ADJ 'screws' [;
 		Examine: "These are 4 phillips head screws, maybe you could unscrew them with something.";
+		Unlock:
 		Turn: if(second==screwdriver){
 				print "You unscrew the back panel of the computer exposing the inside of it!^";
 				give ellieComputer ~locked;
 				give ellieComputer open;
 				return true;
-			};
+			}
+			print "I'm not sure what you want to unscrew with.^";
+			return false;
 		default: "I am not sure what you want me to do.";
-
 ],
 w_to Office1Door,
 
@@ -985,6 +995,10 @@ with
 	],
 	after [;
 		Unlock:
+			if(~~(second==nothing)){
+				print "I'm not sure what you want to unscrew with.";
+				return false;
+			}
 			print "You unscrew the 4 screws at the back of the computer, opening the case!^";
 			give self open;
 		Lock:
@@ -1000,7 +1014,7 @@ with
 	after [;
 		Take: Achieved(GET_ELLIE_HD);
 	],
-has proper;
+has proper scored;
 
 Object -> Office1Door "Office Door"
 with
