@@ -952,28 +952,7 @@ with
 			else
 "In this office there is a wood desk with a plaque with the name ~Ellie~ on it, a monitor, a keyboard, and a mouse on it, and a computer case next to it. The computer appears to bolted down to the floor. On the back there were 4 screws enclosing the case, however you have removed them, allowing access to the inside of the computer! To the west there is a door leading back to the hallway.";
 ],
-	before [;
-		Unlock: if(noun=='screws'||noun=='screw'){
-				if(second==nothing){
-					print "I'm not sure what you want to unscrew with.^";
-					return false;
-				}
-			}
-	],
-cheap_scenery
-	CS_NO_ADJ 'screws' [;
-		Examine: "These are 4 phillips head screws, maybe you could unscrew them with something.";
-		Unlock:
-		Turn: if(second==screwdriver){
-				print "You unscrew the back panel of the computer exposing the inside of it!^";
-				give ellieComputer ~locked;
-				give ellieComputer open;
-				return true;
-			}
-			print "I'm not sure what you want to unscrew with.^";
-			return false;
-		default: "I am not sure what you want me to do.";
-],
+
 w_to Office1Door,
 
 has light;
@@ -988,33 +967,34 @@ has static supporter;
 Object -> ellieComputer "Computer"
 with
 	name 'computer' 'case' 'screws',
-	description "This computer is bolted down to the floor as to prevent it from being moved. On the back there are a number of wires exiting the computer. On the side there are 4 screws holding the side panel on.",
+	description "This computer is bolted down to the floor as to prevent it from being moved. On the back there are a number of wires exiting the computer. On the side there are 4 phillips head screws holding the side panel on. Maybe you could unscrew these with something?",
 	instructions "You attempt to use the computer, however, you are immediately challenged by a log in screen requesting a password.^^It seems the information on the hard drive of this computer will have to be accessed some other way.",
-	with_key screwdriver,
 	before [;
 		Turn:
-			if(self has locked) {
-				<<Unlock self second>>;
-			} else {
-				<close self>;
-				<<Lock self second>>;
+			if (second==screwdriver){
+				print "You unscrew the screws with your phillips head screwdriver! You can now see inside!";
+				give ellieComputer ~locked;
+				give ellieComputer open;
+				return true;
 			}
-		Lock:
-			<close self>;
-	],
-	after [;
+			else {
+				print "You should specify a tool you are turning the screws with.";
+				return true;
+			}
 		Unlock:
-			if(~~(second==nothing)){
-				print "I'm not sure what you want to unscrew with.";
-				return false;
+			if (second==screwdriver){
+				print "You unscrew the screws with your phillips head screwdriver! You can now see inside!";
+				give ellieComputer ~locked;
+				give ellieComputer open;
+				return true;
 			}
-			print "You unscrew the 4 screws at the back of the computer, opening the case!^";
-			give self open;
-		Lock:
-			"You tighten the 4 screws at the back of the computer, sealing it shut.";
+			else {
+				print "You should specify a tool you are unscrewing the screws with.";
+				return true;
+			}
 	],
 
-has static openable lockable locked container;
+has openable locked container;
 
 Object -> -> hardDrive "Ellie's hard drive"
 with
