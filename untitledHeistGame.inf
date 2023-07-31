@@ -141,9 +141,15 @@ s_to Leave,
 before [;
 	Go:
 		if(selected_direction==s_to) {
-			if(computer notin player)
-				"You cannot leave without the boss's computer!";
-			else deadflag = GS_WIN;
+			if(computer notin player){
+				print "There is still critical information that isn't on you! You can't leave yet.";
+				return true;
+			}
+			if(usbDrive notin player){
+				print "There is still critical information that isn't on you! You can't leave yet.";
+				return true;
+			}
+			deadflag = GS_WIN;
 		}
 	],
 
@@ -155,7 +161,7 @@ has light;
 Object Leave "Leave"
 with
 
-	description "test",
+	description "Whoah, you're in a black room with random green characters floating by around you, you feel like you shouldn't be in here! [[[IF YOU FOUND THIS ROOM AN ERROR HAS OCCURED!!!!]]]",
 
 has light;
 
@@ -619,7 +625,7 @@ with
 	before [;
 		SwitchOn:
 			if(usbDrive in linuxBootComputer){
-				print "The computer boots to a linux desktop, you bypassed the password! On the desktop there is a directory labeled ~Secret Files~. You are able to steal the information from this computer.";
+				print "The computer boots to a linux desktop, you bypassed the password! On the desktop there is a directory labeled ~Secret Files~. You are able to steal the information from the computer and save it onto the USB drive. After you pocket the USB drive, you must exfiltrate with this.";
 				Achieved(GET_USB_BOOT_INFO);
 				return 1;
 			}
@@ -887,31 +893,46 @@ with
 			else
 "In this office there is a wood desk with a plaque with the name ~Ellie~ on it, a monitor, a keyboard, and a mouse on it, and a computer case next to it. The computer appears to bolted down to the floor. On the back there were 4 screws enclosing the case, however you have removed them, allowing access to the inside of the computer! To the west there is a door leading back to the hallway.";
 ],
-	before [;
-		Unlock: if(noun=='screws'||noun=='screw'){
-				if(second==nothing){
-					print "I'm not sure what you want to unscrew with.^";
-					return false;
-				}
-			}
-	],
-cheap_scenery
-	CS_NO_ADJ 'screws' [;
-		Examine: "These are 4 phillips head screws, maybe you could unscrew them with something.";
-		Unlock:
-		Turn: if(second==screwdriver){
-				print "You unscrew the back panel of the computer exposing the inside of it!^";
-				give ellieComputer ~locked;
-				give ellieComputer open;
-				return true;
-			}
-			print "I'm not sure what you want to unscrew with.^";
-			return false;
-		default: "I am not sure what you want me to do.";
-],
+!	before [;
+!		Unlock: if(noun=='screws'||noun=='screw'){
+!				if(second==nothing){
+!					print "I'm not sure what you want to unscrew with.^";
+!					return false;
+!				}
+!			}
+!	],
+!cheap_scenery
+!	CS_NO_ADJ 'screws' [;
+!		Examine: "These are 4 phillips head screws, maybe you could unscrew them with something.";
+!		Unlock:
+!		Turn: if(second==screwdriver){
+!				print "You unscrew the back panel of the computer exposing the inside of it!^";
+!				give ellieComputer ~locked;
+!				give ellieComputer open;
+!				return true;
+!			}
+!			print "I'm not sure what you want to unscrew with.^";
+!			return false;
+!		default: "I am not sure what you want me to do.";
+!],
 w_to Office1Door,
 
 has light;
+
+Object -> screws "screws"
+with
+	name 'screws' 'screw',
+	description "These are 4 phillips head screws, maybe you could unscrew them with something.",
+	before [;
+		Take:
+			print "These don't seem like they're going to be useful else where so you leave them";
+			return true;
+		Turn:
+			if(ellieComputer has locked){
+			!UNFINISHED HERE
+			}
+	]
+has concealed;
 
 Object -> ellieDesk "Desk"
 with
@@ -922,7 +943,7 @@ has static supporter;
 
 Object -> ellieComputer "Computer"
 with
-	name 'computer' 'case' 'screws',
+	name 'computer' 'case',
 	description "This computer is bolted down to the floor as to prevent it from being moved. On the back there are a number of wires exiting the computer. On the side there are 4 screws holding the side panel on.",
 	instructions "You attempt to use the computer, however, you are immediately challenged by a log in screen requesting a password.^^It seems the information on the hard drive of this computer will have to be accessed some other way.",
 	with_key screwdriver,
