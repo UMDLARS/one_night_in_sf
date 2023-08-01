@@ -605,15 +605,15 @@ with
 
 has static supporter;
 
-Object -> -> computer "Computer"
+Object -> -> computer "April's Computer"
 with
 
-	name 'computer',
+	name 'April' 'April^s' 'computer',
 	description "This is April's computer, this is what you came to take.",
 	after [;
 		Take: Achieved(GET_APRIL_COMPUTER);
 	],
-has bulky scored;
+has bulky scored proper;
 
 !=============HALLWAY4(~~~~~~~~~PLACEHOLDER~~~~~~)===================
 Object Hallway4
@@ -675,9 +675,9 @@ s_to Hallway4,
 
 has light;
 
-Object -> linuxBootComputer "Computer"
+Object -> linuxBootComputer "Len's Computer"
 with
-	name 'computer',
+	name 'Len' 'Len^s' 'computer',
 	description [;
 			print "This computer is bolted down to the floor. The case is entirely sealed and locked save for 3 cables coming out of the back. One running to the monitor, one for a keyboard, and one for a mouse. There is an additional USB port that is currently ";
 		if (usbDrive in linuxBootComputer){
@@ -715,7 +715,7 @@ After [;
 		"You carefully close and lock the office door with the brass key.^";
 ],
 
-has static door openable ~open lockable locked;
+has static door openable ~open lockable locked proper;
 
 !=============KITCHENETTE===========================================
 Object Kitchenette
@@ -970,9 +970,9 @@ with
 
 has static supporter;
 
-Object -> ellieComputer "Computer"
+Object -> ellieComputer "Ellie's Computer"
 with
-	name 'computer' 'case' 'screws',
+	name 'Ellie' 'Ellie^s' 'computer' 'case' 'screws',
 	description "This computer is bolted down to the floor as to prevent it from being moved. On the back there are a number of wires exiting the computer. On the side there are 4 phillips head screws holding the side panel on. Maybe you could unscrew these with something?",
 	instructions "You attempt to use the computer, however, you are immediately challenged by a log in screen requesting a password.^^It seems the information on the hard drive of this computer will have to be accessed some other way.",
 	before [;
@@ -1000,7 +1000,7 @@ with
 			}
 	],
 
-has openable locked container;
+has openable locked container proper;
 
 Object -> -> hardDrive "Ellie's hard drive"
 with
