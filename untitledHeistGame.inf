@@ -613,7 +613,7 @@ with
 	after [;
 		Take: Achieved(GET_APRIL_COMPUTER);
 	],
-has bulky scored;
+has bulky scored proper;
 
 !=============HALLWAY4(~~~~~~~~~PLACEHOLDER~~~~~~)===================
 Object Hallway4
@@ -715,7 +715,7 @@ After [;
 		"You carefully close and lock the office door with the brass key.^";
 ],
 
-has static door openable ~open lockable locked;
+has static door openable ~open lockable locked proper;
 
 !=============KITCHENETTE===========================================
 Object Kitchenette
@@ -1000,7 +1000,7 @@ with
 			}
 	],
 
-has openable locked container;
+has openable locked container proper;
 
 Object -> -> hardDrive "Ellie's hard drive"
 with
