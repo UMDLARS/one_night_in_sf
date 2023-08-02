@@ -35,7 +35,7 @@ Include "globals.h";
 		GET_ELLIE_HD: "Took Ellie's hard drive.";
 		GET_BACKUP_TAPE: "Pocketed the backup tape.";
 		GET_USB_BOOT_INFO: "Got the data from the linux boot computer.";
-    		GET_TITOR_PLANS: "Uploaded John Titor's schematics.";
+    		GET_TITOR_PLANS: "Printed out John Titor's schematics.";
 		GET_IBM5100: "Grabbed the IBM 5100.";
 		default: "XXX: Should not reach";
 	}
@@ -351,7 +351,7 @@ with
 			}
 			font on;
 		} else {
-			"The screen shows upload progress as your exfiltration script runs.";
+			"The screen shows that the files printed successfully.";
 		}
 	],
 
