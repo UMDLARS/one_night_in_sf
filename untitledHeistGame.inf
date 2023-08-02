@@ -691,6 +691,7 @@ with
 		SwitchOn:
 			if(usbDrive in linuxBootComputer){
 				print "The computer boots to a linux desktop, you bypassed the password! On the desktop there is a directory labeled ~Secret Files~. You are able to steal the information from the computer and save it onto the USB drive. After you pocket the USB drive, you must exfiltrate with this.";
+				move usbDrive to player;
 				Achieved(GET_USB_BOOT_INFO);
 				return 1;
 			}
