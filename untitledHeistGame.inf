@@ -246,10 +246,10 @@ with
 	before [;
 		Take:
 			if (heavyLimit(self)){
-				give plant ~scored;
 				rtrue;
 			}
 			else {
+				give plant ~scored;
 				rfalse;
 			}
 	],
@@ -396,11 +396,16 @@ with
 
     description [;
 		print "This is a hallway that extends to the north and the south. To the east there is a closet. ";
-		if (glass has locked)
+		if (glass has locked){
 			print "The entire west wall is thick, tempered glass; it stands between you and ";
-		else
-			print " The west wall used to be glass, but you shattered it. The way is now open to ";
-
+		}
+		else{
+			print "The west wall used to be glass, but you shattered it. ";
+			if (plant in leave){
+				print "Amongst the shards of glass are broken bits of the terracotta pot, as well as a mound of dirt with a plant sadly laying on its side. ";
+			}
+			print "The way is now open to ";
+		}
 		print "a laboratory packed with futuristic-looking equipment. A biometric authentication system is embedded into the glass wall. It is connected to a large, sliding glass door leading west into the lab.";
 ],
     cheap_scenery
@@ -410,6 +415,27 @@ with
 			Examine: "The handprint recognizer looks like something from a 1990s spy movie. An angled bezel sticks out from the wall with the outline of a hand illuminated by a pulsating orange grid pattern.";
 			Touch: print_ret (string) handfail;
 	],
+	before [;
+		ThrowAt:
+			if (noun has heavy){
+				if (second==glass){
+					if(glass has open){
+						print "The glass has already been shattered!";
+						rtrue;
+					}
+					else{
+						give glass open ~locked;
+						print "You shatter the glass wall, creating an opening to the next room!";
+						if(noun==plant){
+							print " The plant pot breaks with a shower of dirt flying into the air. The plant pot is totally destroyed!";
+							move plant to leave;
+						}
+						rtrue;
+					}
+				}
+			}
+	],
+
 
 s_to Hallway7,
 n_to Hallway5,
@@ -773,7 +799,7 @@ After [;
 		"You carefully close and lock the office door with the brass key.^";
 ],
 
-has static door openable ~open lockable locked proper;
+has static door openable ~open lockable locked;
 
 !=============KITCHENETTE===========================================
 Object Kitchenette
@@ -816,9 +842,9 @@ with
 	before [;
 		Take:
 			if (heavyLimit(self)){
-				give chair ~scored;
 				rtrue;
 			}
+			give chair ~scored;
 			rfalse;
 	],
 has heavy bulky scored;
