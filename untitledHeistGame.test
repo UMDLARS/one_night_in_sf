@@ -49,6 +49,7 @@
 > s
 > s
 > w
+
 The Lobby
 
 * get/drop key from receptionist area
@@ -75,7 +76,7 @@ Dropped.
 > w
 You can't, since the Office Door is closed.
 > open door
-It's locked.
+It seems to be locked.
 > unlock door with key
 You unlock the office door and open it!
 > w
@@ -162,7 +163,7 @@ The Lobby
 * Try to leave without the computer
 
 > s
-You cannot leave without the boss's computer!
+There is still critical information that isn't on you! You can't leave yet.
 
 * Try to climb into the crawlspace without the ladder
 
@@ -184,8 +185,6 @@ You cannot get up there, if only you had a some sort of step stool.
 Taken.
 > e
 > n
-> get plant
-Taken.
 > w
 > w
 > s
@@ -200,7 +199,17 @@ Ladders are very straightforward devices.
 > climb ladder
 You climb up the ladder.  However you had to leave it behind.
 Dropped.
-couldn't possibly support your weight
+> d
+> s
+> e
+> e
+> take plant
+Taken.
+> w
+> w
+> n
+> u
+You climb up the ladder.You couldn't possibly fit up there while carrying the large potted plant!
 You climb back down.
 > drop plant
 Dropped.
@@ -401,7 +410,7 @@ You boot the computer and are greeted by a password screen. You do not know the 
 > insert drive into computer
 You insert the USB drive into the open port on the back of the computer.
 > switch computer
-The computer boots to a linux desktop, you bypassed the password! On the desktop there is a directory labeled "Secret Files". You are able to steal the information from this computer.
+The computer boots to a linux desktop, you bypassed the password! On the desktop there is a directory labeled "Secret Files". You are able to steal the information from the computer and save it onto the USB drive. After you pocket the USB drive, you must exfiltrate with this.
 
 * Easter Eggs
 > damn this stupid chunk of germanium
