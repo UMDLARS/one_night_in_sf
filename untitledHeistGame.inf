@@ -243,12 +243,18 @@ Object -> chair "heavy-looking chair"
 with
     name "chair",
     description "This sturdy and heavy-looking chair matches the L-shaped couch in color.",
-    before [;
-	Take:
-		give plant ~scored;
+	before [;
+		Take:
+			if (heavyLimit(self)){
+				give plant ~scored;
+				rtrue;
+			}
+			else {
+				rfalse;
+			}
 	],
 
-has heavy scored;
+has heavy bulky scored;
 
 
 
@@ -513,7 +519,16 @@ with
 		"Ladders are very straightforward devices.
 		All you need to do is type ", (ul) "climb ladder";
 	],
-has bulky scored;
+	before [;
+		Take:
+			if (heavyLimit(self)){
+				rtrue;
+			}
+			rfalse;
+	],
+
+
+has bulky heavy scored;
 
 !=============HALLWAY5(~~~~~PLACEHOLDER~~~~~)=======================
 Object Hallway5
@@ -554,6 +569,16 @@ has light;
 		PlayerTo(destination);
 		rtrue;
 	}
+];
+
+[heavyLimit noun x;
+	objectloop (x in player){
+		if (x has heavy){
+		print (the) noun, " is too heavy to pick up while ", (the) x, " is in your inventory!";
+		return true;
+		}
+	}
+	return false;
 ];
 
 !==================SPARE OFFICE====================
@@ -790,9 +815,13 @@ with
 	description "This is a large plant in a large glazed terra cotta pot. It looks like it must weigh a lot!",
 	before [;
 		Take:
-			give chair ~scored;
+			if (heavyLimit(self)){
+				give chair ~scored;
+				rtrue;
+			}
+			rfalse;
 	],
-has heavy scored;
+has heavy bulky scored;
 
 !============OFFICE2(~~~PLACEHOLDER~~~)==============================
 Object Office2
