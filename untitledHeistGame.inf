@@ -6,13 +6,14 @@ Constant OPTIONAL_FULL_SCORE;
 Constant STATUSLINE_SCORE; Statusline score;
 Constant TASKS_PROVIDED;
 Constant MAX_SCORE = 242; ! XXX: Calculate actual final score before release
-Constant NUMBER_TASKS = 5; ! XXX: Fix before release
-Array task_scores -> 20 20 20 20 20;
+Constant NUMBER_TASKS = 6; ! XXX: Fix before release
+Array task_scores -> 20 20 20 20 20 20;
 Constant GET_APRIL_COMPUTER = 0;
 Constant GET_BACKUP_TAPE = 1;
 Constant GET_ELLIE_HD = 2;
 Constant GET_USB_BOOT_INFO = 3;
 Constant GET_TITOR_PLANS = 4;
+Constant GET_IBM5100 = 5;
 
 Constant OPTIONAL_SIMPLE_DOORS;
 Constant OPTIONAL_EXTENDED_VERBSET;
@@ -35,6 +36,7 @@ Include "globals.h";
 		GET_BACKUP_TAPE: "Pocketed the backup tape.";
 		GET_USB_BOOT_INFO: "Got the data from the linux boot computer.";
     		GET_TITOR_PLANS: "Uploaded John Titor's schematics.";
+		GET_IBM5100: "Grabbed the IBM 5100.";
 		default: "XXX: Should not reach";
 	}
 ];
@@ -163,6 +165,18 @@ before [;
 				return true;
 			}
 			if(usbDrive notin player){
+				print "There is still critical information that isn't on you! You can't leave yet.";
+				return true;
+			}
+			if(IBM5100 notin player){
+				print "There is still critical information that isn't on you! You can't leave yet.";
+				return true;
+			}
+			if(harddrive notin player){
+				print "There is still critical information that isn't on you! You can't leave yet.";
+				return true;
+			}
+			if(backup notin player){
 				print "There is still critical information that isn't on you! You can't leave yet.";
 				return true;
 			}
@@ -342,7 +356,9 @@ with
 					if (self has general && noun == 'tipler') {
 						give self ~locked;
 						Achieved(GET_TITOR_PLANS);
-						"The system pauses ominously for a moment, and then presents you with a command prompt.  Poking around briefly, you discover a directory full of technical schematics and research papers.^You start an upload of the data to an off-site drop point over the Internet, scripted so that it will log back out when it completes.";
+						print "The system pauses ominously for a moment, and then presents you with a command prompt.  Poking around briefly, you discover a directory full of technical schematics and research papers.^You start printing the data which begins exiting out the machine on a spool of green bar paper. You grab the printout.";
+						move printout to player;
+						return true;
 					} else if (noun == 'jtitor') {
 						give self general;
 						"The system accepts the username, and prompts you for a password.";
@@ -360,6 +376,13 @@ with
 			} 
 	],
 has static reactive lockable locked;
+
+Object printout "Print out"
+with
+	name 'printout' 'print' 'out' 'schematics' 'plans' 'titor^s' 'titor',
+	description "This is the printout from the VT242 terminal, you must escape with this.",
+
+has scored;
 
 !=============HALLWAY6(~~~~~~~~~~PLACEHOLDER)=======================
 Object Hallway6
@@ -456,7 +479,16 @@ e_to [;
 	}
 ],
 
-has light scored;
+has light;
+
+Object -> IBM5100 "IBM 5100"
+with
+	name 'IBM' 'IBM5100' '5100',
+	description "This is a dummy description",
+	After [;
+		Take:Achieved(GET_IBM5100);
+	],
+has scored heavy;
 
 !==================UTILITY CLOSET===================
 Object Utility "The Utility Closet"
@@ -691,6 +723,7 @@ with
 		SwitchOn:
 			if(usbDrive in linuxBootComputer){
 				print "The computer boots to a linux desktop, you bypassed the password! On the desktop there is a directory labeled ~Secret Files~. You are able to steal the information from the computer and save it onto the USB drive. After you pocket the USB drive, you must exfiltrate with this.";
+				move usbDrive to player;
 				Achieved(GET_USB_BOOT_INFO);
 				return 1;
 			}
@@ -699,7 +732,7 @@ with
 				return 1;
 			}
 	]
-has switchable static;
+has switchable static proper;
 
 Object -> Office3Door "Office Door"
 with
