@@ -637,10 +637,10 @@ with
 			return 1;
 	];
 
-Object -> flatHead "Flathead Screwdriver"
+Object -> flatHead "Flathead"
 with
 	name 'flathead' 'screwdriver',
-	description "This is a flat head screwdriver with a bright red handle. This seems it was once used to open cans of paint judging by the dried flecks of paint on it.",
+	description "This is a flat head screwdriver with a bright red handle. This seems it was once used to open cans of paint judging by the dried flecks of paint on it. On the handle reads an inscription that says ''NOT TO BE REMOVED FROM FLOOD CONTROL DAM #3''",
 
 has concealed scored;
 
