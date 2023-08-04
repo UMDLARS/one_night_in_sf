@@ -127,7 +127,7 @@ Include "ext_quote_box.h"; ! Used in the `Stuck` routine.
 		" -- The same as ", (ul) "drop", ".",
 		"^    ", (ul) "throw", "/", (ul) "put", (bf) " held object ", (ul) "in", (bf) " container", ".",
 		" -- Put an object inside another.",
-		"^    ", (ul) "throw", (bf) " held object ", (ul) "at", (bf) " container", ".",
+		"^    ", (ul) "throw", (bf) " held object ", (ul) "at", (bf) " object", ".",
 		" -- Throw one object at another.";
 
 
