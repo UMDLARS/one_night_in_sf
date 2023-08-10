@@ -1,4 +1,18 @@
-# PunyInform Minimal Build Harness
+# Untitled Heist Game
+
+This is a project to write a game in the style of Infocom's "interactive fiction" software of the 1980s, for use in computer security courses.
+
+It is easy to set up a laboratory network for students to practise system intrusion techniques, and organise "red team" vs. "blue team" competitions.  It's far more difficult to create any sort of lab practical for physical security situations.  
+
+Since we can't quickly spin up an example office building to break into, the next best thing is an old-fashioned "text adventure".
+
+## Build
+
+This repository is based on [an example project template](https://zork.net/git/SpaceHobo/punyjam-minimal), but has been expanded to build the [Parchment](https://github.com/curiousdannii/parchment) interpreter in a style that mimics late-1980s serial terminals from the Digital Equipment Corporation.
+
+The instructions for building are below, but instead of installing something like `frotz`, you can visit the [`index.html`](index.html) after a successful build to play in your browser.
+
+# Upstream README follows:
 
 This repo contains three files:
 
