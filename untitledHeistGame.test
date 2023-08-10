@@ -76,7 +76,7 @@ Dropped.
 > w
 You can't, since the Office Door is closed.
 > open door
-It seems to be locked.
+/It.* locked.
 > unlock door with key
 You unlock the office door and open it!
 > w
