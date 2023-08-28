@@ -705,29 +705,19 @@ with
 
 	description "This is a hallway. To the west the hallway extends. To the east the hallway extends. To the north is an office. To the south is a kitchenette.",
 	cheap_scenery
-		CS_NO_ADJ 'hinges' [;
-			Examine: "These are the hinges of the door, maybe you could remove them if you had something with a flat end to push them out.";
-			Remove:
-				if(second==flathead){
-					print "You remove the hinges of the door!";
-					give Office3Door ~static;
-					return true;
-				};
+		'hinges' 'hinge'[;
+			Examine: "These are the hinges of the door. They hold the door to the wall due to pins going through the entire assembly. Maybe you could remove the pins if you had something with a flat end to push them out.";
 			default: "I am not sure what you want me to do.";
-],
-	Before[;
-		Take:
-		Transfer:
-			if(Office3Door has static){
-				print "You are unable to do that as the door is still on its hinges.";
-				return 1;
-			}
-			else{
-				print "You move the door out of the way and set it against the wall";
-				give Office3Door open;
-				return true;
-			}
-	],
+		]
+		'pins' 'pin' [;
+			Examine: "These pins were hammered into place while someone held the door up. This is how most doors are attached to walls, it seems this door just so happens to have them on the exterior of the office.";
+			Remove:
+							if(second==flathead){
+								print "You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...";
+								give Office3Door open;
+								return true;
+							};
+		],
 w_to Hallway5,
 e_to Hallway3,
 s_to Kitchenette,
@@ -789,19 +779,11 @@ has switchable static proper;
 Object -> Office3Door "Office Door"
 with
 	name 'office' 'door',
-	description "This is a large wooden door. Protruding from the door are large hinge pins holding the door to the wall. Perhaps something could be used to remove these hinges.",
+	description "This is a large wooden door. Protruding from the door are large hinges through which multiple pins hold the door to the wall. Perhaps something could be used to remove the pins.",
 	door_dir (n_to) (s_to),
 	found_in Hallway4 Office3,
-After [;
-	Unlock:
-		give self open;
-		"You unlock the office door and open it!^";
-	Lock:
-		give self ~open;
-		"You carefully close and lock the office door with the brass key.^";
-],
 
-has static door openable ~open lockable locked;
+has static door ~open locked;
 
 !=============KITCHENETTE===========================================
 Object Kitchenette
