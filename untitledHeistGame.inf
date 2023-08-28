@@ -751,11 +751,11 @@ has light;
 
 Object -> linuxBootComputer "Len's Computer"
 with
-	name 'Len' 'Len^s' 'computer',
+	name 'Len' 'Len^s' 'computer' 'port',
 	description [;
 			print "This computer is bolted down to the floor. The case is entirely sealed and locked save for 3 cables coming out of the back. One running to the monitor, one for a keyboard, and one for a mouse. There is an additional USB port that is currently ";
 		if (usbDrive in linuxBootComputer){
-			print "occupied by the USB drive you found in the IT closet.";
+			print "occupied by the USB drive you found in the IT closet. ";
 		}
 		else{
 			print "unoccupied.";
@@ -774,7 +774,7 @@ with
 				return 1;
 			}
 	]
-has switchable static proper;
+has switchable static proper supporter;
 
 Object -> Office3Door "Office Door"
 with
