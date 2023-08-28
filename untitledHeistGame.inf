@@ -321,6 +321,7 @@ has light;
 Object -> Office7Door "Office Door"
 with
 	name 'office' 'door',
+	description "This door is a large mahogany door with a large brass door knob. You can see right next to the door knob a small key hole. I bet if you search around you could find a key to this door.",
 	door_dir (e_to) (w_to),
 	found_in Hallway7 Office7,
 	with_key o7key,
