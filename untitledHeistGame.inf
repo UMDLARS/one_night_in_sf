@@ -988,7 +988,7 @@ has scored;
 
 Object -> flashlight "flashlight"
 with
-	name 'flashlight' 'torch' 'flash' 'light' 'lamp',
+	name 'flashlight' 'torch' 'flash' 'light',
 	description [;
 		print "This cheap flashlight has a Tastytronic Industries logo emblazoned on it.  It is currently ";
 		if (self has on) "on.";
