@@ -789,6 +789,7 @@ has switchable static proper;
 Object -> Office3Door "Office Door"
 with
 	name 'office' 'door',
+	description "This is a large wooden door. Protruding from the door are large hinge pins holding the door to the wall. Perhaps something could be used to remove these hinges.",
 	door_dir (n_to) (s_to),
 	found_in Hallway4 Office3,
 After [;
