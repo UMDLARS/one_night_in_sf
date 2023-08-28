@@ -612,7 +612,7 @@ has light;
 Object Office4 "The Unused Office"
 with
 
-	description "This room is a small office, there is a wooden desk devoid of any identifying obejcts. One of the ceiling panels seems to me missing in here. Along the east wall there is a tarp laying on the floor, partially laying against the wall. There are 2 cans of paint here. The east wall seems to be still unpainted.",
+	description "This room is a small office, there is a wooden desk devoid of any identifying obejcts. One of the ceiling panels seems to be missing in here. Along the east wall there is a tarp laying on the floor, partially laying against the wall. There are 2 cans of paint here. The east wall seems to be still unpainted.",
 
 before [;
 		Climb: return UseLadder(noun, Crawl1);
@@ -897,7 +897,7 @@ has static door openable ~open lockable locked scenery;
 !=============UnderItRoom(~~~~~~PLAACEHOLDER~~~~~~~)====================
 Object UnderItRoom
 with
-	description "You are underneath a raised floor. This cramped and dusty space is about one foot tall. Spaced every two feet are steel pillars; resting on top of the pillars are precisely fitted square floor tiles, held only by gravity. One tile has been removed. Ethernet wires run through chases alongsize electrical condiut and air conditioning ducts. The part of the crawlspace you are in seems to be about the same size as the IT office, but the space extends far enough to the north that it disappears in darkness.",
+	description "You are underneath a raised floor. This cramped and dusty space is about one foot tall. Spaced every two feet are steel pillars; resting on top of the pillars are precisely fitted square floor tiles, held only by gravity. One tile has been removed. Ethernet wires run alongsize electrical condiut and air conditioning ducts. The part of the crawlspace you are in seems to be about the same size as the IT office, but the space extends far enough to the north that it disappears in darkness.",
 
 u_to Office2,
 n_to UnderServerRoom,
