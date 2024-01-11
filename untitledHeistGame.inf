@@ -518,6 +518,12 @@ Object -> IBM5100 "IBM 5100"
 with
 	name 'IBM' 'IBM5100' '5100',
 	description "This is a dummy description",
+	before [;
+		Take:
+			if (heavyLimit(self)){
+				rtrue;
+			}
+	],
 	After [;
 		Take:Achieved(GET_IBM5100);
 	],
