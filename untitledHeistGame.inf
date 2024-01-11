@@ -318,7 +318,7 @@ e_to Office7Door,
 
 has light;
 
-Object -> Office7Door "Office Door"
+Object -> Office7Door "Brass Knobbed Door"
 with
 	name 'office' 'door',
 	description "This door is a large mahogany door with a large brass door knob. You can see right next to the door knob a small key hole. I bet if you search around you could find a key to this door.",
@@ -329,7 +329,7 @@ with
 After [;
 	Unlock:
 		give self open;
-		"You unlock the office door and open it!^";
+		"You unlock the Brass Knobbed door and open it!^";
 	Lock:
 		give self ~open;
 		"You carefully close and lock the office door with the brass key.^";
@@ -782,7 +782,7 @@ with
 	]
 has switchable static proper supporter;
 
-Object -> Office3Door "Office Door"
+Object -> Office3Door "Large Wooden Door"
 with
 	name 'office' 'door',
 	description "This is a large wooden door. Protruding from the door are large hinges through which multiple pins hold the door to the wall. Perhaps something could be used to remove the pins.",
@@ -1089,7 +1089,7 @@ with
 	],
 has proper scored;
 
-Object -> Office1Door "Office Door"
+Object -> Office1Door "Antique Wood Door"
 with
 	name 'office' 'door' 'lock',
 	description "This is an old wood antique door. You can see it has an incredibly simple locking mechanism, it could easy unlocked if you had a thin stiff object to jimmy the lock.",
