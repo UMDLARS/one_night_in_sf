@@ -968,7 +968,7 @@ has light;
 Object ITcloset
 with
 
-	description "This is an IT closet. To the east there is a door leading back to the hallway.",
+	description "This is an IT closet. To the west there is a door leading back to the hallway.",
 
 w_to Hallway6,
 
