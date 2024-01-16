@@ -97,10 +97,10 @@ Extend 'pick' first
 	* noun 'apart'/'open' 'with' held           -> Unlock;
 
 Extend 'transfer' first
-	* noun					    -> transfer;
+	* noun 'to' noun		    -> transfer;
 
 Extend 'move' replace
-	*noun					    -> transfer;
+	* noun					    -> transfer;
 
 ! 'screw' and 'unscrew' are defined as synonyms for 'turn',
 ! rather unhelpfully for a game that wishes to distinguish them.
@@ -244,7 +244,7 @@ with
     name "chair",
     description "This sturdy and heavy-looking chair matches the L-shaped couch in color.",
 	before [;
-		Take:
+		Take, Transfer:
 			if (heavyLimit(self)){
 				rtrue;
 			}
@@ -519,7 +519,7 @@ with
 	name 'IBM' 'IBM5100' '5100',
 	description "This is a dummy description",
 	before [;
-		Take:
+		Take, Transfer:
 			if (heavyLimit(self)){
 				rtrue;
 			}
@@ -553,7 +553,7 @@ with
 		All you need to do is type ", (ul) "climb ladder";
 	],
 	before [;
-		Take:
+		Take, Transfer:
 			if (heavyLimit(self)){
 				rtrue;
 			}
@@ -830,7 +830,7 @@ with
 	name "plant" "potted plant" "pot",
 	description "This is a large plant in a large glazed terra cotta pot. It looks like it must weigh a lot!",
 	before [;
-		Take:
+		Take, Transfer:
 			if (heavyLimit(self)){
 				rtrue;
 			}
