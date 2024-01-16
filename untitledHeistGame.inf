@@ -231,7 +231,8 @@ Object Waiting "Waiting Room"
 with
 	description "This is a small waiting area. There is an L-shaped couch with a coffee table in front of it in one corner, and a chair and floor lamp in the other. A window on the west wall looks out on the San Fancisco skyline. To the north there is a long hallway. To the east there is the lobby.",
 	cheap_scenery
-		'couch' 'l-shaped' "The L-shaped couch is tucked into the corner of this part of the lobby.",
+		'couch' 'l-shaped' "The L-shaped couch is tucked into the corner of this part of the lobby."
+		'window' 'outside' "Out the window you can see the San Fancisco skyline against the pitch black sky. A waxing crecent moon watches your legally dubious actions.",
 
 	n_to Hallway7,
 	e_to Lobby,
