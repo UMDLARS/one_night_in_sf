@@ -142,6 +142,9 @@ with
 			PrintTaskName(_i);
 		}
 	],
+	instructions [;
+		"You can ", (ul) "look at", " or ", (ul) "read", " ", (the) checklist, " to see which tasks are finished, and which still need doing.";
+	],
 has scored;
 
 
@@ -223,6 +226,11 @@ Object -> -> o7key "loose brass key"
 with
 	name 'key' 'brass',
 	description "This is a single brass key. Stamped on the key are the words ~DUPLICATION STRICTLY PROHIBITED~.",
+	instructions [;
+		"You can ", (ul) "lock", " or ", (ul) "unlock", " something with this key.
+		For example:^^",
+		(bf) "> ", (ul) "unlock diary with ", (unm) self;
+	],
 has scored;
 
 
@@ -991,7 +999,7 @@ with
 		print "You can use this screwdriver with the ",
 		(ul) "screw", " and ", (ul) "unscrew", " verbs.
 		Just as an example:^^",
-		(bf) "> ", (ul) "unscrew encabulator panel with ", (ul) self;
+		(bf) "> ", (ul) "unscrew encabulator panel with ", (unm) self;
 	],
 has scored;
 

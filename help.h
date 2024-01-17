@@ -8,6 +8,7 @@ Include "ext_quote_box.h"; ! Used in the `Stuck` routine.
 [ bf text; style bold; print (string) text; style roman; ];
 [ nm text; style bold; print (name) text; style roman; ];
 [ ul text; font off; style underline; print (string) text; style roman; font on; ];
+[ unm text; font off; style underline; print (name) text; style roman; font on; ];
 [ rv text; style reverse; print (string) text; style roman; ];
 
 ! Note that this is written
