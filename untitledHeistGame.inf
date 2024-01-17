@@ -142,6 +142,9 @@ with
 			PrintTaskName(_i);
 		}
 	],
+	instructions [;
+		"You can ", (ul) "look at", " or ", (ul) "read", " ", (the) checklist, " to see which tasks are finished, and which still need doing.";
+	],
 has scored;
 
 
@@ -217,12 +220,20 @@ with
 			"A single closed drawer is the only thing spoiling its stylish lines.";
 		}
 	],
+	instructions [;
+		"The desk is very plain, but you might try to ", (ul) "open", " it.";
+	],
 has static container openable;
 
 Object -> -> o7key "loose brass key"
 with
 	name 'key' 'brass',
 	description "This is a single brass key. Stamped on the key are the words ~DUPLICATION STRICTLY PROHIBITED~.",
+	instructions [;
+		"You can ", (ul) "lock", " or ", (ul) "unlock", " something with this key.
+		For example:^^",
+		(bf) "> ", (ul) "unlock diary with ", (unm) self;
+	],
 has scored;
 
 
@@ -253,6 +264,9 @@ with
 				give plant ~scored;
 				rfalse;
 			}
+	],
+	instructions [;
+		"You're too busy to sit around, but this chair sure seems heavy.  If you're not careful, you could ", (ul) "break", " something with it!";
 	],
 
 has heavy bulky scored;
@@ -335,6 +349,9 @@ After [;
 		give self ~open;
 		"You carefully close and lock the office door with the brass key.^";
 ],
+	instructions [;
+		"A locked door is only useful to those trying to keep you out. Perhaps you could ", (ul) "unlock", " it with something.";
+	],
 
 has static door openable ~open lockable locked;
 
@@ -382,6 +399,10 @@ with
 					"Your upload is still running, and will clean up after itself when it is finished.  It's best to leave this terminal alone for now and get on with the rest of your checklist.";
 				}
 			} 
+	],
+	instructions [;
+		"To log into this system, you'll need to ", (ul) "type", " a username in, and then do the same for the password.  For example:^^",
+		(bf) "> ", (ul) "type spacehobo into ", (unm) self;
 	],
 has static reactive lockable locked;
 
@@ -465,7 +486,9 @@ with
 
 before [;
 	Unlock,Attack:
-		if (second has heavy) {
+		if (second == 0) {
+			"What with? Your bare hands?";
+		} else if (second has heavy) {
 			give self open ~locked;
 			"You shatter the glass wall, creating an opening to the next room!";
 		} else {
@@ -551,7 +574,7 @@ with
 	description "This ladder is a bright sunflower yellow ladder. It must be used to replace the lights if they burn out, without this accessing the ceiling would be impossible.",
 	instructions [;
 		"Ladders are very straightforward devices.
-		All you need to do is type ", (ul) "climb ladder";
+		All you need to do is type ", (ul) "climb ", (unm) self;
 	],
 	before [;
 		Take, Transfer:
@@ -636,19 +659,26 @@ has light;
 
 Object -> tarp "Tarp"
 with
-	name 'tarp',
+	name 'tarp' 'tarpaulin',
 	description "This is a blue polyethylene tarp, all craftsmanship is of the highest quality. On it are spatterings of off white paint.",
 	After[;
 		Take:
 			print "As you fold up and take the tarp you notice underneath it there was a flathead screwdriver!";
 			give flatHead ~concealed;
 			return 1;
-	];
+	],
+	instructions "Tarpaulins are generally only useful for covering other things.";
 
 Object -> flatHead "Flathead"
 with
 	name 'flathead' 'screwdriver',
 	description "This is a flat head screwdriver with a bright red handle. This seems it was once used to open cans of paint judging by the dried flecks of paint on it. On the handle reads an inscription that says ''NOT TO BE REMOVED FROM FLOOD CONTROL DAM #3''",
+	instructions [;
+		print "You can use this screwdriver with the ",
+		(ul) "screw", " and ", (ul) "unscrew", " verbs.
+		Just as an example:^^",
+		(bf) "> ", (ul) "screw countersunk unobtanium screws with ", (unm) self;
+	],
 
 has concealed scored;
 
@@ -780,7 +810,10 @@ with
 				print "You boot the computer and are greeted by a password screen. You do not know the password to this computer so you decide to turn it off. Maybe you could find a way around the password. You do remember that it is company policy to not encrypt hard drives.";
 				return 1;
 			}
-	]
+	],
+	instructions [;
+		"An unpowered machine isn't very useful, but you should be able to ", (ul) "turn on", " ", (the) self, ".";
+	],
 has switchable static proper supporter;
 
 Object -> Office3Door "Large Wooden Door"
@@ -806,12 +839,18 @@ Object -> cabinet "Cabinet"
 with
 	name 'cabinet' 'cabinets' 'cupboard' 'cupboards',
 	description "These are cabinets that span the wall in the kitchenette.",
+	instructions [;
+		"You'll have to ", (ul) "open", " ", (the) self, " to see what's inside.";
+	],
 has static openable container;
 
 Object -> -> coffeeCard "Coffee Card"
 with
 	name 'coffee' 'card',
 	description "This is a card that can be used to pay for coffee at Moonbux (A national coffee chain).",
+	instructions [;
+		"While it seems inoccuous enough, ", (the) self, " is thin and stiff enough that it feels like a tool you could use to ", (ul) "jimmy", " something.";
+	],
 has scored;
 
 !=============HALLWAY3(~~~~~~~~~PLACEHOLDER~~~~~~)===================
@@ -838,6 +877,10 @@ with
 			give chair ~scored;
 			rfalse;
 	],
+        instructions [;
+                "You're no gardener, but the plant's pot sure seems heavy.  If you're not careful, you could ", (ul) "break", " something with it!";
+        ],
+
 has heavy bulky scored;
 
 !============OFFICE2(~~~PLACEHOLDER~~~)==============================
@@ -898,6 +941,10 @@ with
 			"You press the plunger into the floor tile and pry it back, leaving it next to the space in the floor you have just opened.";
 		Close:
 			give self locked;
+	],
+	instructions [;
+		"With the right tool, it should be possible to ", (ul) "jimmy", " ", (the) self, ".  For example:^^",
+		(bf) "> ", (ul) "pry open ", (unm) self, (ul) "with sonic screwdriver";
 	],
 has static door openable ~open lockable locked scenery;
 
@@ -989,7 +1036,7 @@ with
 		print "You can use this screwdriver with the ",
 		(ul) "screw", " and ", (ul) "unscrew", " verbs.
 		Just as an example:^^",
-		(bf) "> ", (ul) "unscrew encabulator panel with ", (ul) self;
+		(bf) "> ", (ul) "unscrew encabulator panel with ", (unm) self;
 	],
 has scored;
 
@@ -1008,12 +1055,18 @@ with
 		SwitchOn: give self light;
 		SwitchOff: give self ~light;
 	],
+	instructions [;
+		"You can ", (ul) "turn on", " ", (the) self, " to produce light.";
+	],
 has switchable scored;
 
 Object -> usbDrive "USB Drive"
 with
 	name 'USB' 'Drive',
 	description "This is a USB drive, on it in poor penmanship is written ~LINUX~.",
+	instructions [;
+		"You should be able to ", (ul) "put", " ", (the) self, " into an appropriate USB-A socket on any computer built between the mid-90s and the late-2010s.  After that, USB-C made things more complicated.";
+	],
 has scored;
 !=============HALLWAY1(~~~~~~PLACEHOLDER~~~~~~~)====================
 Object Hallway1
@@ -1123,5 +1176,8 @@ Object -> plunger "toilet plunger"
 with
 	name 'plunger' 'toilet plunger',
 	description "This is your bog-standard toilet plunger: a wooden handle screwed into a large and flexible rust-colored rubber suction cup.",
+	instructions [;
+		"You're not here for amateur plumbing, but the suction cup makes it look like you could ", (ul) "pry", " something appropriately smooth with ", (the) self, ".";
+	],
 has scored;
 
