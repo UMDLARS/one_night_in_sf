@@ -465,7 +465,9 @@ with
 
 before [;
 	Unlock,Attack:
-		if (second has heavy) {
+		if (second == 0) {
+			"What with? Your bare hands?";
+		} else if (second has heavy) {
 			give self open ~locked;
 			"You shatter the glass wall, creating an opening to the next room!";
 		} else {
