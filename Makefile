@@ -62,7 +62,8 @@ plotex/regtest.py:
 	${INFORM} -e -E1 -d2 -s +include_path=./inform6unix/punyinform/lib/,./ -v8 $<
 
 clean:
-	rm -f *.z? *.out
+	rm -f *.z? *.out 
+	rm -rf build
 
 parchment/build.js:
 	git clone --recursive https://github.com/curiousdannii/parchment
@@ -72,5 +73,19 @@ parchment/dist/web/main.js: parchment/build.js
 
 VT323/fonts/ttf/VT323-Regular.ttf:
 	git clone --recursive https://github.com/phoikoi/VT323.git
+
+# Make a distribution tree
+
+dist: build/parchment/dist build/parchment/dist/web/main.js build/retro.css build/vt220.webp build/index.html build/untitledHeistGame.z5
+	tar czvf untitledHeistGame-$(shell date +%y%m%d).tar.gz build/
+
+build/parchment/dist:
+	mkdir -p $@
+
+build/parchment/dist/web/%: parchment/dist/web/%
+	cp -a parchment/dist/web build/parchment/dist/
+
+build/%: %
+	cp -a $< $@
 
 .PRECIOUS: %.z3 %.z5 %.z8 ${INFORM}
