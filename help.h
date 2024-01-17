@@ -126,10 +126,14 @@ Include "ext_quote_box.h"; ! Used in the `Stuck` routine.
 		depending on the rest of the sentence:^",
 		"^    ", (ul) "throw", (bf) " held object",
 		" -- The same as ", (ul) "drop", ".",
-		"^    ", (ul) "throw", "/", (ul) "put", (bf) " held object ", (ul) "in", (bf) " container", ".",
+		"^    ", (ul) "throw", "/", (ul) "put", (bf) " held object ", (ul) "in", (bf) " container", 
 		" -- Put an object inside another.",
-		"^    ", (ul) "throw", (bf) " held object ", (ul) "at", (bf) " object", ".",
-		" -- Throw one object at another.";
+		"^    ", (ul) "throw", (bf) " held object ", (ul) "at", (bf) " object", 
+		" -- Throw one object at another.",
+		"^^Useful objects will tell you
+		which verbs to use:^",
+		"^    ", (ul) "help", "/", (ul) "use", (bf) " object", 
+		" -- Print brief help text about interacting with an item.";
 
 
 
