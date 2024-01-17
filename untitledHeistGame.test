@@ -57,7 +57,8 @@ The Lobby
 > n
 > get key
 You can't see any such thing.
-> open desk
+> open drawer
+You open the Receptionist's Desk, revealing a loose brass key.
 > look
 You can see a Receptionist's Desk (which contains a loose brass key) here.
 > get key
@@ -407,7 +408,7 @@ You move the door out of the way and set it against the wall
 > n
 > switch computer
 You boot the computer and are greeted by a password screen. You do not know the password to this computer so you decide to turn it off. Maybe you could find a way around the password. You do remember that it is company policy to not encrypt hard drives.
-> insert drive into computer
+> insert drive into USB port
 You insert the USB drive into the open port on the back of the computer.
 > switch computer
 The computer boots to a linux desktop, you bypassed the password! On the desktop there is a directory labeled "Secret Files". You are able to steal the information from the computer and save it onto the USB drive. After you pocket the USB drive, you must exfiltrate with this.
