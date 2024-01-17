@@ -63,6 +63,7 @@ div#gameport {
 .Input, .Style_input, .Style_emphasized, .Style_user2 {
     text-decoration: underline;
     font-style: normal !important;
+    font-variant-ligatures: none !important; /* This was sometimes reverting due to the above. */
     color: var(--amber);
     text-shadow: 0 0 2px var(--amber);
 }
