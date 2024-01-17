@@ -74,11 +74,11 @@ Dropped.
 > w
 > n
 > w
-You can't, since the Office Door is closed.
+You can't, since the Brass Knobbed Door is closed.
 > open door
 /It.* locked.
 > unlock door with key
-You unlock the office door and open it!
+You unlock the Brass Knobbed door and open it!
 > w
 This is a researcher's office
 
@@ -88,7 +88,7 @@ This is a researcher's office
 > e
 Hallway7
 > close door
-You close the Office Door.
+You close the Brass Knobbed Door.
 > lock door with key
 You carefully close and lock the office door with the brass key.
 
@@ -397,11 +397,11 @@ As you fold up and take the tarp you notice underneath it there was a flathead s
 > s
 > e
 > n
-You can't, since the Office Door is closed.
+You can't, since the Large Wooden Door is closed.
 > remove hinges with screwdriver
 You remove the hinges of the door!
 > n
-You can't, since the Office Door is closed.
+You can't, since the Large Wooden Door is closed.
 > move door
 You move the door out of the way and set it against the wall
 > n
