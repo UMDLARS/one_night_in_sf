@@ -191,6 +191,7 @@ Property instructions; ! help on specific items
 Verb 'intro' 'info' * -> Intro;
 Verb 'help' 'use' 'how'
 	* 'on'/'with'/'use'/'using' held -> HelpOn
+	* held 'on'/'with'/'use'/'using' topic -> HelpOn
 	* topic 'on'/'with'/'use'/'using' held -> HelpOn
 	* held -> HelpOn
 	* topic -> Help
