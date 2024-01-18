@@ -76,16 +76,15 @@ VT323/fonts/ttf/VT323-Regular.ttf:
 
 # Make a distribution tree
 
-dist: build/parchment/dist build/parchment/dist/web/main.js build/retro.css build/vt220.webp build/index.html build/untitledHeistGame.z5
+dist: all build/parchment/dist/web/jquery.min.js build/parchment/dist/web/main.js build/parchment/dist/web/zvm.js build/parchment/dist/web/web.css build/retro.css build/vt220.webp build/index.html build/untitledHeistGame.z5 build/VT323/fonts/ttf/VT323-Regular.ttf build/favicon.ico
 	tar czvf untitledHeistGame-$(shell date +%y%m%d).tar.gz build/
 
-build/parchment/dist:
-	mkdir -p $@
-
-build/parchment/dist/web/%: parchment/dist/web/%
-	cp -a parchment/dist/web build/parchment/dist/
-
 build/%: %
-	cp -a $< $@
+	mkdir -p $(dir $@)
+	cp -alf $< $@
+
+web: dist /usr/bin/busybox
+	/usr/bin/busybox httpd -fvv -p 8000 -h build/
+
 
 .PRECIOUS: %.z3 %.z5 %.z8 ${INFORM}
