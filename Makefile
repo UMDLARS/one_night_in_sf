@@ -29,11 +29,11 @@ ${LIB}:
 inform6unix/Makefile:
 	git clone --recursive https://gitlab.com/DavidGriffith/inform6unix.git
 
-dep: inform6unix/Makefile node_modules/.bin/zvm plotex/regtest.py
+dep: inform6unix/Makefile node_modules/.bin/zvm plotex/regtest.py parchment-src/build.js
 	git -C inform6unix pull
 	git -C inform6unix submodule update --init --recursive
 	git -C plotex pull
-	git -C parchment pull || true
+	git -C parchment-src pull || true
 
 build: dep ${INFORM}
 
@@ -67,11 +67,13 @@ clean:
 	rm -f *.z? *.out 
 	rm -rf build
 
-parchment/build.js:
-	git clone --recursive https://github.com/curiousdannii/parchment
+parchment-src/build.js:
+	git clone --recursive https://github.com/curiousdannii/parchment parchment-src
 
-parchment/dist/web/main.js: parchment/build.js
-	cd parchment && npm install --no-package-lock
+parchment/dist/web/main.js: parchment-src/build.js
+	cd parchment-src && npm install --no-package-lock
+	mkdir -p parchment/dist
+	cp -alf parchment-src/dist/web parchment/dist/
 
 VT323/fonts/ttf/VT323-Regular.ttf:
 	git clone --recursive https://github.com/phoikoi/VT323.git
