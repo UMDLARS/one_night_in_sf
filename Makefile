@@ -1,10 +1,10 @@
 INF=$(wildcard *.inf)
-Z8=$(patsubst %.inf,%.z8,$(INF))
-Z5=$(patsubst %.inf,%.z5,$(INF))
-Z3=$(patsubst %.inf,%.z3,$(INF))
+Z8=$(INF:.inf=.z8)
+Z5=$(INF:.inf=.z5)
+Z3=$(INF:.inf=.z3)
 
 TEST=$(wildcard *.test)
-OUT=$(patsubst %.test,%.out,$(TEST))
+OUT=$(TEST:.test=.out)
 
 # We use wildcards to catch whatever the current version is.
 INFORM:=inform6unix/inform-6.*
@@ -12,8 +12,10 @@ LIB=inform6unix/punyinform/lib/*.h *.h
 PYTHON:=$(shell which python3)
 ifdef PYTHON
 # We're all right here
+WEBSERVER:=$(PYTHON) -m http.server
 else
 PYTHON:=$(shell which python)
+WEBSERVER:=$(PYTHON) -m SimpleHTTPServer 8000
 endif
 TIME:=$(shell which time) # Should be null if it's a shell builtin, which is fine
 
@@ -76,15 +78,15 @@ VT323/fonts/ttf/VT323-Regular.ttf:
 
 # Make a distribution tree
 
-dist: all build/parchment/dist/web/jquery.min.js build/parchment/dist/web/main.js build/parchment/dist/web/zvm.js build/parchment/dist/web/web.css build/retro.css build/vt220.webp build/index.html build/untitledHeistGame.z5 build/VT323/fonts/ttf/VT323-Regular.ttf build/favicon.ico
+dist: all $(addprefix build/parchment/dist/web/,jquery.min.js main.js zvm.js web.css) $(addprefix build/,retro.css vt220.webp index.html untitledHeistGame.z5 favicon.ico) build/VT323/fonts/ttf/VT323-Regular.ttf 
 	tar czvf untitledHeistGame-$(shell date +%y%m%d).tar.gz build/
 
 build/%: %
 	mkdir -p $(dir $@)
 	cp -alf $< $@
 
-web: dist /usr/bin/busybox
-	/usr/bin/busybox httpd -fvv -p 8000 -h build/
-
+web: dist 
+	@echo "You can play your game at http://localhost:8000/ now."
+	cd build; $(WEBSERVER) || true
 
 .PRECIOUS: %.z3 %.z5 %.z8 ${INFORM}
