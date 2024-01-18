@@ -70,12 +70,11 @@ clean:
 parchment-src/build.js:
 	git clone --recursive https://github.com/curiousdannii/parchment parchment-src
 
-parchment/dist/web/main.js: parchment-src/build.js
+parchment: parchment-src/build.js
 	cd parchment-src && npm install --no-package-lock
 	mkdir -p parchment/dist
 	cp -alf parchment-src/dist/web parchment/dist/
 
-parchment: parchment/dist/web/main.js
 
 VT323/fonts/ttf/VT323-Regular.ttf:
 	git clone --recursive https://github.com/phoikoi/VT323.git
