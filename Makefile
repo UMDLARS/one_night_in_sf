@@ -22,18 +22,18 @@ TIME:=$(shell which time) # Should be null if it's a shell builtin, which is fin
 # This rule will make any *possible* test output files, which may build zfiles.
 # It wil re-build any extant zfiles that have newer dependencies, whether or
 # not there are new test files.
-all: ${OUT} $(wildcard *.z?) parchment/dist/web/main.js VT323/fonts/ttf/VT323-Regular.ttf
+all: ${OUT} $(wildcard *.z?) VT323/fonts/ttf/VT323-Regular.ttf
 
 inform6unix/src/*.c:
 ${LIB}:
 inform6unix/Makefile:
 	git clone --recursive https://gitlab.com/DavidGriffith/inform6unix.git
 
-dep: inform6unix/Makefile node_modules/.bin/zvm plotex/regtest.py
+dep: inform6unix/Makefile node_modules/.bin/zvm plotex/regtest.py parchment-src/build.js
 	git -C inform6unix pull
 	git -C inform6unix submodule update --init --recursive
 	git -C plotex pull
-	git -C parchment pull || true
+	git -C parchment-src pull || true
 
 build: dep ${INFORM}
 
@@ -67,11 +67,15 @@ clean:
 	rm -f *.z? *.out 
 	rm -rf build
 
-parchment/build.js:
-	git clone --recursive https://github.com/curiousdannii/parchment
+parchment-src/build.js:
+	git clone --recursive https://github.com/curiousdannii/parchment parchment-src
 
-parchment/dist/web/main.js: parchment/build.js
-	cd parchment && npm install --no-package-lock
+parchment/dist/web/main.js: parchment-src/build.js
+	cd parchment-src && npm install --no-package-lock
+	mkdir -p parchment/dist
+	cp -alf parchment-src/dist/web parchment/dist/
+
+parchment: parchment/dist/web/main.js
 
 VT323/fonts/ttf/VT323-Regular.ttf:
 	git clone --recursive https://github.com/phoikoi/VT323.git
@@ -90,3 +94,4 @@ web: dist
 	cd build; $(WEBSERVER) || true
 
 .PRECIOUS: %.z3 %.z5 %.z8 ${INFORM}
+.PHONY: parchment
