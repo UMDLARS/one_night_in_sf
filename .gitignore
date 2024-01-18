@@ -2,6 +2,10 @@
 *~
 *.out
 *.z?
+*.asm
+*.scr
+*.tar.gz
+build/
 package.json
 inform6unix/
 node_modules/
