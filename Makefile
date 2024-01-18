@@ -22,7 +22,7 @@ TIME:=$(shell which time) # Should be null if it's a shell builtin, which is fin
 # This rule will make any *possible* test output files, which may build zfiles.
 # It wil re-build any extant zfiles that have newer dependencies, whether or
 # not there are new test files.
-all: ${OUT} $(wildcard *.z?) parchment/dist/web/main.js VT323/fonts/ttf/VT323-Regular.ttf
+all: ${OUT} $(wildcard *.z?) VT323/fonts/ttf/VT323-Regular.ttf
 
 inform6unix/src/*.c:
 ${LIB}:
@@ -75,6 +75,8 @@ parchment/dist/web/main.js: parchment-src/build.js
 	mkdir -p parchment/dist
 	cp -alf parchment-src/dist/web parchment/dist/
 
+parchment: parchment/dist/web/main.js
+
 VT323/fonts/ttf/VT323-Regular.ttf:
 	git clone --recursive https://github.com/phoikoi/VT323.git
 
@@ -92,3 +94,4 @@ web: dist
 	cd build; $(WEBSERVER) || true
 
 .PRECIOUS: %.z3 %.z5 %.z8 ${INFORM}
+.PHONY: parchment
