@@ -237,6 +237,10 @@ Crawl Space
 > e
 > take plunger
 Taken.
+> plunge sink
+not really what a plunger is good for
+> plunge toilet
+doesn't seem clogged
 > w
 > n
 > n
@@ -253,6 +257,9 @@ You can't go that way
 > take tile
 you can't simply pry it up with your fingernails.
 > lift tile with plunger
+You press the plunger
+> undo
+> plunge tile
 You press the plunger
 > look
 The floor of this room is made of large square modular linoleum-covered panels
