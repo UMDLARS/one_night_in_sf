@@ -16,6 +16,7 @@ ifdef PYTHON
 # We're all right here
 WEBSERVER:=$(PYTHON) -m http.server
 else
+# We're probably python2 still.
 PYTHON:=$(shell which python)
 WEBSERVER:=$(PYTHON) -m SimpleHTTPServer 8000
 endif
@@ -26,6 +27,10 @@ TIME:=$(shell which time) # Should be null if it's a shell builtin, which is fin
 # not there are new test files.
 all: ${OUT} $(wildcard *.d64) $(wildcard *.z?) VT323/fonts/ttf/VT323-Regular.ttf
 
+# The moment you run `make c64`, all your testable games will be built into C64
+# disk image files.  You can burn these to a 1541 floppy somehow, or run them
+# in the Vice emulator.  Any existing C64 images will be kept up-to-date as you
+# build.
 c64: ${C64}
 
 
@@ -72,6 +77,13 @@ clean:
 	rm -f *.z? *.out 
 	rm -rf build
 
+# Parchment doesn't build most places, so we've "vendored" a copy of the
+# essential files here, and made a `dist` target to package up the required
+# files for shipment to any static Web hosting.
+# To rebuild the vendored files, run `make parchment` and then `git add` all
+# the results.  Note that the whole vendor tree is in .gitignore, so watch out
+# for that.
+
 parchment-src/build.js:
 	git clone --recursive https://github.com/curiousdannii/parchment parchment-src
 
@@ -80,6 +92,7 @@ parchment: parchment-src/build.js
 	mkdir -p parchment/dist
 	cp -alf parchment-src/dist/web parchment/dist/
 
+# Our DEC terminal replica font!
 
 VT323/fonts/ttf/VT323-Regular.ttf:
 	git clone --recursive https://github.com/phoikoi/VT323.git
@@ -90,7 +103,7 @@ dist: $(addprefix build/parchment/dist/web/,jquery.min.js main.js zvm.js web.css
 	tar czvf untitledHeistGame-$(shell date +%y%m%d).tar.gz build/
 
 build/%: %
-	@mkdir -p $(dir $@)
+	@mkdir -p $(@D)
 	cp -alf $< $@
 
 web: dist 
