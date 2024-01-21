@@ -1208,7 +1208,7 @@ has scenery static;
 	} else if (noun == ITRoomTile ) {
 		<<Unlock ITRoomTile plunger>>;
 	} else {
-		"You consider it, but decide that that's not really what a plunger is good for.  Perhaps there's something smooth around that needs suction, but", (the) noun, " isn't it.";
+		"You consider it, but decide that that's not really what a plunger is good for.  Perhaps there's something smooth around that needs suction, but ", (the) noun, " isn't it.";
 	}
 ];
 		
