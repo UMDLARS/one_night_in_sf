@@ -314,6 +314,22 @@ Office6
 broken glass
 Hallway6
 
+* test throw verb with chair
+> w
+> take chair
+> n
+> n
+> throw chair at wall
+You shatter the glass wall
+> i
+!chair
+> w
+giant shards
+Office6
+> e
+broken glass
+Hallway6
+
 * use potted plant to break wall
 > e
 > n

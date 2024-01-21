@@ -452,6 +452,8 @@ with
 						if(noun==plant){
 							print " The plant pot breaks with a shower of dirt flying into the air. The plant pot is totally destroyed!";
 							move plant to leave;
+						} else {
+							move noun to location;
 						}
 						rtrue;
 					}
@@ -490,6 +492,7 @@ before [;
 			"What with? Your bare hands?";
 		} else if (second has heavy) {
 			give self open ~locked;
+			move second to location;
 			"You shatter the glass wall, creating an opening to the next room!";
 		} else {
 			"You can't break the glass with something that light. Why not find something heavier?";
