@@ -22,8 +22,8 @@ Constant OPTIONAL_PROVIDE_UNDO;
 Constant INITIAL_LOCATION_VALUE = Lobby;
 Constant DEBUG;
 
-Constant voxfail = "The tower silently listens to your voice, but then flashes red and buzzes disapprovingly.";
-Constant handfail = "You place your hand on the handprint recognizer. Light scans your hand before flashing red and buzzing disapprovingly.";
+Constant voxfail = "The tower silently listens to your voice, but then flashes red and buzzes disapprovingly. Red text appears on a screen: ~YOU ARE NOT JOHN TITOR THIS LOGIN ATTEMPT WILL BE REPORTED.~";
+Constant handfail = "You place your hand on the handprint recognizer. Light scans your hand before flashing red and buzzing disapprovingly. Red text appears on a screen: ~YOU ARE NOT JOHN TITOR THIS LOGIN ATTEMPT WILL BE REPORTED.~";
 
 Include "globals.h";
 
@@ -436,7 +436,7 @@ with
 		print "a laboratory packed with futuristic-looking equipment. A biometric authentication system is embedded into the glass wall. It is connected to a large, sliding glass door leading west into the lab.";
 ],
     cheap_scenery
-        'retina' 'scanner' "You peer into the retina scanner. A laser sweeps across your eye. Instantly, the scanner beeps disapprovingly, and indicator on it flashes red several times."
+        'retina' 'scanner' "You peer into the retina scanner. A laser sweeps across your eye. Instantly, the scanner beeps disapprovingly, and indicator on it flashes red several times. Red text appears on a screen: ~YOU ARE NOT JOHN TITOR THIS LOGIN ATTEMPT WILL BE REPORTED.~"
         'voiceprint' 'microphone' "This system appears to be designed to recognize certain individuals' voices when they speak into the microphone."
         'handprint' 'recognizer' [;
 			Examine: "The handprint recognizer looks like something from a 1990s spy movie. An angled bezel sticks out from the wall with the outline of a hand illuminated by a pulsating orange grid pattern.";
@@ -895,7 +895,7 @@ Object Office2
 with
 
 	description [;
-		print "This is the IT office. The floor of this room is made of large square modular linoleum-covered panels of the kind typical in server rooms with raised floors. A desk is in the corner has an empty laptop docking station on it and a few fidget toys. A work table is against the south wall with the electronic flotsam and jetsam of a previous project. The useless husks of a few broken computers lie in the corner. To the west there is a door leading to the hallway. To the north is a reinforced door with an electronic keypad lock.";
+		print "This is the IT office. The floor of this room is made of large square modular linoleum-covered panels of the kind typical in server rooms with raised floors. The floor shifts and creaks under your weight. A desk is in the corner has an empty laptop docking station on it and a few fidget toys. A work table is against the south wall with the electronic flotsam and jetsam of a previous project. The useless husks of a few broken computers lie in the corner. To the west there is a door leading to the hallway. To the north is a reinforced door with an electronic keypad lock.";
 		if (ITRoomTile has open) {
 			print "^^One of the floor tiles has been moved aside, revealing a gap that leads down into a crawl space under the floor.";
 		}
