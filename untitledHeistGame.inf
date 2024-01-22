@@ -91,6 +91,10 @@ Verb 'jimmy' 'lift'
 	* 'apart'/'open' noun 'with' held           -> Unlock
 	* noun 'apart'/'open' 'with' held           -> Unlock;
 
+Verb 'plunge'
+	* noun                                      -> Plunge
+	* noun 'with' held                          -> Plunge;
+
 Extend 'pick' first
 	* noun 'with' held                          -> Unlock
 	* 'apart'/'open' noun 'with' held           -> Unlock
@@ -1168,6 +1172,16 @@ Object Restroom "Restroom"
 with
 
 	description "This room is a small single user bathroom. There is a sink with a mirror as well as a toilet. To the west there is a door leading back into the lobby.",
+	cheap_scenery
+	    'toilet' 'porcelain' [;
+	    	Examine: "It's a fairly standard white porcelain toilet, with the lid down.  At least the people who work here have ", (bf) "some", " standards.";
+	        Plunge: "You lift the lid; but fortunately the toilet doesn't seem clogged, so you lower it again.";
+		default: "I'm not sure what you have in mind, but you're not here for amateur plumbing anyway.";
+	    ]
+	    'sink' 'mirror' [;
+	    	Examine: "It's a fairly inexpensive but well-maintained hand sink with a mirror built into the wall behind it.";
+		default: "I'm not sure what you have in mind, but you're not here for amateur plumbing anyway.";
+	    ],
 
 w_to LobbyEast,
 has light;
@@ -1180,4 +1194,23 @@ with
 		"You're not here for amateur plumbing, but the suction cup makes it look like you could ", (ul) "pry", " something appropriately smooth with ", (the) self, ".";
 	],
 has scored;
+
+Object -> toilet "porcelain toilet"
+with
+	name 'toilet' 'porcelain toilet',
+has scenery static;
+
+[ PlungeSub;
+	if(plunger notin player || (second > 0 && second ~= plunger)) {
+		"What, without a plunger?";
+	} else if (noun == toilet ) {
+		"You lift the lid; but fortunately the toilet doesn't seem clogged, so you lower it again.";
+	} else if (noun == ITRoomTile ) {
+		<<Unlock ITRoomTile plunger>>;
+	} else {
+		"You consider it, but decide that that's not really what a plunger is good for.  Perhaps there's something smooth around that needs suction, but ", (the) noun, " isn't it.";
+	}
+];
+		
+	
 
