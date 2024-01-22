@@ -22,8 +22,8 @@ Constant OPTIONAL_PROVIDE_UNDO;
 Constant INITIAL_LOCATION_VALUE = Lobby;
 Constant DEBUG;
 
-Constant voxfail = "The tower silently listens to your voice, but then flashes red and buzzes disapprovingly.";
-Constant handfail = "You place your hand on the handprint recognizer. Light scans your hand before flashing red and buzzing disapprovingly.";
+Constant voxfail = "The tower silently listens to your voice, but then flashes red and buzzes disapprovingly. Red text appears on a screen: ~YOU ARE NOT JOHN TITOR THIS LOGIN ATTEMPT WILL BE REPORTED.~";
+Constant handfail = "You place your hand on the handprint recognizer. Light scans your hand before flashing red and buzzing disapprovingly. Red text appears on a screen: ~YOU ARE NOT JOHN TITOR THIS LOGIN ATTEMPT WILL BE REPORTED.~";
 
 Include "globals.h";
 
@@ -132,7 +132,7 @@ Extend only 'remove' first
 
 Object checklist "Task List"
 with
-	name 'task' 'list' 'note' 'checklist',
+	name 'task' 'list' 'note' 'checklist' 'clipboard' 'to-do',
 	description [_i;
 		print "This is a checklist of all the target data you hope to exfiltrate during this mission.  It reads as follows:^^";
 		for(_i=0 : _i<NUMBER_TASKS : _i++) {
@@ -215,7 +215,7 @@ has light;
 
 Object -> receptiondesk "Receptionist's Desk"
 with
-	name 'reception' 'receptionist' 'desk',
+	name 'reception' 'receptionist' 'desk' 'drawer',
 	description [;
 		print "This is a very modern asymmetrical desk that is designed more for appearances than function.  ";
 		if (self has open) {
@@ -231,7 +231,7 @@ has static container openable;
 
 Object -> -> o7key "loose brass key"
 with
-	name 'key' 'brass',
+	name 'key' 'brass' 'loose',
 	description "This is a single brass key. Stamped on the key are the words ~DUPLICATION STRICTLY PROHIBITED~.",
 	instructions [;
 		"You can ", (ul) "lock", " or ", (ul) "unlock", " something with this key.
@@ -257,7 +257,7 @@ has light;
 
 Object -> chair "heavy-looking chair"
 with
-    name "chair",
+    name 'chair' 'seat' 'stool',
     description "This sturdy and heavy-looking chair matches the L-shaped couch in color.",
 	before [;
 		Take, Transfer:
@@ -279,7 +279,7 @@ has heavy bulky scored;
 
 Object -> wrlamp "lamp"
 with
-	name 'lamp' 'torchere' ' torchiere' 'torchiere',
+	name 'lamp' 'torchere' ' torchiere' 'torchiere' 'light',
 	description "This tall lamp is a classic torchiere of late 20th century design, with a tall, cylindrical post and bowl-like glass diffuser atop a turqoise glass disk. The lamp has a small brass knob for switching it on and off.",
 	when_on "The lamp casts a mellow glow on the ceiling.",
 	when_off "The lamp is switched off.",
@@ -312,7 +312,7 @@ e_to Restroom,
 has light;
 
 !=============HALLWAY7(~~~~~~PLACEHOLDER~~~~~)======================
-Object Hallway7
+Object Hallway7 "Hallway"
 with
 
 	description "This is a hallway. To the north the hallway extends. To the south there is the waiting area. To the west there is an office.",
@@ -325,7 +325,7 @@ w_to Office7Door,
 has light;
 
 !============OFFICE7(~~~PLACEHOLDER~~~)============================
-Object Office7
+Object Office7 "Research Office"
 with
 
 	description "This is a researcher's office, taken up almost entirely by a large desk strewn with academic papers.  A terminal sits amidst the clutter, its screen glowing with amber letters against a black backdrop.",
@@ -339,7 +339,7 @@ has light;
 
 Object -> Office7Door "Brass Knobbed Door"
 with
-	name 'office' 'door',
+	name 'brass' 'knobbed' 'door',
 	description "This door is a large mahogany door with a large brass door knob. You can see right next to the door knob a small key hole. I bet if you search around you could find a key to this door.",
 	door_dir (e_to) (w_to),
 	found_in Hallway7 Office7,
@@ -412,13 +412,13 @@ has static reactive lockable locked;
 
 Object printout "Print out"
 with
-	name 'printout' 'print' 'out' 'schematics' 'plans' 'titor^s' 'titor',
+	name 'printout' 'print' 'out' 'schematics' 'plans' 'titor^s' 'titor' 'results',
 	description "This is the printout from the VT242 terminal, you must escape with this.",
 
 has scored;
 
 !=============HALLWAY6(~~~~~~~~~~PLACEHOLDER)=======================
-Object Hallway6
+Object Hallway6 "Hallway"
 with
 
     description [;
@@ -436,7 +436,7 @@ with
 		print "a laboratory packed with futuristic-looking equipment. A biometric authentication system is embedded into the glass wall. It is connected to a large, sliding glass door leading west into the lab.";
 ],
     cheap_scenery
-        'retina' 'scanner' "You peer into the retina scanner. A laser sweeps across your eye. Instantly, the scanner beeps disapprovingly, and indicator on it flashes red several times."
+        'retina' 'scanner' "You peer into the retina scanner. A laser sweeps across your eye. Instantly, the scanner beeps disapprovingly, and indicator on it flashes red several times. Red text appears on a screen: ~YOU ARE NOT JOHN TITOR THIS LOGIN ATTEMPT WILL BE REPORTED.~"
         'voiceprint' 'microphone' "This system appears to be designed to recognize certain individuals' voices when they speak into the microphone."
         'handprint' 'recognizer' [;
 			Examine: "The handprint recognizer looks like something from a 1990s spy movie. An angled bezel sticks out from the wall with the outline of a hand illuminated by a pulsating orange grid pattern.";
@@ -523,7 +523,7 @@ has static animate;
 
 
 !=============OFFICE6(GLASS OFFICE)===========================
-Object Office6
+Object Office6 "Laboratory"
 with
 
 	description "This is a laboratory packed with futuristic and delicate-looking equipment. The east wall used to be thick glass, but you shattered it, opening it to the hallway. An expensive biometric authentication system is embedded into the glass wall, along with a mechanism to open and close the door, but you have rendered that completely pointless.",
@@ -595,7 +595,7 @@ with
 has bulky heavy scored;
 
 !=============HALLWAY5(~~~~~PLACEHOLDER~~~~~)=======================
-Object Hallway5
+Object Hallway5 "Hallway"
 with
 
 	description "This is a hallway, To the east the hallway extends. To the south the hallway extends. To the west there is an office. To the north there is an office.",
@@ -666,7 +666,7 @@ has light;
 
 Object -> tarp "Tarp"
 with
-	name 'tarp' 'tarpaulin',
+	name 'tarp' 'tarpaulin' 'PET' 'polyethylene',
 	description "This is a blue polyethylene tarp, all craftsmanship is of the highest quality. On it are spatterings of off white paint.",
 	After[;
 		Take:
@@ -707,7 +707,7 @@ with
 d_to Office5,
 e_to Crawl1;
 
-!==================OFFICE5(APRIL'S OFFICE=========================
+!==================OFFICE5(APRIL'S OFFICE)=========================
 Object Office5 "April's Office"
 with
 
@@ -744,7 +744,7 @@ with
 has bulky scored proper;
 
 !=============HALLWAY4(~~~~~~~~~PLACEHOLDER~~~~~~)===================
-Object Hallway4
+Object Hallway4 "Hallway"
 with
 
 	description "This is a hallway. To the west the hallway extends. To the east the hallway extends. To the north is an office. To the south is a kitchenette.",
@@ -825,7 +825,7 @@ has switchable static proper supporter;
 
 Object -> Office3Door "Large Wooden Door"
 with
-	name 'office' 'door',
+	name 'large' 'wooden' 'door',
 	description "This is a large wooden door. Protruding from the door are large hinges through which multiple pins hold the door to the wall. Perhaps something could be used to remove the pins.",
 	door_dir (n_to) (s_to),
 	found_in Hallway4 Office3,
@@ -861,7 +861,7 @@ with
 has scored;
 
 !=============HALLWAY3(~~~~~~~~~PLACEHOLDER~~~~~~)===================
-Object Hallway3
+Object Hallway3 "Hallway"
 with
 
 	description "This is a hallway. To the south the hallway extends. To the west the hallway extends. To the east is an office.",
@@ -891,11 +891,11 @@ with
 has heavy bulky scored;
 
 !============OFFICE2(~~~PLACEHOLDER~~~)==============================
-Object Office2
+Object Office2 "IT Office"
 with
 
 	description [;
-		print "This is the IT office. The floor of this room is made of large square modular linoleum-covered panels of the kind typical in server rooms with raised floors. A desk is in the corner has an empty laptop docking station on it and a few fidget toys. A work table is against the south wall with the electronic flotsam and jetsam of a previous project. The useless husks of a few broken computers lie in the corner. To the west there is a door leading to the hallway. To the north is a reinforced door with an electronic keypad lock.";
+		print "This is the IT office. The floor of this room is made of large square modular linoleum-covered panels of the kind typical in server rooms with raised floors. The floor shifts and creaks under your weight. A desk is in the corner has an empty laptop docking station on it and a few fidget toys. A work table is against the south wall with the electronic flotsam and jetsam of a previous project. The useless husks of a few broken computers lie in the corner. To the west there is a door leading to the hallway. To the north is a reinforced door with an electronic keypad lock.";
 		if (ITRoomTile has open) {
 			print "^^One of the floor tiles has been moved aside, revealing a gap that leads down into a crawl space under the floor.";
 		}
@@ -956,7 +956,7 @@ with
 has static door openable ~open lockable locked scenery;
 
 !=============UnderItRoom(~~~~~~PLAACEHOLDER~~~~~~~)====================
-Object UnderItRoom
+Object UnderItRoom "Under IT Room Crawlspace"
 with
 	description "You are underneath a raised floor. This cramped and dusty space is about one foot tall. Spaced every two feet are steel pillars; resting on top of the pillars are precisely fitted square floor tiles, held only by gravity. One tile has been removed. Ethernet wires run alongsize electrical condiut and air conditioning ducts. The part of the crawlspace you are in seems to be about the same size as the IT office, but the space extends far enough to the north that it disappears in darkness.",
 
@@ -968,7 +968,7 @@ with
 	description "This is a note";
 
 !=============UnderServerRoom(~~~~~~PLAACEHOLDER~~~~~~~)====================
-Object UnderServerRoom
+Object UnderServerRoom "Under Server Room Crawlspace"
 with
 	description "You are underneath a raised floor. Dust bunnies are everywhere. Spaced every two feet are steel pillars; resting on top of the pillars are precisely fitted square floor tiles, held only by gravity. Light streams through holes in the tiles above your head; Ethernet cables snake through those holes into the light above. The muffled roar of server racks can be heard above your head. In the darkness to the south, a large square of light is visible.",
 
@@ -977,7 +977,7 @@ s_to UnderITRoom;
 
 
 !=============ServerRoom(~~~~~~PLAACEHOLDER~~~~~~~)====================
-Object ServerRoom
+Object ServerRoom "Server Room"
 with
 	description "This is a medium-sized server room with several racks of servers in a line down the middle of the room. The floor in this room is made of large square modular linoleum-covered panels; one of the panels has been lifted out of its place, leaving a large square hole in the floor, revealing a crawlspace. One of the racks contains a large tape backup system. Their blinking lights and roaring fans are quite impressive. Sturdy locked cages protect the hardware from unauthorized tampering. A table and chair sit in the corner of the room. A reinforced door leads south into the IT office; there is no lock on this side.",
 	cheap_scenery
@@ -1014,7 +1014,7 @@ with
 has scored;
 
 !=============HALLWAY2(~~~~~~PLAACEHOLDER~~~~~~~)====================
-Object Hallway2
+Object Hallway2 "Hallway"
 with
 
 	description "This is a hallway. To the south the hallway extends. To the north the hallway extends. To the west there is a utility closet.",
@@ -1026,7 +1026,7 @@ w_to Utility,
 has light;
 
 !=============ITCLOSET=============================================
-Object ITcloset
+Object ITcloset "IT Closet"
 with
 
 	description "This is an IT closet. To the west there is a door leading back to the hallway.",
@@ -1076,7 +1076,7 @@ with
 	],
 has scored;
 !=============HALLWAY1(~~~~~~PLACEHOLDER~~~~~~~)====================
-Object Hallway1
+Object Hallway1 "Hallway"
 with
 
 	description "To the south there is the lobby. To the north the hallway extends. To the east there is an office.",
