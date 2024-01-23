@@ -5,6 +5,8 @@ Z3=$(INF:.inf=.z3)
 
 TEST=$(wildcard *.test)
 OUT=$(TEST:.test=.out)
+C64=$(addprefix c64_,$(TEST:.test=.d64))
+
 
 # We use wildcards to catch whatever the current version is.
 INFORM:=inform6unix/inform-6.*
@@ -14,6 +16,7 @@ ifdef PYTHON
 # We're all right here
 WEBSERVER:=$(PYTHON) -m http.server
 else
+# We're probably python2 still.
 PYTHON:=$(shell which python)
 WEBSERVER:=$(PYTHON) -m SimpleHTTPServer 8000
 endif
@@ -22,7 +25,14 @@ TIME:=$(shell which time) # Should be null if it's a shell builtin, which is fin
 # This rule will make any *possible* test output files, which may build zfiles.
 # It wil re-build any extant zfiles that have newer dependencies, whether or
 # not there are new test files.
-all: ${OUT} $(wildcard *.z?) VT323/fonts/ttf/VT323-Regular.ttf
+all: ${OUT} $(wildcard *.d64) $(wildcard *.z?) VT323/fonts/ttf/VT323-Regular.ttf
+
+# The moment you run `make c64`, all your testable games will be built into C64
+# disk image files.  You can burn these to a 1541 floppy somehow, or run them
+# in the Vice emulator.  Any existing C64 images will be kept up-to-date as you
+# build.
+c64: ${C64}
+
 
 inform6unix/src/*.c:
 ${LIB}:
@@ -67,6 +77,13 @@ clean:
 	rm -f *.z? *.out 
 	rm -rf build
 
+# Parchment doesn't build most places, so we've "vendored" a copy of the
+# essential files here, and made a `dist` target to package up the required
+# files for shipment to any static Web hosting.
+# To rebuild the vendored files, run `make parchment` and then `git add` all
+# the results.  Note that the whole vendor tree is in .gitignore, so watch out
+# for that.
+
 parchment-src/build.js:
 	git clone --recursive https://github.com/curiousdannii/parchment parchment-src
 
@@ -75,22 +92,41 @@ parchment: parchment-src/build.js
 	mkdir -p parchment/dist
 	cp -alf parchment-src/dist/web parchment/dist/
 
+# Our DEC terminal replica font!
 
 VT323/fonts/ttf/VT323-Regular.ttf:
 	git clone --recursive https://github.com/phoikoi/VT323.git
 
 # Make a distribution tree
 
-dist: all $(addprefix build/parchment/dist/web/,jquery.min.js main.js zvm.js web.css) $(addprefix build/,retro.css vt220.webp index.html untitledHeistGame.z5 favicon.ico) build/VT323/fonts/ttf/VT323-Regular.ttf 
+dist: $(addprefix build/parchment/dist/web/,jquery.min.js main.js zvm.js web.css) $(addprefix build/,retro.css vt220.webp index.html untitledHeistGame.z5 favicon.ico) build/VT323/fonts/ttf/VT323-Regular.ttf 
 	tar czvf untitledHeistGame-$(shell date +%y%m%d).tar.gz build/
 
 build/%: %
-	mkdir -p $(dir $@)
+	@mkdir -p $(@D)
 	cp -alf $< $@
 
 web: dist 
 	@echo "You can play your game at http://localhost:8000/ now."
 	cd build; $(WEBSERVER) || true
+
+# This will build a C64 disk image with the oldest z-machine version you have.
+# So if you have a foo.z3 and a foo.z8 file, the c64_foo.d64 image will use the z3.
+c64_%.d64: %.z? ozmoo/exomizer/src/exomizer /usr/bin/ruby /usr/bin/acme
+	/usr/bin/ruby ozmoo/make.rb $<
+
+ozmoo/make.rb:
+	git clone --recursive https://github.com/johanberntsson/ozmoo.git
+
+ozmoo/exomizer/src/Makefile: ozmoo/make.rb
+	git clone https://bitbucket.org/magli143/exomizer.git ozmoo/exomizer
+
+ozmoo/exomizer/src/exomizer: ozmoo/exomizer/src/Makefile
+	make -C ozmoo/exomizer/src
+
+/bin/%:
+/usr/bin/%:
+	/usr/lib/command-not-found $*
 
 .PRECIOUS: %.z3 %.z5 %.z8 ${INFORM}
 .PHONY: parchment
