@@ -52,6 +52,14 @@ Include "globals.h";
 	"Script Kiddie.";
 ];
 
+! This is just the inverse of the Achieved function from grammar.h
+[ Forfeit num;
+        if (task_done->num == 1) {
+                task_done->num = 0;
+                score = score - task_scores->num;
+        }
+];
+
 Include "ext_cheap_scenery.h";
 Include "puny.h";
 Include "help.h";
@@ -414,7 +422,10 @@ Object printout "Print out"
 with
 	name 'printout' 'print' 'out' 'schematics' 'plans' 'titor^s' 'titor' 'results',
 	description "This is the printout from the VT242 terminal, you must escape with this.",
-
+	After [;
+		Take: Achieved(GET_TITOR_PLANS);
+		Drop: Forfeit(GET_TITOR_PLANS);
+	],
 has scored;
 
 !=============HALLWAY6(~~~~~~~~~~PLACEHOLDER)=======================
@@ -556,7 +567,8 @@ with
 			}
 	],
 	After [;
-		Take:Achieved(GET_IBM5100);
+		Take: Achieved(GET_IBM5100);
+		Drop: Forfeit(GET_IBM5100);
 	],
 has scored heavy;
 
@@ -740,6 +752,7 @@ with
 	description "This is April's computer, this is what you came to take.",
 	after [;
 		Take: Achieved(GET_APRIL_COMPUTER);
+		Drop: Forfeit(GET_APRIL_COMPUTER);
 	],
 has bulky scored proper;
 
@@ -809,6 +822,7 @@ with
 		SwitchOn:
 			if(usbDrive in linuxBootComputer){
 				print "The computer boots to a linux desktop, you bypassed the password! On the desktop there is a directory labeled ~Secret Files~. You are able to steal the information from the computer and save it onto the USB drive. After you pocket the USB drive, you must exfiltrate with this.";
+				give usbDrive general;
 				move usbDrive to player;
 				Achieved(GET_USB_BOOT_INFO);
 				return 1;
@@ -1010,6 +1024,7 @@ with
 	description "This is a plastic one-terabyte backup tape cartridge. On the cartridge is a handwritten sticky note that says ~Full Backup (UNENCRYPTED)~ and yesterday's date.",
 	after [;
 		Take: Achieved(GET_BACKUP_TAPE);
+		Drop: Forfeit(GET_BACKUP_TAPE);
 	],
 has scored;
 
@@ -1074,7 +1089,11 @@ with
 	instructions [;
 		"You should be able to ", (ul) "put", " ", (the) self, " into an appropriate USB-A socket on any computer built between the mid-90s and the late-2010s.  After that, USB-C made things more complicated.";
 	],
-has scored;
+	After [; ! The general flag means the drive has exfiltrated data on it.
+		Take: if (usbDrive has general) {Achieved(GET_USB_BOOT_INFO);};
+		Drop: Forfeit(GET_USB_BOOT_INFO);
+	],
+has scored ~general;
 !=============HALLWAY1(~~~~~~PLACEHOLDER~~~~~~~)====================
 Object Hallway1 "Hallway"
 with
@@ -1147,6 +1166,7 @@ with
 	description "This is a hard disk drive from Ellie's computer, if you take this, you're sure you can get the information on it at a later time.",
 	after [;
 		Take: Achieved(GET_ELLIE_HD);
+		Drop: Forfeit(GET_ELLIE_HD);
 	],
 has proper scored;
 
