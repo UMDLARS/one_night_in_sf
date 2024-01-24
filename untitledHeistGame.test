@@ -39,6 +39,8 @@
 
 * loop the hallway
 
+> insert card into scanner
+> n
 > w
 > n
 > n
@@ -54,6 +56,8 @@ The Lobby
 
 * get/drop key from receptionist area
 
+> insert card into scanner
+> n
 > n
 > get key
 You can't see any such thing.
@@ -67,6 +71,8 @@ Dropped.
 
 * _get into o7
 
+> insert card into scanner
+> n
 > n
 > open desk
 > take key
@@ -125,6 +131,8 @@ score has just gone up by
 
 * enter/exit all rooms
 
+> insert card into scanner
+> n
 > n
 > open desk
 > take key
@@ -172,11 +180,15 @@ The Lobby
 
 * Try to leave without the computer
 
+> insert card into scanner
+> n
 > s
 There is still critical information that isn't on you! You can't leave yet.
 
 * Try to climb into the crawlspace without the ladder
 
+> insert card into scanner
+> n
 > w
 > n
 > n
@@ -187,6 +199,8 @@ You cannot get up there, if only you had a some sort of step stool.
 
 * Use the ladder to climb into the crawlspace
 
+> insert card into scanner
+> n
 > e
 > n
 > n
@@ -234,6 +248,8 @@ You climb up into a small crawl space
 Crawl Space
 
 * get the flashlight, plunger, and backup tape
+> insert card into scanner
+> n
 > w
 > n
 > n
@@ -304,6 +320,8 @@ The door to the server room clicks shut behind you.
 IT office
 
 * test tower and glass
+> insert card into scanner
+> n
 > w
 > take chair
 > n
@@ -336,6 +354,8 @@ broken glass
 Hallway
 
 * test throw verb with chair
+> insert card into scanner
+> n
 > w
 > take chair
 > n
@@ -352,6 +372,8 @@ broken glass
 Hallway
 
 * use potted plant to break wall
+> insert card into scanner
+> n
 > e
 > n
 > n
@@ -365,6 +387,8 @@ Taken.
 shatter
 
 * _ready coffee card
+> insert card into scanner
+> n
 > w
 > n
 > n
@@ -385,7 +409,7 @@ Taken.
 
 * jimmy to get hard drive
 >{include} _ready coffee card
-> jimmy door with card
+> jimmy door with coffee card
 > e 
 > unscrew case with screwdriver
 > l
@@ -395,7 +419,7 @@ Taken.
 
 * pick to get hard drive
 >{include} _ready coffee card
-> pick lock with card
+> pick lock with coffee card
 > e 
 > unscrew screws with screwdriver
 > l
@@ -405,13 +429,13 @@ Taken.
 
 * turn screws to get hard drive
 >{include} _ready coffee card
-> unlock door with card
+> unlock door with coffee card
 You unlock the office door and open it!
 > undo
-> open door with card
+> open door with coffee card
 You unlock the office door and open it!
 > undo
-> jimmy door with card
+> jimmy door with coffee card
 You unlock the office door and open it!
 > e 
 > turn screws with screwdriver
@@ -421,6 +445,8 @@ which contains Ellie's hard drive
 Taken.
 
 * External USB boot drive
+> insert card into scanner
+> n
 > w
 > n
 > n
