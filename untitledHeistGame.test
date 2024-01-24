@@ -86,7 +86,7 @@ This is a researcher's office
 
 >{include} _get into o7
 > e
-Hallway7
+Hallway
 > close door
 You close the Brass Knobbed Door.
 > lock door with key
@@ -320,10 +320,10 @@ You shatter the glass wall
 !chair
 > w
 giant shards
-Office6
+Laboratory
 > e
 broken glass
-Hallway6
+Hallway
 
 * test throw verb with chair
 > w
@@ -336,10 +336,10 @@ You shatter the glass wall
 !chair
 > w
 giant shards
-Office6
+Laboratory
 > e
 broken glass
-Hallway6
+Hallway
 
 * use potted plant to break wall
 > e
