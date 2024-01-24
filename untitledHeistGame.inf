@@ -182,6 +182,7 @@ with
 		Go:
 			if(selected_direction==n_to && elevatorDoor has open){
 				PlayerTo(Lobby,2);
+				print "^You recall from your interview that the first office on the west side requires a brass key to open. To start maybe look for that key, or tackle any office you like first!";
 				return 1;
 			}
 	]
