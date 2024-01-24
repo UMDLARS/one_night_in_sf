@@ -8,6 +8,7 @@ Include "ext_quote_box.h"; ! Used in the `Stuck` routine.
 [ bf text; style bold; print (string) text; style roman; ];
 [ nm text; style bold; print (name) text; style roman; ];
 [ ul text; font off; style underline; print (string) text; style roman; font on; ];
+[ unm text; font off; style underline; print (name) text; style roman; font on; ];
 [ rv text; style reverse; print (string) text; style roman; ];
 
 ! Note that this is written
@@ -125,10 +126,14 @@ Include "ext_quote_box.h"; ! Used in the `Stuck` routine.
 		depending on the rest of the sentence:^",
 		"^    ", (ul) "throw", (bf) " held object",
 		" -- The same as ", (ul) "drop", ".",
-		"^    ", (ul) "throw", "/", (ul) "put", (bf) " held object ", (ul) "in", (bf) " container", ".",
+		"^    ", (ul) "throw", "/", (ul) "put", (bf) " held object ", (ul) "in", (bf) " container", 
 		" -- Put an object inside another.",
-		"^    ", (ul) "throw", (bf) " held object ", (ul) "at", (bf) " object", ".",
-		" -- Throw one object at another.";
+		"^    ", (ul) "throw", (bf) " held object ", (ul) "at", (bf) " object", 
+		" -- Throw one object at another.",
+		"^^Useful objects will tell you
+		which verbs to use:^",
+		"^    ", (ul) "help", "/", (ul) "use", (bf) " object", 
+		" -- Print brief help text about interacting with an item.";
 
 
 
@@ -191,6 +196,7 @@ Property instructions; ! help on specific items
 Verb 'intro' 'info' * -> Intro;
 Verb 'help' 'use' 'how'
 	* 'on'/'with'/'use'/'using' held -> HelpOn
+	* held 'on'/'with'/'use'/'using' topic -> HelpOn
 	* topic 'on'/'with'/'use'/'using' held -> HelpOn
 	* held -> HelpOn
 	* topic -> Help

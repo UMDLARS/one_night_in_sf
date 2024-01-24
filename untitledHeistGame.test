@@ -235,8 +235,16 @@ Crawl Space
 > e
 > e
 > e
+> plunge flashlight
+without a plunger?
 > take plunger
 Taken.
+> plunge sink
+amateur plumbing
+> plunge flashlight
+not really what a plunger is good for
+> plunge toilet
+doesn't seem clogged
 > w
 > n
 > n
@@ -253,6 +261,9 @@ You can't go that way
 > take tile
 you can't simply pry it up with your fingernails.
 > lift tile with plunger
+You press the plunger
+> undo
+> plunge tile
 You press the plunger
 > look
 The floor of this room is made of large square modular linoleum-covered panels
@@ -305,6 +316,24 @@ Taken.
 something heavier?
 > break wall with chair
 You shatter the glass wall
+> i
+!chair
+> w
+giant shards
+Office6
+> e
+broken glass
+Hallway6
+
+* test throw verb with chair
+> w
+> take chair
+> n
+> n
+> throw chair at wall
+You shatter the glass wall
+> i
+!chair
 > w
 giant shards
 Office6
@@ -399,11 +428,7 @@ As you fold up and take the tarp you notice underneath it there was a flathead s
 > n
 You can't, since the Large Wooden Door is closed.
 > remove pins with screwdriver
-You remove the pins from the hinges of the door!
-> n
-You can't, since the Large Wooden Door is closed.
-> move door
-You move the door out of the way and set it against the wall
+You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...
 > n
 > switch computer
 You boot the computer and are greeted by a password screen. You do not know the password to this computer so you decide to turn it off. Maybe you could find a way around the password. You do remember that it is company policy to not encrypt hard drives.
