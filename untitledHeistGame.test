@@ -111,6 +111,16 @@ LOGIN INCORRECT
 username:
 > type jtitor into terminal then type tipler into terminal
 presents you with a command prompt.
+> x list
+[X] Printed
+> drop printout
+score has just gone down by
+> x list
+[ ] Printed
+> take printout
+score has just gone up by
+> x list
+[X] Printed
 
 
 * enter/exit all rooms
