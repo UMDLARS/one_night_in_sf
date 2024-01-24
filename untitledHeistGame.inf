@@ -1,5 +1,5 @@
-Constant Story "The Office";
-Constant Headline "^^You step through the front doors of the office of Blamazon. It is pitch black outside. You are here after hours.^^This is a work of ~interactive fiction~.  If this is your first time playing such a game, please type INTRO at the prompt below.^^";
+Constant Story "One Night in San Francisco^^";
+Constant Headline "This is a work of ~interactive fiction~. ^^It is your first day on the job at Blamazon. You applied here to gain access to their offices after hours to steal their valuable information off of their computers. They have state of the art cyber security preventing any digital leaks of the information so you are here to physically take it.^^You step through the front doors of the office of Blamazon. It is pitch black outside. You are here after hours. As you walk through the quiet foyer, your shoes clack against the floor echoing revealing just how silent this space is after hours. You approach the elevator and press the up button. The elevator *DINGS* and the doors open. Entering the elevator, you press the button labeled ~13~, the floor of the office you are going to burgle tonight!^^The elevator hums as it brings you up to the floor requested, however upon reaching the 13th floor, the door does not open. A slot just below the floor buttons begins to light up requesting a security pass, which you were given upon your hiring.^^";
 
 Constant OPTIONAL_SCORED;
 Constant OPTIONAL_FULL_SCORE;
@@ -19,7 +19,7 @@ Constant OPTIONAL_SIMPLE_DOORS;
 Constant OPTIONAL_EXTENDED_VERBSET;
 Constant OPTIONAL_EXTENDED_METAVERBS;
 Constant OPTIONAL_PROVIDE_UNDO;
-Constant INITIAL_LOCATION_VALUE = Lobby;
+Constant INITIAL_LOCATION_VALUE = Tutorial;
 Constant DEBUG;
 
 Constant voxfail = "The tower silently listens to your voice, but then flashes red and buzzes disapprovingly. Red text appears on a screen: ~YOU ARE NOT JOHN TITOR THIS LOGIN ATTEMPT WILL BE REPORTED.~";
@@ -134,8 +134,7 @@ Extend only 'remove' first
   ! Start out VERBOSE instead of BRIEF
   lookmode = 2;
   move checklist to player; ! You start out with the task list
-
-  "It is your first day on the job at Blamazon. You applied here to gain access to their offices after hours to steal the boss's valuable information off of their computer. They have state of the art cyber security preventing any digital leaks of the information so you are here to physically take it.";
+  move securityCard to player; ! Start with security card  
 ];
 
 Object checklist "Task List"
@@ -153,6 +152,9 @@ with
 			font on;
 			PrintTaskName(_i);
 		}
+		if(player in tutorial){
+			print "Great job! Now how about we get out of this elevator and into the game proper? This game holds many verbs, not all we can cover in the tutorial, however we tried to make the language as natural as possible. Try inserting the security card into the scanner to open the door.";
+		}
 	],
 	instructions [;
 		"You can ", (ul) "look at", " or ", (ul) "read", " ", (the) checklist, " to see which tasks are finished, and which still need doing.";
@@ -160,10 +162,54 @@ with
 has scored;
 
 
+!=================TUTORIAL======================
+
+Object Tutorial "Elevator"
+with
+	description "You are in a quiet elevator, it has stopped at floor 13. A small scanner is flashing with green lights waiting for you to present your security pass. This elevator is a tutorial to help you understand the basics of this game, and to teach you some useful commands. To start, try using the LOOK command, or L for short. If you do not specify what you are looking at, it will give you the description of the room you are in (This that you are reading right now.) however you can follow look with an item or interesting features in the room, and it will try and give a description of what you specified. Try ~look scanner~ to examine the security pass scanner.",
+	cheap_scenery
+		'security' 'scanner' [;
+			Examine: "The scanner's lights blink expectantly for your security card. Good job! Now this appears to be an object that you can interact with, requesting this security card. If you type I or INVENTORY it will display the items you are currently carrying! There is no limit on the number of items you may hold, but some items are heavy or bulky which means you can only carry one of them. Try opening your inventory and looking at the security card.";
+			Receive:
+			if(noun==securityCard){
+				print "You insert the card into the scanner. The green lights happily flash a few times, and the door opens! You have completed the tutorial. To enter the game proper type ~north~ or ~n~. If you ever need help try the commands help or intro!";
+				give elevatorDoor open;
+				give elevatorDoor ~locked;
+				return true;
+			}
+	],
+	before [;
+		Go:
+			if(selected_direction==n_to && elevatorDoor has open){
+				PlayerTo(Lobby,2);
+				return 1;
+			}
+	]
+	
+has light;
+
+Object -> elevatorDoor "Elevator Door"
+with
+	name 'elevator' 'door',
+	description "This is a metal elevator door. It has no handle as it is exclusively operated by the elevator itself, there must be some way to open this.",
+	door_dir (n_to) (s_to),
+	found_in Lobby Tutorial,
+
+has static door ~open locked concealed;
+
+Object securityCard "Security Card"
+with 
+	name 'security' 'card' 'id' 'identification' 'pass',
+	description [;
+		print "This is a small plastic card with a photo of you on it and a fake name you gave them during the hiring process. ";
+		if(player in Tutorial){
+			print "Good job! You probably noticed in your inventory as well a Task List. You may look, or examine this to see the progress you have made. It shows you all items you need to recover, and if the item is in your inventory or not.";
+		}
+	];
+
 !===================LOBBY=======================
 Object Lobby "The Lobby"
 with
-
 	description "The lobby is quiet, all of the workers have gone home for the day leaving you alone in the building. There is a receptionist desk to the north.
 		     To the west the lobby extends into a waiting area. To the east the lobby extends towards a restroom. To the south is the elevator you came up on.",
 
