@@ -4,9 +4,10 @@ Constant Headline "This is a work of ~interactive fiction~. ^^It is your first d
 Constant OPTIONAL_SCORED;
 Constant OPTIONAL_FULL_SCORE;
 Constant STATUSLINE_SCORE; Statusline score;
+Constant OBJECT_SCORE = 1;
+Constant ROOM_SCORE = 1;
 Constant TASKS_PROVIDED;
-Constant MAX_SCORE = 242; ! XXX: Calculate actual final score before release
-Constant NUMBER_TASKS = 6; ! XXX: Fix before release
+Constant NUMBER_TASKS = 6; ! Update this and task_scores when adding a task!
 Array task_scores -> 20 20 20 20 20 20;
 Constant GET_APRIL_COMPUTER = 0;
 Constant GET_BACKUP_TAPE = 1;
@@ -14,6 +15,7 @@ Constant GET_ELLIE_HD = 2;
 Constant GET_USB_BOOT_INFO = 3;
 Constant GET_TITOR_PLANS = 4;
 Constant GET_IBM5100 = 5;
+Constant MAX_SCORE = (NUMBER_TASKS * 20) + 11; ! 12 scored objects: 2 share a point
 
 Constant OPTIONAL_SIMPLE_DOORS;
 Constant OPTIONAL_EXTENDED_VERBSET;
@@ -43,13 +45,15 @@ Include "globals.h";
 
 [ PrintRank;
 	print ", earning you the rank of ";
+	if (score >= MAX_SCORE) "Bored Nerd."; 
 	if (score >= 120) "Footpad.";
 	if (score >= 100) "Burglar.";
 	if (score >= 80) "Amateur Larcenist.";
 	if (score >= 60) "Shoplifter.";
 	if (score >= 40) "Chancer.";
 	if (score >= 20) "Armchair InfoSec Aficionado.";
-	"Script Kiddie.";
+	if (score >= 1) "Script Kiddie."; ! Didn't complete any tasks, but found clues
+	"Quitter.";
 ];
 
 ! This is just the inverse of the Achieved function from grammar.h
@@ -159,7 +163,7 @@ with
 	instructions [;
 		"You can ", (ul) "look at", " or ", (ul) "read", " ", (the) checklist, " to see which tasks are finished, and which still need doing.";
 	],
-has scored;
+;
 
 
 !=================TUTORIAL======================
@@ -473,7 +477,7 @@ with
 		Take: Achieved(GET_TITOR_PLANS);
 		Drop: Forfeit(GET_TITOR_PLANS);
 	],
-has scored;
+;
 
 !=============HALLWAY6(~~~~~~~~~~PLACEHOLDER)=======================
 Object Hallway6 "Hallway"
@@ -618,7 +622,7 @@ with
 		Take: Achieved(GET_IBM5100);
 		Drop: Forfeit(GET_IBM5100);
 	],
-has scored heavy;
+has heavy;
 
 !==================UTILITY CLOSET===================
 Object Utility "The Utility Closet"
@@ -802,7 +806,7 @@ with
 		Take: Achieved(GET_APRIL_COMPUTER);
 		Drop: Forfeit(GET_APRIL_COMPUTER);
 	],
-has bulky scored proper;
+has bulky proper;
 
 !=============HALLWAY4(~~~~~~~~~PLACEHOLDER~~~~~~)===================
 Object Hallway4 "Hallway"
@@ -1074,7 +1078,7 @@ with
 		Take: Achieved(GET_BACKUP_TAPE);
 		Drop: Forfeit(GET_BACKUP_TAPE);
 	],
-has scored;
+;
 
 !=============HALLWAY2(~~~~~~PLAACEHOLDER~~~~~~~)====================
 Object Hallway2 "Hallway"
@@ -1216,7 +1220,7 @@ with
 		Take: Achieved(GET_ELLIE_HD);
 		Drop: Forfeit(GET_ELLIE_HD);
 	],
-has proper scored;
+has proper;
 
 Object -> Office1Door "Antique Wood Door"
 with
