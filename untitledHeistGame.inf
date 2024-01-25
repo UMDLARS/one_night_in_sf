@@ -7,7 +7,6 @@ Constant STATUSLINE_SCORE; Statusline score;
 Constant OBJECT_SCORE = 1;
 Constant ROOM_SCORE = 1;
 Constant TASKS_PROVIDED;
-Constant MAX_SCORE = 131; ! 12 scored objects/locations (two shared) + 6 tasks
 Constant NUMBER_TASKS = 6; ! Update this and task_scores when adding a task!
 Array task_scores -> 20 20 20 20 20 20;
 Constant GET_APRIL_COMPUTER = 0;
@@ -16,6 +15,7 @@ Constant GET_ELLIE_HD = 2;
 Constant GET_USB_BOOT_INFO = 3;
 Constant GET_TITOR_PLANS = 4;
 Constant GET_IBM5100 = 5;
+Constant MAX_SCORE = (NUMBER_TASKS * 20) + 11; ! 12 scored objects: 2 share a point
 
 Constant OPTIONAL_SIMPLE_DOORS;
 Constant OPTIONAL_EXTENDED_VERBSET;
