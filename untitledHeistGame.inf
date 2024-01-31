@@ -903,7 +903,11 @@ Object Kitchenette
 with
 
 	description "This is a kitchenette. There is a countertop with a sink, a microwave, and a coffee maker. Below the counter top there are cabinets and drawers. To the north the room extends into the hallway.",
-
+	cheap_scenery
+		'coffee' 'maker' "It's been hours since you last had a cup of coffee. The patch of mold growing at the base of the coffee maker almost looks appetizing."
+		'sink' 'sink' "A thick layer of sludge coats the bottom of the sink. As you move away, you're certain you see it move from the corner of your eye."
+		'microwave' 'microwave' "You open the microwave, and the rancid odor of fish fills the room. Who even does this?",
+		
 n_to Hallway4,
 
 has light;
