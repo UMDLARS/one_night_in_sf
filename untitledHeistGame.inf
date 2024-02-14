@@ -1,5 +1,5 @@
 Constant Story "One Night in San Francisco^^";
-Constant Headline "This is a work of ~interactive fiction~. ^^It is your first day on the job at Blamazon. You applied here to gain access to their offices after hours to steal their valuable information off of their computers. They have state of the art cyber security preventing any digital leaks of the information so you are here to physically take it.^^You step through the front doors of the office of Blamazon. It is pitch black outside. You are here after hours. As you walk through the quiet foyer, your shoes clack against the floor echoing revealing just how silent this space is after hours. You approach the elevator and press the up button. The elevator *DINGS* and the doors open. Entering the elevator, you press the button labeled ~13~, the floor of the office you are going to burgle tonight!^^The elevator hums as it brings you up to the floor requested, however upon reaching the 13th floor, the door does not open. A slot just below the floor buttons begins to light up requesting a security pass, which you were given upon your hiring.^^";
+Constant Headline "This is a work of ~interactive fiction~. ^^It is your first day on the job at Titor & Associates Financial Forecasting. You applied here to gain access to their offices after hours to steal their valuable information off of their computers. They have state of the art cyber security preventing any digital leaks of the information so you are here to physically take it.^^You step through the front doors of the office of Blamazon. It is pitch black outside. You are here after hours. As you walk through the quiet foyer, your shoes clack against the floor echoing revealing just how silent this space is after hours. You approach the elevator and press the up button. The elevator *DINGS* and the doors open. Entering the elevator, you press the button labeled ~13~, the floor of the office you are going to burgle tonight!^^The elevator hums as it brings you up to the floor requested, however upon reaching the 13th floor, the door does not open. A slot just below the floor buttons begins to light up requesting a security pass, which you were given upon your hiring.^^";
 
 Constant OPTIONAL_SCORED;
 Constant OPTIONAL_FULL_SCORE;
@@ -36,8 +36,8 @@ Include "globals.h";
 		GET_APRIL_COMPUTER : "Got April's computer.";
 		GET_ELLIE_HD: "Took Ellie's hard drive.";
 		GET_BACKUP_TAPE: "Pocketed the backup tape.";
-		GET_USB_BOOT_INFO: "Got the data from the linux boot computer.";
-    		GET_TITOR_PLANS: "Printed out John Titor's schematics.";
+		GET_USB_BOOT_INFO: "Got Len's data";
+    	GET_TITOR_PLANS: "Printed out John Titor's schematics.";
 		GET_IBM5100: "Grabbed the IBM 5100.";
 		default: "XXX: Should not reach";
 	}
@@ -157,7 +157,7 @@ with
 			PrintTaskName(_i);
 		}
 		if(player in tutorial){
-			print "Great job! Now how about we get out of this elevator and into the game proper? This game holds many verbs, not all we can cover in the tutorial, however we tried to make the language as natural as possible. Try inserting the security card into the scanner to open the door.";
+			print "Great job! Now how about we get out of this elevator and into the game proper? This game holds many verbs, not all we can cover in the tutorial, however we tried to make the language as natural as possible. Try inserting the security fob into the scanner to open the door.";
 		}
 	],
 	instructions [;
@@ -173,20 +173,31 @@ with
 	description "You are in a quiet elevator, it has stopped at floor 13. A small scanner is flashing with green lights waiting for you to present your security pass. This elevator is a tutorial to help you understand the basics of this game, and to teach you some useful commands. To start, try using the LOOK command, or L for short. If you do not specify what you are looking at, it will give you the description of the room you are in (This that you are reading right now.) however you can follow look with an item or interesting features in the room, and it will try and give a description of what you specified. Try ~look scanner~ to examine the security pass scanner.",
 	cheap_scenery
 		'security' 'scanner' [;
-			Examine: "The scanner's lights blink expectantly for your security card. Good job! Now this appears to be an object that you can interact with, requesting this security card. If you type I or INVENTORY it will display the items you are currently carrying! There is no limit on the number of items you may hold, but some items are heavy or bulky which means you can only carry one of them. Try opening your inventory and looking at the security card.";
+			Examine: "The scanner's lights blink expectantly for your security fob. Good job! Now this appears to be an object that you can interact with, requesting this security fob. If you type I or INVENTORY it will display the items you are currently carrying! There is no limit on the number of items you may hold, but some items are heavy or bulky which means you can only carry one of them. Try opening your inventory and looking at the security fob.";
 			Receive:
-			if(noun==securityCard){
-				print "You insert the card into the scanner. The green lights happily flash a few times, and the door opens! You have completed the tutorial. To enter the game proper type ~north~ or ~n~. If you ever need help try the commands help or intro!";
+			if(noun==securityCard && securityCard hasnt heavy){
+				print "You insert the fob into the scanner. The green lights happily flash a few times, and the door opens! You have completed the tutorial. To enter the game proper type ~north~ or ~n~. If you ever need help try the commands help or intro!";
 				give elevatorDoor open;
 				give elevatorDoor ~locked;
 				return true;
 			}
+			if(noun==securityCard && securityCard has heavy){
+				print "Ooops, you fumble the fob and drop it on the floor of the elevator! Use ~take [object]~ to pick up an object. Try grabbing the fob and try again!";
+				give securityCard ~heavy;
+				move securityCard to Tutorial;
+				return true;
+			}
+
 	],
 	before [;
 		Go:
 			if(selected_direction==n_to && elevatorDoor has open){
 				PlayerTo(Lobby,2);
 				print "^You recall from your interview that the first office on the west side requires a brass key to open. To start maybe look for that key, or tackle any office you like first!";
+				return 1;
+			}
+			if(selected_direction==n_to && elevatorDoor hasnt open){
+				print "The elevator doors are still closed! Follow the tutorial to open them!";
 				return 1;
 			}
 	]
@@ -202,15 +213,16 @@ with
 
 has static door ~open locked concealed;
 
-Object securityCard "Security Card"
+Object securityCard "Security Key Fob"
 with 
-	name 'security' 'card' 'id' 'identification' 'pass',
+	name 'security' 'fob' 'id' 'identification' 'pass',
 	description [;
-		print "This is a small plastic card with a photo of you on it and a fake name you gave them during the hiring process. ";
+		print "This is a small plastic key fob with a fake name you gave them during the hiring process. ";
 		if(player in Tutorial){
 			print "Good job! You probably noticed in your inventory as well a Task List. You may look, or examine this to see the progress you have made. It shows you all items you need to recover, and if the item is in your inventory or not.";
 		}
-	];
+	],
+has heavy;
 
 !===================LOBBY=======================
 Object Lobby "The Lobby"
@@ -655,7 +667,6 @@ with
 			rfalse;
 	],
 
-
 has bulky heavy scored;
 
 !=============HALLWAY5(~~~~~PLACEHOLDER~~~~~)=======================
@@ -732,8 +743,8 @@ Object -> tarp "Tarp"
 with
 	name 'tarp' 'tarpaulin' 'PET' 'polyethylene',
 	description "This is a blue polyethylene tarp, all craftsmanship is of the highest quality. On it are spatterings of off white paint.",
-	After[;
-		Take:
+	before[;
+		Take, Transfer:
 			print "As you fold up and take the tarp you notice underneath it there was a flathead screwdriver!";
 			give flatHead ~concealed;
 			return 1;
@@ -825,7 +836,11 @@ with
 								print "You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...";
 								give Office3Door open;
 								return true;
-							};
+							}
+							else{
+								print "You try that, but it doesn't seem to work. Maybe if you need something something like a chisel.";
+								return true;
+							}
 		],
 w_to Hallway5,
 e_to Hallway3,
@@ -972,7 +987,8 @@ with
 		'work' 'table' "The work table has bits and pieces of wire, some discrete electronic components -- nothing much interesting."
 		'reinforced' 'door' "This door looks extremely strong, as does the wall it is set into."
 		'fidget' 'toys' "One toy is your typical fidget spinner, and the other is a folding cube toy."
-		'docking' 'station' "This generic docking station is connected to a monitor and keyboard, but the laptop is not here. A wired Ethernet cable that is plugged into the back of of the dock snakes across the desk and down through a hole in the floor tile.",
+		'docking' 'station' "This generic docking station is connected to a monitor and keyboard, but the laptop is not here. A wired Ethernet cable that is plugged into the back of of the dock snakes across the desk and down through a hole in the floor tile."
+		'wire' 'wires' "This ethernet wire is connected to the docking station, you follow it and it seems to go into the floor. Strange, is there a space underneath here?",
 	before [;
 		Go:
 			if(selected_direction==d_to) {
@@ -1210,7 +1226,7 @@ with
 			}
 	],
 
-has openable locked container proper;
+has openable locked container proper static;
 
 Object -> -> hardDrive "Ellie's hard drive"
 with

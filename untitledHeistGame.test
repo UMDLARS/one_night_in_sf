@@ -39,7 +39,9 @@
 
 * loop the hallway
 
-> insert card into scanner
+> insert fob into scanner
+> take fob
+> insert fob into scanner
 > n
 > w
 > n
@@ -56,7 +58,9 @@ The Lobby
 
 * get/drop key from receptionist area
 
-> insert card into scanner
+> insert fob into scanner
+> take fob
+> insert fob into scanner
 > n
 > n
 > get key
@@ -71,7 +75,9 @@ Dropped.
 
 * _get into o7
 
-> insert card into scanner
+> insert fob into scanner
+> take fob
+> insert fob into scanner
 > n
 > n
 > open desk
@@ -131,7 +137,9 @@ score has just gone up by
 
 * enter/exit all rooms
 
-> insert card into scanner
+> insert fob into scanner
+> take fob
+> insert fob into scanner
 > n
 > n
 > open desk
@@ -180,14 +188,18 @@ The Lobby
 
 * Try to leave without the computer
 
-> insert card into scanner
+> insert fob into scanner
+> take fob
+> insert fob into scanner
 > n
 > s
 There is still critical information that isn't on you! You can't leave yet.
 
 * Try to climb into the crawlspace without the ladder
 
-> insert card into scanner
+> insert fob into scanner
+> take fob
+> insert fob into scanner
 > n
 > w
 > n
@@ -199,7 +211,9 @@ You cannot get up there, if only you had a some sort of step stool.
 
 * Use the ladder to climb into the crawlspace
 
-> insert card into scanner
+> insert fob into scanner
+> take fob
+> insert fob into scanner
 > n
 > e
 > n
@@ -248,7 +262,9 @@ You climb up into a small crawl space
 Crawl Space
 
 * get the flashlight, plunger, and backup tape
-> insert card into scanner
+> insert fob into scanner
+> take fob
+> insert fob into scanner
 > n
 > w
 > n
@@ -320,7 +336,9 @@ The door to the server room clicks shut behind you.
 IT office
 
 * test tower and glass
-> insert card into scanner
+> insert fob into scanner
+> take fob
+> insert fob into scanner
 > n
 > w
 > take chair
@@ -354,7 +372,9 @@ broken glass
 Hallway
 
 * test throw verb with chair
-> insert card into scanner
+> insert fob into scanner
+> take fob
+> insert fob into scanner
 > n
 > w
 > take chair
@@ -372,7 +392,9 @@ broken glass
 Hallway
 
 * use potted plant to break wall
-> insert card into scanner
+> insert fob into scanner
+> take fob
+> insert fob into scanner
 > n
 > e
 > n
@@ -387,7 +409,9 @@ Taken.
 shatter
 
 * _ready coffee card
-> insert card into scanner
+> insert fob into scanner
+> take fob
+> insert fob into scanner
 > n
 > w
 > n
@@ -445,7 +469,9 @@ which contains Ellie's hard drive
 Taken.
 
 * External USB boot drive
-> insert card into scanner
+> insert fob into scanner
+> take fob
+> insert fob into scanner
 > n
 > w
 > n
