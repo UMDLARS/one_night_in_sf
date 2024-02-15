@@ -7,7 +7,7 @@ Constant STATUSLINE_SCORE; Statusline score;
 Constant OBJECT_SCORE = 1;
 Constant ROOM_SCORE = 1;
 Constant TASKS_PROVIDED;
-Constant MAX_SCORE = 176; ! XXX: Calculate actual final score before release
+!Constant MAX_SCORE = 176; ! XXX: Calculate actual final score before release
 Constant NUMBER_TASKS = 6; ! XXX: Fix before release
 Array task_scores -> 20 20 20 20 20 20;
 Constant GET_APRIL_COMPUTER = 0;
