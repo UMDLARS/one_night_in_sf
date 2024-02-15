@@ -7,7 +7,7 @@ Constant STATUSLINE_SCORE; Statusline score;
 Constant OBJECT_SCORE = 1;
 Constant ROOM_SCORE = 1;
 Constant TASKS_PROVIDED;
-!Constant MAX_SCORE = 176; ! XXX: Calculate actual final score before release
+! Constant MAX_SCORE = 176; ! XXX: Calculate actual final score before release
 Constant NUMBER_TASKS = 6; ! XXX: Fix before release
 Array task_scores -> 20 20 20 20 20 20;
 Constant GET_APRIL_COMPUTER = 0;
@@ -220,7 +220,7 @@ has light;
 Object -> elevatorDoor "Elevator Door"
 with
 	name 'elevator' 'door',
-	description "This is a metal elevator door. It has no handle as it is exclusively operated by the elevator itself, there must be some way to open this.",
+	description "This is a metal elevator door. It has no handle as it is exclusively operated by the elevator itself;  there must be some way to open this.",
 	door_dir (n_to) (s_to),
 	found_in Lobby Tutorial,
 
@@ -240,8 +240,8 @@ has heavy;
 !===================LOBBY=======================
 Object Lobby "The Lobby"
 with
-	description "The lobby is quiet, all of the workers have gone home for the day leaving you alone in the building. There is a receptionist desk to the north.
-		     To the west the lobby extends into a waiting area. To the east the lobby extends towards a restroom. To the south is the elevator you came up on.",
+	description "The lobby is quiet; all of the workers have gone home for the day, leaving you alone in the building. There is a receptionist desk to the north.
+		     To the west, the lobby extends into a waiting area. To the east, the lobby extends towards a restroom. To the south is the elevator you came up on.",
 
 n_to Receptionist,
 e_to LobbyEast,
@@ -331,7 +331,7 @@ with
 	description "This is a small waiting area. There is an L-shaped couch with a coffee table in front of it in one corner, and a chair and floor lamp in the other. A window on the west wall looks out on the San Fancisco skyline. To the north there is a long hallway. To the east there is the lobby.",
 	cheap_scenery
 		'couch' 'l-shaped' "The L-shaped couch is tucked into the corner of this part of the lobby."
-		'window' 'outside' "Out the window you can see the San Fancisco skyline against the pitch black sky. A waxing crecent moon watches your legally dubious actions.",
+		'window' 'outside' "Out the window, you can see the San Fancisco skyline against the pitch black sky. A waxing crecent moon watches your legally dubious actions.",
 
 	n_to Hallway7,
 	e_to Lobby,
@@ -399,7 +399,7 @@ has light;
 Object Hallway7 "Hallway"
 with
 
-	description "This is a hallway. To the north the hallway extends. To the south there is the waiting area. To the west there is an office.",
+	description "This is a hallway that extends to the north. To the south there is the waiting area. To the west there is an office.",
 
 s_to Waiting,
 n_to Hallway6,
@@ -414,7 +414,7 @@ with
 
 	description "This is a researcher's office, taken up almost entirely by a large desk strewn with academic papers.  A terminal sits amidst the clutter, its screen glowing with amber letters against a black backdrop.",
 	cheap_scenery
-		'large' 'desk' "The desk is out of place for this office building, and seems to be made of steel.  It has a military look to it, and was a popular style in the 1950s and 60s."
+		'large' 'desk' "The desk looks out of place for this office building, and seems to be made of steel.  It has a military look to it, and was a popular style in the 1950s and 60s."
 		'academic' 'papers' "Most of the papers are theories on time travel by Tipler.  The rest are printouts of e-mails to user jtitor.",
 	
 	instructions [;
@@ -513,7 +513,7 @@ Object Hallway6 "Hallway"
 with
 
     description [;
-		print "This is a hallway that extends to the north and the south. To the east there is a closet. ";
+		print "This is a hallway that extends to the north and to the south. To the east there is a closet. A row of uninteresting filing cabinets lines the west wall.";
 		if (glass has locked){
 			print "The entire west wall is thick, tempered glass; it stands between you and ";
 		}
@@ -527,8 +527,8 @@ with
 		print "a laboratory packed with futuristic-looking equipment. A biometric authentication system is embedded into the glass wall. It is connected to a large, sliding glass door leading west into the lab.";
 ],
     cheap_scenery
-        'retina' 'scanner' "You peer into the retina scanner. A laser sweeps across your eye. Instantly, the scanner beeps disapprovingly, and indicator on it flashes red several times. Red text appears on a screen: ~YOU ARE NOT JOHN TITOR THIS LOGIN ATTEMPT WILL BE REPORTED.~"
-		'eyepiece' 'eye' "You peer into the retina scanner. A laser sweeps across your eye. Instantly, the scanner beeps disapprovingly, and indicator on it flashes red several times. Red text appears on a screen: ~YOU ARE NOT JOHN TITOR THIS LOGIN ATTEMPT WILL BE REPORTED.~"
+        'retina' 'scanner' "You peer into the retina scanner. A laser sweeps across your eye. Instantly, the scanner beeps disapprovingly, and the indicator on it flashes red several times. Red text appears on a screen: ~YOU ARE NOT JOHN TITOR THIS LOGIN ATTEMPT WILL BE REPORTED.~"
+		'eyepiece' 'eye' "You peer into the retina scanner. A laser sweeps across your eye. Instantly, the scanner beeps disapprovingly, and the indicator on it flashes red several times. Red text appears on a screen: ~YOU ARE NOT JOHN TITOR THIS LOGIN ATTEMPT WILL BE REPORTED.~"
         'voiceprint' 'microphone' "This system appears to be designed to recognize certain individuals' voices when they speak into the microphone."
         'handprint' 'recognizer' [;
 			Examine: "The handprint recognizer looks like something from a 1990s spy movie. An angled bezel sticks out from the wall with the outline of a hand illuminated by a pulsating orange grid pattern.";
@@ -606,7 +606,7 @@ has static door openable ~open lockable locked concealed;
 Object -> biometric "Biometric Tower"
 with
     name 'biometric' 'tower',
-    description "This intimidating-looking tower of biometric scanners is securely integrated into to the west wall, which is one large piece of glass. The tower is linked to the actuator that moves the sliding glass door between that separates this hallway and the office to the west. At the top of the tower is a retina scanner with an eyepiece to peer into. Below that is a voiceprint system with a microphone jutting out from it. Below the voiceprint device is a handprint recognizer.",
+    description "This intimidating-looking tower of biometric scanners is securely integrated into the west wall, which is one large piece of glass. The tower is linked to the actuator, which moves the sliding glass door that separates this hallway and the office to the west. At the top of the tower is a retina scanner with an eyepiece to peer into. Below that is a voiceprint system with a microphone jutting out from it. Below the voiceprint device is a handprint recognizer.",
 before [;
     ! FIXME -- see Issue #55 about how this should really work. This feels super hacky.
 	Touch: print_ret (string) handfail;
@@ -702,7 +702,9 @@ has bulky heavy scored;
 Object Hallway5 "Hallway"
 with
 
-	description "This is a hallway, To the east the hallway extends. To the south the hallway extends. To the west there is an office. To the north there is an office.",
+	description "This is a hallway that extends to the east and to the south. There is an office to the west, and another office to the north. Along the east wall, there is a poster depicting a sad kitten wearing a suit.",
+	cheap_scenery
+		'poster' 'kitten poster' "The poster depicts an especially sad-looking kitten wearing a business suit with a tie, clinging helplessly to a branch. The poster is captioned with the words 'Hang In There!'.",
 
 s_to Hallway6,
 e_to Hallway4,
@@ -776,7 +778,7 @@ has light;
 Object -> tarp "Tarp"
 with
 	name 'tarp' 'tarpaulin' 'PET' 'polyethylene',
-	description "This is a blue polyethylene tarp, all craftsmanship is of the highest quality. On it are spatterings of off white paint.",
+	description "This is a blue polyethylene tarp, and its craftsmanship is clearly of the highest quality. On it are spatterings of off-white paint.",
 	before[;
 		Take, Transfer:
 			print "As you fold up and take the tarp you notice underneath it there was a flathead screwdriver!";
@@ -788,7 +790,7 @@ with
 Object -> flatHead "Flathead"
 with
 	name 'flathead' 'screwdriver',
-	description "This is a flat head screwdriver with a bright red handle. This seems it was once used to open cans of paint judging by the dried flecks of paint on it. On the handle reads an inscription that says ''NOT TO BE REMOVED FROM FLOOD CONTROL DAM #3''",
+	description "This is a flathead screwdriver with a bright red handle. Judging by the dried flecks of paint on it, it was likely once used to open cans of paint. On the handle is an inscription that reads, ''NOT TO BE REMOVED FROM FLOOD CONTROL DAM #3''",
 	instructions [;
 		print "You can use this screwdriver with the ",
 		(ul) "screw", " and ", (ul) "unscrew", " verbs.
@@ -837,7 +839,7 @@ has light;
 
 Object -> desk "Desk"
 with
-	name 'desk' 'wood desk',
+	name 'desk' 'wood desk' 'wooden desk',
 	description "This is a desk",
 
 has static supporter;
@@ -857,16 +859,16 @@ has bulky proper;
 Object Hallway4 "Hallway"
 with
 
-	description "This is a hallway. To the west the hallway extends. To the east the hallway extends. To the north is an office. To the south is a kitchenette.",
+	description "This is a hallway that extends to the east and to the west. To the north is an office. To the south is a kitchenette. The hallway is barren except for a lone empty water dispenser.",
 	cheap_scenery
 		'hinges' 'hinge'[;
-			Examine: "These are the hinges of the door. They hold the door to the wall due to pins going through the entire assembly. Maybe you could remove the pins if you had something with a flat end to push them out.";
+			Examine: "These are the hinges of the door, which bind the door to the wall by four pins going through the entire assembly. Maybe you could remove the pins if you had something with a flat end to push them out.";
 			default: "I am not sure what you want me to do.";
 		]
 		'pins' 'pin' [;
 			Examine: "These pins were hammered into place while someone held the door up. This is how most doors are attached to walls, it seems this door just so happens to have them on the exterior of the office.";
 			Remove:
-							if(second==flathead){
+							if(second==flathead){ 
 								print "You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...";
 								give Office3Door open;
 								return true;
@@ -956,6 +958,9 @@ Object Kitchenette
 with
 
 	description "This is a kitchenette. There is a countertop with a sink, a microwave, and a coffee maker. Below the counter top there are cabinets and drawers. To the north the room extends into the hallway.",
+	cheap_scenery
+		'sink' 'kitchen sink' "The sink is tidy and free of dishes. Not a single calcium stain marks the basin."
+		'microwave' 'microwave' "The microwave clock reads the current time in military time; it is off by one minute.",
 
 n_to Hallway4,
 
@@ -964,7 +969,7 @@ has light;
 Object -> cabinet "Cabinet"
 with
 	name 'cabinet' 'cabinets' 'cupboard' 'cupboards',
-	description "These are cabinets that span the wall in the kitchenette.",
+	description "These cabinets span one of the walls in the kitchenette.",
 	instructions [;
 		"You'll have to ", (ul) "open", " ", (the) self, " to see what's inside.";
 	],
@@ -983,7 +988,7 @@ has scored;
 Object Hallway3 "Hallway"
 with
 
-	description "This is a hallway. To the south the hallway extends. To the west the hallway extends. To the east is an office.",
+	description "This is a hallway that extends to the south and to the west. To the east is an office. The overhead lights shine phosphorescently.",
 
 w_to Hallway4,
 s_to Hallway2,
@@ -994,7 +999,7 @@ has light;
 Object -> plant "large potted plant"
 with
 	name "plant" "potted plant" "pot",
-	description "This is a large plant in a large glazed terra cotta pot. It looks like it must weigh a lot!",
+	description "This is a large plant in a large glazed terra-cotta pot. It looks like it must weigh a lot!",
 	before [;
 		Take, Transfer:
 			if (heavyLimit(self)){
@@ -1014,7 +1019,7 @@ Object Office2 "IT Office"
 with
 
 	description [;
-		print "This is the IT office. The floor of this room is made of large square modular linoleum-covered panels of the kind typical in server rooms with raised floors. The floor shifts and creaks under your weight. A desk is in the corner has an empty laptop docking station on it and a few fidget toys. A work table is against the south wall with the electronic flotsam and jetsam of a previous project. The useless husks of a few broken computers lie in the corner. To the west there is a door leading to the hallway. To the north is a reinforced door with an electronic keypad lock.";
+		print "This is the IT office. The floor of this room is made of the large square modular linoleum-covered panels that are typical in server rooms with raised floors. The floor shifts and creaks under your weight. A desk in the corner has an empty laptop docking station on it and a few fidget toys. A work table is against the south wall with the electronic flotsam and jetsam of a previous project. The useless husks of a few broken computers lie in the corner. To the west there is a door leading to the hallway. To the north is a reinforced door with an electronic keypad lock.";
 		if (ITRoomTile has open) {
 			print "^^One of the floor tiles has been moved aside, revealing a gap that leads down into a crawl space under the floor.";
 		}
@@ -1026,7 +1031,7 @@ with
 		'reinforced' 'door' "This door looks extremely strong, as does the wall it is set into."
 		'fidget' 'toys' "One toy is your typical fidget spinner, and the other is a folding cube toy."
 		'docking' 'station' "This generic docking station is connected to a monitor and keyboard, but the laptop is not here. A wired Ethernet cable that is plugged into the back of of the dock snakes across the desk and down through a hole in the floor tile."
-		'wire' 'wires' "This ethernet wire is connected to the docking station, you follow it and it seems to go into the floor. Strange, is there a space underneath here?",
+		'wire' 'wires' "This ethernet wire is connected to the docking station; you follow it, and it seems to go into the floor. Strange, is there a space underneath here?",
 	before [;
 		Go:
 			if(selected_direction==d_to) {
@@ -1141,7 +1146,7 @@ with
 Object Hallway2 "Hallway"
 with
 
-	description "This is a hallway. To the south the hallway extends. To the north the hallway extends. To the west there is a utility closet.",
+	description "This is a hallway, extending to the north and to the south. To the west there is a utility closet.",
 
 n_to Hallway3,
 s_to Hallway1,
@@ -1207,7 +1212,7 @@ has scored ~general;
 Object Hallway1 "Hallway"
 with
 
-	description "To the south there is the lobby. To the north the hallway extends. To the east there is an office.",
+	description "This is a hallway. A couch rests along the west wall. To the south there is the lobby. To the north the hallway extends. To the east there is an office.",
 
 	instructions [;
 		 "I should look for some sort of thing plastic object, like a credit card, to jimmy this lock.";
@@ -1286,7 +1291,7 @@ has proper;
 Object -> Office1Door "Antique Wood Door"
 with
 	name 'office' 'door' 'lock',
-	description "This is an old wood antique door. You can see it has an incredibly simple locking mechanism, it could easy unlocked if you had a thin stiff object to jimmy the lock.",
+	description "This is an old wood antique door. You can see it has an incredibly simple locking mechanism, it could easy be unlocked if you had a thin stiff object to jimmy the lock.",
 	door_dir (e_to) (w_to),
 	found_in Hallway1 Office1,
 	with_key coffeeCard,
