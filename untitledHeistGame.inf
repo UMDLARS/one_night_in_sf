@@ -99,7 +99,10 @@ Verb 'type'  * -> TypeErr
 
 [HintSub;
 	if(location.instructions == 0){"It appears there are no hints to give for this room, sorry.";}
-	else {PrintOrRun(location, instructions, false);}
+	else {
+		PrintOrRun(location, instructions, false);
+		score = score - 15;
+	}
 ];
 	
 Verb 'hint' * -> Hint;
