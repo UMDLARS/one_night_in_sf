@@ -413,6 +413,10 @@ with
 	cheap_scenery
 		'large' 'desk' "The desk is out of place for this office building, and seems to be made of steel.  It has a military look to it, and was a popular style in the 1950s and 60s."
 		'academic' 'papers' "Most of the papers are theories on time travel by Tipler.  The rest are printouts of e-mails to user jtitor.",
+	
+	instructions [;
+		 "It seems the terminal needs a username and password. Maybe these are written down somewhere in this room?";
+	],
 
 e_to Office7Door,
 
@@ -548,6 +552,10 @@ with
 					}
 				}
 			}
+	],
+
+	instructions [;
+		 "Oh this wall is made of glass, it would be a shame if something were to happen to it...";
 	],
 
 
@@ -752,6 +760,11 @@ u_to [;
 	}
 	"You cannot get up there, if only you had a some sort of step stool.^";
 ],
+
+	instructions [;
+		 "I bet I could get into the office to the west through the ceiling here!";
+	],
+
 s_to Hallway5,
 
 has light;
@@ -884,6 +897,10 @@ with
 				move usbDrive to linuxBootComputer;
 				return 1;
 			}
+	],
+
+	instructions [;
+		 "The data on this computer is not encrypted. If I boot an OS from an external drive, I should still be able to access the data.";
 	],
 
 s_to Hallway4,
@@ -1020,6 +1037,9 @@ with
 				print "The door to the server room clicks shut behind you.^^";
 	],
 
+	instructions [;
+		 "There seems to be an open space underneath the floor here. If I could find something to lift the floor tiles in here I should be able to bypass that door.";
+	],
 
 w_to Hallway3,
 d_to ITRoomTile,
@@ -1184,6 +1204,10 @@ Object Hallway1 "Hallway"
 with
 
 	description "To the south there is the lobby. To the north the hallway extends. To the east there is an office.",
+
+	instructions [;
+		 "I should look for some sort of thing plastic object, like a credit card, to jimmy this lock.";
+	],
 
 n_to Hallway2,
 s_to LobbyEast,
