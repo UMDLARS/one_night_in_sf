@@ -565,6 +565,12 @@ w_to [;
 
 ],
 
+instructions [;
+		"That glass wall looks awfully expensive. It would be a shame if something were to happen to it.";
+	],
+	
+
+
 has light;
 
 Object -> glass "glass wall"
@@ -1299,7 +1305,7 @@ with
 	name 'plunger' 'toilet plunger',
 	description "This is your bog-standard toilet plunger: a wooden handle screwed into a large and flexible rust-colored rubber suction cup.",
 	instructions [;
-		"You're not here for amateur plumbing, but the suction cup makes it look like you could ", (ul) "pry", " something appropriately smooth with ", (the) self, ".";
+		"You're not here for amateur plumbing, but the suction cup makes it look like you could ", (ul) "pry", " or ", (ul) "plunge", " something appropriately smooth with ", (the) self, ".";
 	],
 has scored;
 
