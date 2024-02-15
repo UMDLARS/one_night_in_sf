@@ -237,7 +237,7 @@ has heavy;
 !===================LOBBY=======================
 Object Lobby "The Lobby"
 with
-	description "The lobby is quiet, all of the workers have gone home for the day leaving you alone in the building. There is a receptionist desk to the north.
+	description "The lobby is quiet; all of the workers have gone home for the day, leaving you alone in the building. There is a receptionist desk to the north.
 		     To the west, the lobby extends into a waiting area. To the east, the lobby extends towards a restroom. To the south is the elevator you came up on.",
 
 n_to Receptionist,
@@ -328,7 +328,7 @@ with
 	description "This is a small waiting area. There is an L-shaped couch with a coffee table in front of it in one corner, and a chair and floor lamp in the other. A window on the west wall looks out on the San Fancisco skyline. To the north there is a long hallway. To the east there is the lobby.",
 	cheap_scenery
 		'couch' 'l-shaped' "The L-shaped couch is tucked into the corner of this part of the lobby."
-		'window' 'outside' "Out the window you can see the San Fancisco skyline against the pitch black sky. A waxing crecent moon watches your legally dubious actions.",
+		'window' 'outside' "Out the window, you can see the San Fancisco skyline against the pitch black sky. A waxing crecent moon watches your legally dubious actions.",
 
 	n_to Hallway7,
 	e_to Lobby,
@@ -396,7 +396,7 @@ has light;
 Object Hallway7 "Hallway"
 with
 
-	description "This is a hallway. To the north the hallway extends. To the south there is the waiting area. To the west there is an office.",
+	description "This is a hallway that extends to the north. To the south there is the waiting area. To the west there is an office.",
 
 s_to Waiting,
 n_to Hallway6,
@@ -506,7 +506,7 @@ Object Hallway6 "Hallway"
 with
 
     description [;
-		print "This is a hallway that extends to the north and to the south. To the east there is a closet. ";
+		print "This is a hallway that extends to the north and to the south. To the east there is a closet. A row of uninteresting filing cabinets lines the west wall.";
 		if (glass has locked){
 			print "The entire west wall is thick, tempered glass; it stands between you and ";
 		}
@@ -690,7 +690,7 @@ has bulky heavy scored;
 Object Hallway5 "Hallway"
 with
 
-	description "This is a hallway, extending to the east and to the south. There is an office to the west, and another office to the north. Along the east wall, there is a poster depicting a sad kitten wearing a suit.",
+	description "This is a hallway that extends to the east and to the south. There is an office to the west, and another office to the north. Along the east wall, there is a poster depicting a sad kitten wearing a suit.",
 	cheap_scenery
 		'poster' 'kitten poster' "The poster depicts an especially sad-looking kitten wearing a business suit with a tie, clinging helplessly to a branch. The poster is captioned with the words 'Hang In There!'.",
 
@@ -761,7 +761,7 @@ has light;
 Object -> tarp "Tarp"
 with
 	name 'tarp' 'tarpaulin' 'PET' 'polyethylene',
-	description "This is a blue polyethylene tarp, all craftsmanship is of the highest quality. On it are spatterings of off white paint.",
+	description "This is a blue polyethylene tarp, and its craftsmanship is clearly of the highest quality. On it are spatterings of off-white paint.",
 	before[;
 		Take, Transfer:
 			print "As you fold up and take the tarp you notice underneath it there was a flathead screwdriver!";
@@ -773,7 +773,7 @@ with
 Object -> flatHead "Flathead"
 with
 	name 'flathead' 'screwdriver',
-	description "This is a flathead screwdriver with a bright red handle. This seems it was once used to open cans of paint judging by the dried flecks of paint on it. On the handle reads an inscription that says ''NOT TO BE REMOVED FROM FLOOD CONTROL DAM #3''",
+	description "This is a flathead screwdriver with a bright red handle. Judging by the dried flecks of paint on it, it was likely once used to open cans of paint. On the handle is an inscription that reads, ''NOT TO BE REMOVED FROM FLOOD CONTROL DAM #3''",
 	instructions [;
 		print "You can use this screwdriver with the ",
 		(ul) "screw", " and ", (ul) "unscrew", " verbs.
@@ -822,7 +822,7 @@ has light;
 
 Object -> desk "Desk"
 with
-	name 'desk' 'wood desk',
+	name 'desk' 'wood desk' 'wooden desk',
 	description "This is a desk",
 
 has static supporter;
@@ -842,7 +842,7 @@ has bulky proper;
 Object Hallway4 "Hallway"
 with
 
-	description "This is a hallway, extending to the east and to the west. To the north is an office. To the south is a kitchenette. The hallway is barren except for a lone water machine.",
+	description "This is a hallway that extends to the east and to the west. To the north is an office. To the south is a kitchenette. The hallway is barren except for a lone empty water dispenser.",
 	cheap_scenery
 		'hinges' 'hinge'[;
 			Examine: "These are the hinges of the door, which bind the door to the wall by four pins going through the entire assembly. Maybe you could remove the pins if you had something with a flat end to push them out.";
@@ -948,7 +948,7 @@ has light;
 Object -> cabinet "Cabinet"
 with
 	name 'cabinet' 'cabinets' 'cupboard' 'cupboards',
-	description "These are cabinets that span the wall in the kitchenette.",
+	description "These cabinets span one of the walls in the kitchenette.",
 	instructions [;
 		"You'll have to ", (ul) "open", " ", (the) self, " to see what's inside.";
 	],
@@ -967,7 +967,7 @@ has scored;
 Object Hallway3 "Hallway"
 with
 
-	description "This is a hallway, extending to the south and to the west. To the east is an office.",
+	description "This is a hallway that extends to the south and to the west. To the east is an office. The overhead lights shine phosphorescently.",
 
 w_to Hallway4,
 s_to Hallway2,
@@ -1122,7 +1122,7 @@ with
 Object Hallway2 "Hallway"
 with
 
-	description "This is a hallway. To the south the hallway extends. To the north the hallway extends. To the west there is a utility closet.",
+	description "This is a hallway, extending to the north and to the south. To the west there is a utility closet.",
 
 n_to Hallway3,
 s_to Hallway1,
@@ -1188,7 +1188,7 @@ has scored ~general;
 Object Hallway1 "Hallway"
 with
 
-	description "To the south there is the lobby. To the north the hallway extends. To the east there is an office.",
+	description "This is a hallway. A couch rests along the west wall. To the south there is the lobby. To the north the hallway extends. To the east there is an office.",
 
 n_to Hallway2,
 s_to LobbyEast,
@@ -1263,7 +1263,7 @@ has proper;
 Object -> Office1Door "Antique Wood Door"
 with
 	name 'office' 'door' 'lock',
-	description "This is an old wood antique door. You can see it has an incredibly simple locking mechanism, it could easy unlocked if you had a thin stiff object to jimmy the lock.",
+	description "This is an old wood antique door. You can see it has an incredibly simple locking mechanism, it could easy be unlocked if you had a thin stiff object to jimmy the lock.",
 	door_dir (e_to) (w_to),
 	found_in Hallway1 Office1,
 	with_key coffeeCard,
