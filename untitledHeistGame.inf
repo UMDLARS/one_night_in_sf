@@ -939,7 +939,6 @@ with
 	description "This is a kitchenette. There is a countertop with a sink, a microwave, and a coffee maker. Below the counter top there are cabinets and drawers. To the north the room extends into the hallway.",
 	cheap_scenery
 		'sink' 'kitchen sink' "The sink is tidy and free of dishes. Not a single calcium stain marks the basin."
-		'coffee' 'coffee maker' "You would be up all night."
 		'microwave' 'microwave' "The microwave clock reads the current time in military time; it is off by one minute.",
 
 n_to Hallway4,
