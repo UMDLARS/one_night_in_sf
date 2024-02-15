@@ -387,7 +387,7 @@ Object LobbyEast "Lobby East"
 with
 
 	description "This is a small area of the main lobby. To the east there is a door with a sign next to it saying RESTROOM.
-		     To the north a hallway extends back into the building. The lobby extends to the west",
+		     To the north a hallway extends back into the building. The lobby extends to the west.",
 
 n_to Hallway1,
 w_to Lobby,
