@@ -1134,7 +1134,7 @@ has light;
 Object ITcloset "IT Closet"
 with
 
-	description "This is an IT closet. To the west there is a door leading back to the hallway. The room is mostly empty except for a Phillips Head screwdriver as well as a dusty USB drive, both resting atop one of the shelfs.",
+	description "This is an IT closet. To the west there is a door leading back to the hallway.",
 
 w_to Hallway6,
 
