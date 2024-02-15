@@ -557,11 +557,6 @@ with
 			}
 	],
 
-	instructions [;
-		 "Oh this wall is made of glass, it would be a shame if something were to happen to it...";
-	],
-
-
 s_to Hallway7,
 n_to Hallway5,
 e_to ITcloset,
