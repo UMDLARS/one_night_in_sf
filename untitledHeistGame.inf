@@ -379,7 +379,7 @@ has static supporter;
 Object -> -> brochure "brochure"
 with
 	name "brochure" "flyer" "paper",
-	description "This full-color tri-fold flyer is printed on sturdy paper. It talks in extravagant terms about the company.";
+	description "This full-color tri-fold flyer is printed on sturdy paper. It talks in extravagant terms about the company, its president John Titor, and the uncanny accuracy of their predictions of future market and socio-political events.";
 
 
 !=============LOBBYEAST===========
