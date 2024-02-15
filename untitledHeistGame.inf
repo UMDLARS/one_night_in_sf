@@ -998,7 +998,7 @@ Object Office2 "IT Office"
 with
 
 	description [;
-		print "This is the IT office. The floor of this room is made of the large square modular linoleum-covered panels that are typical in server rooms with raised floors. The floor shifts and creaks under your weight. A desk in the corner has an empty laptop docking station on it and a few fidget toys. A work table is against the south wall with the electronic flotsam and jetsam of a previous project. The useless husks of a few broken computers lie in the corner. To the west there is a door leading to the hallway. To the north is a reinforced door with an electronic keypad lock.";
+		print "This is the IT office. The floor of this room is made of large square modular linoleum-covered panels of the kind typical in server rooms with raised floors. The floor shifts and creaks under your weight. A desk is in the corner has an empty laptop docking station on it and a few fidget toys. A work table is against the south wall with the electronic flotsam and jetsam of a previous project. The useless husks of a few broken computers lie in the corner. To the west there is a door leading to the hallway. To the north is a reinforced door with an electronic keypad lock.";
 		if (ITRoomTile has open) {
 			print "^^One of the floor tiles has been moved aside, revealing a gap that leads down into a crawl space under the floor.";
 		}
