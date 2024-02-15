@@ -217,7 +217,7 @@ has light;
 Object -> elevatorDoor "Elevator Door"
 with
 	name 'elevator' 'door',
-	description "This is a metal elevator door. It has no handle as it is exclusively operated by the elevator itself, there must be some way to open this.",
+	description "This is a metal elevator door. It has no handle as it is exclusively operated by the elevator itself;  there must be some way to open this.",
 	door_dir (n_to) (s_to),
 	found_in Lobby Tutorial,
 
@@ -411,7 +411,7 @@ with
 
 	description "This is a researcher's office, taken up almost entirely by a large desk strewn with academic papers.  A terminal sits amidst the clutter, its screen glowing with amber letters against a black backdrop.",
 	cheap_scenery
-		'large' 'desk' "The desk is out of place for this office building, and seems to be made of steel.  It has a military look to it, and was a popular style in the 1950s and 60s."
+		'large' 'desk' "The desk looks out of place for this office building, and seems to be made of steel.  It has a military look to it, and was a popular style in the 1950s and 60s."
 		'academic' 'papers' "Most of the papers are theories on time travel by Tipler.  The rest are printouts of e-mails to user jtitor.",
 
 e_to Office7Door,
@@ -506,7 +506,7 @@ Object Hallway6 "Hallway"
 with
 
     description [;
-		print "This is a hallway that extends to the north and to the south. On the east wall there is a closet. ";
+		print "This is a hallway that extends to the north and to the south. To the east there is a closet. ";
 		if (glass has locked){
 			print "The entire west wall is thick, tempered glass; it stands between you and ";
 		}
@@ -520,8 +520,8 @@ with
 		print "a laboratory packed with futuristic-looking equipment. A biometric authentication system is embedded into the glass wall. It is connected to a large, sliding glass door leading west into the lab.";
 ],
     cheap_scenery
-        'retina' 'scanner' "You peer into the retina scanner. A laser sweeps across your eye. Instantly, the scanner beeps disapprovingly, and indicator on it flashes red several times. Red text appears on a screen: ~YOU ARE NOT JOHN TITOR THIS LOGIN ATTEMPT WILL BE REPORTED.~"
-		'eyepiece' 'eye' "You peer into the retina scanner. A laser sweeps across your eye. Instantly, the scanner beeps disapprovingly, and indicator on it flashes red several times. Red text appears on a screen: ~YOU ARE NOT JOHN TITOR THIS LOGIN ATTEMPT WILL BE REPORTED.~"
+        'retina' 'scanner' "You peer into the retina scanner. A laser sweeps across your eye. Instantly, the scanner beeps disapprovingly, and the indicator on it flashes red several times. Red text appears on a screen: ~YOU ARE NOT JOHN TITOR THIS LOGIN ATTEMPT WILL BE REPORTED.~"
+		'eyepiece' 'eye' "You peer into the retina scanner. A laser sweeps across your eye. Instantly, the scanner beeps disapprovingly, and the indicator on it flashes red several times. Red text appears on a screen: ~YOU ARE NOT JOHN TITOR THIS LOGIN ATTEMPT WILL BE REPORTED.~"
         'voiceprint' 'microphone' "This system appears to be designed to recognize certain individuals' voices when they speak into the microphone."
         'handprint' 'recognizer' [;
 			Examine: "The handprint recognizer looks like something from a 1990s spy movie. An angled bezel sticks out from the wall with the outline of a hand illuminated by a pulsating orange grid pattern.";
@@ -773,7 +773,7 @@ with
 Object -> flatHead "Flathead"
 with
 	name 'flathead' 'screwdriver',
-	description "This is a flat head screwdriver with a bright red handle. This seems it was once used to open cans of paint judging by the dried flecks of paint on it. On the handle reads an inscription that says ''NOT TO BE REMOVED FROM FLOOD CONTROL DAM #3''",
+	description "This is a flathead screwdriver with a bright red handle. This seems it was once used to open cans of paint judging by the dried flecks of paint on it. On the handle reads an inscription that says ''NOT TO BE REMOVED FROM FLOOD CONTROL DAM #3''",
 	instructions [;
 		print "You can use this screwdriver with the ",
 		(ul) "screw", " and ", (ul) "unscrew", " verbs.
@@ -842,16 +842,16 @@ has bulky proper;
 Object Hallway4 "Hallway"
 with
 
-	description "This is a hallway, extending to the east and to the west. To the north is an office. To the south is a kitchenette.",
+	description "This is a hallway, extending to the east and to the west. To the north is an office. To the south is a kitchenette. The hallway is barren except for a lone water machine.",
 	cheap_scenery
 		'hinges' 'hinge'[;
-			Examine: "These are the hinges of the door. They hold the door to the wall due to pins going through the entire assembly. Maybe you could remove the pins if you had something with a flat end to push them out.";
+			Examine: "These are the hinges of the door, which bind the door to the wall by four pins going through the entire assembly. Maybe you could remove the pins if you had something with a flat end to push them out.";
 			default: "I am not sure what you want me to do.";
 		]
 		'pins' 'pin' [;
 			Examine: "These pins were hammered into place while someone held the door up. This is how most doors are attached to walls, it seems this door just so happens to have them on the exterior of the office.";
 			Remove:
-							if(second==flathead){
+							if(second==flathead){ 
 								print "You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...";
 								give Office3Door open;
 								return true;
@@ -939,7 +939,7 @@ with
 	description "This is a kitchenette. There is a countertop with a sink, a microwave, and a coffee maker. Below the counter top there are cabinets and drawers. To the north the room extends into the hallway.",
 	cheap_scenery
 		'sink' 'kitchen sink' "The sink is tidy and free of dishes. Not a single calcium stain marks the basin."
-		'microwave' 'microwave' "The microwave clock reads ithe current time in military time; it is off by one minute.",
+		'microwave' 'microwave' "The microwave clock reads the current time in military time; it is off by one minute.",
 
 n_to Hallway4,
 
@@ -1134,7 +1134,7 @@ has light;
 Object ITcloset "IT Closet"
 with
 
-	description "This is an IT closet. To the west there is a door leading back to the hallway.",
+	description "This is an IT closet. To the west there is a door leading back to the hallway. The room is mostly empty except for a Phillips Head screwdriver as well as a dusty USB drive, both resting atop one of the shelfs.",
 
 w_to Hallway6,
 
