@@ -387,11 +387,27 @@ Object LobbyEast "Lobby East"
 with
 
 	description "This is a small area of the main lobby. To the east there is a door with a sign next to it saying RESTROOM.
-		     To the north a hallway extends back into the building. The lobby extends to the west.",
+		     To the north a hallway extends back into the building. The lobby extends to the west. A latched window to the south overlooks the city.",
+	
+
 
 n_to Hallway1,
 w_to Lobby,
 e_to Restroom,
+s_to LobbyEastWindow,
+
+has light;
+
+!=============LOBBYEAST_WINDOW(~~~~~~PLACEHOLDER~~~~~)======================
+Object LobbyEastWindow "Window"
+with
+	description "The window overlooks the last few blocks of the Embarcadero as it merges with Chinatown, the lights becoming warmer toward with every block.
+			You notice that the window is supporting a fire escape, which leads all the way down to the street, twelve floors below.",
+	cheap_scenery 
+		'fire escape' 'fireescape' "The fire escape leads all the way down to the street, twelve blocks below. If you wanted to, you could take it all the way down. 
+				Then again, you could also eat sushi from a gas station if you wanted to. You're better off not.",
+
+n_to LobbyEast,
 
 has light;
 
