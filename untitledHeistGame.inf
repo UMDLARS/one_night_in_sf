@@ -68,6 +68,8 @@ Include "ext_cheap_scenery.h";
 Include "puny.h";
 Include "help.h";
 
+Attribute hint_given;
+
 Attribute heavy;
 Attribute bulky;
 
@@ -100,8 +102,13 @@ Verb 'type'  * -> TypeErr
 [HintSub;
 	if(location.instructions == 0){"It appears there are no hints to give for this room, sorry.";}
 	else {
+
 		PrintOrRun(location, instructions, false);
-		score = score - 15;
+		if (location hasnt hint_given) {
+			score = score - 15;
+			give location hint_given;
+		}
+		PrintOrRun(location, instructions, false);
 	}
 ];
 	
@@ -275,6 +282,7 @@ before [;
 		}
 	],
 
+has hint_given ~hint_given,
 has light;
 
 !================LEAVE============================
@@ -295,6 +303,7 @@ with
 
 s_to Lobby,
 
+has hint_given ~hint_given,
 has light;
 
 Object -> receptiondesk "Receptionist's Desk"
@@ -337,6 +346,7 @@ with
 	n_to Hallway7,
 	e_to Lobby,
 
+has hint_given ~hint_given,
 has light;
 
 
@@ -397,6 +407,7 @@ w_to Lobby,
 e_to Restroom,
 s_to FireEscape,
 
+has hint_given ~hint_given,
 has light;
 
 !=============FIREESCAPE(~~~~~~PLACEHOLDER~~~~~)======================
@@ -415,6 +426,7 @@ with
 	
 n_to LobbyEast,
 
+has hint_given ~hint_given,
 has light;
 
 Object -> fe_door "fire escape door"
@@ -443,7 +455,7 @@ s_to Waiting,
 n_to Hallway6,
 w_to Office7Door,
 
-
+has hint_given ~hint_given,
 has light;
 
 !============OFFICE7(~~~PLACEHOLDER~~~)============================
@@ -461,6 +473,7 @@ with
 
 e_to Office7Door,
 
+has hint_given ~hint_given,
 has light;
 
 Object -> Office7Door "Brass Knobbed Door"
@@ -614,7 +627,7 @@ instructions [;
 	],
 	
 
-
+has hint_given ~hint_given,
 has light;
 
 Object -> glass "glass wall"
@@ -678,6 +691,7 @@ e_to [;
 	}
 ],
 
+has hint_given ~hint_given,
 has light;
 
 Object -> IBM5100 "IBM 5100"
@@ -716,6 +730,7 @@ with
 
 e_to Hallway2,
 
+has hint_given ~hint_given,
 has light;
 
 Object -> ladder "ladder"
@@ -753,6 +768,7 @@ e_to Hallway4,
 cant_go "This door is locked. Maybe you could find a key or an alternate way in.",
 n_to Office4,
 
+has hint_given ~hint_given,
 has light;
 
 [InventoryLimit bulk_response weight_response x;
@@ -815,6 +831,7 @@ u_to [;
 
 s_to Hallway5,
 
+has hint_given ~hint_given,
 has light;
 
 Object -> tarp "Tarp"
@@ -877,6 +894,7 @@ u_to [;
 	"You cannot get up there, if only you had a some sort of step stool.^";
 ],
 
+has hint_given ~hint_given,
 has light;
 
 Object -> desk "Desk"
@@ -906,7 +924,17 @@ with
 		'water' 'water dispenser' "The water dispenser sits there, idle, empty and useless."
 		'hinges' 'hinge'[;
 			Examine: "These are the hinges of the door, which bind the door to the wall by four pins going through the entire assembly. Maybe you could remove the pins if you had something with a flat end to push them out.";
-			default: "I am not sure what you want me to do.";
+			Remove:
+							if(second==flathead){ 
+								print "You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...";
+								give Office3Door open;
+								return true;
+							}
+							else{
+								print "You try that, but it doesn't seem to work. Maybe you need something like a chisel.";
+								return true;
+							};
+			!default: "I am not sure what you want me to do.";
 		]
 		'pins' 'pin' [;
 			Examine: "These pins were hammered into place while someone held the door up. This is how most doors are attached to walls, it seems this door just so happens to have them on the exterior of the office.";
@@ -917,7 +945,7 @@ with
 								return true;
 							}
 							else{
-								print "You try that, but it doesn't seem to work. Maybe if you need something something like a chisel.";
+								print "You try that, but it doesn't seem to work. Maybe you need something like a chisel.";
 								return true;
 							}
 		],
@@ -926,6 +954,7 @@ e_to Hallway3,
 s_to Kitchenette,
 n_to Office3Door,
 
+has hint_given ~hint_given,
 has light;
 
 !============OFFICE3(LEN'S OFFICE)==============================
@@ -954,6 +983,7 @@ with
 
 s_to Hallway4,
 
+has hint_given ~hint_given,
 has light;
 
 Object -> linuxBootComputer "Len's Computer"
@@ -1008,6 +1038,7 @@ with
 
 n_to Hallway4,
 
+has hint_given ~hint_given,
 has light;
 
 Object -> cabinet "Cabinet"
@@ -1038,6 +1069,7 @@ w_to Hallway4,
 s_to Hallway2,
 e_to Office2,
 
+has hint_given ~hint_given,
 has light;
 
 Object -> plant "large potted plant"
@@ -1074,7 +1106,7 @@ with
 		'work' 'table' "The work table has bits and pieces of wire, some discrete electronic components -- nothing much interesting."
 		'reinforced' 'door' "This door looks extremely strong, as does the wall it is set into."
 		'fidget' 'toys' "One toy is your typical fidget spinner, and the other is a folding cube toy."
-		'docking' 'station' "This generic docking station is connected to a monitor and keyboard, but the laptop is not here. A wired Ethernet cable that is plugged into the back of of the dock snakes across the desk and down through a hole in the floor tile."
+		'docking' 'station' "This generic docking station is connected to a monitor and keyboard, but the laptop is not here. A wired Ethernet cable that is plugged into the back of the dock snakes across the desk and down through a hole in the floor tile."
 		'wire' 'wires' "This ethernet wire is connected to the docking station; you follow it, and it seems to go into the floor. Strange, is there a space underneath here?",
 	before [;
 		Go:
@@ -1097,6 +1129,7 @@ with
 w_to Hallway3,
 d_to ITRoomTile,
 
+has hint_given ~hint_given,
 has light;
 
 Object -> ITRoomTile "Loose Floor Tile"
@@ -1160,6 +1193,7 @@ with
 d_to UnderServerRoom,
 s_to Office2,
 
+has hint_given ~hint_given,
 has light;
 
 Object -> server_tile "floor tile"
@@ -1199,6 +1233,7 @@ n_to Hallway3,
 s_to Hallway1,
 w_to Utility,
 
+has hint_given ~hint_given,
 has light;
 
 !=============ITCLOSET=============================================
@@ -1209,6 +1244,7 @@ with
 
 w_to Hallway6,
 
+has hint_given ~hint_given,
 has light;
 
 Object -> screwdriver "Phillips Head Screwdriver"
@@ -1269,6 +1305,7 @@ n_to Hallway2,
 s_to LobbyEast,
 e_to Office1Door,
 
+has hint_given ~hint_given,
 has light;
 
 !=============OFFICE1(ELLIE'S OFFICE)============================
@@ -1284,6 +1321,7 @@ with
 
 w_to Office1Door,
 
+has hint_given ~hint_given,
 has light;
 
 Object -> ellieDesk "Desk"
@@ -1354,7 +1392,6 @@ After [;
 ],
 has static door openable ~open lockable locked;
 
-
 !=============RESTROOM=====================
 Object Restroom "Restroom"
 with
@@ -1372,6 +1409,8 @@ with
 	    ],
 
 w_to LobbyEast,
+
+has hint_given ~hint_given,
 has light;
 
 Object -> plunger "toilet plunger"
