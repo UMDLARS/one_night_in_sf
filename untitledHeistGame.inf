@@ -100,7 +100,9 @@ Verb 'type'  * -> TypeErr
 ];
 
 [HintSub;
-	if(location.instructions == 0){"It appears there are no hints to give for this room, sorry.";}
+	if(location.instructions == 0){
+		"It appears there are no hints to give for this room, sorry.";
+	}
 	else {
 
 		PrintOrRun(location, instructions, false);
@@ -108,7 +110,6 @@ Verb 'type'  * -> TypeErr
 			score = score - 15;
 			give location hint_given;
 		}
-		PrintOrRun(location, instructions, false);
 	}
 ];
 	
@@ -416,7 +417,7 @@ with
 	description [;
 	 	print "This door leads all the way down to ground level via a fire escape, judging by the signs posted next to it. ";
 		if (score == MAX_SCORE) {
-			"You suppose you could use it to exit, but then again, it is twelve floors, and the elevator is right there. 
+			print "You suppose you could use it to exit, but then again, it is twelve floors, and the elevator is right there. 
 					You decide to use the elevator instead.";
 		} else {
 			"You're better off leaving it alone until you've obtained what you came here for.";
@@ -564,7 +565,7 @@ Object Hallway6 "Hallway"
 with
 
     description [;
-		print "This is a hallway that extends to the north and to the south. To the east there is a closet. A row of uninteresting filing cabinets lines the west wall.";
+		print "This is a hallway that extends to the north and to the south. To the east there is a closet. A row of uninteresting filing cabinets lines the west wall. ";
 		if (glass has locked){
 			print "The entire west wall is thick, tempered glass; it stands between you and ";
 		}
@@ -757,6 +758,10 @@ with
 
 	description "This is a hallway that extends to the east and to the south. There is an office to the west, and another office to the north. Along the east wall, there is a poster depicting a sad kitten wearing a suit.",
 	cheap_scenery
+		'door' 'door' [;
+			Unlock: "You fail to unlock the door.";
+			default: "The door to the west office is locked. Maybe you could find a key or an alternate way in.";
+		]
 		'poster' 'kitten poster' [;
 	    	Examine: "The poster depicts an especially sad-looking kitten wearing a business suit with a tie, clinging helplessly to a branch. The poster is captioned with the words 'Hang In There!'.";
 			Take: "Unfortunately, simply taking down the poster will not spare the kitten. You decide to leave the business-kitten to its fate.";
@@ -923,7 +928,7 @@ with
 	cheap_scenery
 		'water' 'water dispenser' "The water dispenser sits there, idle, empty and useless."
 		'hinges' 'hinge'[;
-			Examine: "These are the hinges of the door, which bind the door to the wall by four pins going through the entire assembly. Maybe you could remove the pins if you had something with a flat end to push them out.";
+			Examine: "These hinges bind the door to the wall by four pins going through the entire assembly. Maybe you could remove the pins if you had something with a flat end to push them out.";
 			Remove:
 							if(second==flathead){ 
 								print "You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...";
@@ -1327,14 +1332,14 @@ has light;
 Object -> ellieDesk "Desk"
 with
 	name 'desk' 'wooden',
-	description "This is a large wooden desk. On its top there is a small plaque with the name ELLIE, a keyboard, a mouse, and a monitor connected to the computer next to this desk.",
+	description "This is a large wooden desk. On its top there is a small plaque with the name ELLIE, a keyboard, a mouse, and a monitor connected to the computer.",
 
 has static supporter;
 
 Object -> ellieComputer "Ellie's Computer"
 with
 	name 'Ellie' 'Ellie^s' 'computer' 'case' 'screws',
-	description "This computer is bolted down to the floor as to prevent it from being moved. On the back there are a number of wires exiting the computer. On the side there are 4 phillips head screws holding the side panel on. Maybe you could unscrew these with something?",
+	description "This computer is bolted down to the floor as to prevent it from being moved. On the back there are a number of wires exiting the computer. On the side there are 4 phillips head screws holding the side panel on; maybe you could unscrew these with something?",
 	instructions "You attempt to use the computer, however, you are immediately challenged by a log in screen requesting a password.^^It seems the information on the hard drive of this computer will have to be accessed some other way.",
 	before [;
 		Turn:
