@@ -525,10 +525,10 @@ with
 					if (self has general && noun == 'tipler') {
 						give self ~locked;
 						Achieved(GET_TITOR_PLANS);
-						print "The system pauses ominously for a moment, and then presents you with a command prompt.  Poking around briefly, you discover a directory full of technical schematics and research papers.^You start printing the data which begins exiting out the machine on a spool of green bar paper. You grab the printout.";
+						print "The system pauses ominously for a moment, and then presents you with a command prompt.  Poking around briefly, you discover a directory full of technical schematics and research papers.^You start printing the data, which begins exiting out of the machine onto a spool of green bar paper. You grab the printout.";
 						move printout to player;
 						return true;
-					} else if (noun == 'jtitor') {
+					} else if (self hasnt general && noun == 'jtitor') {
 						give self general;
 						"The system accepts the username, and prompts you for a password.";
 					} else {
@@ -550,10 +550,10 @@ with
 	],
 has static reactive lockable locked;
 
-Object printout "Print out"
+Object printout "Printout"
 with
 	name 'printout' 'print' 'out' 'schematics' 'plans' 'titor^s' 'titor' 'results',
-	description "This is the printout from the VT242 terminal, you must escape with this.",
+	description "This is the printout from the VT242 terminal; you must escape with this.",
 	After [;
 		Take: Achieved(GET_TITOR_PLANS);
 		Drop: Forfeit(GET_TITOR_PLANS);
@@ -818,7 +818,7 @@ has light;
 Object Office4 "The Unused Office"
 with
 
-	description "This room is a small office; set in the middle is a wooden desk, devoid of any identifying objects. One of the ceiling panels seems to be missing in here. Along the east wall there is a tarp laying on the floor, partially laying against the wall. There are 2 cans of paint here. The east wall seems to be still unpainted.",
+	description "This room is a small office; set in the middle is a wooden desk, devoid of any identifying objects. One of the ceiling panels seems to be missing in here. Along the east wall there is a tarp laying on the floor, partially laying against the wall next to two cans of paint. The east wall seems to be still unpainted.",
 
 before [;
 		Climb: return UseLadder(noun, Crawl1);
@@ -1068,7 +1068,10 @@ has scored;
 Object Hallway3 "Hallway"
 with
 
-	description "This is a hallway that extends to the south and to the west. To the east is an office. The overhead lights shine phosphorescently.",
+	description "This is a hallway that extends to the south and to the west. To the east is an office. To the north you see a table, on which is a set of hastily scribbled notes.",
+	cheap_scenery
+		'table' 'wooden table' "This table has that new store-bought shine.",
+
 
 w_to Hallway4,
 s_to Hallway2,
