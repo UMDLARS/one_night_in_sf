@@ -844,7 +844,7 @@ has light;
 Object -> tarp "Tarp"
 with
 	name 'tarp' 'tarpaulin' 'PET' 'polyethylene',
-	description "This is a blue polyethylene tarp, and its craftsmanship is clearly of the highest quality. On it are spatterings of off-white paint.",
+	description "This is a blue polyethylene tarp, the craftsmanship of which is clearly of the highest quality. On it are spatterings of off-white paint.",
 	before[;
 		Take, Transfer:
 			if (flatHead in player) {
@@ -941,6 +941,7 @@ with
 							if(second==flathead){ 
 								print "You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...";
 								give Office3Door open;
+								give Office3Door concealed;	
 								return true;
 							}
 							else{
@@ -1396,7 +1397,7 @@ has proper;
 Object -> Office1Door "Antique Wooden Door"
 with
 	name 'office' 'door' 'lock',
-	description "This is an old wooden antique door. You can see that it has an incredibly simple locking mechanism; it could easy be unlocked if you had a thin stiff object to jimmy the lock.",
+	description "This is an old wooden antique door. You can see that it has an incredibly simple locking mechanism; it could easily be unlocked if you had a thin stiff object to jimmy the lock.",
 	door_dir (e_to) (w_to),
 	found_in Hallway1 Office1,
 	with_key coffeeCard,
