@@ -1313,7 +1313,7 @@ has scored ~general;
 Object Hallway1 "Hallway"
 with
 
-	description "This is a hallway, extending to the north. To the south there is the lobby. To the east, a wooden door leads into an office. A couch rests along the west wall.",
+	description "This is a hallway, extending to the north. To the south, the hallway opens into the lobby. To the east, a wooden door leads into an office. A couch rests along the west wall.",
 
 	instructions [;
 		 "I should look for some sort of thing plastic object, like a credit card, to jimmy this lock.";
