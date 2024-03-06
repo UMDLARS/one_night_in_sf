@@ -439,11 +439,11 @@ with
 	description "This door leads to a fire escape, judging by the exit signs posted around it.",
 	before [;
 		Open:
-			print "You open the door; as expected, this stairwell leads twelve floors down to the streets of the Embarcadero. ";
+			print "You open the door; as expected, this stairwell leads twelve floors down to the streets of the Embarcadero.";
 			if (score == MAX_SCORE) {
 				"It looks like an awfully long walk down; you close the door, and decide to use the elevator right next to it instead.";
 			} else {
-				"Maybe you could use it as an exit once you've completed the list.";
+				"You promptly close the door, and return to the task at hand. Maybe you could use it as an exit once you've completed the list.";
 			}
 	],
 
