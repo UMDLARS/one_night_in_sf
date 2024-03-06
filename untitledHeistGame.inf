@@ -1243,7 +1243,7 @@ with
 Object Hallway2 "Hallway"
 with
 
-	description "This is a hallway, extending to the north and to the south. To the west there is a utility closet. A row of uninteresting filing cabinets lines the east wall.",
+	description "This is a hallway, extending to the north and to the south. To the west there is a utility closet, which is open. A row of uninteresting filing cabinets lines the east wall.",
 	cheap_scenery 
 		'cabinets' 'filing cabinets' "The filing cabinets are filled to the brim with boring business documents, none of which seem useful.",
 
