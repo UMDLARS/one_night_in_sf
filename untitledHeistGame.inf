@@ -81,6 +81,9 @@ Extend 'climb' first
 Verb 'talk'
 	* 'to' noun -> TalkTo;
 
+Extend 'remove' 
+ * noun -> ThrowAt;
+
 [TalkToSub;
 	"Perhaps you should try to ~talk to something (or someone)~.";
 ];
@@ -756,15 +759,14 @@ has bulky heavy scored;
 Object Hallway5 "Hallway"
 with
 
-	description "This is a hallway that extends to the east and to the south. There is an office to the west, and another office to the north. Along the east wall, there is a poster depicting a sad kitten wearing a suit.",
+	description "This is a hallway that extends to the east and to the south. There is an office to the west. To the north there is another office, which is open. Along the east wall, there is a poster which depicts a sad kitten wearing a suit.",
 	cheap_scenery
 		'door' 'door' [;
 			Unlock: "You fail to unlock the door.";
 			default: "The door to the west office is locked. Maybe you could find a key or an alternate way in.";
 		]
 		'poster' 'kitten poster' [;
-	    	Examine: "The poster depicts an especially sad-looking kitten wearing a business suit with a tie, clinging helplessly to a branch. The poster is captioned with the words 'Hang In There!'.";
-			Take: "Unfortunately, simply taking down the poster will not spare the kitten. You decide to leave the business-kitten to its fate.";
+			Take: "Unfortunately, simply taking down the poster will not spare the kitten. You decide to leave business-kitten to its fate.";
 			default: "The poster depicts an especially sad-looking kitten wearing a business suit with a tie, clinging helplessly to a branch. The poster is captioned with the words 'Hang In There!'.";
 		],
 
@@ -845,9 +847,15 @@ with
 	description "This is a blue polyethylene tarp, and its craftsmanship is clearly of the highest quality. On it are spatterings of off-white paint.",
 	before[;
 		Take, Transfer:
-			print "As you fold up and take the tarp you notice underneath it there was a flathead screwdriver!";
-			give flatHead ~concealed;
-			return 1;
+			if (flatHead in player) {
+				print "While the tarp certainly is of a high quality, you see no point in keeping it around.";
+				return 1;
+			}
+			else {
+				print "As you fold up and take the tarp you notice underneath it there was a flathead screwdriver!";
+				give flatHead ~concealed;
+				return 1;
+			}
 	],
 	instructions "Tarpaulins are generally only useful for covering other things.";
 
@@ -1070,8 +1078,8 @@ with
 
 	description "This is a hallway that extends to the south and to the west. To the east is an office. To the north you see a table, on which is a set of hastily scribbled notes.",
 	cheap_scenery
-		'table' 'wooden table' "This table has that new store-bought shine.",
-
+		'table' 'wooden table' "This table has that new store-bought shine."
+		'door' 'wooden door' "There is a wooden door to the east, which leads to the office. It does not seem to be locked.",
 
 w_to Hallway4,
 s_to Hallway2,
@@ -1109,6 +1117,7 @@ with
 		}
 	],
 	cheap_scenery
+		'door' 'doorway' "To the west, there is a door that presumably leads back into the hallway."
 		'lock' 'keypad' "The keypad presumably controls the door lock; entering the right code would likely unlock the door."
 		'husks' 'computers' "These computers are definitely useless junk, and they smell like the magic smoke got out of them."
 		'work' 'table' "The work table has bits and pieces of wire, some discrete electronic components -- nothing much interesting."
@@ -1303,11 +1312,14 @@ has scored ~general;
 Object Hallway1 "Hallway"
 with
 
-	description "This is a hallway, extending to the north. To the south there is the lobby. To the east there is an office. A couch rests along the west wall.",
+	description "This is a hallway, extending to the north. To the south there is the lobby. To the east, a wooden door leads into an office. A couch rests along the west wall.",
 
 	instructions [;
 		 "I should look for some sort of thing plastic object, like a credit card, to jimmy this lock.";
 	],
+	cheap_scenery
+		'door' 'wooden door' "To the east, a doorway leads into an office space, judging by the placard fixed to the door. The door appears to be locked."
+		'couch' 'couch' "There is a couch resting along the wall to the west. It seems to be fixed to the floor.",
 
 n_to Hallway2,
 s_to LobbyEast,
@@ -1423,7 +1435,7 @@ has light;
 
 Object -> plunger "toilet plunger"
 with
-	name 'plunger' 'toilet plunger',
+	name 'plunger' "toilet plunger",
 	description "This is your bog-standard toilet plunger: a wooden handle screwed into a large and flexible rust-colored rubber suction cup.",
 	instructions [;
 		"You're not here for amateur plumbing, but the suction cup makes it look like you could ", (ul) "pry", " or ", (ul) "plunge", " something appropriately smooth with ", (the) self, ".";
