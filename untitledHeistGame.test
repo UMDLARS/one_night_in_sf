@@ -622,6 +622,178 @@ Taken.
 > score
 You have so far scored 131
 
+* Test Fire Escape at game start
+
+> insert fob into scanner
+> take fob
+> insert fob into scanner
+> n
+> e
+> s
+Fire Escape
+> s
+> n
+Lobby East
+> s
+Fire Escape
+> e
+> w
+> s
+> n
+Lobby East
+
+* Complete all tasks and try to exit via Fire Escape
+
+> insert fob into scanner
+> take fob
+> insert fob into scanner
+> n
+> n
+Receptionist's Area
+> open desk
+> take key
+Taken.
+> s
+> w
+> take chair
+Taken.
+> n
+> unlock door with key
+You unlock
+> w
+Research Office
+> type jtitor into terminal
+The system accepts
+> type Tipler into terminal
+The system pauses
+> e
+> n
+> throw chair at glass
+You shatter the glass wall, creating an opening to the next room!
+> w
+You pick your way carefully through the giant shards of glass...
+> take ibm 5100
+Taken.
+> e
+> e
+IT Closet
+> take all
+> w
+> s
+> s
+> e
+> drop 5100
+Dropped.
+> e
+> e
+> take plunger
+Taken.
+> w
+> n
+> n
+> w
+The Utility Closet
+> take ladder
+Taken.
+> e
+> n
+> e
+> drop ladder
+Dropped.
+> plunge floor tile
+You press the plunger
+> d
+> turn on flashlight
+You switch the flashlight on.
+> n
+> u
+Server Room
+> take tape
+Taken.
+> s
+IT Office
+> take ladder
+Taken.
+> w
+> w
+> w
+> n
+The Unused Office
+> take flathead
+Taken.
+> climb ladder
+You climb up the ladder.
+> w
+> d
+April's Office
+> take april's computer
+Taken.
+> e
+Hallway
+> e
+> s
+> open cabinet
+> take card
+Taken.
+> n
+Hallway
+> remove pins with flathead
+You remove the pins
+> n
+> insert usb into len's computer
+You insert the USB drive
+> turn on len's computer
+The computer boots
+> s
+> e
+> s
+> s
+> jimmy door with card
+You unlock the office door and open it!
+> e
+Ellie's Office
+> unscrew screws with phillips screwdriver
+You unscrew the screws
+> take hard drive
+Taken.
+> w
+Hallway
+> s
+> w
+> take 5100
+Taken.
+> score
+You have so far scored 131
+> e
+> s
+Fire Escape
+> s
+> w
+> e
+> n
+Lobby East
+
+* Tarp Flathead test
+
+> insert fob into scanner
+> take fob
+> insert fob into scanner
+> n
+> w
+> n
+> n
+> e
+> take drive
+Taken.
+> w
+> n
+> n
+> take tarp
+As you fold up and take the tarp you notice underneath it there was a flathead screwdriver!
+> take screwdriver
+> take tarp
+While the tarp certainly is of the highest quality, you see no point in keeping it around.
+
 * Easter Eggs
 > damn this stupid chunk of germanium
 DAMN.SV NOT FOUND

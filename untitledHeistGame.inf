@@ -81,9 +81,6 @@ Extend 'climb' first
 Verb 'talk'
 	* 'to' noun -> TalkTo;
 
-Extend 'remove' 
- * noun -> ThrowAt;
-
 [TalkToSub;
 	"Perhaps you should try to ~talk to something (or someone)~.";
 ];
@@ -202,7 +199,7 @@ with
 				return true;
 			}
 			if(noun==securityCard && securityCard has heavy){
-				print "Ooops, you fumble the fob and drop it on the floor of the elevator! Use ~take [object]~ to pick up an object. Try grabbing the fob and try again!";
+				print "Oops, you fumble the fob and drop it on the floor of the elevator! Use ~take [object]~ to pick up an object. Try grabbing the fob and try again!";
 				give securityCard ~heavy;
 				move securityCard to Tutorial;
 				return true;
@@ -847,9 +844,10 @@ with
 	description "This is a blue polyethylene tarp, the craftsmanship of which is clearly of the highest quality. On it are spatterings of off-white paint.",
 	before[;
 		Take, Transfer:
-			if (flatHead in player) {
-				print "While the tarp certainly is of a high quality, you see no point in keeping it around.";
-				return 1;
+			! This checks to see if player has lifted the tarp at all.
+			! It can probably be simplified to "flatHead hasnt concealed"
+			if (flatHead in player || flatHead hasnt concealed) {
+				print "While the tarp certainly is of the highest quality, you see no point in keeping it around.";
 			}
 			else {
 				print "As you fold up and take the tarp you notice underneath it there was a flathead screwdriver!";
@@ -1110,7 +1108,6 @@ has heavy bulky scored;
 !============OFFICE2(~~~PLACEHOLDER~~~)==============================
 Object Office2 "IT Office"
 with
-
 	description [;
 		print "This is the IT office. The floor of this room is made of the large square modular linoleum-covered panels that are typical in server rooms with raised floors. The floor shifts and creaks under your weight. A desk in the corner has an empty laptop docking station on it and a few fidget toys. A work table is against the south wall with the electronic flotsam and jetsam of a previous project. The useless husks of a few broken computers lie in the corner. To the west there is a door leading to the hallway. To the north is a reinforced door with an electronic keypad lock.";
 		if (ITRoomTile has open) {
@@ -1118,7 +1115,7 @@ with
 		}
 	],
 	cheap_scenery
-		'door' 'doorway' "To the west, there is a door that presumably leads back into the hallway."
+		'door' 'doorway' "To the west, a door leads back into the hallway."
 		'lock' 'keypad' "The keypad presumably controls the door lock; entering the right code would likely unlock the door."
 		'husks' 'computers' "These computers are definitely useless junk, and they smell like the magic smoke got out of them."
 		'work' 'table' "The work table has bits and pieces of wire, some discrete electronic components -- nothing much interesting."
@@ -1417,7 +1414,7 @@ has static door openable ~open lockable locked;
 Object Restroom "Restroom"
 with
 
-	description "This room is a small single user bathroom. There is a sink with a mirror as well as a toilet. To the west there is a door leading back into the lobby.",
+	description "This room is a small single-user bathroom. There is a sink set below a mirror, as well as a toilet. To the west there is a door leading back into the lobby.",
 	cheap_scenery
 	    'toilet' 'porcelain' [;
 	    	Examine: "It's a fairly standard white porcelain toilet, with the lid down.  At least the people who work here have ", (bf) "some", " standards.";
