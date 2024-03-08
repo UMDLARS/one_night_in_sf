@@ -399,51 +399,32 @@ with
 
 	description "This is a small area of the main lobby. To the east there is a door with a sign next to it that reads ~RESTROOM~.
 		     To the north a hallway extends back into the building. The lobby extends to the west. To the south is a sturdy gray door that leads to a fire escape stairwell, judging by the sign above it.",
-	
-
+	cheap_scenery
+		'door' 'doorway' [;
+			Open: 
+				if (score == MAX_SCORE) {
+					print "It's too late to hatch an escape plan now. You decide to leave the fire escape alone, and collect what you came here for.";
+				}
+				else {
+					print "As you are about to open the door to the fire escape, you recall that there is an elevator mere steps away. You abstain from opening the door to the fire escape.";
+				};
+			Close: "The door to the fire escape is already closed.";
+			Unlock: "The door to the fire escape is unlocked, but you don't see the need to walk all those steps down.";
+			default: 
+				print "This doorway leads to a fire escape which runs to the streets below, judging by the sign above it. ";
+				if (score == MAX_SCORE) {
+					print "You suppose you could use the firescape to exit, but then again, it is twelve floors, and the elevator is right there. 
+					You decide to use the elevator instead.";
+				} else {
+					print "You're better off leaving the fire escape alone until you've obtained what you came here for.";
+				};
+		],
 
 n_to Hallway1,
 w_to Lobby,
 e_to Restroom,
-s_to FireEscape,
-
 
 has light;
-
-!=============FIREESCAPE(~~~~~~PLACEHOLDER~~~~~)======================
-Object FireEscape "Fire Escape" 
-with
-	description [;
-	 	print "This door leads all the way down to ground level via a fire escape, judging by the signs posted next to it. ";
-		if (score == MAX_SCORE) {
-			print "You suppose you could use it to exit, but then again, it is twelve floors, and the elevator is right there. 
-					You decide to use the elevator instead.";
-		} else {
-			"You're better off leaving it alone until you've obtained what you came here for.";
-		}
-	],
-
-	
-n_to LobbyEast,
-
-
-has light;
-
-Object -> fe_door "fire escape door"
-with 
-	name "door" "fire escape" "fire escape door",
-	description "This door leads to a fire escape, judging by the exit signs posted around it.",
-	before [;
-		Open:
-			print "You open the door; as expected, this stairwell leads twelve floors down to the streets of the Embarcadero.";
-			if (score == MAX_SCORE) {
-				"It looks like an awfully long walk down; you close the door, and decide to use the elevator right next to it instead.";
-			} else {
-				"You promptly close the door, and return to the task at hand. Maybe you could use it as an exit once you've completed the list.";
-			}
-	],
-
-has static door openable ~open locked scenery;
 
 !=============HALLWAY7(~~~~~~PLACEHOLDER~~~~~)======================
 Object Hallway7 "Hallway"
