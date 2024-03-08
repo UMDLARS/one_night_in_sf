@@ -56,6 +56,26 @@ Include "globals.h";
 	"Quitter.";
 ];
 
+[ BeADoor ; 
+	Examine: "A door leading to one of the offices.";
+	Open:
+		if (self has open) {
+			print "The door is already open.";
+		}
+		else {
+			give self open;
+			print "You open ", (the) self, ".";
+		};
+	Close:
+		if (self hasnt open) {
+			print "The door is already closed.";
+		}
+		else {
+			give self ~open;
+			print "You close ", (the) self, ".";
+		};
+];
+
 ! This is just the inverse of the Achieved function from grammar.h
 [ Forfeit num;
         if (task_done->num == 1) {
