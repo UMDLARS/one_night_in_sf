@@ -913,9 +913,9 @@ with
 	description "This is a hallway that extends to the east and to the west. To the north is an office. To the south is a kitchenette. The hallway is barren except for a lone empty water dispenser.",
 	cheap_scenery
 		'water' 'water dispenser' "The water dispenser sits there, idle, empty and useless."
-		'hinges' 'hinge'[;
+		'hinges' 'hinge' [;
 			Examine: "These hinges bind the door to the wall by four pins going through the entire assembly. Maybe you could remove the pins if you had something with a flat end to push them out.";
-			Remove:
+			Remove: 
 							if(second==flathead){ 
 								print "You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...";
 								give Office3Door open;
@@ -926,7 +926,7 @@ with
 								print "You try that, but it doesn't seem to work. Maybe you need something like a chisel.";
 								return true;
 							};
-			!default: "I am not sure what you want me to do.";
+			default: "I am not sure what you want me to do.";
 		]
 		'pins' 'pin' [;
 			Examine: "These pins were hammered into place while someone held the door up. This is how most doors are attached to walls, it seems this door just so happens to have them on the exterior of the office.";
@@ -934,12 +934,14 @@ with
 							if(second==flathead){ 
 								print "You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...";
 								give Office3Door open;
+								!give Office3Door concealed;
 								return true;
 							}
-							else{
+							else {
 								print "You try that, but it doesn't seem to work. Maybe you need something like a chisel.";
 								return true;
-							}
+							};
+		!	default: "I am not sure what you want me to do.";
 		],
 w_to Hallway5,
 e_to Hallway3,
@@ -1290,7 +1292,7 @@ has scored ~general;
 Object Hallway1 "Hallway"
 with
 
-	description "This is a hallway, extending to the north. To the south, the hallway opens into the lobby. To the east, a wooden door leads into an office. A couch rests along the west wall.",
+	description "This is a hallway, extending to the north. To the south, the hallway opens into the lobby. To the east, an antique wooden door leads into an office. A couch rests along the west wall.",
 
 	instructions [;
 		 "I should look for some sort of thing plastic object, like a credit card, to jimmy this lock.";
