@@ -283,7 +283,6 @@ before [;
 		}
 	],
 
-has hint_given ~hint_given,
 has light;
 
 !================LEAVE============================
@@ -304,7 +303,7 @@ with
 
 s_to Lobby,
 
-has hint_given ~hint_given,
+
 has light;
 
 Object -> receptiondesk "Receptionist's Desk"
@@ -347,7 +346,7 @@ with
 	n_to Hallway7,
 	e_to Lobby,
 
-has hint_given ~hint_given,
+
 has light;
 
 
@@ -408,7 +407,7 @@ w_to Lobby,
 e_to Restroom,
 s_to FireEscape,
 
-has hint_given ~hint_given,
+
 has light;
 
 !=============FIREESCAPE(~~~~~~PLACEHOLDER~~~~~)======================
@@ -427,7 +426,7 @@ with
 	
 n_to LobbyEast,
 
-has hint_given ~hint_given,
+
 has light;
 
 Object -> fe_door "fire escape door"
@@ -456,7 +455,7 @@ s_to Waiting,
 n_to Hallway6,
 w_to Office7Door,
 
-has hint_given ~hint_given,
+
 has light;
 
 !============OFFICE7(~~~PLACEHOLDER~~~)============================
@@ -474,7 +473,7 @@ with
 
 e_to Office7Door,
 
-has hint_given ~hint_given,
+
 has light;
 
 Object -> Office7Door "Brass Knobbed Door"
@@ -628,7 +627,7 @@ instructions [;
 	],
 	
 
-has hint_given ~hint_given,
+
 has light;
 
 Object -> glass "glass wall"
@@ -692,7 +691,7 @@ e_to [;
 	}
 ],
 
-has hint_given ~hint_given,
+
 has light;
 
 Object -> IBM5100 "IBM 5100"
@@ -731,7 +730,7 @@ with
 
 e_to Hallway2,
 
-has hint_given ~hint_given,
+
 has light;
 
 Object -> ladder "ladder"
@@ -772,7 +771,7 @@ e_to Hallway4,
 cant_go "This door is locked. Maybe you could find a key or an alternate way in.",
 n_to Office4,
 
-has hint_given ~hint_given,
+
 has light;
 
 [InventoryLimit bulk_response weight_response x;
@@ -835,7 +834,7 @@ u_to [;
 
 s_to Hallway5,
 
-has hint_given ~hint_given,
+
 has light;
 
 Object -> tarp "Tarp"
@@ -905,7 +904,7 @@ u_to [;
 	"You cannot get up there, if only you had a some sort of step stool.^";
 ],
 
-has hint_given ~hint_given,
+
 has light;
 
 Object -> desk "Desk"
@@ -966,7 +965,7 @@ e_to Hallway3,
 s_to Kitchenette,
 n_to Office3Door,
 
-has hint_given ~hint_given,
+
 has light;
 
 !============OFFICE3(LEN'S OFFICE)==============================
@@ -995,7 +994,7 @@ with
 
 s_to Hallway4,
 
-has hint_given ~hint_given,
+
 has light;
 
 Object -> linuxBootComputer "Len's Computer"
@@ -1050,7 +1049,7 @@ with
 
 n_to Hallway4,
 
-has hint_given ~hint_given,
+
 has light;
 
 Object -> cabinet "Cabinet"
@@ -1084,7 +1083,7 @@ w_to Hallway4,
 s_to Hallway2,
 e_to Office2,
 
-has hint_given ~hint_given,
+
 has light;
 
 Object -> plant "large potted plant"
@@ -1144,7 +1143,7 @@ with
 w_to Hallway3,
 d_to ITRoomTile,
 
-has hint_given ~hint_given,
+
 has light;
 
 Object -> ITRoomTile "Loose Floor Tile"
@@ -1208,7 +1207,7 @@ with
 d_to UnderServerRoom,
 s_to Office2,
 
-has hint_given ~hint_given,
+
 has light;
 
 Object -> server_tile "floor tile"
@@ -1248,7 +1247,7 @@ n_to Hallway3,
 s_to Hallway1,
 w_to Utility,
 
-has hint_given ~hint_given,
+
 has light;
 
 !=============ITCLOSET=============================================
@@ -1259,7 +1258,7 @@ with
 
 w_to Hallway6,
 
-has hint_given ~hint_given,
+
 has light;
 
 Object -> screwdriver "Phillips Head Screwdriver"
@@ -1323,7 +1322,7 @@ n_to Hallway2,
 s_to LobbyEast,
 e_to Office1Door,
 
-has hint_given ~hint_given,
+
 has light;
 
 !=============OFFICE1(ELLIE'S OFFICE)============================
@@ -1339,7 +1338,7 @@ with
 
 w_to Office1Door,
 
-has hint_given ~hint_given,
+
 has light;
 
 Object -> ellieDesk "Desk"
@@ -1428,7 +1427,7 @@ with
 
 w_to LobbyEast,
 
-has hint_given ~hint_given,
+
 has light;
 
 Object -> plunger "toilet plunger"
