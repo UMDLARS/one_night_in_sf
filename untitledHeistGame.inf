@@ -826,8 +826,9 @@ with
 		Take, Transfer:
 			! This checks to see if player has lifted the tarp at all.
 			! It can probably be simplified to "flatHead hasnt concealed"
-			if (flatHead in player || flatHead hasnt concealed) {
+			if (flatHead hasnt concealed) {
 				print "While the tarp certainly is of the highest quality, you see no point in keeping it around.";
+				return 1;
 			}
 			else {
 				print "As you fold up and take the tarp you notice underneath it there was a flathead screwdriver!";

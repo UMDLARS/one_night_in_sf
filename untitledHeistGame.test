@@ -622,7 +622,7 @@ Taken.
 > score
 You have so far scored 131
 
-* Take Tarp Twice
+* _take tarp twice
 
 > insert fob into scanner
 > take fob
@@ -642,6 +642,40 @@ As you fold up and take the tarp you notice underneath it there was a flathead s
 > take screwdriver
 > take tarp
 While the tarp certainly is of the highest quality, you see no point in keeping it around.
+
+* Leave & Reenter Unused Office after getting Flathead
+>{include} _take tarp twice
+> s
+> throw flathead
+> take flathead
+> n
+> take flathead
+You already have it.
+> take tarp
+While the tarp certainly is of the highest quality, you see no point in keeping it around.
+> take flathead
+You already have it.
+
+* Type jtitor twice into terminal
+
+>{include} _get into o7
+> x terminal
+username:
+> type foo into terminal
+LOGIN INCORRECT
+> type jtitor into terminal
+prompts you for a password.
+> x terminal
+password:
+> type gubble into terminal
+LOGIN INCORRECT
+> x terminal
+username:
+> type jtitor into terminal then type jtitor into terminal
+LOGIN INCORRECT
+> type jtitor into terminal then type tipler into terminal
+presents you with a command prompt.
+
 
 * Easter Eggs
 > damn this stupid chunk of germanium
