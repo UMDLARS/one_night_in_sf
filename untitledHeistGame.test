@@ -243,6 +243,8 @@ Dropped.
 > e
 > take plant
 Taken.
+> get plant
+You already have it.
 > w
 > w
 > n
