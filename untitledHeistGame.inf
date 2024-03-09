@@ -112,9 +112,17 @@ Verb 'jimmy' 'lift'
 	* 'apart'/'open' noun 'with' held           -> Unlock
 	* noun 'apart'/'open' 'with' held           -> Unlock;
 
+! toilet plunger can be ambiguous to porcelain toilet,
+! and held takes precedence,
+! so we test for the specific toilet object before generic nouns.
+[ IsToilet;
+  return (noun == toilet);
+];
+
 Verb 'plunge'
+	* noun=IsToilet                             -> Plunge
 	* noun                                      -> Plunge
-	* noun 'with' held                          -> Plunge;
+	* multiexcept 'with' held                   -> Plunge;
 
 Extend 'pick' first
 	* noun 'with' held                          -> Unlock
@@ -372,13 +380,13 @@ has static switchable;
 
 Object -> coffee_table "coffee table"
 with
-	name 'coffee table' 'table' 'end table',
+	name 'coffee' 'end' 'table',
 	description "This heavy glass table looks like something from a modern art catalog. It is completely asymmetric and has no straight lines or sharp edges.",
 has static supporter;
 
 Object -> -> brochure "brochure"
 with
-	name "brochure" "flyer" "paper",
+	name 'brochure' 'flyer' 'paper',
 	description "This full-color tri-fold flyer is printed on sturdy paper. It talks in extravagant terms about the company, its president John Titor, and the uncanny accuracy of their predictions of future market and socio-political events.";
 
 
@@ -682,7 +690,7 @@ has light;
 
 Object -> ladder "ladder"
 with
-	name 'ladder' 'yellow ladder' 'sunflower yellow ladder',
+	name 'sunflower' 'yellow' 'ladder',
 	description "This ladder is a bright sunflower yellow ladder. It must be used to replace the lights if they burn out, without this accessing the ceiling would be impossible.",
 	instructions [;
 		"Ladders are very straightforward devices.
@@ -789,7 +797,7 @@ with
 
 Object -> flatHead "Flathead"
 with
-	name 'flathead' 'screwdriver',
+	name 'flathead' 'flat' 'head' 'screwdriver',
 	description "This is a flathead screwdriver with a bright red handle. Judging by the dried flecks of paint on it, it was likely once used to open cans of paint. On the handle is an inscription that reads, ''NOT TO BE REMOVED FROM FLOOD CONTROL DAM #3''",
 	instructions [;
 		print "You can use this screwdriver with the ",
@@ -839,7 +847,7 @@ has light;
 
 Object -> desk "Desk"
 with
-	name 'desk' 'wood desk' 'wooden desk',
+	name 'wood' 'wooden' 'desk',
 	description "This is a desk",
 
 has static supporter;
@@ -998,7 +1006,7 @@ has light;
 
 Object -> plant "large potted plant"
 with
-	name "plant" "potted plant" "pot",
+	name 'potted' 'pot' 'plant',
 	description "This is a large plant in a large glazed terra-cotta pot. It looks like it must weigh a lot!",
 	before [;
 		Take, Transfer:
@@ -1057,7 +1065,7 @@ has light;
 
 Object -> ITRoomTile "Loose Floor Tile"
 with
-	name "floor" "tile" "floor tile",
+	name 'floor' 'tile',
 	door_dir (d_to) (u_to),
 	found_in Office2 UnderITRoom,
 	with_key plunger,
@@ -1119,7 +1127,7 @@ has light;
 
 Object -> server_tile "floor tile"
 with
-	name 'tile' 'floor tile',
+	name 'floor' 'tile',
 	description "This roughly two-foot by two-foot tile lies crooked on the floor, having been removed from its perfectly square-shaped spot in the floor. It is made out of heavy-duty particle board with a metal perimeter topped with white linoleum flecked with gray. It looks heavy.",
 
 has static supporter;
@@ -1134,7 +1142,7 @@ has static supporter;
 
 Object -> -> backup "backup tape"
 with
-	name "backup" "tape" "backup tape",
+	name 'backup' 'tape',
 	description "This is a plastic one-terabyte backup tape cartridge. On the cartridge is a handwritten sticky note that says ~Full Backup (UNENCRYPTED)~ and yesterday's date.",
 	after [;
 		Take: Achieved(GET_BACKUP_TAPE);
@@ -1166,7 +1174,7 @@ has light;
 
 Object -> screwdriver "Phillips Head Screwdriver"
 with
-	name 'Phillips Head Screwdriver' 'Screwdriver',
+	name 'phillips' 'head' 'screwdriver',
 	description "This is a Phillips head (+) screwdriver.",
 	instructions [;
 		print "You can use this screwdriver with the ",
@@ -1329,7 +1337,7 @@ has light;
 
 Object -> plunger "toilet plunger"
 with
-	name 'plunger' 'toilet plunger',
+	name 'plunger' 'rubber' 'suction' 'cup' 'toilet',
 	description "This is your bog-standard toilet plunger: a wooden handle screwed into a large and flexible rust-colored rubber suction cup.",
 	instructions [;
 		"You're not here for amateur plumbing, but the suction cup makes it look like you could ", (ul) "pry", " or ", (ul) "plunge", " something appropriately smooth with ", (the) self, ".";
@@ -1338,7 +1346,7 @@ has scored;
 
 Object -> toilet "porcelain toilet"
 with
-	name 'toilet' 'porcelain toilet',
+	name 'toilet' 'porcelain',
 has scenery static;
 
 [ PlungeSub;
