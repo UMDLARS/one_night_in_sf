@@ -792,6 +792,10 @@ has light;
 ];
 
 [heavyLimit noun x;
+	if (noun in player) {
+		! Don't bother with this logic if they're already holding it.
+		return false;
+	}
 	objectloop (x in player){
 		if (x has heavy){
 		print (the) noun, " is too heavy to pick up while ", (the) x, " is in your inventory!";
