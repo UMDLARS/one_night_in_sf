@@ -117,6 +117,8 @@ Include "ext_quote_box.h"; ! Used in the `Stuck` routine.
 		which is used to complete the action:^",
 		"^    ", (ul) "say", "/", (ul) "answer", "/", (ul) "shout", (bf) " topic ", (ul) "to", (bf) " listener",
 		" -- Say something to a listening object or character in the game.",
+		"^    ", (ul) "type", (bf) " word ", (ul) "into", (bf) " device",
+		" -- Type something into a keyboard or keypad.",
 		"^    ", (ul) "unlock", "/", (ul) "pry", "/", (ul) "force open", (bf) " object ", (ul) "with", (bf) " held object",
 		" -- Change a stuck or locked object, so that you can ", (ul) "open", " it.",
 		"^    ", (ul) "hit", "/", (ul) "smash", "/", (ul) "break", (bf) " object ", (ul) "with", (bf) " held object",
