@@ -68,6 +68,8 @@ Include "ext_cheap_scenery.h";
 Include "puny.h";
 Include "help.h";
 
+Attribute hint_given;
+
 Attribute heavy;
 Attribute bulky;
 
@@ -98,10 +100,16 @@ Verb 'type'  * -> TypeErr
 ];
 
 [HintSub;
-	if(location.instructions == 0){"It appears there are no hints to give for this room, sorry.";}
+	if(location.instructions == 0){
+		"It appears there are no hints to give for this room, sorry.";
+	}
 	else {
+
 		PrintOrRun(location, instructions, false);
-		score = score - 15;
+		if (location hasnt hint_given) {
+			score = score - 15;
+			give location hint_given;
+		}
 	}
 ];
 	
@@ -191,7 +199,7 @@ with
 				return true;
 			}
 			if(noun==securityCard && securityCard has heavy){
-				print "Ooops, you fumble the fob and drop it on the floor of the elevator! Use ~take [object]~ to pick up an object. Try grabbing the fob and try again!";
+				print "Oops, you fumble the fob and drop it on the floor of the elevator! Use ~take [object]~ to pick up an object. Try grabbing the fob and try again!";
 				give securityCard ~heavy;
 				move securityCard to Tutorial;
 				return true;
@@ -295,13 +303,14 @@ with
 
 s_to Lobby,
 
+
 has light;
 
 Object -> receptiondesk "Receptionist's Desk"
 with
 	name 'reception' 'receptionist' 'desk' 'drawer',
 	description [;
-		print "This is a very modern asymmetrical desk that is designed more for appearances than function.  ";
+		print "This is a very modern asymmetrical desk, which was clearly designed more for appearances than function.  ";
 		if (self has open) {
 			"It has a single drawer, which sits open.";
 		} else {
@@ -331,10 +340,12 @@ with
 	description "This is a small waiting area. There is an L-shaped couch with a coffee table in front of it in one corner, and a chair and floor lamp in the other. A window on the west wall looks out on the San Fancisco skyline. To the north there is a long hallway. To the east there is the lobby.",
 	cheap_scenery
 		'couch' 'l-shaped' "The L-shaped couch is tucked into the corner of this part of the lobby."
-		'window' 'outside' "Out the window, you can see the San Fancisco skyline against the pitch black sky. A waxing crecent moon watches your legally dubious actions.",
+		'table' 'coffee table' "A coffeeless coffee table. It looks like it has been polished recently."
+		'window' 'outside' "Out the window, you can see the San Francisco skyline against the pitch black sky. A waxing crecent moon watches your legally dubious actions.",
 
 	n_to Hallway7,
 	e_to Lobby,
+
 
 has light;
 
@@ -386,8 +397,28 @@ with
 Object LobbyEast "Lobby East"
 with
 
-	description "This is a small area of the main lobby. To the east there is a door with a sign next to it saying RESTROOM.
-		     To the north a hallway extends back into the building. The lobby extends to the west.",
+	description "This is a small area of the main lobby. To the east there is a door with a sign next to it that reads ~RESTROOM~.
+		     To the north a hallway extends back into the building. The lobby extends to the west. To the south is a sturdy gray door that leads to a fire escape stairwell, judging by the sign above it.",
+	cheap_scenery
+		'door' 'doorway' [;
+			Open: 
+				if (score == MAX_SCORE) {
+					print "It's too late to hatch an escape plan now. You decide to leave the fire escape alone, and collect what you came here for.";
+				}
+				else {
+					print "As you are about to open the door to the fire escape, you recall that there is an elevator mere steps away. You abstain from opening the door to the fire escape.";
+				};
+			Close: "The door to the fire escape is already closed.";
+			Unlock: "The door to the fire escape is unlocked, but you don't see the need to walk all those steps down.";
+			default: 
+				print "This doorway leads to a fire escape which runs to the streets below, judging by the sign above it. ";
+				if (score == MAX_SCORE) {
+					print "You suppose you could use the firescape to exit, but then again, it is twelve floors, and the elevator is right there. 
+					You decide to use the elevator instead.";
+				} else {
+					print "You're better off leaving the fire escape alone until you've obtained what you came here for.";
+				};
+		],
 
 n_to Hallway1,
 w_to Lobby,
@@ -423,12 +454,13 @@ with
 
 e_to Office7Door,
 
+
 has light;
 
 Object -> Office7Door "Brass Knobbed Door"
 with
 	name 'brass' 'knobbed' 'door',
-	description "This door is a large mahogany door with a large brass door knob. You can see right next to the door knob a small key hole. I bet if you search around you could find a key to this door.",
+	description "This is a large mahagony door with a brass doorknob. You can see right next to the door knob a small key hole. You're certain you could find a key to this door if you search around.",
 	door_dir (e_to) (w_to),
 	found_in Hallway7 Office7,
 	with_key o7key,
@@ -473,10 +505,10 @@ with
 					if (self has general && noun == 'tipler') {
 						give self ~locked;
 						Achieved(GET_TITOR_PLANS);
-						print "The system pauses ominously for a moment, and then presents you with a command prompt.  Poking around briefly, you discover a directory full of technical schematics and research papers.^You start printing the data which begins exiting out the machine on a spool of green bar paper. You grab the printout.";
+						print "The system pauses ominously for a moment, and then presents you with a command prompt.  Poking around briefly, you discover a directory full of technical schematics and research papers.^You start printing the data, which begins exiting out of the machine onto a spool of green bar paper. You grab the printout.";
 						move printout to player;
 						return true;
-					} else if (noun == 'jtitor') {
+					} else if (self hasnt general && noun == 'jtitor') {
 						give self general;
 						"The system accepts the username, and prompts you for a password.";
 					} else {
@@ -498,10 +530,10 @@ with
 	],
 has static reactive lockable locked;
 
-Object printout "Print out"
+Object printout "Printout"
 with
 	name 'printout' 'print' 'out' 'schematics' 'plans' 'titor^s' 'titor' 'results',
-	description "This is the printout from the VT242 terminal, you must escape with this.",
+	description "This is the printout from the VT242 terminal; you must escape with this.",
 	After [;
 		Take: Achieved(GET_TITOR_PLANS);
 		Drop: Forfeit(GET_TITOR_PLANS);
@@ -513,7 +545,7 @@ Object Hallway6 "Hallway"
 with
 
     description [;
-		print "This is a hallway that extends to the north and to the south. To the east there is a closet. A row of uninteresting filing cabinets lines the west wall.";
+		print "This is a hallway that extends to the north and to the south. To the east there is a closet. A row of uninteresting filing cabinets lines the west wall. ";
 		if (glass has locked){
 			print "The entire west wall is thick, tempered glass; it stands between you and ";
 		}
@@ -640,6 +672,7 @@ e_to [;
 	}
 ],
 
+
 has light;
 
 Object -> IBM5100 "IBM 5100"
@@ -671,12 +704,13 @@ with
 
 	description "This is a small utility closet containing cleaning supplies, a mop, a mop bucket, and other things. It's damp and musty in here.",
 	cheap_scenery
-		'mop' 'mop' "This is one of those old-school mops with a head made from large, grey, cotton, yarn-like strings. It smells faintly of mildew and Pine-Sol. It's hard to imagine how this gross mop could be useful."
+		'mop' 'mop' "This is one of those old-school mops with a head made from large, gray, cotton, yarn-like strings. It smells faintly of mildew and Pine-Sol. It's hard to imagine how this gross mop could be useful."
 		'bucket' 'bucket' "A rolling mop bucket with a built-in mop-squeezer. Embossed on the bucket is a unintentionally comical stick figure of a person slipping on a puddle. It stinks."
 		'cleaning' 'supplies' "This small plastic caddy has an assortment of things people would use to clean the office."
 		'other' 'things' "Oh, you know, it's just a random assortment of random rags, OSHA signs, and other useless stuff.",
 
 e_to Hallway2,
+
 
 has light;
 
@@ -702,14 +736,22 @@ has bulky heavy scored;
 Object Hallway5 "Hallway"
 with
 
-	description "This is a hallway that extends to the east and to the south. There is an office to the west, and another office to the north. Along the east wall, there is a poster depicting a sad kitten wearing a suit.",
+	description "This is a hallway that extends to the east and to the south. There is an office to the west. To the north there is another office, which is open. Along the east wall, there is a poster which depicts a sad kitten wearing a suit.",
 	cheap_scenery
-		'poster' 'kitten poster' "The poster depicts an especially sad-looking kitten wearing a business suit with a tie, clinging helplessly to a branch. The poster is captioned with the words 'Hang In There!'.",
+		'door' 'door' [;
+			Unlock: "You fail to unlock the door.";
+			default: "The door to the west office is locked. Maybe you could find a key or an alternate way in.";
+		]
+		'poster' 'kitten poster' [;
+			Take: "Unfortunately, simply taking down the poster will not spare the kitten. You decide to leave business-kitten to its fate.";
+			default: "The poster depicts an especially sad-looking kitten wearing a business suit with a tie, clinging helplessly to a branch. The poster is captioned with the words 'Hang In There!'.";
+		],
 
 s_to Hallway6,
 e_to Hallway4,
 cant_go "This door is locked. Maybe you could find a key or an alternate way in.",
 n_to Office4,
+
 
 has light;
 
@@ -755,7 +797,7 @@ has light;
 Object Office4 "The Unused Office"
 with
 
-	description "This room is a small office, there is a wooden desk devoid of any identifying objects. One of the ceiling panels seems to be missing in here. Along the east wall there is a tarp laying on the floor, partially laying against the wall. There are 2 cans of paint here. The east wall seems to be still unpainted.",
+	description "This room is a small office; set in the middle is a wooden desk, devoid of any identifying objects. One of the ceiling panels seems to be missing in here. Along the east wall there is a tarp laying on the floor, partially laying against the wall next to two cans of paint. The east wall seems to be still unpainted.",
 
 before [;
 		Climb: return UseLadder(noun, Crawl1);
@@ -773,17 +815,26 @@ u_to [;
 
 s_to Hallway5,
 
+
 has light;
 
 Object -> tarp "Tarp"
 with
 	name 'tarp' 'tarpaulin' 'PET' 'polyethylene',
-	description "This is a blue polyethylene tarp, and its craftsmanship is clearly of the highest quality. On it are spatterings of off-white paint.",
+	description "This is a blue polyethylene tarp, the craftsmanship of which is clearly of the highest quality. On it are spatterings of off-white paint.",
 	before[;
 		Take, Transfer:
-			print "As you fold up and take the tarp you notice underneath it there was a flathead screwdriver!";
-			give flatHead ~concealed;
-			return 1;
+			! This checks to see if player has lifted the tarp at all.
+			! It can probably be simplified to "flatHead hasnt concealed"
+			if (flatHead hasnt concealed) {
+				print "While the tarp certainly is of the highest quality, you see no point in keeping it around.";
+				return 1;
+			}
+			else {
+				print "As you fold up and take the tarp you notice underneath it there was a flathead screwdriver!";
+				give flatHead ~concealed;
+				return 1;
+			}
 	],
 	instructions "Tarpaulins are generally only useful for covering other things.";
 
@@ -835,6 +886,7 @@ u_to [;
 	"You cannot get up there, if only you had a some sort of step stool.^";
 ],
 
+
 has light;
 
 Object -> desk "Desk"
@@ -861,8 +913,20 @@ with
 
 	description "This is a hallway that extends to the east and to the west. To the north is an office. To the south is a kitchenette. The hallway is barren except for a lone empty water dispenser.",
 	cheap_scenery
-		'hinges' 'hinge'[;
-			Examine: "These are the hinges of the door, which bind the door to the wall by four pins going through the entire assembly. Maybe you could remove the pins if you had something with a flat end to push them out.";
+		'water' 'water dispenser' "The water dispenser sits there, idle, empty and useless."
+		'hinges' 'hinge' [;
+			Examine: "These hinges bind the door to the wall by four pins going through the entire assembly. Maybe you could remove the pins if you had something with a flat end to push them out.";
+			Remove: 
+							if(second==flathead){ 
+								print "You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...";
+								give Office3Door open;
+								give Office3Door concealed;	
+								return true;
+							}
+							else{
+								print "You try that, but it doesn't seem to work. Maybe you need something like a chisel.";
+								return true;
+							};
 			default: "I am not sure what you want me to do.";
 		]
 		'pins' 'pin' [;
@@ -873,15 +937,17 @@ with
 								give Office3Door open;
 								return true;
 							}
-							else{
-								print "You try that, but it doesn't seem to work. Maybe if you need something something like a chisel.";
+							else {
+								print "You try that, but it doesn't seem to work. Maybe you need something like a chisel.";
 								return true;
-							}
+							};
+		!	default: "I am not sure what you want me to do.";
 		],
 w_to Hallway5,
 e_to Hallway3,
 s_to Kitchenette,
 n_to Office3Door,
+
 
 has light;
 
@@ -911,6 +977,7 @@ with
 
 s_to Hallway4,
 
+
 has light;
 
 Object -> linuxBootComputer "Len's Computer"
@@ -935,7 +1002,7 @@ with
 				return 1;
 			}
 			else{
-				print "You boot the computer and are greeted by a password screen. You do not know the password to this computer so you decide to turn it off. Maybe you could find a way around the password. You do remember that it is company policy to not encrypt hard drives.";
+				print "You boot the computer and are greeted by a password screen. You do not know the password to this computer so you decide to turn it off; maybe you could find a way around the password. You do remember that it is company policy to not encrypt hard drives.";
 				return 1;
 			}
 	],
@@ -960,9 +1027,11 @@ with
 	description "This is a kitchenette. There is a countertop with a sink, a microwave, and a coffee maker. Below the counter top there are cabinets and drawers. To the north the room extends into the hallway.",
 	cheap_scenery
 		'sink' 'kitchen sink' "The sink is tidy and free of dishes. Not a single calcium stain marks the basin."
+		'coffee' 'coffee maker' "Now is not the time to make a cup of joe."
 		'microwave' 'microwave' "The microwave clock reads the current time in military time; it is off by one minute.",
 
 n_to Hallway4,
+
 
 has light;
 
@@ -988,11 +1057,15 @@ has scored;
 Object Hallway3 "Hallway"
 with
 
-	description "This is a hallway that extends to the south and to the west. To the east is an office. The overhead lights shine phosphorescently.",
+	description "This is a hallway that extends to the south and to the west. To the east is an office. To the north you see a table, on which is a set of hastily scribbled notes.",
+	cheap_scenery
+		'table' 'wooden table' "This table has that new store-bought shine."
+		'door' 'wooden door' "There is a wooden door to the east, which leads to the office. It does not seem to be locked.",
 
 w_to Hallway4,
 s_to Hallway2,
 e_to Office2,
+
 
 has light;
 
@@ -1017,7 +1090,6 @@ has heavy bulky scored;
 !============OFFICE2(~~~PLACEHOLDER~~~)==============================
 Object Office2 "IT Office"
 with
-
 	description [;
 		print "This is the IT office. The floor of this room is made of the large square modular linoleum-covered panels that are typical in server rooms with raised floors. The floor shifts and creaks under your weight. A desk in the corner has an empty laptop docking station on it and a few fidget toys. A work table is against the south wall with the electronic flotsam and jetsam of a previous project. The useless husks of a few broken computers lie in the corner. To the west there is a door leading to the hallway. To the north is a reinforced door with an electronic keypad lock.";
 		if (ITRoomTile has open) {
@@ -1025,12 +1097,13 @@ with
 		}
 	],
 	cheap_scenery
+		'door' 'doorway' "To the west, a door leads back into the hallway."
 		'lock' 'keypad' "The keypad presumably controls the door lock; entering the right code would likely unlock the door."
 		'husks' 'computers' "These computers are definitely useless junk, and they smell like the magic smoke got out of them."
 		'work' 'table' "The work table has bits and pieces of wire, some discrete electronic components -- nothing much interesting."
 		'reinforced' 'door' "This door looks extremely strong, as does the wall it is set into."
 		'fidget' 'toys' "One toy is your typical fidget spinner, and the other is a folding cube toy."
-		'docking' 'station' "This generic docking station is connected to a monitor and keyboard, but the laptop is not here. A wired Ethernet cable that is plugged into the back of of the dock snakes across the desk and down through a hole in the floor tile."
+		'docking' 'station' "This generic docking station is connected to a monitor and keyboard, but the laptop is not here. A wired Ethernet cable that is plugged into the back of the dock snakes across the desk and down through a hole in the floor tile."
 		'wire' 'wires' "This ethernet wire is connected to the docking station; you follow it, and it seems to go into the floor. Strange, is there a space underneath here?",
 	before [;
 		Go:
@@ -1052,6 +1125,7 @@ with
 
 w_to Hallway3,
 d_to ITRoomTile,
+
 
 has light;
 
@@ -1107,20 +1181,22 @@ s_to UnderITRoom;
 !=============ServerRoom(~~~~~~PLAACEHOLDER~~~~~~~)====================
 Object ServerRoom "Server Room"
 with
-	description "This is a medium-sized server room with several racks of servers in a line down the middle of the room. The floor in this room is made of large square modular linoleum-covered panels; one of the panels has been lifted out of its place, leaving a large square hole in the floor, revealing a crawlspace. One of the racks contains a large tape backup system. Their blinking lights and roaring fans are quite impressive. Sturdy locked cages protect the hardware from unauthorized tampering. A table and chair sit in the corner of the room. A reinforced door leads south into the IT office; there is no lock on this side.",
+	description "This is a medium-sized server room with several racks of servers in a line down the middle of the room. The floor in this room is made of large square modular linoleum-covered panels; one of the panels has been lifted out of its place, leaving a large square hole in the floor, revealing a crawlspace. One of the racks contains a large tape backup system, which is producing quite an impressive orchestra of blinking lights and roaring fans. Sturdy locked cages protect the hardware from unauthorized tampering. A table and chair sit in the corner of the room. A reinforced door leads south into the IT office; there is no lock on this side.",
 	cheap_scenery
 		'server' 'racks' "Four server racks with locked cages stand in a row; inside them are stacks of identical servers. One of the racks has a tape backup server in it."
-		'chair' 'chair' "This is an old, dumpy-looking rolling office chair.",
+		'chair' 'chair' "This is an old, dumpy-looking rolling office chair."
+		'table' 'table' "This old table isn't even worth donating.",
 
 d_to UnderServerRoom,
 s_to Office2,
+
 
 has light;
 
 Object -> server_tile "floor tile"
 with
 	name 'tile' 'floor tile',
-	description "This roughly two-foot by two-foot tile lies crooked on the floor, having been removed from its perfectly square-shaped spot in the floor. It is made out of heavy-duty particle board with a metal perimeter topped with white linoleum flecked with gray. It looks heavy.",
+	description "This roughly two-foot by two-foot tile lies crooked on the floor, having been removed from its perfectly square-shaped spot in the floor. It is made out of heavy-duty particle board, with its metal perimeter topped with white and gray-flecked linoleum. It looks heavy.",
 
 has static supporter;
 
@@ -1146,11 +1222,14 @@ with
 Object Hallway2 "Hallway"
 with
 
-	description "This is a hallway, extending to the north and to the south. To the west there is a utility closet.",
+	description "This is a hallway, extending to the north and to the south. To the west there is a utility closet, which is open. A row of uninteresting filing cabinets lines the east wall.",
+	cheap_scenery 
+		'cabinets' 'filing cabinets' "The filing cabinets are filled to the brim with boring business documents, none of which seem useful.",
 
 n_to Hallway3,
 s_to Hallway1,
 w_to Utility,
+
 
 has light;
 
@@ -1161,6 +1240,7 @@ with
 	description "This is an IT closet. To the west there is a door leading back to the hallway.",
 
 w_to Hallway6,
+
 
 has light;
 
@@ -1212,15 +1292,19 @@ has scored ~general;
 Object Hallway1 "Hallway"
 with
 
-	description "This is a hallway. A couch rests along the west wall. To the south there is the lobby. To the north the hallway extends. To the east there is an office.",
+	description "This is a hallway, extending to the north. To the south, the hallway opens into the lobby. To the east, an antique wooden door leads into an office. A couch rests along the west wall.",
 
 	instructions [;
 		 "I should look for some sort of thing plastic object, like a credit card, to jimmy this lock.";
 	],
+	cheap_scenery
+		'door' 'wooden door' "To the east, a doorway leads into an office space, judging by the placard fixed to the door. The door appears to be locked."
+		'couch' 'couch' "There is a couch resting along the wall to the west. It seems to be fixed to the floor.",
 
 n_to Hallway2,
 s_to LobbyEast,
 e_to Office1Door,
+
 
 has light;
 
@@ -1230,26 +1314,27 @@ with
 
 	description [;
 			if(ellieComputer has locked)
-"In this office there is a wood desk with a plaque with the name ~Ellie~ on it, a monitor, a keyboard, and a mouse on it, and a computer case next to it. The computer appears bolted down to the floor. On the back there are 4 screws enclosing the case. To the west there is a door heading back to the hallway.";
+"In this office there is a wooden desk with a plaque with the name ~Ellie~ on it, a monitor, a keyboard, and a mouse on it, and a computer case next to it. The computer appears bolted down to the floor. On the back there are 4 screws enclosing the case. To the west there is a door heading back to the hallway.";
 			else
-"In this office there is a wood desk with a plaque with the name ~Ellie~ on it, a monitor, a keyboard, and a mouse on it, and a computer case next to it. The computer appears to bolted down to the floor. On the back there were 4 screws enclosing the case, however you have removed them, allowing access to the inside of the computer! To the west there is a door leading back to the hallway.";
+"In this office there is a wooden desk with a plaque with the name ~Ellie~ on it, a monitor, a keyboard, and a mouse on it, and a computer case next to it. The computer appears to bolted down to the floor. On the back there were 4 screws enclosing the case, however you have removed them, allowing access to the inside of the computer! To the west there is a door leading back to the hallway.";
 ],
 
 w_to Office1Door,
+
 
 has light;
 
 Object -> ellieDesk "Desk"
 with
-	name 'desk' 'wood',
-	description "This is a large wood desk. On its top there is a small plaque with the name ELLIE, a keyboard, a mouse, and a monitor connected to the computer next to this desk.",
+	name 'desk' 'wooden',
+	description "This is a large wooden desk. On its top there is a small plaque with the name ELLIE, a keyboard, a mouse, and a monitor connected to the computer.",
 
 has static supporter;
 
 Object -> ellieComputer "Ellie's Computer"
 with
 	name 'Ellie' 'Ellie^s' 'computer' 'case' 'screws',
-	description "This computer is bolted down to the floor as to prevent it from being moved. On the back there are a number of wires exiting the computer. On the side there are 4 phillips head screws holding the side panel on. Maybe you could unscrew these with something?",
+	description "This computer is bolted down to the floor as to prevent it from being moved. On the back there are a number of wires exiting the computer. On the side there are 4 phillips head screws holding the side panel on; maybe you could unscrew these with something?",
 	instructions "You attempt to use the computer, however, you are immediately challenged by a log in screen requesting a password.^^It seems the information on the hard drive of this computer will have to be accessed some other way.",
 	before [;
 		Turn:
@@ -1288,10 +1373,10 @@ with
 	],
 has proper;
 
-Object -> Office1Door "Antique Wood Door"
+Object -> Office1Door "Antique Wooden Door"
 with
 	name 'office' 'door' 'lock',
-	description "This is an old wood antique door. You can see it has an incredibly simple locking mechanism, it could easy be unlocked if you had a thin stiff object to jimmy the lock.",
+	description "This is an old wooden antique door. You can see that it has an incredibly simple locking mechanism; it could easily be unlocked if you had a thin stiff object to jimmy the lock.",
 	door_dir (e_to) (w_to),
 	found_in Hallway1 Office1,
 	with_key coffeeCard,
@@ -1307,12 +1392,11 @@ After [;
 ],
 has static door openable ~open lockable locked;
 
-
 !=============RESTROOM=====================
 Object Restroom "Restroom"
 with
 
-	description "This room is a small single user bathroom. There is a sink with a mirror as well as a toilet. To the west there is a door leading back into the lobby.",
+	description "This room is a small single-user bathroom. There is a sink set below a mirror, as well as a toilet. To the west there is a door leading back into the lobby.",
 	cheap_scenery
 	    'toilet' 'porcelain' [;
 	    	Examine: "It's a fairly standard white porcelain toilet, with the lid down.  At least the people who work here have ", (bf) "some", " standards.";
@@ -1320,16 +1404,18 @@ with
 		default: "I'm not sure what you have in mind, but you're not here for amateur plumbing anyway.";
 	    ]
 	    'sink' 'mirror' [;
-	    	Examine: "It's a fairly inexpensive but well-maintained hand sink with a mirror built into the wall behind it.";
+	    	Examine: "It's a fairly inexpensive but well-maintained hand sink, set beneath a cabinet mirror that is bolted to the wall.";
 		default: "I'm not sure what you have in mind, but you're not here for amateur plumbing anyway.";
 	    ],
 
 w_to LobbyEast,
+
+
 has light;
 
 Object -> plunger "toilet plunger"
 with
-	name 'plunger' 'toilet plunger',
+	name 'plunger' "toilet plunger",
 	description "This is your bog-standard toilet plunger: a wooden handle screwed into a large and flexible rust-colored rubber suction cup.",
 	instructions [;
 		"You're not here for amateur plumbing, but the suction cup makes it look like you could ", (ul) "pry", " or ", (ul) "plunge", " something appropriately smooth with ", (the) self, ".";
