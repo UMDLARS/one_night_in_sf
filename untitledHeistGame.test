@@ -65,7 +65,8 @@ The Lobby
 > n
 > get key
 You can't see any such thing.
-> open desk
+> open drawer
+You open the Receptionist's Desk, revealing a loose brass key.
 > look
 You can see a Receptionist's Desk (which contains a loose brass key) here.
 > get key
@@ -493,7 +494,7 @@ You can't, since the Large Wooden Door is closed.
 You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...
 > n
 > switch computer
-You boot the computer and are greeted by a password screen. You do not know the password to this computer so you decide to turn it off. Maybe you could find a way around the password. You do remember that it is company policy to not encrypt hard drives.
+You boot the computer and are greeted by a password screen. You do not know the password to this computer so you decide to turn it off; maybe you could find a way around the password. You do remember that it is company policy to not encrypt hard drives.
 > insert drive into computer
 You insert the USB drive into the open port on the back of the computer.
 > switch computer
@@ -621,6 +622,61 @@ Hallway
 Taken.
 > score
 You have so far scored 131
+
+* _take tarp twice
+
+> insert fob into scanner
+> take fob
+> insert fob into scanner
+> n
+> w
+> n
+> n
+> e
+> take drive
+Taken.
+> w
+> n
+> n
+> take tarp
+As you fold up and take the tarp you notice underneath it there was a flathead screwdriver!
+> take screwdriver
+> take tarp
+While the tarp certainly is of the highest quality, you see no point in keeping it around.
+
+* Leave & Reenter Unused Office after getting Flathead
+>{include} _take tarp twice
+> s
+> throw flathead
+> take flathead
+> n
+> take flathead
+You already have it.
+> take tarp
+While the tarp certainly is of the highest quality, you see no point in keeping it around.
+> take flathead
+You already have it.
+
+* Type jtitor twice into terminal
+
+>{include} _get into o7
+> x terminal
+username:
+> type foo into terminal
+LOGIN INCORRECT
+> type jtitor into terminal
+prompts you for a password.
+> x terminal
+password:
+> type gubble into terminal
+LOGIN INCORRECT
+> x terminal
+username:
+> type jtitor into terminal then type jtitor into terminal
+LOGIN INCORRECT
+> type jtitor into terminal then type tipler into terminal
+presents you with a command prompt.
+
 
 * Easter Eggs
 > damn this stupid chunk of germanium
