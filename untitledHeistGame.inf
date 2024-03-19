@@ -943,13 +943,14 @@ with
 		]
 		'pins' 'pin' [;
 			Examine: "These pins were hammered into place while someone held the door up. This is how most doors are attached to walls, it seems this door just so happens to have them on the exterior of the office.";
-			Remove:
+			Take,Remove:
 							if(second==flathead){ 
 								print "You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...";
 								give Office3Door open;
 								return true;
 							}
-							else {
+							else{
+
 								print "You try that, but it doesn't seem to work. Maybe you need something like a chisel.";
 								return true;
 							};
