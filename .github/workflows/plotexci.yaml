@@ -10,4 +10,4 @@ jobs:
         sudo apt-get update
         sudo apt-get -y install build-essential python3 npm git
     - name: make
-      run: make
+      run: make test
