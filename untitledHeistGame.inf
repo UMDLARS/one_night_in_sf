@@ -751,7 +751,7 @@ with
 			default: "The door to the west office is locked. Maybe you could find a key or an alternate way in.";
 		]
 		'poster' 'kitten poster' [;
-			Take: "Unfortunately, simply taking down the poster will not spare the kitten. You decide to leave business-kitten to its fate.";
+			Take: "Unfortunately, removing the poster will not spare this kitten. You decide to leave business-kitten to its fate.";
 			default: "The poster depicts an especially sad-looking kitten wearing a business suit with a tie, clinging helplessly to a branch. The poster is captioned with the words 'Hang In There!'.";
 		],
 
@@ -925,7 +925,6 @@ with
 
 	description "This is a hallway that extends to the east and to the west. To the north is an office. To the south is a kitchenette. The hallway is barren except for a lone empty water dispenser.",
 	cheap_scenery
-		'water' 'water dispenser' "The water dispenser sits there, idle, empty and useless."
 		'hinges' 'hinge' [;
 			Examine: "These hinges bind the door to the wall by four pins going through the entire assembly. Maybe you could remove the pins if you had something with a flat end to push them out.";
 			Remove: 
@@ -955,6 +954,10 @@ with
 								return true;
 							};
 		!	default: "I am not sure what you want me to do.";
+		]
+		'water' 'dispenser' [;
+			Take, Remove: "You see no reason to do so.";
+			default: "The water dispenser sits idle, empty and useless.";
 		],
 w_to Hallway5,
 e_to Hallway3,
@@ -1237,7 +1240,7 @@ with
 
 	description "This is a hallway, extending to the north and to the south. To the west there is a utility closet, which is open. A row of uninteresting filing cabinets lines the east wall.",
 	cheap_scenery 
-		'cabinets' 'filing cabinets' "The filing cabinets are filled to the brim with boring business documents, none of which seem useful.",
+		'filing' 'cabinets' "The filing cabinets are filled to the brim with mundane business documents, none of which seem useful.",
 
 n_to Hallway3,
 s_to Hallway1,
