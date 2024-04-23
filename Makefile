@@ -27,6 +27,9 @@ TIME:=$(shell which time) # Should be null if it's a shell builtin, which is fin
 # not there are new test files.
 all: ${OUT} $(wildcard *.d64) $(wildcard *.z?) VT323/fonts/ttf/VT323-Regular.ttf
 
+# This rule only does the compile-and-test run, suitable for CI jobs.
+test: ${OUT}
+
 # The moment you run `make c64`, all your testable games will be built into C64
 # disk image files.  You can burn these to a 1541 floppy somehow, or run them
 # in the Vice emulator.  Any existing C64 images will be kept up-to-date as you
