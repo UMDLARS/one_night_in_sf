@@ -37,6 +37,33 @@
 # > l
 # It feels so nice, standing in the box.
 
+* leave tutorial and remove fob from player
+
+> insert key into scanner
+> take key
+> insert fob into scanner
+> n
+> i
+!Security Key Fob
+
+* make sure game doesn't mistake receptionist's key for the fob
+
+> insert key into scanner
+> take key
+> insert fob into scanner
+> n
+> n
+> get key
+You can't see any such thing.
+> open drawer
+You open the Receptionist's Desk, revealing a loose brass key.
+> look
+You can see a Receptionist's Desk (which contains a loose brass key) here.
+> get key
+Taken.
+> drop key
+Dropped.
+
 * loop the hallway
 
 > insert fob into scanner
@@ -135,6 +162,12 @@ score has just gone up by
 > x list
 [X] Printed
 
+* test 'key' noun for scanner
+> insert key into scanner
+Oops, you fumble the fob and drop it on the floor of the elevator!
+> take key
+Taken.
+> insert key into scanner
 
 * enter/exit all rooms
 

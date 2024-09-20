@@ -217,6 +217,8 @@ with
 	before [;
 		Go:
 			if(selected_direction==n_to && elevatorDoor has open){
+				remove securityCard;
+
 				PlayerTo(Lobby,2);
 				print "^You recall from your interview that the first office on the west side requires a brass key to open. To start maybe look for that key, or tackle any office you like first!";
 				return 1;
@@ -244,14 +246,15 @@ has static door ~open locked concealed;
 
 Object securityCard "Security Key Fob"
 with 
-	name 'security' 'fob' 'id' 'identification' 'pass',
+	name 'security' 'fob' 'id' 'identification' 'pass' 'key',
 	description [;
 		print "This is a small plastic key fob with a fake name you gave them during the hiring process. ";
 		if(player in Tutorial){
 			print "Good job! You probably noticed in your inventory as well a Task List. You may look, or examine this to see the progress you have made. It shows you all items you need to recover, and if the item is in your inventory or not.";
 		}
 	],
-has heavy;
+	found_in Tutorial,
+has concealed heavy;
 
 !===================LOBBY=======================
 Object Lobby "The Lobby"
