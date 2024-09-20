@@ -254,7 +254,7 @@ with
 		}
 	],
 	found_in Tutorial,
-has concealed heavy;
+has heavy;
 
 !===================LOBBY=======================
 Object Lobby "The Lobby"
