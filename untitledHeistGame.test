@@ -64,7 +64,7 @@ The Lobby
 > n
 > n
 > get key
-You can't see any such thing.
+You already have it.
 > open drawer
 You open the Receptionist's Desk, revealing a loose brass key.
 > look
@@ -72,7 +72,20 @@ You can see a Receptionist's Desk (which contains a loose brass key) here.
 > get key
 Taken.
 > drop key
+Do you mean the loose brass key or the Security Key Fob?
+> brass key
 Dropped.
+> get key
+Taken.
+> drop key
+Do you mean the loose brass key or the Security Key Fob?
+> loose brass key
+Dropped.
+> get key
+Taken.
+> drop brass key
+Dropped.
+
 
 * _get into o7
 
@@ -91,6 +104,8 @@ You can't, since the Brass Knobbed Door is closed.
 > open door
 /It.* locked.
 > unlock door with key
+Do you mean the loose brass key or the Security Key Fob?
+> brass key
 You unlock the Brass Knobbed door and open it!
 > w
 This is a researcher's office
@@ -103,6 +118,8 @@ Hallway
 > close door
 You close the Brass Knobbed Door.
 > lock door with key
+Do you mean the loose brass key or the Security Key Fob?
+> brass key
 You carefully close and lock the office door with the brass key.
 
 * test terminal input
@@ -180,7 +197,7 @@ score has just gone up by
 > e
 > w
 > s
-> unlock door with key and open door
+> unlock door with brass key and open door
 > w
 > e
 > s
@@ -521,7 +538,7 @@ Taken.
 > take chair
 Taken.
 > n
-> unlock door with key
+> unlock door with brass key
 You unlock
 > w
 Research Office
