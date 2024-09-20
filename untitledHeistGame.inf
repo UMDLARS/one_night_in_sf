@@ -244,7 +244,7 @@ has static door ~open locked concealed;
 
 Object securityCard "Security Key Fob"
 with 
-	name 'security' 'fob' 'id' 'identification' 'pass',
+	name 'security' 'fob' 'id' 'identification' 'pass' 'key',
 	description [;
 		print "This is a small plastic key fob with a fake name you gave them during the hiring process. ";
 		if(player in Tutorial){

@@ -64,7 +64,7 @@ The Lobby
 > n
 > n
 > get key
-You can't see any such thing.
+You already have it.
 > open drawer
 You open the Receptionist's Desk, revealing a loose brass key.
 > look
@@ -72,7 +72,16 @@ You can see a Receptionist's Desk (which contains a loose brass key) here.
 > get key
 Taken.
 > drop key
+Do you mean the loose brass key or the Security Key Fob?
+> brass key
 Dropped.
+> get key
+Taken.
+> drop key
+Do you mean the loose brass key or the Security Key Fob?
+> loose brass key
+Dropped.
+
 
 * _get into o7
 
