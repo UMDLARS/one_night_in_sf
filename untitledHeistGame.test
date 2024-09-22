@@ -522,6 +522,7 @@ You insert the USB drive into the open port on the back of the computer.
 > switch computer
 The computer boots to a linux desktop, you bypassed the password! On the desktop there is a directory labeled "Secret Files". You are able to steal the information from the computer and save it onto the USB drive. After you pocket the USB drive, you must exfiltrate with this.
 
+
 * Complete game run with all tasks
 
 > insert fob into scanner
@@ -644,6 +645,119 @@ Hallway
 Taken.
 > score
 You have so far scored 131
+
+* Open Ellie's computer with flathead screwdriver
+
+> insert fob into scanner
+> take fob
+> insert fob into scanner
+> n
+> n
+Receptionist's Area
+> open desk
+> take key
+Taken.
+> s
+> w
+> take chair
+Taken.
+> n
+> unlock door with brass key
+You unlock
+> w
+Research Office
+> type jtitor into terminal
+The system accepts
+> type Tipler into terminal
+The system pauses
+> e
+> n
+> throw chair at glass
+You shatter the glass wall, creating an opening to the next room!
+> w
+You pick your way carefully through the giant shards of glass...
+> take ibm 5100
+Taken.
+> e
+> e
+IT Closet
+> take all
+> w
+> s
+> s
+> e
+> drop 5100
+Dropped.
+> e
+> e
+> take plunger
+Taken.
+> w
+> n
+> n
+> w
+The Utility Closet
+> take ladder
+Taken.
+> e
+> n
+> e
+> drop ladder
+Dropped.
+> plunge floor tile
+You press the plunger
+> d
+> turn on flashlight
+You switch the flashlight on.
+> n
+> u
+Server Room
+> take tape
+Taken.
+> s
+IT Office
+> take ladder
+Taken.
+> w
+> w
+> w
+> n
+The Unused Office
+> take flathead
+Taken.
+> climb ladder
+You climb up the ladder.
+> w
+> d
+April's Office
+> take april's computer
+Taken.
+> e
+Hallway
+> e
+> s
+> open cabinet
+> take card
+Taken.
+> n
+Hallway
+> remove pins with flathead
+You remove the pins
+> n
+> insert usb into len's computer
+You insert the USB drive
+> turn on len's computer
+The computer boots
+> s
+> e
+> s
+> s
+> jimmy door with card
+You unlock the office door and open it!
+> e
+Ellie's Office
+> unscrew screws with flathead
+You unscrew the screws
 
 * _take tarp twice
 
