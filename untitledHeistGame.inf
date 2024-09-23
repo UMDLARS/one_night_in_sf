@@ -1357,6 +1357,10 @@ with
 				give ellieComputer open;
 				return true;
 			}
+			else if (second==flathead) {
+				print "You try to unscrew the screws with your flathead screwdriver, but it does not fit.";
+				return false;
+			}
 			else {
 				print "You should specify a tool you are turning the screws with.";
 				return true;
@@ -1367,6 +1371,10 @@ with
 				give ellieComputer ~locked;
 				give ellieComputer open;
 				return true;
+			}
+			else if (second==flathead) {
+				print "You try to unscrew the screws with your flathead screwdriver, but it does not fit.";
+				return false;
 			}
 			else {
 				print "You should specify a tool you are unscrewing the screws with.";

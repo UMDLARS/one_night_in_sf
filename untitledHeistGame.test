@@ -441,6 +441,12 @@ shatter
 Taken.
 > w
 > n
+> n
+The Unused Office
+> take tarp
+> take flathead
+Taken.
+> s
 > e
 > s
 > open cabinet
@@ -455,7 +461,9 @@ Taken.
 >{include} _ready coffee card
 > jimmy door with coffee card
 > e 
-> unscrew case with screwdriver
+> unscrew case with flathead screwdriver
+You try to unscrew the screws with your flathead screwdriver, but it does not fit.
+> unscrew case with phillips head screwdriver
 > l
 which contains Ellie's hard drive
 > take hard drive
@@ -465,7 +473,25 @@ Taken.
 >{include} _ready coffee card
 > pick lock with coffee card
 > e 
+> unscrew screws with flathead screwdriver
+You try to unscrew the screws with your flathead screwdriver, but it does not fit.
+> unscrew screws with phillips head screwdriver
+> l
+which contains Ellie's hard drive
+> take hard drive
+Taken.
+
+* use ambiguous 'screwdriver' to unlock ellie's computer
+>{include} _ready coffee card
+> pick lock with coffee card
+> e 
+> unscrew screws with flathead screwdriver
+You try to unscrew the screws with your flathead screwdriver, but it does not fit.
 > unscrew screws with screwdriver
+> flathead
+You try to unscrew the screws with your flathead screwdriver, but it does not fit.
+> unscrew screws with screwdriver
+> phillips head
 > l
 which contains Ellie's hard drive
 > take hard drive
@@ -482,7 +508,9 @@ You unlock the office door and open it!
 > jimmy door with coffee card
 You unlock the office door and open it!
 > e 
-> turn screws with screwdriver
+> turn screws with flathead screwdriver
+You try to unscrew the screws with your flathead screwdriver, but it does not fit.
+> turn screws with phillips head screwdriver
 > l
 which contains Ellie's hard drive
 > take hard drive
