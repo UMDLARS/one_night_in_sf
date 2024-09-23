@@ -56,6 +56,13 @@
 
 The Lobby
 
+* scan fob twice consecutively
+
+> scan fob
+> scan fob
+(first taking the Security Key Fob)
+You insert the fob into the scanner.
+
 * get/drop key from receptionist area
 
 > insert fob into scanner

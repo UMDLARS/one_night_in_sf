@@ -25,6 +25,7 @@ Constant OPTIONAL_PROVIDE_UNDO;
 Constant INITIAL_LOCATION_VALUE = Tutorial;
 Constant DEBUG;
 
+
 Constant voxfail = "The tower silently listens to your voice, but then flashes red and buzzes disapprovingly. Red text appears on a screen: ~YOU ARE NOT JOHN TITOR THIS LOGIN ATTEMPT WILL BE REPORTED.~";
 Constant handfail = "You place your hand on the handprint recognizer. Light scans your hand before flashing red and buzzing disapprovingly. Red text appears on a screen: ~YOU ARE NOT JOHN TITOR THIS LOGIN ATTEMPT WILL BE REPORTED.~";
 
@@ -112,6 +113,7 @@ Verb 'type'  * -> TypeErr
 		}
 	}
 ];
+
 	
 Verb 'hint' * -> Hint;
 
@@ -131,6 +133,40 @@ Verb 'plunge'
 	* noun=IsToilet                             -> Plunge
 	* noun                                      -> Plunge
 	* multiexcept 'with' held                   -> Plunge;
+
+
+[ IsSecurityCard;
+  return (noun == securityCard);
+];
+
+! This routine checks if player is in elevator and if they're trying
+! to scan the fob. If true, operates identically to inserting
+! fob into scanner in the tutorial.
+[ScanSub;
+    if (location ~= Tutorial) {
+
+		print "You see nothing to scan...";
+		return false;
+	}
+	if (noun == securityCard && securityCard hasnt heavy) {
+
+		print "You insert the fob into the scanner. The green lights happily flash a few times, and the door opens! You have completed the tutorial. To enter the game proper type ~north~ or ~n~. If you ever need help try the commands help or intro!";
+		give elevatorDoor open;
+		give elevatorDoor ~locked;
+	} 
+	if (noun==securityCard && securityCard has heavy) {
+		print "Oops, you fumble the fob and drop it on the floor of the elevator! Use ~take [object]~ to pick up an object. Try grabbing the fob and try again!";
+		give securityCard ~heavy;
+		move securityCard to Tutorial;
+		update_moved = True;
+	}
+
+	return true;
+];
+
+Verb 'scan'
+	* noun=IsSecurityCard						-> Scan; 
+
 
 Extend 'pick' first
 	* noun 'with' held                          -> Unlock
@@ -232,6 +268,8 @@ with
 	],
 	
 has light;
+
+
 
 Object -> elevatorDoor "Elevator Door"
 with
@@ -1357,6 +1395,10 @@ with
 				give ellieComputer open;
 				return true;
 			}
+			else if (second==flathead) {
+				print "You try to unscrew the screws with your flathead screwdriver, but it does not fit.";
+				return false;
+			}
 			else {
 				print "You should specify a tool you are turning the screws with.";
 				return true;
@@ -1367,6 +1409,10 @@ with
 				give ellieComputer ~locked;
 				give ellieComputer open;
 				return true;
+			}
+			else if (second==flathead) {
+				print "You try to unscrew the screws with your flathead screwdriver, but it does not fit.";
+				return false;
 			}
 			else {
 				print "You should specify a tool you are unscrewing the screws with.";
