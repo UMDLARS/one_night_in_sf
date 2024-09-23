@@ -457,28 +457,61 @@ Taken.
 > s
 > s
 
-* jimmy to get hard drive
+* jimmy to get into ellie's office
+
 >{include} _ready coffee card
 > jimmy door with coffee card
 > e 
 Ellie's Office
-> unscrew case with screwdriver
-Do you mean the Flathead or the Phillips Head Screwdriver?
-> flathead
+
+* pick to get into ellie's office
+
+>{include} _ready coffee card
+> pick lock with coffee card
+> e 
+Ellie's Office
+
+
+* _get into ellies office
+>{include} _ready coffee card
+> jimmy door with coffee card
+> e
+Ellie's Office
+
+* turn screws using flathead to get hard drive
+
+>{include} _get into ellies office
+> turn screws with flathead
 > l
 which contains Ellie's hard drive
 > take hard drive
 Taken.
 
-* pick to get hard drive
->{include} _ready coffee card
-> pick lock with coffee card
-> e 
-> unscrew screws with phillips head screwdriver
+* turn screws using screwdriver to get hard drive
+
+>{include} _get into ellies office
+> turn screws with phillips head screwdriver
 > l
 which contains Ellie's hard drive
 > take hard drive
 Taken.
+
+* unscrew case using flathead to get hard drive
+>{include} _get into ellies office
+> unscrew case with flathead
+> l
+which contains Ellie's hard drive
+> take hard drive
+Taken.
+
+* unscrew case using phillips head to get hard drive
+>{include} _get into ellies office
+> unscrew case with phillips head screwdriver
+> l
+which contains Ellie's hard drive
+> take hard drive
+Taken.
+
 
 * turn screws to get hard drive
 >{include} _ready coffee card
