@@ -441,8 +441,14 @@ shatter
 Taken.
 > w
 > n
+> n
+> take tarp
+> take flathead
+Taken.
+> s
 > e
 > s
+(Kitchenette)
 > open cabinet
 > take card
 Taken.
@@ -455,7 +461,10 @@ Taken.
 >{include} _ready coffee card
 > jimmy door with coffee card
 > e 
+Ellie's Office
 > unscrew case with screwdriver
+Do you mean the Flathead or the Phillips Head Screwdriver?
+> flathead
 > l
 which contains Ellie's hard drive
 > take hard drive
@@ -465,7 +474,7 @@ Taken.
 >{include} _ready coffee card
 > pick lock with coffee card
 > e 
-> unscrew screws with screwdriver
+> unscrew screws with phillips head screwdriver
 > l
 which contains Ellie's hard drive
 > take hard drive
@@ -482,7 +491,7 @@ You unlock the office door and open it!
 > jimmy door with coffee card
 You unlock the office door and open it!
 > e 
-> turn screws with screwdriver
+> turn screws with flathead
 > l
 which contains Ellie's hard drive
 > take hard drive

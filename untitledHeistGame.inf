@@ -1351,8 +1351,8 @@ with
 	instructions "You attempt to use the computer, however, you are immediately challenged by a log in screen requesting a password.^^It seems the information on the hard drive of this computer will have to be accessed some other way.",
 	before [;
 		Turn:
-			if (second==screwdriver){
-				print "You unscrew the screws with your phillips head screwdriver! You can now see inside!";
+			if (second==screwdriver || second==flathead){
+				print "You unscrew the screws with your screwdriver! You can now see inside!";
 				give ellieComputer ~locked;
 				give ellieComputer open;
 				return true;
@@ -1362,8 +1362,8 @@ with
 				return true;
 			}
 		Unlock:
-			if (second==screwdriver){
-				print "You unscrew the screws with your phillips head screwdriver! You can now see inside!";
+			if (second==screwdriver || second==flathead){
+				print "You unscrew the screws with your screwdriver! You can now see inside!";
 				give ellieComputer ~locked;
 				give ellieComputer open;
 				return true;
