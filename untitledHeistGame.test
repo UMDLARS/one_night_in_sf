@@ -462,7 +462,7 @@ Taken.
 > jimmy door with coffee card
 > e 
 > unscrew case with flathead screwdriver
-You try to unscrew the screws with your flathead screwdriver, but it does not fit.
+You try to unscrew the phillips head screws with your flathead screwdriver, but it doesn't work. Perhaps you need a different screwdriver?
 > unscrew case with phillips head screwdriver
 > l
 which contains Ellie's hard drive
@@ -474,7 +474,7 @@ Taken.
 > pick lock with coffee card
 > e 
 > unscrew screws with flathead screwdriver
-You try to unscrew the screws with your flathead screwdriver, but it does not fit.
+You try to unscrew the phillips head screws with your flathead screwdriver, but it doesn't work. Perhaps you need a different screwdriver?
 > unscrew screws with phillips head screwdriver
 > l
 which contains Ellie's hard drive
@@ -486,10 +486,10 @@ Taken.
 > pick lock with coffee card
 > e 
 > unscrew screws with flathead screwdriver
-You try to unscrew the screws with your flathead screwdriver, but it does not fit.
+You try to unscrew the phillips head screws with your flathead screwdriver, but it doesn't work. Perhaps you need a different screwdriver?
 > unscrew screws with screwdriver
 > flathead
-You try to unscrew the screws with your flathead screwdriver, but it does not fit.
+You try to unscrew the phillips head screws with your flathead screwdriver, but it doesn't work. Perhaps you need a different screwdriver?
 > unscrew screws with screwdriver
 > phillips head
 > l
@@ -509,7 +509,7 @@ You unlock the office door and open it!
 You unlock the office door and open it!
 > e 
 > turn screws with flathead screwdriver
-You try to unscrew the screws with your flathead screwdriver, but it does not fit.
+You try to unscrew the phillips head screws with your flathead screwdriver, but it doesn't work. Perhaps you need a different screwdriver?
 > turn screws with phillips head screwdriver
 > l
 which contains Ellie's hard drive
