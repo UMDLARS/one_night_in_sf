@@ -284,9 +284,10 @@ has heavy;
 			print "(first taking the Security Key Fob)";
 			new_line;
 		}
-		"You insert the fob into the scanner. The green lights happily flash a few times, and the door opens! You have completed the tutorial. To enter the game proper type ~north~ or ~n~. If you ever need help try the commands help or intro!";
 		give elevatorDoor open;
 		give elevatorDoor ~locked;
+
+		"You insert the fob into the scanner. The green lights happily flash a few times, and the door opens! You have completed the tutorial. To enter the game proper type ~north~ or ~n~. If you ever need help try the commands help or intro!";
 	} 
 	if (noun==securityCard && securityCard has heavy) {
 		print "Oops, you fumble the fob and drop it on the floor of the elevator! Use ~take [object]~ to pick up an object. Try grabbing the fob and try again!";

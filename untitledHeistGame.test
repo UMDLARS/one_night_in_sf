@@ -62,54 +62,80 @@ The Lobby
 > scan fob
 (first taking the Security Key Fob)
 You insert the fob into the scanner.
+> n
+The Lobby
+> undo
 > undo
 > undo
 > scan id
 > scan id
 (first taking the Security Key Fob)
 You insert the fob into the scanner.
+> n
+The Lobby
+> undo
 > undo
 > undo
 > scan card
 > scan card
 (first taking the Security Key Fob)
 You insert the fob into the scanner.
+> n
+The Lobby
+> undo
 > undo
 > undo
 > insert id into scanner
 > insert id into scanner
 (first taking the Security Key Fob)
 You insert the fob into the scanner.
+> n
+The Lobby
+> undo
 > undo
 > undo
 > insert card into scanner
 > insert card into scanner
 (first taking the Security Key Fob)
 You insert the fob into the scanner.
+> n
+The Lobby
+> undo
 > undo
 > undo
 > insert fob into scanner
 > insert fob into scanner
 (first taking the Security Key Fob)
 You insert the fob into the scanner.
+> n
+The Lobby
+> undo
 > undo
 > undo
 > show fob to scanner
 > show fob to scanner
 (first taking the Security Key Fob)
 You insert the fob into the scanner.
+> n
+The Lobby
+> undo
 > undo
 > undo
 > show card to scanner
 > show card to scanner
 (first taking the Security Key Fob)
 You insert the fob into the scanner.
+> n
+The Lobby
+> undo
 > undo
 > undo
 > show id to scanner
 > show id to scanner
 (first taking the Security Key Fob)
 You insert the fob into the scanner.
+> n
+The Lobby
 
 * insert card (fob) into scanner in Tutorial
 > insert card into scanner
