@@ -135,6 +135,13 @@ You insert the fob into the scanner.
 > show id to scanner
 You insert the fob into the scanner.
 
+* scan fob in tutorial
+> scan fob
+> take fob
+Taken.
+> scan fob
+You insert the fob into the scanner.
+
 * get/drop key from receptionist area
 
 > insert fob into scanner
