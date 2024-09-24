@@ -146,6 +146,9 @@ Extend 'transfer' first
 Extend 'move' replace
 	* noun					    -> transfer;
 
+Extend 'show' replace
+	* noun 'to' noun			-> insert;
+
 ! 'screw' and 'unscrew' are defined as synonyms for 'turn',
 ! rather unhelpfully for a game that wishes to distinguish them.
 ! We keep that behaviour, and extend here.
@@ -161,6 +164,7 @@ Extend only 'turn' first
 
 Extend only 'remove' first
 	* noun 'with' held			    -> Remove;
+
 
 [Initialise;
   ! Start out VERBOSE instead of BRIEF

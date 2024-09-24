@@ -74,6 +74,66 @@ You insert the fob into the scanner.
 > scan card
 (first taking the Security Key Fob)
 You insert the fob into the scanner.
+> undo
+> undo
+> insert id into scanner
+> insert id into scanner
+(first taking the Security Key Fob)
+You insert the fob into the scanner.
+> undo
+> undo
+> insert card into scanner
+> insert card into scanner
+(first taking the Security Key Fob)
+You insert the fob into the scanner.
+> undo
+> undo
+> insert fob into scanner
+> insert fob into scanner
+(first taking the Security Key Fob)
+You insert the fob into the scanner.
+> undo
+> undo
+> show fob to scanner
+> show fob to scanner
+(first taking the Security Key Fob)
+You insert the fob into the scanner.
+> undo
+> undo
+> show card to scanner
+> show card to scanner
+(first taking the Security Key Fob)
+You insert the fob into the scanner.
+> undo
+> undo
+> show id to scanner
+> show id to scanner
+(first taking the Security Key Fob)
+You insert the fob into the scanner.
+
+* insert card (fob) into scanner in Tutorial
+> insert card into scanner
+> take card
+> insert card into scanner
+You insert the fob into the scanner.
+
+* insert id (fob) into scanner in Tutorial
+> insert id into scanner
+> take card
+> insert id into scanner
+You insert the fob into the scanner.
+
+* show card (fob) to scanner in Tutorial
+> show card to scanner
+> take card
+> show card to scanner
+You insert the fob into the scanner.
+
+* show id (fob) to scanner in Tutorial
+> show id to scanner
+> take id
+> show id to scanner
+You insert the fob into the scanner.
 
 * get/drop key from receptionist area
 
