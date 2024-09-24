@@ -62,6 +62,18 @@ The Lobby
 > scan fob
 (first taking the Security Key Fob)
 You insert the fob into the scanner.
+> undo
+> undo
+> scan id
+> scan id
+(first taking the Security Key Fob)
+You insert the fob into the scanner.
+> undo
+> undo
+> scan card
+> scan card
+(first taking the Security Key Fob)
+You insert the fob into the scanner.
 
 * get/drop key from receptionist area
 
@@ -636,6 +648,7 @@ The computer boots
 > s
 > s
 > jimmy door with card
+> coffee card
 You unlock the office door and open it!
 > e
 Ellie's Office
