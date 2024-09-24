@@ -142,24 +142,32 @@ The Lobby
 > take card
 > insert card into scanner
 You insert the fob into the scanner.
+> n
+The Lobby
 
 * insert id (fob) into scanner in Tutorial
 > insert id into scanner
 > take card
 > insert id into scanner
 You insert the fob into the scanner.
+> n
+The Lobby
 
 * show card (fob) to scanner in Tutorial
 > show card to scanner
 > take card
 > show card to scanner
 You insert the fob into the scanner.
+> n
+The Lobby
 
 * show id (fob) to scanner in Tutorial
 > show id to scanner
 > take id
 > show id to scanner
 You insert the fob into the scanner.
+> n
+The Lobby
 
 * scan fob in tutorial
 > scan fob
@@ -167,6 +175,30 @@ You insert the fob into the scanner.
 Taken.
 > scan fob
 You insert the fob into the scanner.
+> n
+The Lobby
+
+* scan fob thrice in tutorial
+> scan fob
+> scan fob
+(first taking the Security Key Fob)
+You insert the fob into the scanner.
+> scan fob
+You've already scanned your fob. Enter 'n' to proceed!
+> n
+The Lobby
+
+* insert fob thrice in tutorial
+> insert fob into scanner
+> insert fob into scanner
+(first taking the Security Key Fob)
+You insert the fob into the scanner.
+> insert fob into scanner
+You've already scanned your fob. Enter 'n' to proceed!
+> n
+The Lobby
+
+
 
 * get/drop key from receptionist area
 

@@ -207,6 +207,12 @@ with
 		'security' 'scanner' [;
 			Examine: "The scanner's lights blink expectantly for your security fob. Good job! Now this appears to be an object that you can interact with, requesting this security fob. If you type I or INVENTORY it will display the items you are currently carrying! There is no limit on the number of items you may hold, but some items are heavy or bulky which means you can only carry one of them. Try opening your inventory and looking at the security fob.";
 			Receive:
+			! Check if elevator door has already been opened. If yes, print a msg
+			if (elevatorDoor has open) {
+
+				print "You've already scanned your fob. Enter 'n' to proceed!";
+				return false;
+			}
 			if(noun==securityCard && securityCard hasnt heavy){
 				print "You insert the fob into the scanner. The green lights happily flash a few times, and the door opens! You have completed the tutorial. To enter the game proper type ~north~ or ~n~. If you ever need help try the commands help or intro!";
 				give elevatorDoor open;
@@ -275,8 +281,15 @@ has heavy;
 		return false;
 	}
 
+	! Check if elevator door 
+	if (elevatorDoor has open) {
+
+		print "You've already scanned your fob. Enter 'n' to proceed!";
+		return false;
+	}
+
 	! (Almost) Same action as 'Receive' in Tutorial
-	if (noun == securityCard && securityCard hasnt heavy) {
+	if (noun == securityCard && securityCard hasnt heavy && elevatorDoor hasnt open) {
 
 		! If the player tries to "insert fob into scanner" twice (w/o "take fob"), this message 
 		! is printed. For some reason PunyInform doesn't do that here, so doing it manually.
