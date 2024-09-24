@@ -135,39 +135,6 @@ Verb 'plunge'
 	* multiexcept 'with' held                   -> Plunge;
 
 
-[ IsSecurityCard;
-  return (noun == securityCard);
-];
-
-! This routine checks if player is in elevator and if they're trying
-! to scan the fob. If true, operates identically to inserting
-! fob into scanner in the tutorial.
-[ScanSub;
-    if (location ~= Tutorial) {
-
-		print "You see nothing to scan...";
-		return false;
-	}
-	if (noun == securityCard && securityCard hasnt heavy) {
-
-		print "You insert the fob into the scanner. The green lights happily flash a few times, and the door opens! You have completed the tutorial. To enter the game proper type ~north~ or ~n~. If you ever need help try the commands help or intro!";
-		give elevatorDoor open;
-		give elevatorDoor ~locked;
-	} 
-	if (noun==securityCard && securityCard has heavy) {
-		print "Oops, you fumble the fob and drop it on the floor of the elevator! Use ~take [object]~ to pick up an object. Try grabbing the fob and try again!";
-		give securityCard ~heavy;
-		move securityCard to Tutorial;
-		update_moved = True;
-	}
-
-	return true;
-];
-
-Verb 'scan'
-	* noun=IsSecurityCard						-> Scan; 
-
-
 Extend 'pick' first
 	* noun 'with' held                          -> Unlock
 	* 'apart'/'open' noun 'with' held           -> Unlock
@@ -290,6 +257,53 @@ with
 		}
 	],
 has heavy;
+
+
+! This routine checks if player is in elevator and if they're trying
+! to scan the fob. If true, operates identically to inserting
+! fob into scanner in the tutorial.
+[ScanSub;
+
+	! Return false if player tries to scan anything while outside elevator
+    if (location ~= Tutorial) {
+
+		print "You see nothing to scan...";
+		return false;
+	}
+
+	! (Almost) Same action as 'Receive' in Tutorial
+	if (noun == securityCard && securityCard hasnt heavy) {
+
+		! If the player tries to "insert fob into scanner" twice (w/o "take fob"), this message 
+		! is printed. For some reason PunyInform doesn't do that here, so doing it manually.
+		if (securityCard notin player) {
+			print "(first taking the Security Key Fob)";
+			new_line;
+		}
+		"You insert the fob into the scanner. The green lights happily flash a few times, and the door opens! You have completed the tutorial. To enter the game proper type ~north~ or ~n~. If you ever need help try the commands help or intro!";
+		give elevatorDoor open;
+		give elevatorDoor ~locked;
+	} 
+	if (noun==securityCard && securityCard has heavy) {
+		print "Oops, you fumble the fob and drop it on the floor of the elevator! Use ~take [object]~ to pick up an object. Try grabbing the fob and try again!";
+		give securityCard ~heavy;
+		move securityCard to Tutorial;
+	
+		! The PunyInform manual states to do this when changing an object's 
+		! location outside its scope, but we don't have OPTIONAL_MANUAL_SCOPE set.
+		
+		update_moved = True;
+	}
+
+	return true;
+];
+
+[ IsSecurityCard;
+  return (noun == securityCard);
+];
+
+Verb 'scan'
+	* noun=IsSecurityCard						-> Scan; 
 
 !===================LOBBY=======================
 Object Lobby "The Lobby"
