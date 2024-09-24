@@ -1415,8 +1415,7 @@ with
 				return true;
 			}
 			else if (second==flathead) {
-				print "You try to unscrew the screws with your flathead screwdriver, but it does not fit.";
-				return false;
+				"You try to unscrew the phillips head screws with your flathead screwdriver, but it doesn't work. Perhaps you need a different screwdriver?";
 			}
 			else {
 				print "You should specify a tool you are turning the screws with.";
@@ -1430,8 +1429,7 @@ with
 				return true;
 			}
 			else if (second==flathead) {
-				print "You try to unscrew the screws with your flathead screwdriver, but it does not fit.";
-				return false;
+				"You try to unscrew the phillips head screws with your flathead screwdriver, but it doesn't work. Perhaps you need a different screwdriver?";
 			}
 			else {
 				print "You should specify a tool you are unscrewing the screws with.";
