@@ -808,8 +808,9 @@ with
 			default: "The door to the west office is locked. Maybe you could find a key or an alternate way in.";
 		]
 		'poster' 'kitten poster' [;
-			Take: "Unfortunately, simply taking down the poster will not spare the kitten. You decide to leave business-kitten to its fate.";
-			default: "The poster depicts an especially sad-looking kitten wearing a business suit with a tie, clinging helplessly to a branch. The poster is captioned with the words 'Hang In There!'.";
+			Take, Remove: "Unfortunately, simply taking down the poster will not spare the kitten. You decide to leave business-kitten to its fate.";
+			Examine, Look: "The poster depicts an especially sad-looking kitten wearing a business suit with a tie, clinging helplessly to a branch. The poster is captioned with the words 'Hang In There!'.";
+			default: "I'm not sure what you want me to do with business-kitten.";
 		],
 
 s_to Hallway6,
