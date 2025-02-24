@@ -1337,6 +1337,12 @@ with
 
 	when_on "There is a flashlight here (turned on).",
 	when_off "There is a flashlight here (turned off).",
+	before [;
+		Drop: 
+			if (location hasnt light) {
+				"You abstain, given the pitch-blackness."; 
+			}
+	],
 	after [;
 		SwitchOn: give self light;
 		SwitchOff: give self ~light;
