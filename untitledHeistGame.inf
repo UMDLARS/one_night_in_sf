@@ -143,9 +143,6 @@ Extend 'pick' first
 Extend 'transfer' first
 	* noun 'to' noun		    -> transfer;
 
-Extend 'move' replace
-	* noun					    -> transfer;
-
 Extend 'show' replace
 	* noun 'to' noun			-> insert;
 
