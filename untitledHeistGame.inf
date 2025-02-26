@@ -986,14 +986,18 @@ with
 		'hinges' 'hinge' [;
 			Examine: "These hinges bind the door to the wall by four pins going through the entire assembly. Maybe you could remove the pins if you had something with a flat end to push them out.";
 			Remove: 
-							if(second==flathead){ 
+							if(second==flathead && Office3Door hasnt open){ 
 								print "You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...";
 								give Office3Door open;
-								give Office3Door concealed;	
 								return true;
 							}
-							else{
+							else if (Office3Door hasnt open) {
+
 								print "You try that, but it doesn't seem to work. Maybe you need something like a chisel.";
+								return true;
+							}
+							else {
+								print "The now-bent pins lay beside the fallen door. You see no point in taking them with you.";
 								return true;
 							};
 			default: "I am not sure what you want me to do.";
@@ -1001,14 +1005,18 @@ with
 		'pins' 'pin' [;
 			Examine: "These pins were hammered into place while someone held the door up. This is how most doors are attached to walls, it seems this door just so happens to have them on the exterior of the office.";
 			Take,Remove:
-							if(second==flathead){ 
+							if(second==flathead && Office3Door hasnt open){ 
 								print "You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...";
 								give Office3Door open;
 								return true;
 							}
-							else{
+							else if (Office3Door hasnt open) {
 
 								print "You try that, but it doesn't seem to work. Maybe you need something like a chisel.";
+								return true;
+							}
+							else {
+								print "The now-bent pins lay beside the fallen door. You see no point in taking them with you.";
 								return true;
 							};
 		!	default: "I am not sure what you want me to do.";
