@@ -100,6 +100,17 @@ Verb 'type'  * -> TypeErr
 	"That's not an object on which you can type anything.";
 ];
 
+[MoveSub; 
+	print "You should try to ", (ul) "move", " ", "something ", (ul) "to", " ","somewhere";
+	noun = false; ! According to the guy above this suppresses an error msg
+];
+
+[PutSub; 
+	print "You should try to ", (ul) "put", " ", "something ", (ul) "on", " something else";
+	noun = false; ! According to the guy above this suppresses an error msg
+];
+
+
 [HintSub;
 	if(location.instructions == 0){
 		"It appears there are no hints to give for this room, sorry.";
@@ -114,7 +125,6 @@ Verb 'type'  * -> TypeErr
 	}
 ];
 
-	
 Verb 'hint' * -> Hint;
 
 Verb 'jimmy' 'lift'
@@ -129,11 +139,18 @@ Verb 'jimmy' 'lift'
   return (noun == toilet);
 ];
 
+[ IsInInventory;
+  return (noun in player);
+];
+
 Verb 'plunge'
 	* noun=IsToilet                             -> Plunge
 	* noun                                      -> Plunge
 	* multiexcept 'with' held                   -> Plunge;
 
+
+Extend 'remove' first
+	* noun=IsInInventory				-> Drop;
 
 Extend 'pick' first
 	* noun 'with' held                          -> Unlock
@@ -144,7 +161,10 @@ Extend 'transfer' first
 	* noun 'to' noun		    -> transfer;
 
 Extend 'move' replace
-	* noun					    -> transfer;
+	* noun					    -> Move;
+
+Extend 'put' replace 
+	* noun 						-> Put;
 
 Extend 'show' replace
 	* noun 'to' noun			-> insert;
