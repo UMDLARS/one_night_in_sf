@@ -821,6 +821,24 @@ While the tarp certainly is of the highest quality, you see no point in keeping 
 > take flathead
 You already have it.
 
+* Try leaving elevator without checklist (tasklist)
+
+> drop checklist
+You see no point in doing that now.
+> throw checklist
+You see no point in doing that now.
+> move checklist to elevator
+You see no point in doing that now.
+> remove checklist
+You see no point in doing that now.
+> insert fob into scanner
+> insert fob into scanner
+> drop checklist
+Dropped.
+> take checklist
+Taken.
+> move checklist to elevator
+
 * Type jtitor twice into terminal
 
 >{include} _get into o7

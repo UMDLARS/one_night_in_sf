@@ -192,6 +192,13 @@ with
 			print "Great job! Now how about we get out of this elevator and into the game proper? This game holds many verbs, not all we can cover in the tutorial, however we tried to make the language as natural as possible. Try inserting the security fob into the scanner to open the door.";
 		}
 	],
+	before [;
+		Drop, Move, Throw, Put, Remove: 
+			if (player in Elevator) {
+				"There's no point in doing that now.";
+			}
+			rtrue;
+	],
 	instructions [;
 		"You can ", (ul) "look at", " or ", (ul) "read", " ", (the) checklist, " to see which tasks are finished, and which still need doing.";
 	],
