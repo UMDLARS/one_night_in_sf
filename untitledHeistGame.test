@@ -628,7 +628,7 @@ which contains Ellie's hard drive
 > take hard drive
 Taken.
 
-* Test Office3Door closing/opening door & removing/taking pins
+* Test Office3Door closing/opening door & removing/taking PINS
 > scan fob
 > scan fob
 > n
@@ -665,6 +665,45 @@ You can't lock that.
 > n
 > switch computer
 You boot the computer and are greeted by a password screen. You do not know the password to this computer so you decide to turn it off; maybe you could find a way around the password. You do remember that it is company policy to not encrypt hard drives.
+
+* Test Office3Door closing/opening door & removing/taking HINGES
+> scan fob
+> scan fob
+> n
+> w
+> n
+> n
+> n
+> n
+> take tarp
+As you fold up and take the tarp you notice underneath it there was a flathead screwdriver!
+> take screwdriver
+Taken.
+> s
+> e
+> n
+You can't, since the Large Wooden Door is closed.
+> remove hinge
+You try that, but
+> remove hinge with screwdriver
+You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...
+> remove hinge with screwdriver
+The now-bent pins
+> take hinge
+The now-bent pins
+> remove hinge
+The now-bent pins
+> close door
+You can't close that.
+> open door
+You can't open that.
+> lock door with screwdriver.
+You can't lock that.
+> n
+> n
+> switch computer
+You boot the computer and are greeted by a password screen. You do not know the password to this computer so you decide to turn it off; maybe you could find a way around the password. You do remember that it is company policy to not encrypt hard drives.
+
 
 * Complete game run with all tasks
 
