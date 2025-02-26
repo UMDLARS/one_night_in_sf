@@ -985,6 +985,8 @@ with
 		'water' 'water dispenser' "The water dispenser sits there, idle, empty and useless."
 		'hinges' 'hinge' [;
 			Examine: "These hinges bind the door to the wall by four pins going through the entire assembly. Maybe you could remove the pins if you had something with a flat end to push them out.";
+			
+			! We need to have 'take' here too. it resolves to the default 'remove' if 2nd arg isn't given
 			Take, Remove: 
 							if(second==flathead && Office3Door hasnt open){ 
 								print "You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...";
