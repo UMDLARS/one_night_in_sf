@@ -139,18 +139,11 @@ Verb 'jimmy' 'lift'
   return (noun == toilet);
 ];
 
-[ IsInInventory;
-  return (noun in player);
-];
-
 Verb 'plunge'
 	* noun=IsToilet                             -> Plunge
 	* noun                                      -> Plunge
 	* multiexcept 'with' held                   -> Plunge;
 
-
-Extend 'remove' first
-	* noun=IsInInventory				-> Drop;
 
 Extend 'pick' first
 	* noun 'with' held                          -> Unlock
@@ -160,10 +153,10 @@ Extend 'pick' first
 Extend 'transfer' first
 	* noun 'to' noun		    -> transfer;
 
-Extend 'move' replace
+Extend 'move' first
 	* noun					    -> Move;
 
-Extend 'put' replace 
+Extend 'put' first
 	* noun 						-> Put;
 
 Extend 'show' replace
@@ -301,8 +294,10 @@ has heavy;
 		! If the player tries to "insert fob into scanner" twice (w/o "take fob"), this message 
 		! is printed. For some reason PunyInform doesn't do that here, so doing it manually.
 		if (securityCard notin player) {
+
+			@new_line;
 			print "(first taking the Security Key Fob)";
-			new_line;
+			@new_line; @new_line;
 		}
 		give elevatorDoor open;
 		give elevatorDoor ~locked;
