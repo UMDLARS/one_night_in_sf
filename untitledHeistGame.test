@@ -37,6 +37,13 @@
 # > l
 # It feels so nice, standing in the box.
 
+* Try to move inventory items
+> move fob
+You should try to
+> insert fob into scanner
+> insert fob into scanner
+You insert the fob into the scanner.
+
 * loop the hallway
 
 > insert fob into scanner
