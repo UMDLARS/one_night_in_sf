@@ -100,6 +100,17 @@ Verb 'type'  * -> TypeErr
 	"That's not an object on which you can type anything.";
 ];
 
+[MoveSub; 
+	print "You should try to ", (ul) "move", " ", "something ", (ul) "to", " ","somewhere";
+	noun = false; ! According to the guy above this suppresses an error msg
+];
+
+[PutSub; 
+	print "You should try to ", (ul) "put", " ", "something ", (ul) "on", " something else";
+	noun = false; ! According to the guy above this suppresses an error msg
+];
+
+
 [HintSub;
 	if(location.instructions == 0){
 		"It appears there are no hints to give for this room, sorry.";
@@ -114,7 +125,6 @@ Verb 'type'  * -> TypeErr
 	}
 ];
 
-	
 Verb 'hint' * -> Hint;
 
 Verb 'jimmy' 'lift'
@@ -143,6 +153,15 @@ Extend 'pick' first
 Extend 'transfer' first
 	* noun 'to' noun		    -> transfer;
 
+<<<<<<< HEAD
+=======
+Extend 'move' first
+	* noun					    -> Move;
+
+Extend 'put' first
+	* noun 						-> Put;
+
+>>>>>>> 45a4ec6125666821932d6546098bff83ef5a501e
 Extend 'show' replace
 	* noun 'to' noun			-> insert;
 
@@ -278,8 +297,10 @@ has heavy;
 		! If the player tries to "insert fob into scanner" twice (w/o "take fob"), this message 
 		! is printed. For some reason PunyInform doesn't do that here, so doing it manually.
 		if (securityCard notin player) {
+
+			@new_line;
 			print "(first taking the Security Key Fob)";
-			new_line;
+			@new_line; @new_line;
 		}
 		give elevatorDoor open;
 		give elevatorDoor ~locked;

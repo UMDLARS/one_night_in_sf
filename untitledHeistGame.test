@@ -848,6 +848,16 @@ LOGIN INCORRECT
 > type jtitor into terminal then type tipler into terminal
 presents you with a command prompt.
 
+* Use 'move' and 'put' with one noun only (test MoveSub & PutSub)
+> move fob
+You should try to
+> put fob
+You should try to
+> move fob to elevator
+The Elevator Door can't contain things.
+> put fob in elevator
+The Elevator Door can't contain things.
+
 
 * Easter Eggs
 > damn this stupid chunk of germanium
