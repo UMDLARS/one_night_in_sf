@@ -884,6 +884,76 @@ LOGIN INCORRECT
 > type jtitor into terminal then type tipler into terminal
 presents you with a command prompt.
 
+* Drop flashlight in dark area
+
+> insert fob into scanner
+> take fob
+> insert fob into scanner
+> n
+> e
+> n
+> n
+> w
+> get ladder
+Taken.
+> e
+> n
+> w
+> w
+> s
+> e
+> get torch
+Taken.
+> w
+> n
+> n
+> use ladder
+Ladders are very straightforward devices.
+> climb ladder
+You climb up the ladder.  However you had to leave it behind.
+Dropped.
+> d
+> s
+> e
+> e
+> take plant
+Taken.
+> get plant
+You already have it.
+> w
+> w
+> n
+> u
+You climb up the ladder.You couldn't possibly fit up there while carrying the large potted plant!
+You climb back down.
+> drop plant
+Dropped.
+> u
+pitch
+> turn on torch
+Crawl Space
+You climb up into a small crawl space
+!You're not sure how you can use that in this location.
+> d
+> climb ladder
+Crawl Space
+> drop flashlight
+You abstain, given the pitch-blackness.
+> drop flashlight
+You abstain, given the pitch-blackness.
+> turn off flashlight
+You switch the flashlight off
+> drop key
+Dropped.
+> take key
+You can't see any such thing.
+> turn on flashlight
+You switch the flashlight on
+> take key
+Taken.
+> turn off flashlight
+> drop flashlight
+You abstain, given the pitch-blackness.
 * Use 'move' and 'put' with one noun only (test MoveSub & PutSub)
 > move fob
 You should try to
