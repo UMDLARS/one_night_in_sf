@@ -153,15 +153,12 @@ Extend 'pick' first
 Extend 'transfer' first
 	* noun 'to' noun		    -> transfer;
 
-<<<<<<< HEAD
-=======
 Extend 'move' first
 	* noun					    -> Move;
 
 Extend 'put' first
 	* noun 						-> Put;
 
->>>>>>> 45a4ec6125666821932d6546098bff83ef5a501e
 Extend 'show' replace
 	* noun 'to' noun			-> insert;
 
