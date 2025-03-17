@@ -628,18 +628,13 @@ which contains Ellie's hard drive
 > take hard drive
 Taken.
 
-* External USB boot drive
-> insert fob into scanner
-> take fob
-> insert fob into scanner
+* Test Office3Door closing/opening door & removing/taking PINS
+> scan fob
+> scan fob
 > n
 > w
 > n
 > n
-> e
-> take drive
-Taken.
-> w
 > n
 > n
 > take tarp
@@ -654,13 +649,61 @@ You can't, since the Large Wooden Door is closed.
 You try that, but
 > remove pins with screwdriver
 You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...
+> remove pins with screwdriver
+The now-bent pins
+> take pins
+The now-bent pins
+> remove pins
+The now-bent pins
+> close door
+You can't close that.
+> open door
+You can't open that.
+> lock door with screwdriver.
+You can't lock that.
+> n
 > n
 > switch computer
 You boot the computer and are greeted by a password screen. You do not know the password to this computer so you decide to turn it off; maybe you could find a way around the password. You do remember that it is company policy to not encrypt hard drives.
-> insert drive into computer
-You insert the USB drive into the open port on the back of the computer.
+
+* Test Office3Door closing/opening door & removing/taking HINGES
+> scan fob
+> scan fob
+> n
+> w
+> n
+> n
+> n
+> n
+> take tarp
+As you fold up and take the tarp you notice underneath it there was a flathead screwdriver!
+> take screwdriver
+Taken.
+> s
+> e
+> n
+You can't, since the Large Wooden Door is closed.
+> remove hinge
+You try that, but
+> remove hinge with screwdriver
+You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...
+> remove hinge with screwdriver
+The now-bent pins
+> take hinge
+The now-bent pins
+> remove hinge
+The now-bent pins
+> close door
+You can't close that.
+> open door
+You can't open that.
+> lock door with screwdriver.
+You can't lock that.
+> n
+> n
 > switch computer
-The computer boots to a linux desktop, you bypassed the password! On the desktop there is a directory labeled "Secret Files". You are able to steal the information from the computer and save it onto the USB drive. After you pocket the USB drive, you must exfiltrate with this.
+You boot the computer and are greeted by a password screen. You do not know the password to this computer so you decide to turn it off; maybe you could find a way around the password. You do remember that it is company policy to not encrypt hard drives.
+
 
 * Complete game run with all tasks
 
@@ -911,6 +954,15 @@ Taken.
 > turn off flashlight
 > drop flashlight
 You abstain, given the pitch-blackness.
+* Use 'move' and 'put' with one noun only (test MoveSub & PutSub)
+> move fob
+You should try to
+> put fob
+You should try to
+> move fob to elevator
+The Elevator Door can't contain things.
+> put fob in elevator
+The Elevator Door can't contain things.
 
 
 * Easter Eggs

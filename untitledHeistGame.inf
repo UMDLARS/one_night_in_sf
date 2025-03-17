@@ -100,6 +100,17 @@ Verb 'type'  * -> TypeErr
 	"That's not an object on which you can type anything.";
 ];
 
+[MoveSub; 
+	print "You should try to ", (ul) "move", " ", "something ", (ul) "to", " ","somewhere";
+	noun = false; ! According to the guy above this suppresses an error msg
+];
+
+[PutSub; 
+	print "You should try to ", (ul) "put", " ", "something ", (ul) "on", " something else";
+	noun = false; ! According to the guy above this suppresses an error msg
+];
+
+
 [HintSub;
 	if(location.instructions == 0){
 		"It appears there are no hints to give for this room, sorry.";
@@ -114,7 +125,6 @@ Verb 'type'  * -> TypeErr
 	}
 ];
 
-	
 Verb 'hint' * -> Hint;
 
 Verb 'jimmy' 'lift'
@@ -143,8 +153,11 @@ Extend 'pick' first
 Extend 'transfer' first
 	* noun 'to' noun		    -> transfer;
 
-Extend 'move' replace
-	* noun					    -> transfer;
+Extend 'move' first
+	* noun					    -> Move;
+
+Extend 'put' first
+	* noun 						-> Put;
 
 Extend 'show' replace
 	* noun 'to' noun			-> insert;
@@ -281,8 +294,10 @@ has heavy;
 		! If the player tries to "insert fob into scanner" twice (w/o "take fob"), this message 
 		! is printed. For some reason PunyInform doesn't do that here, so doing it manually.
 		if (securityCard notin player) {
+
+			@new_line;
 			print "(first taking the Security Key Fob)";
-			new_line;
+			@new_line; @new_line;
 		}
 		give elevatorDoor open;
 		give elevatorDoor ~locked;
@@ -985,33 +1000,45 @@ with
 		'water' 'water dispenser' "The water dispenser sits there, idle, empty and useless."
 		'hinges' 'hinge' [;
 			Examine: "These hinges bind the door to the wall by four pins going through the entire assembly. Maybe you could remove the pins if you had something with a flat end to push them out.";
-			Remove: 
-							if(second==flathead){ 
+			
+			! We need to have 'take' here too. it resolves to the default 'remove' if 2nd arg isn't given
+			Take, Remove: 
+							if(second==flathead && Office3Door hasnt open){ 
 								print "You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...";
 								give Office3Door open;
-								give Office3Door concealed;	
+								give Office3Door ~locked;
 								return true;
 							}
-							else{
-								print "You try that, but it doesn't seem to work. Maybe you need something like a chisel.";
-								return true;
-							};
-			default: "I am not sure what you want me to do.";
-		]
-		'pins' 'pin' [;
-			Examine: "These pins were hammered into place while someone held the door up. This is how most doors are attached to walls, it seems this door just so happens to have them on the exterior of the office.";
-			Take,Remove:
-							if(second==flathead){ 
-								print "You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...";
-								give Office3Door open;
-								return true;
-							}
-							else{
+							else if (Office3Door hasnt open) {
 
 								print "You try that, but it doesn't seem to work. Maybe you need something like a chisel.";
 								return true;
+							}
+							else {
+								print "The now-bent pins lay beside the fallen door. You see no point in taking them with you.";
+								return true;
 							};
-		!	default: "I am not sure what you want me to do.";
+			! default: "I am not sure what you want me to do.";
+		]
+		'pins' 'pin'[;
+			Examine: "These pins were hammered into place while someone held the door up. This is how most doors are attached to walls, it seems this door just so happens to have them on the exterior of the office.";
+			Take,Remove:
+							if(second==flathead && Office3Door hasnt open){ 
+								print "You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...";
+								give Office3Door open;
+								give Office3Door ~locked;
+								return true;
+							}
+							else if (Office3Door hasnt open) {
+
+								print "You try that, but it doesn't seem to work. Maybe you need something like a chisel.";
+								return true;
+							}
+							else {
+								print "The now-bent pins lay beside the fallen door. You see no point in taking them with you.";
+								return true;
+							};
+			default: "I am not sure what you want me to do.";
 		],
 w_to Hallway5,
 e_to Hallway3,
