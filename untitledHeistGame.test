@@ -972,6 +972,25 @@ The Elevator Door can't contain things.
 The Elevator Door can't contain things.
 
 
+* Interact with kitten poster
+> insert fob into scanner
+> insert fob into scanner
+> n
+> w
+> n
+> n
+> n
+> examine poster
+The poster depicts an especially sad-looking kitten wearing a business suit with a tie, clinging helplessly to a branch. The poster is captioned with the words 'Hang In There!'.
+> look poster
+The poster depicts an especially sad-looking kitten wearing a business suit with a tie, clinging helplessly to a branch. The poster is captioned with the words 'Hang In There!'.
+> take poster
+Unfortunately, simply taking down the poster will not spare the kitten.
+> remove poster
+Unfortunately, simply taking down the poster will not spare the kitten.
+> eat poster
+I'm not sure what you want me to do with business-kitten.
+
 * Easter Eggs
 > damn this stupid chunk of germanium
 DAMN.SV NOT FOUND
