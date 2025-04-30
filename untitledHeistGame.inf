@@ -1,6 +1,3 @@
-Array UUID_ARRAY string "UUID://XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX//";
-#Ifdef UUID_ARRAY;#Endif;
-
 Constant Story "One Night in San Francisco^^";
 Constant Headline "This is a work of ~interactive fiction~. ^^It is your first day on the job at Titor & Associates Financial Forecasting. You applied here to gain access to their offices after hours to steal their valuable information off of their computers. They have state of the art cyber security preventing any digital leaks of the information so you are here to physically take it.^^You step through the front doors of the office. It is pitch black outside. You are here after hours. As you walk through the quiet foyer, your shoes clack against the floor echoing revealing just how silent this space is after hours. You approach the elevator and press the up button. The elevator *DINGS* and the doors open. Entering the elevator, you press the button labeled ~13~, the floor of the office you are going to burgle tonight!^^The elevator hums as it brings you up to the floor requested, however upon reaching the 13th floor, the door does not open. A slot just below the floor buttons begins to light up requesting a security pass, which you were given upon your hiring.^^";
 
