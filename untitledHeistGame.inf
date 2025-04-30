@@ -96,6 +96,11 @@ Verb 'type'  * -> TypeErr
 	noun = false; ! I think this suppresses an error message.
 ];
 
+[GoErrSub;
+	print "I think you wanted to say ~exit (some direction)~. Please try again.";
+	noun = false;
+];
+
 [TypeSub;
 	"That's not an object on which you can type anything.";
 ];
@@ -109,6 +114,7 @@ Verb 'type'  * -> TypeErr
 	print "You should try to ", (ul) "put", " ", "something ", (ul) "on", " something else";
 	noun = false; ! According to the guy above this suppresses an error msg
 ];
+
 
 
 [HintSub;
@@ -158,6 +164,10 @@ Extend 'move' first
 
 Extend 'put' first
 	* noun 						-> Put;
+
+Extend 'exit' replace
+	* noun=ADirection			-> Go
+	* multiexcept				-> GoErr;
 
 Extend 'show' replace
 	* noun 'to' noun			-> insert;
@@ -235,7 +245,7 @@ with
 
 	],
 	before [;
-		Go:
+		Go,Exit:
 			if(selected_direction==n_to && elevatorDoor has open){
 				PlayerTo(Lobby,2);
 				print "^You recall from your interview that the first office on the west side requires a brass key to open. To start maybe look for that key, or tackle any office you like first!";
