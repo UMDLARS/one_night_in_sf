@@ -588,6 +588,33 @@ which contains Ellie's hard drive
 > take hard drive
 Taken.
 
+
+* use exit to leave elevator
+> exit
+I think you wanted to say "exit (some direction)". Please try again.
+> exit n
+The elevator doors are still closed! Follow the tutorial to open them!
+> exit fob
+I think you wanted to say "exit (some direction)". Please try again.
+> exit elevator
+I think you wanted to say "exit (some direction)". Please try again.
+> exit elevator with fob
+> scan fob
+> scan fob
+> exit n
+The Lobby
+> exit s
+There is still critical information that isn't on you! You can't leave yet.
+> exit n
+Receptionist's Area
+> exit s
+The Lobby
+> exit n with
+I think you wanted to say "exit (some direction)". Please try again.
+> exit n to
+I think you wanted to say "exit (some direction)". Please try again.
+
+
 * pick to get hard drive
 >{include} _ready coffee card
 > pick lock with coffee card
