@@ -1259,6 +1259,23 @@ has static door openable ~open lockable locked scenery;
 Object UnderItRoom "Under IT Room Crawlspace"
 with
 	description "You are underneath a raised floor. This cramped and dusty space is about one foot tall. Spaced every two feet are steel pillars; resting on top of the pillars are precisely fitted square floor tiles, held only by gravity. One tile has been removed. Ethernet wires run alongsize electrical condiut and air conditioning ducts. The part of the crawlspace you are in seems to be about the same size as the IT office, but the space extends far enough to the north that it disappears in darkness.",
+	before [;
+		Drop, Put:
+			if (noun == flashlight && flashlight has light) {
+				give self light;
+			}
+		Take:
+			if (noun == flashlight && self has flashlight && flashlight hasnt light) {
+				print "You fumble around in the darkness as you search for your flashlight, but it seems to have vanished into the pitch blackness. You'll have to find an exit without it.";
+				noun = false;
+			}
+	],
+	after [;
+		Take: 
+			if (noun == flashlight && flashlight has light) {
+				give self ~light;
+			}
+	],
 
 u_to Office2,
 n_to UnderServerRoom,
@@ -1271,7 +1288,23 @@ with
 Object UnderServerRoom "Under Server Room Crawlspace"
 with
 	description "You are underneath a raised floor. Dust bunnies are everywhere. Spaced every two feet are steel pillars; resting on top of the pillars are precisely fitted square floor tiles, held only by gravity. Light streams through holes in the tiles above your head; Ethernet cables snake through those holes into the light above. The muffled roar of server racks can be heard above your head. In the darkness to the south, a large square of light is visible.",
-
+	before [;
+		Drop, Put:
+			if (noun == flashlight && flashlight has light) {
+				give self light;
+			}
+		Take:
+			if (noun == flashlight && self has flashlight && flashlight hasnt light) {
+				print "You fumble around in the darkness as you search for your flashlight, but it seems to have vanished into the pitch blackness. You'll have to find an exit without it.";
+				noun = false;
+			}
+	],
+	after [;
+		Take: 
+			if (noun == flashlight && flashlight has light) {
+				give self ~light;
+			}
+	],
 u_to ServerRoom,
 s_to UnderITRoom;
 
