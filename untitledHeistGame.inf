@@ -940,7 +940,7 @@ has concealed scored;
 !===================CRAWL SPACE ENTRANCE=====================
 Object Crawl1 "Crawl Space"
 with
-	description "You climb up into a small crawl space above the ceiling, there are electrical wires running everywhere however it appears as if the wall to the west does not extend up into this space!",
+	description "You climb up into a small crawl space above the ceiling, weaving your way through a canopy of electrical wiring. To the west, you notice a vent-shaped gap just large enough for you to fit through.",
 w_to Crawl2,
 d_to Office4,
 has scored;
