@@ -635,7 +635,7 @@ which contains Ellie's hard drive
 > take hard drive
 Taken.
 
-* Test Office3Door closing/opening door & removing/taking PINS
+* Test Office3Door closing/opening door & removing/taking pins/hinges
 > scan fob
 > scan fob
 > n
@@ -657,11 +657,40 @@ You try that, but
 > remove pins with screwdriver
 You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...
 > remove pins with screwdriver
-The now-bent pins
+The bent, useless
+> n
+This is an office. To the south there is a door leading back to the hallway.
+> undo
+> undo
+> undo
+> pry pins with screwdriver
+You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...
+> n
+This is an office. To the south there is a door leading back to the hallway.
+> undo
+> undo
+> pull off hinges with screwdriver
+You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...
+> n
+This is an office. To the south there is a door leading back to the hallway.
+> undo 
+> undo
+> rip off hinges with screwdriver
+You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...
+> n
+This is an office. To the south there is a door leading back to the hallway.
+> undo
+> undo
+> pry hinges with screwdriver
+You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...
+> pry pins with screwdriver
+The bent, useless
+> pry pins
+The bent, useless
 > take pins
-The now-bent pins
+The bent, useless
 > remove pins
-The now-bent pins
+The bent, useless
 > close door
 You can't close that.
 > open door
@@ -669,48 +698,7 @@ You can't open that.
 > lock door with screwdriver.
 You can't lock that.
 > n
-> n
-> switch computer
-You boot the computer and are greeted by a password screen. You do not know the password to this computer so you decide to turn it off; maybe you could find a way around the password. You do remember that it is company policy to not encrypt hard drives.
-
-* Test Office3Door closing/opening door & removing/taking HINGES
-> scan fob
-> scan fob
-> n
-> w
-> n
-> n
-> n
-> n
-> take tarp
-As you fold up and take the tarp you notice underneath it there was a flathead screwdriver!
-> take screwdriver
-Taken.
-> s
-> e
-> n
-You can't, since the Large Wooden Door is closed.
-> remove hinge
-You try that, but
-> remove hinge with screwdriver
-You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...
-> remove hinge with screwdriver
-The now-bent pins
-> take hinge
-The now-bent pins
-> remove hinge
-The now-bent pins
-> close door
-You can't close that.
-> open door
-You can't open that.
-> lock door with screwdriver.
-You can't lock that.
-> n
-> n
-> switch computer
-You boot the computer and are greeted by a password screen. You do not know the password to this computer so you decide to turn it off; maybe you could find a way around the password. You do remember that it is company policy to not encrypt hard drives.
-
+This is an office. To the south there is a door leading back to the hallway.
 
 * Complete game run with all tasks
 
