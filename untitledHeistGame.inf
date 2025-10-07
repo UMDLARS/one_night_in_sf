@@ -760,10 +760,10 @@ with
 	name 'IBM' 'IBM5100' '5100',
 	description [;
 		if(self has moved) {
-			"This is an IBM 5100, a strange-looking suitcase-sized computer from the 1970s. One of its short sides sprouts a panel of buttons, a tiny monochrome CRT display (showing nothing), a mechanical keyboard, and a slot for a tape cartridge. At 55 pounds and with no handle, it's extremely cumbersome to carry around. A number of strangely frayed and pulsating multicolored wires dangle from various holes drilled in the case.";
+			"This is an IBM 5100, a strange-looking suitcase-sized computer from the 1970s. One of its short sides sprouts a panel of buttons, a tiny monochrome CRT display (showing nothing), a mechanical keyboard, and a slot for a tape cartridge. At 55 pounds and with no handle, it's extremely cumbersome to carry around. While the 5100 appears powered off, a number of frayed and pulsating multicolored wires dangle from various holes drilled in the case.";
 
 		} else {
-		"The IBM 5100 is a strange-looking suitcase-sized computer from the 1970s. One of its short sides sprouts a panel of buttons, a tiny monochrome CRT display, a mechanical keyboard, and a slot for a tape cartridge. It is clearly designed to be a 'portable computer', but at 55 pounds and with no handle, it's unlikely anyone threw this computer in a backpack on a daily basis. You happen to know that this computer was originally able to run programs in the BASIC and APL language, and was especially useful for debugging certain kinds of systems. However, this IBM 5100 has clearly been significantly modified; strange glyphs appear and disappear on the display along with dates and headlines from news outlets. Multicolored glowing wires run from various holes drilled into this 5100's case to the esoteric and futuristic-looking equipment in this room. The wires look like they would disconnect themselves if you picked up the computer.";
+		"The IBM 5100 is a strange-looking suitcase-sized computer from the 1970s. One of its short sides sprouts a panel of buttons, a tiny monochrome CRT display, a mechanical keyboard, and a slot for a tape cartridge. It is clearly designed to be a 'portable computer', but at 55 pounds and with no handle, it's unlikely anyone threw this computer in a backpack on a daily basis. You happen to know that this computer was originally able to run programs in the BASIC and APL languages, and was especially useful for debugging certain kinds of systems. However, this IBM 5100 has clearly been significantly modified. Strange glyphs appear and disappear on the display along with dates and headlines from news outlets. Looking closer, you see that all the dates are in the future -- ranging from a few hours to hundreds of years from now and everything in-between. Multicolored glowing wires run from various holes drilled in the 5100's case to the esoteric and advanced-looking equipment in this room, and an eerie hum emanates from the machine. The wires look like they would disconnect themselves if you picked up the computer.";
 	}
 	],	
 	before [;
@@ -940,7 +940,7 @@ has concealed scored;
 !===================CRAWL SPACE ENTRANCE=====================
 Object Crawl1 "Crawl Space"
 with
-	description "You climb up into a small crawl space above the ceiling, there are electrical wires running everywhere however it appears as if the wall to the west does not extend up into this space!",
+	description "You climb up into a small crawl space above the ceiling, weaving your way through a canopy of electrical wiring. To the west, you notice a vent-shaped gap just large enough for you to fit through.",
 w_to Crawl2,
 d_to Office4,
 has scored;
