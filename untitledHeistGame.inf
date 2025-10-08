@@ -99,11 +99,6 @@ Verb 'type'  * -> TypeErr
 	noun = false; ! I think this suppresses an error message.
 ];
 
-![PrySub;
-!	print "You should try to ", (ul) "pry", " ", "something ", (ul) "with", " ", "something else.";
-!	noun = false;
-!];
-
 [TypeSub;
 	"That's not an object on which you can type anything.";
 ];
@@ -170,9 +165,6 @@ Extend 'move' first
 Extend 'put' first
 	* noun 						-> Put;
 
-
-
-
 Extend 'show' replace
 	* noun 'to' noun			-> insert;
 
@@ -182,7 +174,7 @@ Extend 'show' replace
 ! Page 219 of the DM4 explains this syntax.
 Extend only 'unscrew' first
 	* noun 'with' held                          -> Unlock
-	* noun					    				-> Unlock;
+	* noun					    -> Unlock;
 Extend only 'screw' first
 	* noun 'with' held                          -> Lock;
 
