@@ -91,7 +91,7 @@ parchment-src/build.js:
 	git clone --recursive https://github.com/curiousdannii/parchment parchment-src
 
 parchment: parchment-src/build.js
-	cd parchment-src && npm install --no-package-lock
+	cd parchment-src && npm install --no-package-lock && npm run build
 	mkdir -p parchment/dist
 	cp -alf parchment-src/dist/web parchment/dist/
 
