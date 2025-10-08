@@ -147,6 +147,8 @@ Verb 'plunge'
 	* noun                                      -> Plunge
 	* multiexcept 'with' held                   -> Plunge;
 
+Verb 'rip'
+	* 'off' noun 'with' held           -> Unlock;
 
 Extend 'pick' first
 	* noun 'with' held                          -> Unlock
@@ -180,6 +182,14 @@ Extend only 'turn' first
 
 Extend only 'remove' first
 	* noun 'with' held			    -> Remove;
+
+Extend only 'pry' first
+	* noun 'with' held 							-> Unlock
+	* 'apart'/'off' noun 'with' held           -> Unlock
+	* noun 										-> Unlock;
+Extend only 'pull' first
+	* 'apart'/'off' noun 'with' held           -> Unlock;
+
 
 
 [Initialise;
@@ -1006,42 +1016,44 @@ with
 			Examine: "These hinges bind the door to the wall by four pins going through the entire assembly. Maybe you could remove the pins if you had something with a flat end to push them out.";
 			
 			! We need to have 'take' here too. it resolves to the default 'remove' if 2nd arg isn't given
-			Take, Remove: 
-							if(second==flathead && Office3Door hasnt open){ 
+			Take,Remove,Unlock: 
+
+							if (Office3Door has open) {
+								print "The bent, useless pins lay beside the fallen door.";
+								return true;
+							}	
+							else if(second==flathead){ 
 								print "You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...";
 								give Office3Door open;
 								give Office3Door ~locked;
 								return true;
 							}
-							else if (Office3Door hasnt open) {
+							else {
 
 								print "You try that, but it doesn't seem to work. Maybe you need something like a chisel.";
 								return true;
 							}
-							else {
-								print "The now-bent pins lay beside the fallen door. You see no point in taking them with you.";
-								return true;
-							};
-			! default: "I am not sure what you want me to do.";
+			default: "I am not sure what you want me to do.";
 		]
 		'pins' 'pin'[;
 			Examine: "These pins were hammered into place while someone held the door up. This is how most doors are attached to walls, it seems this door just so happens to have them on the exterior of the office.";
-			Take,Remove:
-							if(second==flathead && Office3Door hasnt open){ 
+			Take,Remove,Unlock:
+
+							if (Office3Door has open) {
+								print "The bent, useless pins lay beside the fallen door.";
+								return true;
+							}
+							else if(second==flathead){ 
 								print "You remove the pins from the hinges of the door! The door falls forward with a loud *THUD* echoing through the halls...";
 								give Office3Door open;
 								give Office3Door ~locked;
 								return true;
 							}
-							else if (Office3Door hasnt open) {
+							else {
 
 								print "You try that, but it doesn't seem to work. Maybe you need something like a chisel.";
 								return true;
 							}
-							else {
-								print "The now-bent pins lay beside the fallen door. You see no point in taking them with you.";
-								return true;
-							};
 			default: "I am not sure what you want me to do.";
 		],
 w_to Hallway5,
