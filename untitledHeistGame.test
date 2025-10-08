@@ -998,3 +998,13 @@ DAMN.SV NOT FOUND
 * Issue #258 test key fob name
 > examine security key fob
 This is a small plastic key fob with a fake name
+
+* Issue #91 -- "Futile." is a bad message
+> scan fob
+> scan fob
+> n
+> n
+> open desk
+> take key
+> throw key at desk
+That doesn't seem like it would be productive.
