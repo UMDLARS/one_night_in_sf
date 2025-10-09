@@ -576,6 +576,15 @@ Taken.
 > s
 > s
 
+* try to unscrew pins
+>{include} _ready coffee card
+> unscrew door
+You unlock the office door and open it!
+> unscrew antique door
+You unlock the office door and open it!
+> unscrew office door
+You unlock the office door and open it!
+
 * jimmy to get hard drive
 >{include} _ready coffee card
 > jimmy door with coffee card
