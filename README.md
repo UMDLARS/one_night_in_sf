@@ -1,10 +1,12 @@
-# Untitled Heist Game
+# One Night In San Francisco
 
 This is a project to write a game in the style of Infocom's "interactive fiction" software of the 1980s, for use in computer security courses.
 
 It is easy to set up a laboratory network for students to practise system intrusion techniques, and organise "red team" vs. "blue team" competitions.  It's far more difficult to create any sort of lab practical for physical security situations.  
 
 Since we can't quickly spin up an example office building to break into, the next best thing is an old-fashioned "text adventure".
+
+This repository includes the game (see below), [a manual](https://github.com/UMDLARS/one_night_in_sf/blob/main/manual/One%20Night%20in%20San%20Francisco.pdf), and [a map](https://github.com/UMDLARS/one_night_in_sf/blob/main/map/titor_floorplan.jpg).
 
 ## Build
 
