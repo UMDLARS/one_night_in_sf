@@ -180,7 +180,7 @@ Extend only 'screw' first
 Extend only 'turn' first
 	* noun 'with' held                          -> Turn;
 
-Extend only 'remove' first
+Extend 'remove' first
 	* noun 'with' held			    -> Remove;
 
 Extend only 'pry' first
