@@ -113,6 +113,15 @@ web: dist
 	@echo "You can play your game at http://localhost:8000/ now."
 	cd build; $(WEBSERVER) || true
 
+# Ship it!  (With apologies to Ryan Finnie)
+ship: dist
+	@echo 
+	@echo '          _!'
+	@echo '     _  _| %\_'
+	@echo '~~~~~\o______/~~~~~'
+	@echo
+
+
 # This will build a C64 disk image with the oldest z-machine version you have.
 # So if you have a foo.z3 and a foo.z8 file, the c64_foo.d64 image will use the z3.
 c64_%.d64: %.z? ozmoo/exomizer/src/exomizer /usr/bin/ruby /usr/bin/acme
