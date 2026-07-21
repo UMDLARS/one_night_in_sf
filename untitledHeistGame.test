@@ -455,9 +455,22 @@ You couldn't possibly fit
 Dropped.
 > d
 pitch dark
+> drop flashlight
+> take flashlight
+You fumble around
+> look
+pitch dark
+> undo
+> undo
 > turn on flashlight
 You switch the flashlight on.
 cramped and dusty space
+> drop flashlight
+> look
+You are underneath a raised floor.
+> take flashlight
+> look
+You are underneath a raised floor
 > n
 Dust bunnies
 > turn off flashlight
