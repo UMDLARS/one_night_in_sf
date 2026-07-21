@@ -1244,7 +1244,7 @@ has light;
 
 Object -> ITRoomTile "Loose Floor Tile"
 with
-	name 'floor' 'tile',
+	name 'loose' 'floor' 'tile' 'ground',
 	door_dir (d_to) (u_to),
 	found_in Office2 UnderITRoom,
 	with_key plunger,
